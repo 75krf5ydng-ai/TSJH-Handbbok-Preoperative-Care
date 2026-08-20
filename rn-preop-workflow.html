@@ -1132,7 +1132,625 @@ Reason: ________________________________________________
 
 </div>
 </section>
+<!-- =========================================================
+     INTERACTIVE RN PREOPERATIVE WORKFLOW CHECKLIST
+========================================================= -->
 
+<section id="rnWorkflowInteractive">
+
+<h2>Interactive RN Preoperative Workflow Checklist</h2>
+
+<p>
+Use this patient-specific checklist to organize preoperative record collection,
+screening, medication reconciliation, testing status and escalation needs before
+provider review.
+</p>
+
+<div class="warning-box">
+<strong>Scope reminder:</strong>
+Nursing staff may collect, verify, organize and summarize clinical information
+and may initiate actions specifically authorized by standing orders, facility
+policy and applicable nursing scope. Medical diagnosis, independent
+perioperative risk determination and final medical optimization remain with the
+appropriately credentialed provider.
+</div>
+
+
+<div class="formula-box">
+
+<h3>Patient / Procedure Verification</h3>
+
+<label><strong>Patient</strong></label><br>
+<input type="text" id="rnPatient"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Procedure</strong></label><br>
+<input type="text" id="rnProcedure"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Surgeon</strong></label><br>
+<input type="text" id="rnSurgeon"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Surgery Date</strong></label><br>
+<input type="date" id="rnDOS"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Procedure/date/surgeon verified?</strong></label><br>
+<select id="rnVerified"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Questionnaire & History Collection</h3>
+
+<label><strong>Preoperative questionnaire completed?</strong></label><br>
+<select id="rnQuestionnaire"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>Allergies verified?</strong></label><br>
+<select id="rnAllergies"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>Medical/surgical history collected?</strong></label><br>
+<select id="rnHistory"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>Anesthesia history reviewed?</strong></label><br>
+<select id="rnAnesthesiaHistory"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Medication Reconciliation</h3>
+
+<label><strong>Home medication list reconciled?</strong></label><br>
+<select id="rnMeds"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>Exact last doses collected for anticoagulants/antiplatelets when applicable?</strong></label><br>
+<select id="rnAnticoag"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>GLP-1 / GIP use identified when applicable?</strong></label><br>
+<select id="rnGLP1"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>SGLT2 use identified when applicable?</strong></label><br>
+<select id="rnSGLT2"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>Insulin / pump use identified when applicable?</strong></label><br>
+<select id="rnInsulin"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Screening & Functional Information</h3>
+
+<label><strong>STOP-BANG total</strong></label><br>
+<input type="number" id="rnSTOP" min="0" max="8"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>CFS</strong></label><br>
+<input type="number" id="rnCFS" min="1" max="9"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Baseline mobility / assistive device collected?</strong></label><br>
+<select id="rnMobility"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>Recent falls identified?</strong></label><br>
+<select id="rnFalls"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>OSA / PAP status collected?</strong></label><br>
+<select id="rnOSA"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Testing & Record Collection</h3>
+
+<label><strong>Required labs received?</strong></label><br>
+<select id="rnLabs"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+<label><strong>Required EKG received?</strong></label><br>
+<select id="rnEKG"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+<label><strong>Required cardiac testing / reports received?</strong></label><br>
+<select id="rnCardiac"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+<label><strong>Required pulmonary testing / records received?</strong></label><br>
+<select id="rnPulmonary"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+<label><strong>Required specialist records received?</strong></label><br>
+<select id="rnSpecialist"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+<label><strong>CIED interrogation / device information received when applicable?</strong></label><br>
+<select id="rnDevice"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Findings Requiring Provider Review</h3>
+
+<label><input type="checkbox" class="rnFlag"
+value="New or worsening chest pain, dyspnea, syncope or other significant interval symptom reported.">
+New/worsening cardiopulmonary symptoms</label><br><br>
+
+<label><input type="checkbox" class="rnFlag"
+value="Clinically significant abnormal vital sign requires provider review.">
+Abnormal vital signs</label><br><br>
+
+<label><input type="checkbox" class="rnFlag"
+value="Clinically meaningful laboratory abnormality requires provider review.">
+Abnormal laboratory result</label><br><br>
+
+<label><input type="checkbox" class="rnFlag"
+value="New or clinically significant EKG abnormality requires provider review.">
+Abnormal EKG</label><br><br>
+
+<label><input type="checkbox" class="rnFlag"
+value="Medication hold or last-dose information is incomplete or inconsistent.">
+Medication hold / last-dose concern</label><br><br>
+
+<label><input type="checkbox" class="rnFlag"
+value="Recent ER visit or hospitalization requires provider review and record reconciliation.">
+Recent ER visit / hospitalization</label><br><br>
+
+<label><input type="checkbox" class="rnFlag"
+value="Active infection, wound concern or systemic symptoms reported.">
+Infection / wound concern</label><br><br>
+
+<label><input type="checkbox" class="rnFlag"
+value="Significant fall risk, frailty or mobility concern identified.">
+Frailty / mobility / fall-risk concern</label><br><br>
+
+<label><input type="checkbox" class="rnFlag"
+value="Required testing, records or specialist information remains outstanding.">
+Required record/testing item incomplete</label>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Pending Item Ownership</h3>
+
+<label><strong>Any required item still pending?</strong></label><br>
+<select id="rnPending"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>Pending item / owner / expected closure</strong></label><br>
+<textarea id="rnPendingDetails"
+rows="5"
+placeholder="Example: cardiology note requested; owner = RN; repeat CBC pending; expected tomorrow..."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+<label><strong>Additional RN comments</strong></label><br>
+<textarea id="rnComments"
+rows="5"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<div class="formula-box">
+
+<button type="button" id="rnGenerate"
+style="background:#17324d;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Generate RN Handoff Summary
+</button>
+
+<button type="button" id="rnCopy"
+style="background:#2f6fb0;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Copy Summary
+</button>
+
+<button type="button" id="rnPrint"
+style="background:#356f44;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Print
+</button>
+
+<button type="button" id="rnClear"
+style="background:#8b2f2f;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Clear
+</button>
+
+</div>
+
+
+<div id="rnResult"
+class="formula-box"
+style="display:none;margin-top:20px;">
+</div>
+
+
+<script>
+
+function rnVal(id) {
+  const el = document.getElementById(id);
+  return el ? el.value : "";
+}
+
+function generateRNHandoff() {
+
+  const incomplete = [];
+  const flags = Array.from(
+    document.querySelectorAll(".rnFlag:checked")
+  ).map(function(el) {
+    return el.value;
+  });
+
+  const checks = [
+    ["rnVerified","Procedure/date/surgeon verification incomplete."],
+    ["rnQuestionnaire","Preoperative questionnaire incomplete."],
+    ["rnAllergies","Allergy verification incomplete."],
+    ["rnHistory","Medical/surgical history collection incomplete."],
+    ["rnAnesthesiaHistory","Anesthesia history collection incomplete."],
+    ["rnMeds","Medication reconciliation incomplete."],
+    ["rnAnticoag","Required anticoagulant/antiplatelet last-dose information incomplete."],
+    ["rnGLP1","GLP-1/GIP medication identification incomplete."],
+    ["rnSGLT2","SGLT2 medication identification incomplete."],
+    ["rnInsulin","Insulin/pump information incomplete."],
+    ["rnMobility","Baseline mobility information incomplete."],
+    ["rnOSA","OSA/PAP information incomplete."],
+    ["rnLabs","Required laboratory records not received."],
+    ["rnEKG","Required EKG not received."],
+    ["rnCardiac","Required cardiac report/testing not received."],
+    ["rnPulmonary","Required pulmonary report/testing not received."],
+    ["rnSpecialist","Required specialist records not received."],
+    ["rnDevice","Required CIED/device information not received."]
+  ];
+
+  checks.forEach(function(item) {
+    if (rnVal(item[0]) === "no") {
+      incomplete.push(item[1]);
+    }
+  });
+
+  if (rnVal("rnFalls") === "yes") {
+    flags.push(
+      "Recent fall history reported."
+    );
+  }
+
+  if (rnVal("rnPending") === "yes") {
+    incomplete.push(
+      "One or more required preoperative items remain pending."
+    );
+  }
+
+  let html = "";
+
+  html +=
+    "<h2>RN Preoperative Handoff Summary</h2>";
+
+  if (rnVal("rnPatient")) {
+    html +=
+      "<strong>Patient:</strong> " +
+      rnVal("rnPatient") +
+      "<br>";
+  }
+
+  if (rnVal("rnProcedure")) {
+    html +=
+      "<strong>Procedure:</strong> " +
+      rnVal("rnProcedure") +
+      "<br>";
+  }
+
+  if (rnVal("rnSurgeon")) {
+    html +=
+      "<strong>Surgeon:</strong> " +
+      rnVal("rnSurgeon") +
+      "<br>";
+  }
+
+  if (rnVal("rnDOS")) {
+    html +=
+      "<strong>Surgery Date:</strong> " +
+      rnVal("rnDOS") +
+      "<br>";
+  }
+
+  html +=
+    "<h3>Screening Information</h3>";
+
+  html +=
+    "<p><strong>STOP-BANG:</strong> " +
+    (rnVal("rnSTOP") || "—") +
+    "<br><strong>CFS:</strong> " +
+    (rnVal("rnCFS") || "—") +
+    "</p>";
+
+  if (flags.length > 0) {
+
+    html +=
+      "<h3>Findings Requiring Provider Review</h3><ul>";
+
+    flags.forEach(function(item) {
+      html +=
+        "<li>" + item + "</li>";
+    });
+
+    html += "</ul>";
+  }
+
+  if (incomplete.length > 0) {
+
+    html +=
+      "<h3>Incomplete / Pending Items</h3><ul>";
+
+    incomplete.forEach(function(item) {
+      html +=
+        "<li>" + item + "</li>";
+    });
+
+    html += "</ul>";
+  }
+
+  if (rnVal("rnPendingDetails")) {
+    html +=
+      "<h3>Pending Item / Owner / Closure Plan</h3><p>" +
+      rnVal("rnPendingDetails") +
+      "</p>";
+  }
+
+  if (rnVal("rnComments")) {
+    html +=
+      "<h3>Additional RN Comments</h3><p>" +
+      rnVal("rnComments") +
+      "</p>";
+  }
+
+  html += "<hr>";
+
+  html +=
+    "<h3>RN Handoff Status</h3>";
+
+  if (
+    flags.length === 0 &&
+    incomplete.length === 0
+  ) {
+
+    html +=
+      "<div class='success-box'>" +
+      "RN preoperative data collection and required record preparation are complete for provider review. Final medical interpretation and optimization status remain with the credentialed provider." +
+      "</div>";
+
+  } else {
+
+    html +=
+      "<div class='warning-box'>" +
+      "RN preoperative review identified information requiring provider review and/or additional record closure before final medical optimization." +
+      "</div>";
+  }
+
+  html +=
+    "<p><strong>Final preoperative optimization status is not assigned by this RN workflow tool.</strong></p>";
+
+  const result =
+    document.getElementById("rnResult");
+
+  result.innerHTML = html;
+  result.style.display = "block";
+
+  result.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+}
+
+
+async function copyRNHandoff() {
+
+  generateRNHandoff();
+
+  const text =
+    document.getElementById("rnResult").innerText;
+
+  try {
+
+    await navigator.clipboard.writeText(text);
+
+    alert("RN handoff summary copied.");
+
+  } catch (error) {
+
+    const temp =
+      document.createElement("textarea");
+
+    temp.value = text;
+
+    document.body.appendChild(temp);
+
+    temp.select();
+
+    document.execCommand("copy");
+
+    document.body.removeChild(temp);
+
+    alert("RN handoff summary copied.");
+  }
+}
+
+
+function printRNHandoff() {
+
+  generateRNHandoff();
+
+  setTimeout(function() {
+    window.print();
+  },150);
+}
+
+
+function clearRNWorkflow() {
+
+  if (
+    !confirm(
+      "Clear all patient-specific RN workflow information?"
+    )
+  ) {
+    return;
+  }
+
+  document
+    .querySelectorAll(
+      "#rnWorkflowInteractive input[type='text'], #rnWorkflowInteractive input[type='number'], #rnWorkflowInteractive input[type='date'], #rnWorkflowInteractive textarea"
+    )
+    .forEach(function(el) {
+      el.value = "";
+    });
+
+  document
+    .querySelectorAll(
+      "#rnWorkflowInteractive input[type='checkbox']"
+    )
+    .forEach(function(el) {
+      el.checked = false;
+    });
+
+  document
+    .querySelectorAll(
+      "#rnWorkflowInteractive select"
+    )
+    .forEach(function(el) {
+      el.selectedIndex = 0;
+    });
+
+  const result =
+    document.getElementById("rnResult");
+
+  result.innerHTML = "";
+  result.style.display = "none";
+}
+
+
+document
+  .getElementById("rnGenerate")
+  .addEventListener(
+    "click",
+    generateRNHandoff
+  );
+
+document
+  .getElementById("rnCopy")
+  .addEventListener(
+    "click",
+    copyRNHandoff
+  );
+
+document
+  .getElementById("rnPrint")
+  .addEventListener(
+    "click",
+    printRNHandoff
+  );
+
+document
+  .getElementById("rnClear")
+  .addEventListener(
+    "click",
+    clearRNWorkflow
+  );
+
+</script>
+
+</section>
 </main>
 
 <footer>

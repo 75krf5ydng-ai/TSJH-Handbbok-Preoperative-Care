@@ -967,11 +967,578 @@
   </div>
 </section>
 
+<!-- =========================================================
+     INTERACTIVE PULMONARY PREOPERATIVE RISK CALCULATOR
+========================================================= -->
+
+<section>
+
+<h2>Interactive Pulmonary Preoperative Risk Calculator</h2>
+
+<p>
+Enter available pulmonary and sleep-apnea risk information below. The tool
+calculates STOP-BANG, CAT and BODE when sufficient data are entered, incorporates
+the Arozullah score when available, checks key TSJH pulmonary risk triggers, and
+generates a practical perioperative recommendation.
+</p>
+
+<div class="clinical-box">
+
+<h3>1. STOP-BANG</h3>
+
+<label>
+<input type="checkbox" id="sbSnore">
+Loud snoring
+</label><br><br>
+
+<label>
+<input type="checkbox" id="sbTired">
+Daytime tiredness / sleepiness
+</label><br><br>
+
+<label>
+<input type="checkbox" id="sbObserved">
+Observed apnea / choking / gasping
+</label><br><br>
+
+<label>
+<input type="checkbox" id="sbPressure">
+Hypertension
+</label><br><br>
+
+<label><strong>BMI (kg/m²)</strong></label><br>
+<input type="number" id="sbBMI" step="0.1"
+placeholder="Example: 36"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Age</strong></label><br>
+<input type="number" id="sbAge"
+placeholder="Example: 67"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Neck circumference (cm)</strong></label><br>
+<input type="number" id="sbNeck" step="0.1"
+placeholder="Example: 42"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Sex criterion</strong></label><br>
+<select id="sbSex"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">Not male</option>
+<option value="yes">Male</option>
+</select>
+
+<hr>
+
+<h3>2. COPD Assessment Test (CAT)</h3>
+
+<p>
+Select a score from 0–5 for each item. Use the patient's own responses.
+</p>
+
+<label><strong>Cough</strong></label><br>
+<select id="cat1" class="catItem"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Not entered</option>
+<option value="0">0</option><option value="1">1</option>
+<option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+</select>
+
+<label><strong>Phlegm</strong></label><br>
+<select id="cat2" class="catItem"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Not entered</option>
+<option value="0">0</option><option value="1">1</option>
+<option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+</select>
+
+<label><strong>Chest tightness</strong></label><br>
+<select id="cat3" class="catItem"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Not entered</option>
+<option value="0">0</option><option value="1">1</option>
+<option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+</select>
+
+<label><strong>Breathlessness walking uphill/stairs</strong></label><br>
+<select id="cat4" class="catItem"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Not entered</option>
+<option value="0">0</option><option value="1">1</option>
+<option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+</select>
+
+<label><strong>Activity limitation at home</strong></label><br>
+<select id="cat5" class="catItem"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Not entered</option>
+<option value="0">0</option><option value="1">1</option>
+<option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+</select>
+
+<label><strong>Confidence leaving home</strong></label><br>
+<select id="cat6" class="catItem"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Not entered</option>
+<option value="0">0</option><option value="1">1</option>
+<option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+</select>
+
+<label><strong>Sleep</strong></label><br>
+<select id="cat7" class="catItem"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Not entered</option>
+<option value="0">0</option><option value="1">1</option>
+<option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+</select>
+
+<label><strong>Energy</strong></label><br>
+<select id="cat8" class="catItem"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Not entered</option>
+<option value="0">0</option><option value="1">1</option>
+<option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+</select>
+
+<hr>
+
+<h3>3. BODE Index</h3>
+
+<label><strong>BMI (kg/m²)</strong></label><br>
+<input type="number" id="bodeBMI" step="0.1"
+placeholder="Example: 27"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>FEV1 % predicted</strong></label><br>
+<input type="number" id="bodeFEV1" step="0.1"
+placeholder="Example: 48"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>mMRC dyspnea grade</strong></label><br>
+<select id="bodeMMRC"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Not entered</option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+</select>
+
+<label><strong>6-minute walk distance (meters)</strong></label><br>
+<input type="number" id="bodeWalk"
+placeholder="Example: 320"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<hr>
+
+<h3>4. Additional Pulmonary Risk Information</h3>
+
+<label><strong>Arozullah score, if already calculated</strong></label><br>
+<input type="number" id="arozullah"
+placeholder="Enter score"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Supplemental oxygen</strong></label><br>
+<select id="oxygen"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="none">None</option>
+<option value="prn">Intermittent / PRN</option>
+<option value="night">Nocturnal only</option>
+<option value="continuous">24-hour oxygen</option>
+</select>
+
+<label><strong>OSA / PAP status</strong></label><br>
+<select id="papStatus"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="none">No known OSA</option>
+<option value="pap">OSA — uses PAP</option>
+<option value="intolerant">OSA — PAP intolerant / not using</option>
+</select>
+
+<label><strong>Recent COPD/asthma exacerbation</strong></label><br>
+<select id="exacerbation"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes / active or recently unresolved</option>
+</select>
+
+<label><strong>Chronic hypercapnic respiratory failure</strong></label><br>
+<select id="hypercapnia"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>Idiopathic pulmonary fibrosis / significant ILD</strong></label><br>
+<select id="ipf"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>Pulmonary hypertension red flag</strong></label><br>
+<select id="pulmHTN"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No / not known</option>
+<option value="yes">Yes — significant PH / RV concern</option>
+</select>
+
+<button onclick="calculatePulmonaryRisk()"
+style="
+background:#17324d;
+color:white;
+border:none;
+padding:14px 22px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin-top:12px;
+width:100%;">
+Calculate Pulmonary Risk & Recommendation
+</button>
+
+</div>
+
+<div id="pulmonaryResult"
+style="
+margin-top:20px;
+padding:18px;
+background:#eef4f8;
+border-left:5px solid #2f6fa3;
+border-radius:6px;
+display:none;">
+</div>
+
+<div class="warning-box">
+<strong>Clinical reminder:</strong>
+This calculator is decision support only. Use current symptoms, examination,
+oxygen requirement, exacerbation history, pulmonary records, PFT quality,
+procedure risk, anesthesia requirements and facility policy when determining
+final optimization and surgical venue.
+</div>
+
+</section>
+
 </main>
 
 <footer>
-  Preoperative Optimization Handbook · Pulmonary Evaluation & Optimization
+Preoperative Optimization Handbook · Pulmonary Evaluation
 </footer>
+
+<script>
+
+function calculatePulmonaryRisk() {
+
+    let findings = [];
+    let recommendations = [];
+    let escalation = false;
+    let notOptimized = false;
+
+    /* STOP-BANG */
+
+    let stopScore = 0;
+    let stopFour = 0;
+
+    if (document.getElementById("sbSnore").checked) {
+        stopScore++; stopFour++;
+    }
+
+    if (document.getElementById("sbTired").checked) {
+        stopScore++; stopFour++;
+    }
+
+    if (document.getElementById("sbObserved").checked) {
+        stopScore++; stopFour++;
+    }
+
+    if (document.getElementById("sbPressure").checked) {
+        stopScore++; stopFour++;
+    }
+
+    const sbBMI = parseFloat(document.getElementById("sbBMI").value);
+    const sbAge = parseFloat(document.getElementById("sbAge").value);
+    const sbNeck = parseFloat(document.getElementById("sbNeck").value);
+    const sbMale = document.getElementById("sbSex").value === "yes";
+
+    if (!isNaN(sbBMI) && sbBMI > 35) stopScore++;
+    if (!isNaN(sbAge) && sbAge > 50) stopScore++;
+    if (!isNaN(sbNeck) && sbNeck > 40) stopScore++;
+    if (sbMale) stopScore++;
+
+    let stopRisk = "Low";
+
+    if (
+        stopScore >= 5 ||
+        (stopFour >= 2 && sbMale) ||
+        (stopFour >= 2 && !isNaN(sbBMI) && sbBMI > 35) ||
+        (stopFour >= 2 && !isNaN(sbNeck) && sbNeck > 40)
+    ) {
+        stopRisk = "High";
+    } else if (stopScore >= 3) {
+        stopRisk = "Intermediate";
+    }
+
+    findings.push(
+        "STOP-BANG: " + stopScore + "/8 — " + stopRisk + " OSA risk."
+    );
+
+    /* CAT */
+
+    const catItems = document.querySelectorAll(".catItem");
+    let catComplete = true;
+    let catScore = 0;
+
+    catItems.forEach(function(item) {
+        if (item.value === "") {
+            catComplete = false;
+        } else {
+            catScore += parseInt(item.value);
+        }
+    });
+
+    if (catComplete) {
+
+        findings.push("CAT score: " + catScore + "/40.");
+
+        if (catScore > 10) {
+            escalation = true;
+            recommendations.push(
+                "CAT >10 meets the TSJH pulmonary risk trigger; review COPD symptom burden and surgical venue/anesthesia requirements."
+            );
+        }
+    } else {
+        findings.push("CAT score: incomplete.");
+    }
+
+    /* BODE */
+
+    const bmi = parseFloat(document.getElementById("bodeBMI").value);
+    const fev1 = parseFloat(document.getElementById("bodeFEV1").value);
+    const mmrcText = document.getElementById("bodeMMRC").value;
+    const walk = parseFloat(document.getElementById("bodeWalk").value);
+
+    let bodeComplete =
+        !isNaN(bmi) &&
+        !isNaN(fev1) &&
+        mmrcText !== "" &&
+        !isNaN(walk);
+
+    let bode = 0;
+
+    if (bodeComplete) {
+
+        const mmrc = parseInt(mmrcText);
+
+        if (bmi <= 21) bode += 1;
+
+        if (fev1 >= 65) bode += 0;
+        else if (fev1 >= 50) bode += 1;
+        else if (fev1 >= 36) bode += 2;
+        else bode += 3;
+
+        if (mmrc <= 1) bode += 0;
+        else if (mmrc === 2) bode += 1;
+        else if (mmrc === 3) bode += 2;
+        else bode += 3;
+
+        if (walk >= 350) bode += 0;
+        else if (walk >= 250) bode += 1;
+        else if (walk >= 150) bode += 2;
+        else bode += 3;
+
+        findings.push("BODE score: " + bode + "/10.");
+
+        if (bode >= 5) {
+            escalation = true;
+            recommendations.push(
+                "BODE ≥5 meets the TSJH pulmonary risk trigger; anesthesia/pulmonary and surgical-venue review are appropriate."
+            );
+        }
+
+        if (fev1 < 50) {
+            escalation = true;
+            recommendations.push(
+                "FEV1 <50% predicted meets the TSJH pulmonary risk trigger."
+            );
+        }
+
+    } else {
+
+        findings.push("BODE score: incomplete.");
+
+        if (!isNaN(fev1) && fev1 < 50) {
+            escalation = true;
+            recommendations.push(
+                "FEV1 <50% predicted meets the TSJH pulmonary risk trigger."
+            );
+        }
+    }
+
+    /* Arozullah */
+
+    const aroz = parseFloat(document.getElementById("arozullah").value);
+
+    if (!isNaN(aroz)) {
+
+        findings.push("Arozullah score entered: " + aroz + ".");
+
+        if (aroz >= 4) {
+            escalation = true;
+            recommendations.push(
+                "Arozullah score ≥4 meets the TSJH pulmonary risk trigger."
+            );
+        }
+
+    } else {
+        findings.push("Arozullah score: not entered.");
+    }
+
+    /* Clinical triggers */
+
+    const oxygen = document.getElementById("oxygen").value;
+    const pap = document.getElementById("papStatus").value;
+    const exacerbation = document.getElementById("exacerbation").value;
+    const hypercapnia = document.getElementById("hypercapnia").value;
+    const ipf = document.getElementById("ipf").value;
+    const pulmHTN = document.getElementById("pulmHTN").value;
+
+    if (oxygen === "continuous") {
+        escalation = true;
+        recommendations.push(
+            "24-hour supplemental oxygen meets the TSJH higher-risk pulmonary pathway trigger; anesthesia/pulmonary and higher-level-of-care review are appropriate."
+        );
+    }
+
+    if (pap === "pap") {
+        recommendations.push(
+            "Known OSA using PAP: patient should bring PAP equipment when required and use PAP whenever asleep postoperatively; consider continuous oximetry according to risk."
+        );
+    }
+
+    if (pap === "intolerant") {
+        escalation = true;
+        recommendations.push(
+            "OSA with PAP intolerance: use continuous pulse oximetry postoperatively; NIPPV and/or supplemental oxygen should be available if clinically warranted."
+        );
+    }
+
+    if (stopRisk === "High") {
+        recommendations.push(
+            "High STOP-BANG risk: plan postoperative respiratory monitoring and minimize opioid/sedative respiratory depression when feasible."
+        );
+    }
+
+    if (exacerbation === "yes") {
+        notOptimized = true;
+        recommendations.push(
+            "Active or unresolved COPD/asthma exacerbation should be treated before routine elective surgery."
+        );
+    }
+
+    if (hypercapnia === "yes") {
+        escalation = true;
+        recommendations.push(
+            "Chronic hypercapnic respiratory failure is a higher-risk finding requiring pulmonary/anesthesia and higher-level-of-care planning."
+        );
+    }
+
+    if (ipf === "yes") {
+        escalation = true;
+        recommendations.push(
+            "Idiopathic pulmonary fibrosis/significant ILD is a higher-risk pulmonary condition; review current pulmonary status, oxygen requirement, DLCO, pulmonary hypertension risk and surgical venue."
+        );
+    }
+
+    if (pulmHTN === "yes") {
+        escalation = true;
+        recommendations.push(
+            "Significant pulmonary hypertension/RV concern requires anesthesia and appropriate cardiovascular/pulmonary review to determine venue and perioperative monitoring."
+        );
+    }
+
+    if (recommendations.length === 0) {
+        recommendations.push(
+            "No major pulmonary escalation trigger was identified from the entered data. Continue baseline respiratory therapy and routine postoperative pulmonary-expansion measures."
+        );
+    }
+
+    let status = "";
+
+    if (notOptimized) {
+        status =
+            "NOT OPTIMIZED / ACTIVE PULMONARY CONDITION REQUIRES TREATMENT";
+    } else if (escalation) {
+        status =
+            "PENDING / PULMONARY OR ANESTHESIA REVIEW MAY BE REQUIRED";
+    } else {
+        status =
+            "NO HIGH-RISK PULMONARY TRIGGER IDENTIFIED";
+    }
+
+    let html = "";
+
+    html += "<h3>Pulmonary Risk Summary</h3>";
+
+    html +=
+        "<p><strong>Status:</strong> " +
+        status +
+        "</p>";
+
+    html +=
+        "<p><strong>Calculated / entered findings:</strong></p><ul>";
+
+    findings.forEach(function(item) {
+        html += "<li>" + item + "</li>";
+    });
+
+    html += "</ul>";
+
+    html +=
+        "<p><strong>Perioperative recommendations:</strong></p><ul>";
+
+    recommendations.forEach(function(item) {
+        html += "<li>" + item + "</li>";
+    });
+
+    html += "</ul>";
+
+    html += "<hr>";
+
+    html +=
+        "<p><strong>Suggested provider documentation:</strong><br>" +
+        "Pulmonary risk assessment reviewed. STOP-BANG " +
+        stopScore +
+        "/8 (" +
+        stopRisk +
+        " OSA risk). " +
+        (catComplete ? "CAT " + catScore + ". " : "") +
+        (bodeComplete ? "BODE " + bode + ". " : "") +
+        (!isNaN(aroz) ? "Arozullah " + aroz + ". " : "") +
+        "Pulmonary findings and postoperative respiratory-monitoring needs were reviewed in the context of the planned procedure. " +
+        (notOptimized
+            ? "Active pulmonary disease requires treatment before final elective-surgery optimization."
+            : escalation
+                ? "Additional pulmonary/anesthesia or surgical-venue review may be required before final optimization."
+                : "No high-risk pulmonary trigger was identified from the entered information.") +
+        "</p>";
+
+    const result =
+        document.getElementById("pulmonaryResult");
+
+    result.innerHTML = html;
+    result.style.display = "block";
+}
+
+</script>
 
 </body>
 </html>

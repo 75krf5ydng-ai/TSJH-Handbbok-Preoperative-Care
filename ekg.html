@@ -1044,6 +1044,392 @@
 <footer>
   Preoperative Optimization Handbook · EKG Interpretation & Workup Thresholds
 </footer>
+<!-- =========================================================
+     INTERACTIVE PREOPERATIVE EKG INTERPRETER
+========================================================= -->
 
+<section>
+
+<h2>Interactive Preoperative EKG Interpreter</h2>
+
+<p>
+Enter available EKG findings below to generate a preliminary perioperative interpretation
+and recommended next step.
+</p>
+
+<div class="clinical-box">
+
+<label><strong>Heart rate (bpm)</strong></label><br>
+<input type="number" id="ekgRate" placeholder="Example: 72"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Rhythm</strong></label><br>
+<select id="ekgRhythm"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Select rhythm</option>
+<option value="sinus">Sinus rhythm</option>
+<option value="afib">Atrial fibrillation</option>
+<option value="flutter">Atrial flutter</option>
+<option value="paced">Paced rhythm</option>
+<option value="junctional">Junctional rhythm</option>
+<option value="other">Other / uncertain</option>
+</select><br>
+
+<label><strong>PR interval (ms)</strong></label><br>
+<input type="number" id="ekgPR" placeholder="Example: 160"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>QRS duration (ms)</strong></label><br>
+<input type="number" id="ekgQRS" placeholder="Example: 92"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>QTc (ms)</strong></label><br>
+<input type="number" id="ekgQTc" placeholder="Example: 430"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Axis</strong></label><br>
+<select id="ekgAxis"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Select</option>
+<option value="normal">Normal axis</option>
+<option value="lad">Left axis deviation</option>
+<option value="rad">Right axis deviation</option>
+<option value="extreme">Extreme axis deviation</option>
+</select><br>
+
+<label><strong>AV block</strong></label><br>
+<select id="ekgAVBlock"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="none">None</option>
+<option value="first">First-degree AV block</option>
+<option value="mobitz1">Mobitz I</option>
+<option value="mobitz2">Mobitz II</option>
+<option value="third">Third-degree heart block</option>
+</select><br>
+
+<label><strong>Bundle branch block</strong></label><br>
+<select id="ekgBBB"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="none">None</option>
+<option value="rbbb">RBBB</option>
+<option value="lbbb">LBBB</option>
+<option value="bifascicular">Bifascicular block</option>
+</select><br>
+
+<label><strong>ST-segment / ischemic changes</strong></label><br>
+<select id="ekgST"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="none">None</option>
+<option value="nonspecific">Nonspecific ST-T changes</option>
+<option value="depression">ST depression</option>
+<option value="elevation">ST elevation</option>
+<option value="newT">New significant T-wave inversion</option>
+</select><br>
+
+<label><strong>Pathologic Q waves</strong></label><br>
+<select id="ekgQWaves"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select><br>
+
+<label><strong>PVCs / ectopy</strong></label><br>
+<select id="ekgPVC"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="none">None</option>
+<option value="occasional">Occasional</option>
+<option value="frequent">Frequent</option>
+<option value="runs">Runs / NSVT</option>
+</select><br>
+
+<label><strong>Compared with prior EKG</strong></label><br>
+<select id="ekgPrior"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Select</option>
+<option value="same">No significant change</option>
+<option value="new">New abnormality</option>
+<option value="none">No prior available</option>
+</select><br>
+
+<label><strong>Current concerning symptoms</strong></label><br>
+<select id="ekgSymptoms"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes — chest pain, syncope, new dyspnea, palpitations, etc.</option>
+</select><br>
+
+<label><strong>Known significant cardiac disease</strong></label><br>
+<select id="ekgCardiacDisease"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select><br>
+
+<button onclick="interpretEKG()"
+style="
+background:#17324d;
+color:white;
+border:none;
+padding:14px 22px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin-top:10px;
+width:100%;
+">
+Interpret EKG
+</button>
+
+</div>
+
+<div id="ekgResult"
+style="
+margin-top:20px;
+padding:18px;
+background:#eef4f8;
+border-left:5px solid #2f6fa3;
+border-radius:6px;
+display:none;
+">
+</div>
+
+<div class="warning-box">
+<strong>Important:</strong> This tool provides preliminary decision support only.
+Final interpretation should consider tracing quality, comparison with prior studies,
+symptoms, clinical context, medications, electrolytes and formal physician interpretation.
+</div>
+
+</section>
+
+<script>
+function interpretEKG() {
+
+    const rate = parseFloat(document.getElementById("ekgRate").value);
+    const rhythm = document.getElementById("ekgRhythm").value;
+    const pr = parseFloat(document.getElementById("ekgPR").value);
+    const qrs = parseFloat(document.getElementById("ekgQRS").value);
+    const qtc = parseFloat(document.getElementById("ekgQTc").value);
+    const axis = document.getElementById("ekgAxis").value;
+    const avBlock = document.getElementById("ekgAVBlock").value;
+    const bbb = document.getElementById("ekgBBB").value;
+    const st = document.getElementById("ekgST").value;
+    const qWaves = document.getElementById("ekgQWaves").value;
+    const pvc = document.getElementById("ekgPVC").value;
+    const prior = document.getElementById("ekgPrior").value;
+    const symptoms = document.getElementById("ekgSymptoms").value;
+    const cardiacDisease = document.getElementById("ekgCardiacDisease").value;
+
+    let interpretation = [];
+    let recommendations = [];
+    let highRisk = false;
+    let urgent = false;
+
+    if (!isNaN(rate)) {
+        if (rate < 50) {
+            interpretation.push("Bradycardia at " + rate + " bpm.");
+        } else if (rate > 100) {
+            interpretation.push("Tachycardia at " + rate + " bpm.");
+        } else {
+            interpretation.push("Ventricular rate " + rate + " bpm.");
+        }
+    }
+
+    if (rhythm === "sinus") {
+        interpretation.push("Sinus rhythm.");
+    }
+
+    if (rhythm === "afib") {
+        interpretation.push("Atrial fibrillation.");
+        if (!isNaN(rate) && rate > 100) {
+            highRisk = true;
+            recommendations.push("Assess ventricular rate control and clinical stability before elective surgery.");
+        }
+    }
+
+    if (rhythm === "flutter") {
+        interpretation.push("Atrial flutter.");
+        highRisk = true;
+        recommendations.push("Assess rate control, anticoagulation plan and clinical stability.");
+    }
+
+    if (rhythm === "paced") {
+        interpretation.push("Paced rhythm.");
+        recommendations.push("Confirm device status and recent interrogation when clinically indicated.");
+    }
+
+    if (!isNaN(pr) && pr > 200) {
+        interpretation.push("Prolonged PR interval consistent with first-degree AV conduction delay.");
+    }
+
+    if (!isNaN(qrs) && qrs >= 120) {
+        interpretation.push("Wide QRS complex at " + qrs + " ms.");
+    }
+
+    if (!isNaN(qtc)) {
+        if (qtc >= 500) {
+            highRisk = true;
+            interpretation.push("Marked QTc prolongation at " + qtc + " ms.");
+            recommendations.push("Review QT-prolonging medications, potassium, magnesium and reversible causes before elective surgery.");
+        } else if (qtc >= 470) {
+            interpretation.push("Borderline/prolonged QTc at " + qtc + " ms.");
+            recommendations.push("Review medications and electrolytes.");
+        } else {
+            interpretation.push("QTc " + qtc + " ms.");
+        }
+    }
+
+    if (axis === "lad") {
+        interpretation.push("Left axis deviation.");
+    }
+
+    if (axis === "rad") {
+        interpretation.push("Right axis deviation.");
+    }
+
+    if (axis === "extreme") {
+        interpretation.push("Extreme axis deviation.");
+        highRisk = true;
+    }
+
+    if (avBlock === "first") {
+        interpretation.push("First-degree AV block.");
+    }
+
+    if (avBlock === "mobitz1") {
+        interpretation.push("Second-degree AV block, Mobitz I.");
+        recommendations.push("Correlate with symptoms, rate and prior EKG.");
+    }
+
+    if (avBlock === "mobitz2") {
+        interpretation.push("Second-degree AV block, Mobitz II.");
+        urgent = true;
+        recommendations.push("Cardiology evaluation is required before routine elective surgery.");
+    }
+
+    if (avBlock === "third") {
+        interpretation.push("Third-degree heart block.");
+        urgent = true;
+        recommendations.push("Urgent cardiac evaluation is required; elective surgery should not proceed until addressed.");
+    }
+
+    if (bbb === "rbbb") {
+        interpretation.push("Right bundle branch block.");
+    }
+
+    if (bbb === "lbbb") {
+        interpretation.push("Left bundle branch block.");
+        highRisk = true;
+        recommendations.push("LBBB requires comparison with prior EKG and further ischemic evaluation or cardiology review when new or unexplained. Pharmacologic nuclear stress testing may be appropriate when ischemia evaluation is needed.");
+    }
+
+    if (bbb === "bifascicular") {
+        interpretation.push("Bifascicular conduction disease.");
+        highRisk = true;
+        recommendations.push("Review symptoms, prior EKG and cardiac history; consider cardiology review if new or symptomatic.");
+    }
+
+    if (st === "nonspecific") {
+        interpretation.push("Nonspecific ST-T wave abnormality.");
+    }
+
+    if (st === "depression") {
+        interpretation.push("ST-segment depression.");
+        highRisk = true;
+        recommendations.push("Assess for ischemic symptoms and compare with prior EKG; further cardiac evaluation may be indicated.");
+    }
+
+    if (st === "elevation") {
+        interpretation.push("ST-segment elevation.");
+        urgent = true;
+        recommendations.push("Evaluate urgently for acute ischemia or another cause of ST elevation; routine elective surgery should not proceed until clarified.");
+    }
+
+    if (st === "newT") {
+        interpretation.push("New significant T-wave inversion.");
+        highRisk = true;
+        recommendations.push("Assess for ischemia and compare with prior tracing.");
+    }
+
+    if (qWaves === "yes") {
+        interpretation.push("Pathologic Q waves present.");
+        recommendations.push("Review for prior myocardial infarction and compare with prior studies.");
+    }
+
+    if (pvc === "occasional") {
+        interpretation.push("Occasional PVCs.");
+    }
+
+    if (pvc === "frequent") {
+        interpretation.push("Frequent PVCs.");
+        highRisk = true;
+        recommendations.push("Review electrolytes, symptoms, structural heart disease and prior rhythm history.");
+    }
+
+    if (pvc === "runs") {
+        interpretation.push("Runs of ventricular ectopy / possible NSVT.");
+        urgent = true;
+        recommendations.push("Cardiac evaluation is warranted before routine elective surgery.");
+    }
+
+    if (prior === "new") {
+        interpretation.push("Abnormality is new compared with prior EKG.");
+        highRisk = true;
+        recommendations.push("New EKG changes should be evaluated in the context of symptoms and cardiac risk before final optimization.");
+    }
+
+    if (symptoms === "yes") {
+        urgent = true;
+        recommendations.push("Concerning current cardiac symptoms require evaluation before elective surgery.");
+    }
+
+    if (cardiacDisease === "yes") {
+        recommendations.push("Interpret findings in the context of known cardiac disease and recent specialty evaluation/testing.");
+    }
+
+    if (recommendations.length === 0) {
+        recommendations.push("No additional cardiac evaluation is indicated based solely on the entered EKG findings if the patient is asymptomatic and otherwise medically optimized.");
+    }
+
+    let status = "";
+
+    if (urgent) {
+        status = "NOT OPTIMIZED / FURTHER CARDIAC EVALUATION REQUIRED";
+    } else if (highRisk) {
+        status = "PENDING / ADDITIONAL REVIEW MAY BE REQUIRED";
+    } else {
+        status = "NO HIGH-RISK EKG FINDING IDENTIFIED";
+    }
+
+    let html = "<h3>Preliminary EKG Interpretation</h3>";
+    html += "<p><strong>Status:</strong> " + status + "</p>";
+
+    html += "<p><strong>Interpretation:</strong></p><ul>";
+
+    interpretation.forEach(function(item) {
+        html += "<li>" + item + "</li>";
+    });
+
+    html += "</ul>";
+
+    html += "<p><strong>Preoperative Recommendation:</strong></p><ul>";
+
+    recommendations.forEach(function(item) {
+        html += "<li>" + item + "</li>";
+    });
+
+    html += "</ul>";
+
+    if (!urgent && !highRisk) {
+        html +=
+        "<p><strong>Suggested physician summary:</strong> " +
+        "EKG reviewed. No high-risk or acute ischemic/conduction abnormality identified from the entered findings. " +
+        "No additional cardiac evaluation is indicated based solely on this EKG if the patient remains asymptomatic and otherwise medically optimized.</p>";
+    }
+
+    const box = document.getElementById("ekgResult");
+    box.innerHTML = html;
+    box.style.display = "block";
+}
+</script>
 </body>
 </html>

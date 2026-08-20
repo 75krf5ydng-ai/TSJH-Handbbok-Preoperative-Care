@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+i<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -831,6 +831,1073 @@ surgery on scheduled surgery date at this time.
 </div>
 </section>
 
+<!-- =========================================================
+     INTERACTIVE ANESTHESIA HANDOFF & ESCALATION TOOL
+     Paste immediately BEFORE </main>
+========================================================= -->
+
+<section class="card" id="interactive-anesthesia-handoff">
+
+<h2>Interactive Anesthesia Handoff & Escalation Tool</h2>
+
+<p>
+Enter patient-specific findings below to create a concise preoperative
+anesthesia handoff and identify issues requiring anesthesia or
+higher-level-of-care review.
+</p>
+
+<div class="alert">
+<strong>Clinical support tool:</strong>
+This tool supports preoperative review and communication. It does not
+replace anesthesiologist judgment, surgeon recommendations,
+institutional policy, or patient-specific clinical decision-making.
+</div>
+
+<style>
+#interactive-anesthesia-handoff .tool-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:16px;
+  margin:18px 0;
+}
+
+#interactive-anesthesia-handoff .tool-field {
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+#interactive-anesthesia-handoff label {
+  font-weight:700;
+}
+
+#interactive-anesthesia-handoff input,
+#interactive-anesthesia-handoff select,
+#interactive-anesthesia-handoff textarea {
+  width:100%;
+  padding:12px;
+  border:1px solid #cbd5e1;
+  border-radius:8px;
+  font-size:16px;
+  background:#fff;
+}
+
+#interactive-anesthesia-handoff textarea {
+  min-height:90px;
+  resize:vertical;
+}
+
+#interactive-anesthesia-handoff .tool-subcard {
+  border:1px solid #d8e1ec;
+  border-radius:12px;
+  padding:18px;
+  margin:18px 0;
+  background:#f8fafc;
+}
+
+#interactive-anesthesia-handoff .tool-subcard h3 {
+  margin-top:0;
+}
+
+#interactive-anesthesia-handoff .tool-buttons {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:20px 0;
+}
+
+#interactive-anesthesia-handoff .tool-buttons button {
+  border:0;
+  border-radius:8px;
+  padding:12px 18px;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+  background:#1f3a5f;
+  color:#fff;
+}
+
+#interactive-anesthesia-handoff .tool-buttons button.secondary {
+  background:#667085;
+}
+
+#interactive-anesthesia-handoff .result-box {
+  border:2px solid #d8e1ec;
+  border-radius:12px;
+  padding:20px;
+  margin-top:20px;
+  background:#fff;
+  white-space:pre-wrap;
+}
+
+#interactive-anesthesia-handoff .status-good {
+  border-left:6px solid #157347;
+}
+
+#interactive-anesthesia-handoff .status-warn {
+  border-left:6px solid #9a6700;
+}
+
+#interactive-anesthesia-handoff .status-bad {
+  border-left:6px solid #b42318;
+}
+
+@media print {
+  #interactive-anesthesia-handoff .tool-buttons,
+  #interactive-anesthesia-handoff .no-print {
+    display:none !important;
+  }
+}
+</style>
+
+
+<div class="tool-subcard">
+
+<h3>Patient & Procedure</h3>
+
+<div class="tool-grid">
+
+<div class="tool-field">
+<label>Patient</label>
+<input id="ahPatient" type="text" placeholder="Patient name or identifier">
+</div>
+
+<div class="tool-field">
+<label>Date of Birth</label>
+<input id="ahDOB" type="date">
+</div>
+
+<div class="tool-field">
+<label>Surgery Date</label>
+<input id="ahSurgeryDate" type="date">
+</div>
+
+<div class="tool-field">
+<label>Procedure</label>
+<input id="ahProcedure" type="text" placeholder="Planned procedure">
+</div>
+
+<div class="tool-field">
+<label>Surgeon</label>
+<input id="ahSurgeon" type="text" placeholder="Surgeon">
+</div>
+
+<div class="tool-field">
+<label>Planned Venue</label>
+<select id="ahVenue">
+<option value="">Select</option>
+<option>TSJH</option>
+<option>Hospital / higher level of care</option>
+<option>Other</option>
+</select>
+</div>
+
+</div>
+</div>
+
+
+<div class="tool-subcard">
+
+<h3>Anesthesia & Airway History</h3>
+
+<div class="tool-grid">
+
+<div class="tool-field">
+<label>Previous anesthesia complication?</label>
+<select id="ahAnesComp">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+<option value="unknown">Unknown</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Difficult airway / difficult intubation?</label>
+<select id="ahAirway">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+<option value="unknown">Unknown</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Personal/family malignant hyperthermia history?</label>
+<select id="ahMH">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+<option value="unknown">Unknown</option>
+</select>
+</div>
+
+</div>
+
+<div class="tool-field">
+<label>Anesthesia/Airway Details</label>
+<textarea id="ahAnesDetails"
+placeholder="Prior difficult intubation, postoperative respiratory event, severe PONV, MH concern, anesthesia records needed, etc."></textarea>
+</div>
+
+</div>
+
+
+<div class="tool-subcard">
+
+<h3>Pulmonary / OSA</h3>
+
+<div class="tool-grid">
+
+<div class="tool-field">
+<label>OSA</label>
+<select id="ahOSA">
+<option value="no">No</option>
+<option value="yes-pap">Yes — uses PAP</option>
+<option value="yes-no-pap">Yes — PAP intolerant/not using</option>
+<option value="suspected">Suspected/high risk</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>24-hour oxygen requirement?</label>
+<select id="ahOxygen">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Severe/uncontrolled pulmonary disease?</label>
+<select id="ahPulmonary">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Chronic hypercapnic respiratory failure?</label>
+<select id="ahHypercapnia">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Idiopathic pulmonary fibrosis?</label>
+<select id="ahIPF">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Significant pulmonary hypertension?</label>
+<select id="ahPH">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+</div>
+
+<div class="tool-field">
+<label>Pulmonary Details / PFT / Oxygen / PAP Plan</label>
+<textarea id="ahPulmDetails"></textarea>
+</div>
+
+</div>
+
+
+<div class="tool-subcard">
+
+<h3>Cardiac & Device Review</h3>
+
+<div class="tool-grid">
+
+<div class="tool-field">
+<label>Active cardiac condition?</label>
+<select id="ahActiveCardiac">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Known heart failure / cardiomyopathy?</label>
+<select id="ahHF">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Pacemaker or ICD?</label>
+<select id="ahDevice">
+<option value="no">No</option>
+<option value="pacemaker">Pacemaker</option>
+<option value="icd">ICD</option>
+<option value="other">Other cardiac device</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Required cardiac testing/review complete?</label>
+<select id="ahCardiacComplete">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>RCRI</label>
+<input id="ahRCRI" type="number" min="0" max="6" placeholder="0">
+</div>
+
+<div class="tool-field">
+<label>BNP / NT-proBNP surveillance triggered?</label>
+<select id="ahBNP">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+<option value="na">N/A</option>
+</select>
+</div>
+
+</div>
+
+<div class="tool-field">
+<label>Cardiac / Device Details</label>
+<textarea id="ahCardiacDetails"
+placeholder="EF, valve disease, recent cardiology evaluation, device interrogation, BNP/NT-proBNP result, etc."></textarea>
+</div>
+
+</div>
+
+
+<div class="tool-subcard">
+
+<h3>Anticoagulation / Antiplatelet / Neuraxial Issues</h3>
+
+<div class="tool-grid">
+
+<div class="tool-field">
+<label>Anticoagulant or antiplatelet therapy?</label>
+<select id="ahBloodThinner">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Medication</label>
+<input id="ahBloodDrug" type="text"
+placeholder="Eliquis, Xarelto, warfarin, Plavix, etc.">
+</div>
+
+<div class="tool-field">
+<label>Last Dose</label>
+<input id="ahLastDose" type="text"
+placeholder="Date/time">
+</div>
+
+<div class="tool-field">
+<label>Perioperative interruption plan confirmed?</label>
+<select id="ahAnticoagPlan">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Neuraxial timing concern?</label>
+<select id="ahNeuraxial">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+<option value="unknown">Unknown</option>
+</select>
+</div>
+
+</div>
+</div>
+
+
+<div class="tool-subcard">
+
+<h3>Diabetes / GLP-1 / SGLT2</h3>
+
+<div class="tool-grid">
+
+<div class="tool-field">
+<label>Diabetes</label>
+<select id="ahDiabetes">
+<option value="no">No</option>
+<option value="type2">Type 2</option>
+<option value="type1">Type 1</option>
+<option value="other">Other</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Insulin pump?</label>
+<select id="ahPump">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>GLP-1 / GIP therapy?</label>
+<select id="ahGLP1">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Active GI symptoms / aspiration concern?</label>
+<select id="ahGI">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>SGLT2 inhibitor?</label>
+<select id="ahSGLT2">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Medication plan verified?</label>
+<select id="ahDiabetesPlan">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+</div>
+
+</div>
+</div>
+
+
+<div class="tool-subcard">
+
+<h3>Renal / Frailty / Other Risk</h3>
+
+<div class="tool-grid">
+
+<div class="tool-field">
+<label>Advanced renal disease?</label>
+<select id="ahRenal">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Dialysis?</label>
+<select id="ahDialysis">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Dialysis timing verified?</label>
+<select id="ahDialysisPlan">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Clinical Frailty Scale (CFS)</label>
+<input id="ahCFS" type="number" min="1" max="9" placeholder="1–9">
+</div>
+
+<div class="tool-field">
+<label>Clinically significant abnormal labs unresolved?</label>
+<select id="ahLabs">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Active infection / systemic illness?</label>
+<select id="ahInfection">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+</div>
+
+<div class="tool-field">
+<label>Additional Risk Details</label>
+<textarea id="ahOtherRisk"></textarea>
+</div>
+
+</div>
+
+
+<div class="tool-subcard">
+
+<h3>Final Preoperative Closure</h3>
+
+<div class="tool-grid">
+
+<div class="tool-field">
+<label>Required specialist records reviewed?</label>
+<select id="ahSpecialist">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Required testing complete and reviewed?</label>
+<select id="ahTesting">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Anesthesia-specific review already completed?</label>
+<select id="ahReview">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+<option value="na">N/A</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Postoperative monitoring plan established?</label>
+<select id="ahPostop">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Any unresolved clinically meaningful pending item?</label>
+<select id="ahPending">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<div class="tool-field">
+<label>Current medical instability requiring postponement?</label>
+<select id="ahUnstable">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+</div>
+
+<div class="tool-field">
+<label>Pending Items / Communication Notes</label>
+<textarea id="ahPendingDetails"></textarea>
+</div>
+
+</div>
+
+
+<div class="tool-buttons no-print">
+
+<button type="button" onclick="generateAnesthesiaHandoff()">
+Generate Handoff
+</button>
+
+<button type="button" onclick="copyAnesthesiaHandoff()">
+Copy Summary
+</button>
+
+<button type="button" onclick="window.print()">
+Print
+</button>
+
+<button type="button" class="secondary" onclick="clearAnesthesiaHandoff()">
+Clear
+</button>
+
+</div>
+
+
+<div id="ahResult" class="result-box">
+<strong>Patient-specific anesthesia handoff will appear here.</strong>
+</div>
+
+
+<script>
+
+function ahValue(id) {
+  const el = document.getElementById(id);
+  return el ? el.value : "";
+}
+
+function ahAdd(arr, text) {
+  if (text && !arr.includes(text)) arr.push(text);
+}
+
+function generateAnesthesiaHandoff() {
+
+  const review = [];
+  const venue = [];
+  const pending = [];
+  const postop = [];
+  const details = [];
+
+  let status = "Optimized";
+
+  const patient = ahValue("ahPatient");
+  const dob = ahValue("ahDOB");
+  const surgeryDate = ahValue("ahSurgeryDate");
+  const procedure = ahValue("ahProcedure");
+  const surgeon = ahValue("ahSurgeon");
+
+  /* HARD STOP / NOT OPTIMIZED */
+
+  if (ahValue("ahUnstable") === "yes") {
+    status = "Not optimized";
+    ahAdd(venue,
+      "Current medical instability identified. Elective surgery should not proceed until the condition is evaluated and appropriately treated.");
+  }
+
+  if (ahValue("ahActiveCardiac") === "yes") {
+    status = "Not optimized";
+    ahAdd(venue,
+      "Active cardiac condition reported; additional cardiovascular/anesthesia evaluation is required before elective surgery.");
+  }
+
+  if (ahValue("ahInfection") === "yes") {
+    if (status !== "Not optimized") status = "Pending";
+    ahAdd(review,
+      "Active infection or systemic illness requires clinical assessment before proceeding.");
+  }
+
+  /* HIGHER-LEVEL-OF-CARE / VENUE REVIEW */
+
+  if (ahValue("ahOxygen") === "yes") {
+    ahAdd(venue,
+      "24-hour oxygen requirement identified — evaluate surgical venue/higher-level-of-care requirements.");
+  }
+
+  if (ahValue("ahHypercapnia") === "yes") {
+    ahAdd(venue,
+      "Chronic hypercapnic respiratory failure identified — anesthesia/pulmonary and venue review required.");
+  }
+
+  if (ahValue("ahIPF") === "yes") {
+    ahAdd(venue,
+      "Idiopathic pulmonary fibrosis identified — pulmonary/anesthesia and venue review required.");
+  }
+
+  if (ahValue("ahPH") === "yes") {
+    ahAdd(venue,
+      "Significant pulmonary hypertension reported — verify severity, RV function, therapy and appropriate surgical venue.");
+  }
+
+  /* ANESTHESIA HISTORY */
+
+  if (ahValue("ahAnesComp") === "yes") {
+    ahAdd(review,
+      "History of anesthesia complication — review prior anesthesia records and specific complication.");
+  }
+
+  if (ahValue("ahAirway") === "yes") {
+    ahAdd(review,
+      "History of difficult airway/intubation — anesthesia airway planning required.");
+  }
+
+  if (ahValue("ahAirway") === "unknown") {
+    ahAdd(review,
+      "Airway history is uncertain and should be clarified.");
+  }
+
+  if (ahValue("ahMH") === "yes") {
+    ahAdd(review,
+      "Personal/family malignant hyperthermia history reported — anesthesia-specific planning required.");
+  }
+
+  if (ahValue("ahMH") === "unknown") {
+    ahAdd(review,
+      "Malignant hyperthermia history is uncertain and should be clarified.");
+  }
+
+  /* OSA */
+
+  if (ahValue("ahOSA") === "yes-pap") {
+    ahAdd(postop,
+      "OSA: patient should use PAP anytime asleep when clinically appropriate; ensure PAP availability and postoperative respiratory monitoring plan.");
+  }
+
+  if (ahValue("ahOSA") === "yes-no-pap") {
+    ahAdd(review,
+      "OSA with PAP intolerance/nonuse — anesthesia review of perioperative respiratory risk recommended.");
+    ahAdd(postop,
+      "Plan continuous pulse oximetry; NIPPV and/or supplemental oxygen if clinically warranted.");
+  }
+
+  if (ahValue("ahOSA") === "suspected") {
+    ahAdd(review,
+      "Suspected/high-risk OSA — incorporate OSA precautions into anesthesia and postoperative monitoring plan.");
+  }
+
+  if (ahValue("ahPulmonary") === "yes") {
+    ahAdd(review,
+      "Severe or uncontrolled pulmonary disease reported — verify current respiratory stability and optimization.");
+  }
+
+  /* CARDIAC */
+
+  if (ahValue("ahHF") === "yes") {
+    ahAdd(review,
+      "Heart failure/cardiomyopathy history — verify current clinical stability, EF when relevant, GDMT and recent cardiovascular assessment.");
+  }
+
+  if (ahValue("ahDevice") !== "no") {
+    ahAdd(review,
+      "Cardiac implantable electronic device present — verify device type, interrogation status and perioperative device plan.");
+  }
+
+  if (ahValue("ahCardiacComplete") === "no") {
+    ahAdd(pending,
+      "Required cardiac testing/review has not been completed.");
+  }
+
+  if (ahValue("ahBNP") === "yes") {
+    ahAdd(postop,
+      "BNP/NT-proBNP threshold triggered postoperative cardiac surveillance — confirm postoperative EKG and daily troponin plan for 48–72 hours under the applicable TSJH protocol.");
+  }
+
+  /* ANTICOAGULATION */
+
+  if (ahValue("ahBloodThinner") === "yes") {
+
+    const drug = ahValue("ahBloodDrug") || "anticoagulant/antiplatelet";
+    const lastDose = ahValue("ahLastDose") || "not documented";
+
+    ahAdd(details,
+      "Antithrombotic therapy: " + drug + ". Last dose: " + lastDose + ".");
+
+    if (ahValue("ahAnticoagPlan") === "no") {
+      ahAdd(pending,
+        "Anticoagulant/antiplatelet interruption or continuation plan remains unresolved.");
+    }
+  }
+
+  if (ahValue("ahNeuraxial") === "yes") {
+    ahAdd(review,
+      "Potential neuraxial anticoagulation timing issue — anesthesia must verify medication-specific timing before neuraxial procedure.");
+  }
+
+  if (ahValue("ahNeuraxial") === "unknown") {
+    ahAdd(pending,
+      "Neuraxial anticoagulation timing has not been established.");
+  }
+
+  /* DIABETES */
+
+  if (ahValue("ahDiabetes") === "type1") {
+    ahAdd(review,
+      "Type 1 diabetes — ensure basal insulin is not completely discontinued and establish perioperative glucose/insulin plan.");
+  }
+
+  if (ahValue("ahPump") === "yes") {
+    ahAdd(review,
+      "Insulin pump present — confirm perioperative pump/insulin management plan.");
+  }
+
+  if (ahValue("ahGLP1") === "yes") {
+    ahAdd(review,
+      "GLP-1/GIP therapy reported — assess GI symptoms, dose escalation phase and aspiration risk using current anesthesia guidance.");
+  }
+
+  if (ahValue("ahGI") === "yes") {
+    ahAdd(review,
+      "Active GI symptoms/aspiration concern identified — anesthesia-specific aspiration risk assessment required.");
+  }
+
+  if (ahValue("ahSGLT2") === "yes") {
+    ahAdd(review,
+      "SGLT2 inhibitor reported — verify appropriate perioperative interruption and assess for ketosis risk when clinically indicated.");
+  }
+
+  if (ahValue("ahDiabetesPlan") === "no") {
+    ahAdd(pending,
+      "Perioperative diabetes medication plan has not been verified.");
+  }
+
+  /* RENAL */
+
+  if (ahValue("ahRenal") === "yes") {
+    ahAdd(review,
+      "Advanced renal disease — review electrolytes, volume status and renally cleared medications.");
+  }
+
+  if (ahValue("ahDialysis") === "yes") {
+    ahAdd(review,
+      "Dialysis patient — confirm dialysis timing, volume status and perioperative electrolyte plan.");
+
+    if (ahValue("ahDialysisPlan") === "no") {
+      ahAdd(pending,
+        "Dialysis timing remains unresolved.");
+    }
+  }
+
+  /* FRAILTY */
+
+  const cfs = parseInt(ahValue("ahCFS"));
+
+  if (!isNaN(cfs) && cfs >= 6) {
+    ahAdd(review,
+      "CFS " + cfs + " indicates significant frailty; consider postoperative mobility, delirium, respiratory and disposition risk.");
+  }
+
+  /* LABS */
+
+  if (ahValue("ahLabs") === "yes") {
+    ahAdd(pending,
+      "Clinically significant abnormal laboratory result remains unresolved.");
+  }
+
+  /* FINAL CLOSURE */
+
+  if (ahValue("ahSpecialist") === "no") {
+    ahAdd(pending,
+      "Required specialist records/recommendations remain outstanding.");
+  }
+
+  if (ahValue("ahTesting") === "no") {
+    ahAdd(pending,
+      "Required testing has not been completed/reviewed.");
+  }
+
+  if (ahValue("ahPostop") === "no") {
+    ahAdd(pending,
+      "Required postoperative monitoring plan has not been established.");
+  }
+
+  if (ahValue("ahPending") === "yes") {
+    ahAdd(pending,
+      "Clinically meaningful preoperative pending item remains unresolved.");
+  }
+
+  if (pending.length > 0 && status !== "Not optimized") {
+    status = "Pending";
+  }
+
+  /* VENUE ISSUES DO NOT AUTOMATICALLY MEAN NOT OPTIMIZED */
+
+  if (venue.length > 0 && status === "Optimized") {
+    status = "Pending";
+    ahAdd(pending,
+      "Anesthesia and/or surgical venue determination requires confirmation.");
+  }
+
+  /* DETERMINE ESCALATION */
+
+  let escalation = "Routine perioperative anesthesia assessment.";
+
+  if (review.length > 0) {
+    escalation = "Preoperative anesthesia review recommended.";
+  }
+
+  if (venue.length > 0) {
+    escalation = "Anesthesia and higher-level-of-care / surgical venue review required.";
+  }
+
+  if (status === "Not optimized") {
+    escalation = "Current condition requires evaluation/optimization before elective surgery.";
+  }
+
+  /* USER ENTERED DETAILS */
+
+  const enteredDetails = [
+    ahValue("ahAnesDetails"),
+    ahValue("ahPulmDetails"),
+    ahValue("ahCardiacDetails"),
+    ahValue("ahOtherRisk"),
+    ahValue("ahPendingDetails")
+  ].filter(Boolean);
+
+  /* BUILD OUTPUT */
+
+  let output = "";
+
+  output += "ANESTHESIA HANDOFF & ESCALATION SUMMARY\n\n";
+
+  if (patient) output += "Patient: " + patient + "\n";
+  if (dob) output += "DOB: " + dob + "\n";
+  if (procedure) output += "Procedure: " + procedure + "\n";
+  if (surgeon) output += "Surgeon: " + surgeon + "\n";
+  if (surgeryDate) output += "Surgery date: " + surgeryDate + "\n";
+
+  output += "\nESCALATION LEVEL\n" + escalation + "\n";
+
+  if (review.length) {
+    output += "\nANESTHESIA REVIEW ITEMS\n";
+    review.forEach(function(item) {
+      output += "• " + item + "\n";
+    });
+  }
+
+  if (venue.length) {
+    output += "\nVENUE / HIGHER-LEVEL-OF-CARE CONSIDERATIONS\n";
+    venue.forEach(function(item) {
+      output += "• " + item + "\n";
+    });
+  }
+
+  if (details.length) {
+    output += "\nMEDICATION / DEVICE DETAILS\n";
+    details.forEach(function(item) {
+      output += "• " + item + "\n";
+    });
+  }
+
+  if (postop.length) {
+    output += "\nPOSTOPERATIVE MONITORING\n";
+    postop.forEach(function(item) {
+      output += "• " + item + "\n";
+    });
+  }
+
+  if (pending.length) {
+    output += "\nPENDING ITEMS\n";
+    pending.forEach(function(item) {
+      output += "• " + item + "\n";
+    });
+  }
+
+  if (enteredDetails.length) {
+    output += "\nADDITIONAL CLINICAL DETAILS\n";
+    enteredDetails.forEach(function(item) {
+      output += "• " + item + "\n";
+    });
+  }
+
+  output += "\nFINAL PREOPERATIVE OPTIMIZATION STATUS: " +
+            status + "\n";
+
+  if (status === "Optimized") {
+    output +=
+      "\nPatient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time.";
+  }
+
+  if (status === "Pending") {
+    output +=
+      "\nReason: One or more required anesthesia, testing, specialist, medication, monitoring, or venue items require final resolution.";
+  }
+
+  if (status === "Not optimized") {
+    output +=
+      "\nReason: A current clinically significant condition requires additional evaluation and/or optimization before elective surgery.";
+  }
+
+  const result = document.getElementById("ahResult");
+
+  result.textContent = output;
+
+  result.classList.remove(
+    "status-good",
+    "status-warn",
+    "status-bad"
+  );
+
+  if (status === "Optimized") {
+    result.classList.add("status-good");
+  }
+
+  if (status === "Pending") {
+    result.classList.add("status-warn");
+  }
+
+  if (status === "Not optimized") {
+    result.classList.add("status-bad");
+  }
+
+}
+
+
+function copyAnesthesiaHandoff() {
+
+  const result = document.getElementById("ahResult");
+
+  if (!result) return;
+
+  const text = result.innerText;
+
+  if (navigator.clipboard && window.isSecureContext) {
+
+    navigator.clipboard.writeText(text)
+      .then(function() {
+        alert("Anesthesia handoff copied.");
+      })
+      .catch(function() {
+        fallbackAnesthesiaCopy(text);
+      });
+
+  } else {
+    fallbackAnesthesiaCopy(text);
+  }
+}
+
+
+function fallbackAnesthesiaCopy(text) {
+
+  const area = document.createElement("textarea");
+
+  area.value = text;
+  area.style.position = "fixed";
+  area.style.left = "-9999px";
+
+  document.body.appendChild(area);
+
+  area.focus();
+  area.select();
+
+  document.execCommand("copy");
+
+  document.body.removeChild(area);
+
+  alert("Anesthesia handoff copied.");
+}
+
+
+function clearAnesthesiaHandoff() {
+
+  const section =
+    document.getElementById("interactive-anesthesia-handoff");
+
+  section.querySelectorAll("input, textarea").forEach(function(el) {
+    el.value = "";
+  });
+
+  section.querySelectorAll("select").forEach(function(el) {
+    el.selectedIndex = 0;
+  });
+
+  const result = document.getElementById("ahResult");
+
+  result.className = "result-box";
+
+  result.innerHTML =
+    "<strong>Patient-specific anesthesia handoff will appear here.</strong>";
+}
+
+</script>
+
+</section>
 </main>
 
 <footer>

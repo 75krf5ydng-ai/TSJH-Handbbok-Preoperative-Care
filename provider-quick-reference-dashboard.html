@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Preoperative Provider Quick-Reference Dashboard</title>
+
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: #f4f7f9;
+  color: #1f2933;
+  line-height: 1.5;
+}
+
+header {
+  background: #17324d;
+  color: white;
+  padding: 24px 18px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0 0 6px;
+  font-size: 1.9rem;
+}
+
+header p { margin: 0; }
+
+nav {
+  background: white;
+  padding: 10px 16px;
+  border-bottom: 1px solid #d9e2ec;
+  text-align: center;
+}
+
+nav a {
+  color: #17324d;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 6px;
+}
+
+main {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 16px 40px;
+}
+
+section {
+  background: white;
+  margin-bottom: 18px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+
+h2 {
+  color: #17324d;
+  border-bottom: 2px solid #d9e2ec;
+  padding-bottom: 6px;
+  margin-top: 0;
+}
+
+h3 {
+  color: #274c6b;
+  margin-bottom: 6px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+}
+
+th, td {
+  border: 1px solid #cbd5e1;
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #eaf0f5;
+  color: #17324d;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.clinical-box {
+  background: #eef6fb;
+  border-left: 5px solid #3178a8;
+  padding: 13px;
+  margin: 12px 0;
+}
+
+.warning-box {
+  background: #fff5f5;
+  border-left: 5px solid #b42318;
+  padding: 13px;
+  margin: 12px 0;
+}
+
+.success-box {
+  background: #eef9f0;
+  border-left: 5px solid #2d7a46;
+  padding: 13px;
+  margin: 12px 0;
+}
+
+.formula-box {
+  background: #f7f7fb;
+  border: 1px solid #d8d8e5;
+  border-radius: 8px;
+  padding: 13px;
+  margin: 12px 0;
+}
+
+.button {
+  display: inline-block;
+  background: #17324d;
+  color: white !important;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 12px 18px;
+  border-radius: 8px;
+  margin: 5px;
+}
+
+.button-secondary {
+  background: #3178a8;
+}
+
+footer {
+  text-align: center;
+  padding: 22px;
+  color: #52606d;
+  font-size: .9rem;
+}
+
+@media(max-width:800px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  table {
+    font-size: .78rem;
+  }
+
+  header h1 {
+    font-size: 1.35rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Preoperative Provider Quick-Reference Dashboard</h1>
+<p>Fast thresholds, calculators, escalation triggers and documentation language</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="provider-optimization-workflow.html">Provider Workflow</a>
+<a href="final-readiness-checklist.html">Final Readiness</a>
+<a href="perioperative-medications.html">Medications</a>
+<a href="preop-red-flags.html">Red Flags</a>
+</nav>
+
+<main>
+
+<section>
+<h2>Immediate Preoperative Questions</h2>
+
+<div class="formula-box">
+
+Procedure / surgeon / date correct?<br><br>
+
+Active cardiac problem: Yes / No<br><br>
+
+New chest pain, dyspnea, syncope or neurologic symptoms: Yes / No<br><br>
+
+Recent ER visit or hospitalization: Yes / No<br><br>
+
+Active infection: Yes / No<br><br>
+
+Anticoagulant / antiplatelet issue: Yes / No<br><br>
+
+SGLT2 / GLP-1 / insulin issue: Yes / No<br><br>
+
+Abnormal labs requiring action: Yes / No<br><br>
+
+Anesthesia / specialist review required: Yes / No<br><br>
+
+Appropriate surgical venue: Yes / No
+
+</div>
+</section>
+
+
+<section>
+<h2>Functional & Risk Screening</h2>
+
+<table>
+<tr>
+<th>Tool</th>
+<th>Record</th>
+</tr>
+
+<tr>
+<td>DASI</td>
+<td>___</td>
+</tr>
+
+<tr>
+<td>RCRI</td>
+<td>___ points</td>
+</tr>
+
+<tr>
+<td>STOP-BANG</td>
+<td>___</td>
+</tr>
+
+<tr>
+<td>CFS</td>
+<td>___</td>
+</tr>
+
+<tr>
+<td>Arozullah</td>
+<td>___</td>
+</tr>
+
+<tr>
+<td>CAT</td>
+<td>___</td>
+</tr>
+
+<tr>
+<td>BODE</td>
+<td>___</td>
+</tr>
+</table>
+</section>
+
+
+<section>
+<h2>Cardiac Quick Reference</h2>
+
+<div class="grid">
+
+<div>
+
+<h3>BNP Surveillance</h3>
+
+<div class="warning-box">
+BNP ≥92 pg/mL<br>
+or<br>
+NT-proBNP ≥300 ng/L<br><br>
+
+→ Postoperative EKG + daily troponins for 48–72 hours under the applicable TSJH pathway.
+</div>
+
+</div>
+
+
+<div>
+
+<h3>HFrEF / Cardiomyopathy</h3>
+
+<div class="warning-box">
+EF &lt;35% → higher-level-of-care concern.
+</div>
+
+<div class="clinical-box">
+For EF ≥35%, review symptoms, NYHA class, GDMT, cardiology follow-up, recent CHF admission history and current functional status.
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<section>
+<h2>Valve Disease Quick Reference</h2>
+
+<div class="grid">
+
+<div>
+<h3>Aortic Stenosis</h3>
+
+<div class="formula-box">
+
+Severe AS may include:<br><br>
+
+AVA &lt;1.0 cm²<br>
+Mean gradient &gt;40 mmHg<br>
+Vmax &gt;4.0 m/s
+
+</div>
+
+<div class="warning-box">
+Severe or symptomatic AS requires cardiovascular review and may exceed routine TSJH pathway criteria.
+</div>
+</div>
+
+
+<div>
+<h3>Mitral Stenosis</h3>
+
+<div class="formula-box">
+
+Severe MS may include:<br><br>
+
+MVA ≤1.5 cm²<br>
+Mean gradient ≥10 mmHg<br>
+PASP &gt;50 mmHg
+
+</div>
+
+<div class="warning-box">
+Moderate-to-severe or symptomatic MS requires appropriate cardiovascular assessment.
+</div>
+</div>
+
+</div>
+</section>
+
+
+<section>
+<h2>LBBB</h2>
+
+<div class="warning-box">
+Under the TSJH pathway, LBBB requires adequate cardiovascular evaluation.
+When prior assessment is not sufficient, use pharmacologic nuclear stress testing
+such as Lexiscan/regadenoson or cardiology evaluation.
+</div>
+</section>
+
+
+<section>
+<h2>Pulmonary Quick Reference</h2>
+
+<table>
+
+<tr>
+<th>Finding</th>
+<th>Higher-Risk Threshold</th>
+</tr>
+
+<tr>
+<td>FEV1</td>
+<td>&lt;50% predicted</td>
+</tr>
+
+<tr>
+<td>BODE</td>
+<td>≥5</td>
+</tr>
+
+<tr>
+<td>CAT</td>
+<td>&gt;10</td>
+</tr>
+
+<tr>
+<td>Arozullah</td>
+<td>≥4</td>
+</tr>
+
+<tr>
+<td>Home oxygen</td>
+<td>24-hour requirement</td>
+</tr>
+
+<tr>
+<td>Respiratory failure</td>
+<td>Chronic hypercapnic respiratory failure</td>
+</tr>
+
+<tr>
+<td>ILD</td>
+<td>Idiopathic pulmonary fibrosis</td>
+</tr>
+
+</table>
+</section>
+
+
+<section>
+<h2>Pulmonary Hypertension HLOC Triggers</h2>
+
+<div class="warning-box">
+
+WHO Group 1 pulmonary arterial hypertension<br>
+RVSP &gt;65 mmHg<br>
+Severe TR<br>
+Moderate-to-severe RV dysfunction<br>
+Advanced pulmonary vasodilator therapy
+
+</div>
+</section>
+
+
+<section>
+<h2>OSA Quick Plan</h2>
+
+<div class="clinical-box">
+PAP anytime asleep when prescribed and tolerated. RT assistance as needed.
+Continuous pulse oximetry when indicated. For PAP-intolerant OSA, use NIPPV
+and/or supplemental oxygen when clinically warranted.
+</div>
+</section>
+
+
+<section>
+<h2>Anticoagulant Quick Reference</h2>
+
+<table>
+
+<tr>
+<th>Medication</th>
+<th>Usual TSJH Quick Reference</th>
+</tr>
+
+<tr>
+<td>Eliquis / apixaban</td>
+<td>~72 hr</td>
+</tr>
+
+<tr>
+<td>Xarelto / rivaroxaban</td>
+<td>~72 hr</td>
+</tr>
+
+<tr>
+<td>Savaysa / edoxaban</td>
+<td>~72 hr</td>
+</tr>
+
+<tr>
+<td>Pradaxa / dabigatran</td>
+<td>~3–5 days; renal function matters</td>
+</tr>
+
+<tr>
+<td>Warfarin</td>
+<td>~5 days; determine whether bridging is actually indicated</td>
+</tr>
+
+<tr>
+<td>Lovenox / enoxaparin</td>
+<td>~24 hr; dose/renal function/neuraxial timing matter</td>
+</tr>
+
+</table>
+</section>
+
+
+<section>
+<h2>Antiplatelet Quick Reference</h2>
+
+<table>
+
+<tr>
+<th>Medication</th>
+<th>Usual Quick Reference</th>
+</tr>
+
+<tr>
+<td>Plavix / clopidogrel</td>
+<td>~7 days when interruption is appropriate</td>
+</tr>
+
+<tr>
+<td>Brilinta / ticagrelor</td>
+<td>~7 days when interruption is appropriate</td>
+</tr>
+
+<tr>
+<td>Effient / prasugrel</td>
+<td>~7 days when interruption is appropriate</td>
+</tr>
+
+<tr>
+<td>Aspirin — joints</td>
+<td>Commonly ~5 days when appropriate</td>
+</tr>
+
+<tr>
+<td>Aspirin — spine</td>
+<td>Commonly ~7 days when appropriate</td>
+</tr>
+
+</table>
+
+<div class="warning-box">
+Recent PCI/stent or dual/triple antithrombotic therapy requires indication-specific review before interruption.
+</div>
+</section>
+
+
+<section>
+<h2>MDCalc & Evidence Resources</h2>
+
+<p style="text-align:center;">
+
+<a
+class="button"
+href="https://www.mdcalc.com/calc/10586/perioperative-anticoagulation-management-algorithm"
+target="_blank"
+rel="noopener noreferrer">
+MDCalc Perioperative Anticoagulation
+</a>
+
+<a
+class="button button-secondary"
+href="https://www.mdcalc.com/"
+target="_blank"
+rel="noopener noreferrer">
+Open MDCalc
+</a>
+
+<a
+class="button button-secondary"
+href="https://www.openevidence.com/"
+target="_blank"
+rel="noopener noreferrer">
+OpenEvidence
+</a>
+
+</p>
+
+<div class="clinical-box">
+Use calculators and evidence tools as decision-support resources. Apply current
+facility, surgeon, anesthesia and specialty pathways when they are more specific.
+</div>
+</section>
+
+
+<section>
+<h2>Diabetes Medication Quick Reference</h2>
+
+<div class="grid">
+
+<div>
+
+<h3>SGLT2</h3>
+
+<div class="warning-box">
+Requires multi-day interruption before elective surgery because of euglycemic DKA risk.
+</div>
+
+<p>
+Examples: Jardiance, Farxiga, Invokana, Steglatro.
+</p>
+
+</div>
+
+
+<div>
+
+<h3>GLP-1 / GIP</h3>
+
+<div class="clinical-box">
+Review current dose, recent escalation, nausea, vomiting, bloating, early satiety
+and gastroparesis. Significant GI symptoms → anesthesia review.
+</div>
+
+</div>
+
+</div>
+
+<div class="warning-box">
+Type 1 diabetes requires ongoing basal insulin during fasting. Do not tell a type 1 patient to hold all insulin.
+</div>
+</section>
+
+
+<section>
+<h2>Renal Quick Reference</h2>
+
+<div class="warning-box">
+
+Escalate for:<br><br>
+
+Progressive AKI<br>
+Significant hyperkalemia<br>
+Severe acidosis<br>
+Volume instability<br>
+Unresolved dialysis timing<br>
+Dialysis-access infection
+
+</div>
+
+<div class="clinical-box">
+Stable CKD alone does not automatically require nephrology evaluation before elective surgery.
+</div>
+</section>
+
+
+<section>
+<h2>Anemia Quick Reference</h2>
+
+<table>
+
+<tr>
+<th>Pattern</th>
+<th>Think About</th>
+</tr>
+
+<tr>
+<td>Microcytic</td>
+<td>Iron deficiency, chronic blood loss, thalassemia, inflammatory anemia</td>
+</tr>
+
+<tr>
+<td>Normocytic</td>
+<td>CKD, inflammation, blood loss, early iron deficiency, hemolysis</td>
+</tr>
+
+<tr>
+<td>Macrocytic</td>
+<td>B12, folate, liver disease, alcohol, thyroid, medications, marrow disorder</td>
+</tr>
+
+</table>
+
+<div class="clinical-box">
+Ferritin &lt;~30 ng/mL strongly supports iron deficiency in many settings.
+TSAT &lt;~20% supports impaired iron availability when interpreted with ferritin and inflammation.
+</div>
+
+<div class="warning-box">
+Do not use one universal hemoglobin cancellation threshold for every surgery.
+Consider symptoms, trend, cause, expected blood loss and cardiovascular reserve.
+</div>
+</section>
+
+
+<section>
+<h2>Infection Quick Reference</h2>
+
+<div class="success-box">
+
+Abnormal UA without urinary symptoms ≠ symptomatic UTI.<br><br>
+
+Asymptomatic bacteriuria generally does not require treatment solely because
+elective nonurologic spine or joint surgery is planned.
+
+</div>
+
+<div class="warning-box">
+
+Delay/reevaluate for:<br><br>
+
+Active bacteremia/sepsis<br>
+Pyelonephritis<br>
+Active pneumonia<br>
+Significant cellulitis<br>
+Draining/infected wound<br>
+Other active systemic infection
+
+</div>
+</section>
+
+
+<section>
+<h2>EKG — Usually Stable vs Escalate</h2>
+
+<table>
+
+<tr>
+<th>Often Stable if Chronic/Asymptomatic</th>
+<th>Usually Needs More Review</th>
+</tr>
+
+<tr>
+<td>
+Stable RBBB<br>
+Stable first-degree AV block<br>
+Occasional PAC/PVC<br>
+Stable nonspecific ST-T change<br>
+Controlled chronic AF
+</td>
+
+<td>
+New LBBB<br>
+Mobitz II<br>
+Complete heart block<br>
+New AF with RVR<br>
+New ischemic change<br>
+Ventricular tachycardia<br>
+Marked QT prolongation with risk factors
+</td>
+</tr>
+
+</table>
+</section>
+
+
+<section>
+<h2>Medication “Do Not Abruptly Stop” List</h2>
+
+<div class="warning-box">
+
+Chronic beta blockers<br>
+Chronic systemic steroids<br>
+Antiseizure medications<br>
+Parkinson medications<br>
+Physiologically dependent benzodiazepines<br>
+Chronic opioids without a replacement plan<br>
+Methadone maintenance<br>
+Selected buprenorphine therapy<br>
+Transplant immunosuppression
+
+</div>
+</section>
+
+
+<section>
+<h2>Provider Escalation Matrix</h2>
+
+<table>
+
+<tr>
+<th>Issue</th>
+<th>Typical Escalation</th>
+</tr>
+
+<tr>
+<td>Unstable cardiac disease</td>
+<td>Cardiology / urgent medical evaluation</td>
+</tr>
+
+<tr>
+<td>CIED problem</td>
+<td>EP / device clinic / anesthesia</td>
+</tr>
+
+<tr>
+<td>Severe pulmonary disease</td>
+<td>Pulmonology / anesthesia</td>
+</tr>
+
+<tr>
+<td>Airway / anesthetic question</td>
+<td>Anesthesia</td>
+</tr>
+
+<tr>
+<td>Progressive AKI / dialysis problem</td>
+<td>Nephrology</td>
+</tr>
+
+<tr>
+<td>Complex anemia / hemolysis</td>
+<td>Hematology</td>
+</tr>
+
+<tr>
+<td>New neurologic symptoms</td>
+<td>Urgent neurologic evaluation</td>
+</tr>
+
+<tr>
+<td>Complex metabolic instability</td>
+<td>Endocrine / acute medical evaluation</td>
+</tr>
+
+</table>
+</section>
+
+
+<section>
+<h2>Red Flags — Stop Routine Elective Pathway</h2>
+
+<div class="warning-box">
+
+Active ACS<br>
+Decompensated HF<br>
+Unstable arrhythmia<br>
+Acute stroke symptoms<br>
+Severe pulmonary decompensation<br>
+DKA/HHS<br>
+Active systemic infection<br>
+Significant unstable bleeding<br>
+Severe progressive AKI/electrolyte instability<br>
+Other acute medical instability
+
+</div>
+</section>
+
+
+<section>
+<h2>Preoperative Cardiac Guidelines Application</h2>
+
+<div class="formula-box">
+
+Surgical Risk: Low / Intermediate / High<br>
+RCRI: ___<br>
+Active Cardiac Problems: Yes / No<br>
+BNP Screening: Yes / No
+
+</div>
+</section>
+
+
+<section>
+<h2>Functional & Risk Screening</h2>
+
+<div class="formula-box">
+
+DASI: ___<br>
+STOP-BANG: ___<br>
+CFS: ___<br>
+RCRI: ___
+
+</div>
+</section>
+
+
+<section>
+<h2>Final Provider Check</h2>
+
+<div class="formula-box">
+
+[ ] Surgical risk reviewed<br>
+[ ] Active cardiac problem assessed<br>
+[ ] DASI / RCRI / STOP-BANG / CFS documented<br>
+[ ] BNP screening addressed<br>
+[ ] EKG reviewed if indicated<br>
+[ ] Cardiac testing reviewed if applicable<br>
+[ ] Pulmonary risk assessed<br>
+[ ] Renal function/electrolytes reviewed<br>
+[ ] Abnormal CBC/anemia addressed<br>
+[ ] Infection/wound screen reviewed<br>
+[ ] Anticoagulant/antiplatelet plan complete<br>
+[ ] SGLT2 / GLP-1 / insulin plan complete<br>
+[ ] CIED plan complete if applicable<br>
+[ ] Specialist recommendations reviewed<br>
+[ ] Anesthesia issues resolved<br>
+[ ] Postoperative monitoring plan complete<br>
+[ ] Pending items closed
+
+</div>
+</section>
+
+
+<section>
+<h2>Final Optimization Status</h2>
+
+<table>
+
+<tr>
+<th>Status</th>
+<th>Use When</th>
+</tr>
+
+<tr>
+<td>Optimized</td>
+<td>Required evaluation is complete and no unresolved medical issue prevents the planned pathway.</td>
+</tr>
+
+<tr>
+<td>Pending</td>
+<td>A required result, recommendation or management decision remains unresolved.</td>
+</tr>
+
+<tr>
+<td>Not optimized</td>
+<td>A current condition requires treatment, stabilization, delay or HLOC planning.</td>
+</tr>
+
+</table>
+</section>
+
+
+<section>
+<h2>Standard Final Language</h2>
+
+<div class="formula-box">
+
+<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS:</strong><br><br>
+
+Optimized / Pending / Not optimized<br><br>
+
+Reason: ________________________________________________
+
+</div>
+
+<div class="success-box">
+Patient meets TSJH perioperative consensus guidelines to proceed with elective
+surgery on scheduled surgery date at this time.
+</div>
+</section>
+
+</main>
+
+<footer>
+Preoperative Optimization Handbook · Provider Quick-Reference Dashboard
+</footer>
+
+</body>
+</html>

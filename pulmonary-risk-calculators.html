@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pulmonary Risk Calculators | Preoperative Optimization Handbook</title>
+
+<style>
+:root{
+  --navy:#1f3a5f;
+  --blue:#2f6fb0;
+  --light:#f4f7fb;
+  --card:#ffffff;
+  --text:#1b2433;
+  --muted:#667085;
+  --border:#d8e1ec;
+  --good:#157347;
+  --warn:#9a6700;
+  --bad:#b42318;
+  --purple:#6941c6;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:var(--light);
+  color:var(--text);
+  line-height:1.55;
+}
+
+header{
+  background:linear-gradient(135deg,var(--navy),var(--blue));
+  color:white;
+  padding:34px 20px;
+}
+
+header h1{
+  margin:0 0 8px;
+  font-size:2rem;
+}
+
+header p{
+  margin:0;
+  opacity:.95;
+}
+
+nav{
+  background:white;
+  padding:14px 18px;
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+nav a{
+  color:var(--navy);
+  text-decoration:none;
+  font-weight:700;
+  margin-right:18px;
+  display:inline-block;
+  padding:5px 0;
+}
+
+main{
+  max-width:1000px;
+  margin:auto;
+  padding:22px;
+}
+
+section{
+  background:white;
+  margin:20px 0;
+  padding:26px;
+  border-radius:18px;
+  box-shadow:0 4px 16px rgba(31,58,95,.06);
+}
+
+h2{
+  color:var(--navy);
+  border-bottom:3px solid #dbe5f0;
+  padding-bottom:10px;
+}
+
+h3{
+  color:var(--navy);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:14px;
+}
+
+.field{
+  margin-bottom:15px;
+}
+
+label{
+  display:block;
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  font-size:16px;
+  background:white;
+}
+
+textarea{
+  min-height:170px;
+}
+
+button{
+  border:0;
+  background:var(--navy);
+  color:white;
+  font-weight:700;
+  font-size:16px;
+  padding:12px 18px;
+  border-radius:10px;
+  margin:5px 5px 5px 0;
+  cursor:pointer;
+}
+
+button.secondary{
+  background:var(--blue);
+}
+
+button.clear{
+  background:#667085;
+}
+
+.result{
+  background:#f7f9fc;
+  border:1px solid var(--border);
+  padding:18px;
+  border-radius:12px;
+  margin-top:18px;
+}
+
+.good{
+  border-left:6px solid var(--good);
+  background:#eef8f1;
+}
+
+.warn{
+  border-left:6px solid var(--warn);
+  background:#fff8e6;
+}
+
+.bad{
+  border-left:6px solid var(--bad);
+  background:#fff1f0;
+}
+
+.alert{
+  border-left:6px solid var(--bad);
+  background:#fff5f4;
+  padding:18px;
+  margin:18px 0;
+}
+
+.note{
+  border-left:6px solid var(--blue);
+  background:#eef5fc;
+  padding:18px;
+  margin:18px 0;
+}
+
+.small{
+  color:var(--muted);
+  font-size:.93rem;
+}
+
+.checkrow{
+  padding:9px 0;
+}
+
+.checkrow label{
+  font-weight:500;
+}
+
+.checkrow input{
+  width:auto;
+  margin-right:8px;
+}
+
+.score{
+  font-size:1.5rem;
+  font-weight:800;
+  color:var(--navy);
+}
+
+footer{
+  text-align:center;
+  color:var(--muted);
+  padding:30px 20px 45px;
+}
+
+@media(max-width:600px){
+  header h1{font-size:1.65rem;}
+  main{padding:12px;}
+  section{padding:20px;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Pulmonary Risk Calculators</h1>
+<p>
+Integrated preoperative pulmonary screening and decision support:
+STOP-BANG, Arozullah, CAT, BODE and TSJH pulmonary red flags.
+</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="pulmonary.html">Pulmonary Chapter</a>
+<a href="#stopbang">STOP-BANG</a>
+<a href="#arozullah">Arozullah</a>
+<a href="#cat">CAT</a>
+<a href="#bode">BODE</a>
+<a href="#summary">Summary</a>
+</nav>
+
+<main>
+
+<section>
+<h2>How to Use This Tool</h2>
+
+<p>
+Use only the calculators that apply to the individual patient. A numerical
+risk score supports clinical judgment but does not replace assessment of
+current symptoms, oxygen requirement, pulmonary stability, anesthesia risk
+or appropriateness of the surgical venue.
+</p>
+
+<div class="alert">
+<strong>TSJH pulmonary escalation / venue concerns</strong><br><br>
+
+24-hour oxygen requirement<br>
+Chronic hypercapnic respiratory failure<br>
+Idiopathic pulmonary fibrosis<br>
+FEV1 &lt;50% predicted<br>
+BODE score ≥5<br>
+CAT score &gt;10<br>
+Arozullah respiratory failure risk index ≥4<br>
+Significant pulmonary hypertension or RV dysfunction
+</div>
+
+</section>
+
+
+<section id="stopbang">
+
+<h2>STOP-BANG — Obstructive Sleep Apnea Screening</h2>
+
+<div class="checkrow">
+<label><input type="checkbox" class="sb"> Snoring — loud snoring?</label>
+</div>
+
+<div class="checkrow">
+<label><input type="checkbox" class="sb"> Tired — daytime fatigue or sleepiness?</label>
+</div>
+
+<div class="checkrow">
+<label><input type="checkbox" class="sb"> Observed apnea?</label>
+</div>
+
+<div class="checkrow">
+<label><input type="checkbox" class="sb"> Pressure — hypertension?</label>
+</div>
+
+<div class="checkrow">
+<label><input type="checkbox" class="sb"> BMI &gt;35 kg/m²?</label>
+</div>
+
+<div class="checkrow">
+<label><input type="checkbox" class="sb"> Age &gt;50 years?</label>
+</div>
+
+<div class="checkrow">
+<label><input type="checkbox" class="sb"> Neck circumference &gt;40 cm?</label>
+</div>
+
+<div class="checkrow">
+<label><input type="checkbox" class="sb"> Male sex?</label>
+</div>
+
+<button onclick="calcSTOP()">Calculate STOP-BANG</button>
+
+<div id="stopResult" class="result">
+<span class="score">STOP-BANG: ___ / 8</span>
+</div>
+
+</section>
+
+
+<section id="arozullah">
+
+<h2>Arozullah Respiratory Failure Risk Index</h2>
+
+<p class="small">
+Enter the applicable points from the validated Respiratory Failure Risk
+Index variables. This section is intended to facilitate calculation and
+documentation rather than replace the original validated model.
+</p>
+
+<div class="grid">
+
+<div class="field">
+<label>Procedure / surgical risk points</label>
+<input type="number" id="aroSurg" value="0" min="0">
+</div>
+
+<div class="field">
+<label>Albumin / nutritional risk points</label>
+<input type="number" id="aroAlb" value="0" min="0">
+</div>
+
+<div class="field">
+<label>BUN / renal-related points</label>
+<input type="number" id="aroBun" value="0" min="0">
+</div>
+
+<div class="field">
+<label>Functional dependence points</label>
+<input type="number" id="aroFunc" value="0" min="0">
+</div>
+
+<div class="field">
+<label>COPD points</label>
+<input type="number" id="aroCopd" value="0" min="0">
+</div>
+
+<div class="field">
+<label>Age-related points</label>
+<input type="number" id="aroAge" value="0" min="0">
+</div>
+
+</div>
+
+<button onclick="calcAro()">Calculate Arozullah</button>
+
+<div id="aroResult" class="result">
+<span class="score">Arozullah score: ___</span>
+</div>
+
+<div class="note">
+<strong>TSJH screening flag:</strong> Arozullah score ≥4 should prompt
+additional pulmonary/anesthesia/venue consideration according to applicable
+institutional criteria.
+</div>
+
+</section>
+
+
+<section id="cat">
+
+<h2>COPD Assessment Test (CAT)</h2>
+
+<p>
+Score each item from <strong>0–5</strong>. Total score ranges from 0–40.
+</p>
+
+<div class="grid">
+
+<div class="field">
+<label>Cough</label>
+<select class="cat">
+<option value="0">0</option><option value="1">1</option>
+<option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+</select>
+</div>
+
+<div class="field">
+<label>Phlegm</label>
+<select class="cat">
+<option value="0">0</option><option value="1">1</option>
+<option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+</select>
+</div>
+
+<div class="field">
+<label>Chest tightness</label>
+<select class="cat">
+<option value="0">0</option><option value="1">1</option>
+<option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+</select>
+</div>
+
+<div class="field">
+<label>Breathlessness with activity</label>
+<select class="cat">
+<option value="0">0</option><option value="1">1</option>
+<option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+</select>
+</div>
+
+<div class="field">
+<label>Activity limitation</label>
+<select class="cat">
+<option value="0">0</option><option value="1">1</option>
+<option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+</select>
+</div>
+
+<div class="field">
+<label>Confidence leaving home</label>
+<select class="cat">
+<option value="0">0</option><option value="1">1</option>
+<option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+</select>
+</div>
+
+<div class="field">
+<label>Sleep</label>
+<select class="cat">
+<option value="0">0</option><option value="1">1</option>
+<option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+</select>
+</div>
+
+<div class="field">
+<label>Energy</label>
+<select class="cat">
+<option value="0">0</option><option value="1">1</option>
+<option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+</select>
+</div>
+
+</div>
+
+<button onclick="calcCAT()">Calculate CAT</button>
+
+<div id="catResult" class="result">
+<span class="score">CAT: ___ / 40</span>
+</div>
+
+<div class="alert">
+For this handbook's TSJH screening workflow, a <strong>CAT score &gt;10</strong>
+should trigger additional review rather than automatic routine progression.
+</div>
+
+</section>
+
+
+<section id="bode">
+
+<h2>BODE Index</h2>
+
+<p>
+BODE incorporates <strong>B</strong>ody mass index,
+airflow <strong>O</strong>bstruction,
+<strong>D</strong>yspnea and
+<strong>E</strong>xercise capacity.
+</p>
+
+<div class="grid">
+
+<div class="field">
+<label>BMI</label>
+<input type="number" id="bmi" step="0.1" placeholder="kg/m²">
+</div>
+
+<div class="field">
+<label>FEV1 % predicted</label>
+<input type="number" id="fev1" step="0.1" placeholder="% predicted">
+</div>
+
+<div class="field">
+<label>mMRC Dyspnea Grade</label>
+<select id="mmrc">
+<option value="">Select</option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+</select>
+</div>
+
+<div class="field">
+<label>6-Minute Walk Distance</label>
+<input type="number" id="walk" placeholder="meters">
+</div>
+
+</div>
+
+<button onclick="calcBODE()">Calculate BODE</button>
+
+<div id="bodeResult" class="result">
+<span class="score">BODE: ___ / 10</span>
+</div>
+
+<div class="alert">
+<strong>TSJH screening flag:</strong> BODE ≥5 should prompt pulmonary,
+anesthesia and/or surgical venue review according to institutional criteria.
+</div>
+
+</section>
+
+
+<section>
+
+<h2>TSJH Pulmonary Red-Flag Screen</h2>
+
+<div class="checkrow">
+<label><input type="checkbox" class="redflag">
+24-hour supplemental oxygen requirement</label>
+</div>
+
+<div class="checkrow">
+<label><input type="checkbox" class="redflag">
+Chronic hypercapnic respiratory failure</label>
+</div>
+
+<div class="checkrow">
+<label><input type="checkbox" class="redflag">
+Idiopathic pulmonary fibrosis</label>
+</div>
+
+<div class="checkrow">
+<label><input type="checkbox" class="redflag">
+FEV1 &lt;50% predicted</label>
+</div>
+
+<div class="checkrow">
+<label><input type="checkbox" class="redflag">
+BODE ≥5</label>
+</div>
+
+<div class="checkrow">
+<label><input type="checkbox" class="redflag">
+CAT &gt;10</label>
+</div>
+
+<div class="checkrow">
+<label><input type="checkbox" class="redflag">
+Arozullah ≥4</label>
+</div>
+
+<div class="checkrow">
+<label><input type="checkbox" class="redflag">
+Significant pulmonary hypertension</label>
+</div>
+
+<div class="checkrow">
+<label><input type="checkbox" class="redflag">
+Moderate-severe RV dysfunction</label>
+</div>
+
+<div class="checkrow">
+<label><input type="checkbox" class="redflag">
+Severe tricuspid regurgitation</label>
+</div>
+
+<div class="checkrow">
+<label><input type="checkbox" class="redflag">
+Current COPD/asthma exacerbation or unstable respiratory symptoms</label>
+</div>
+
+<button onclick="checkFlags()">Evaluate Red Flags</button>
+
+<div id="flagResult" class="result">
+No pulmonary red-flag assessment completed.
+</div>
+
+</section>
+
+
+<section>
+
+<h2>OSA / PAP Perioperative Planning</h2>
+
+<div class="field">
+<label>Known OSA?</label>
+<select id="osa">
+<option value="">Select</option>
+<option>No</option>
+<option>Yes</option>
+</select>
+</div>
+
+<div class="field">
+<label>PAP prescribed?</label>
+<select id="pap">
+<option value="">Select</option>
+<option>No</option>
+<option>Yes</option>
+</select>
+</div>
+
+<div class="field">
+<label>Currently compliant/tolerant with PAP?</label>
+<select id="papUse">
+<option value="">Select</option>
+<option>No</option>
+<option>Yes</option>
+<option>N/A</option>
+</select>
+</div>
+
+<div class="note">
+Patients using PAP should bring/use PAP anytime asleep when clinically
+appropriate. Patients with OSA who are unable to tolerate PAP may require
+continuous pulse oximetry with NIPPV and/or supplemental oxygen if clinically
+warranted.
+</div>
+
+</section>
+
+
+<section id="summary">
+
+<h2>Preoperative Pulmonary Summary Generator</h2>
+
+<div class="field">
+<label>Additional clinical information</label>
+<textarea id="extra"
+placeholder="COPD/asthma history, oxygen use, recent exacerbation, pulmonologist, CXR/PFT findings, current symptoms, etc."></textarea>
+</div>
+
+<button onclick="generateSummary()">Generate Summary</button>
+<button class="secondary" onclick="copySummary()">Copy Summary</button>
+<button class="secondary" onclick="window.print()">Print</button>
+<button class="clear" onclick="clearAll()">Clear</button>
+
+<div class="field" style="margin-top:18px;">
+<label>Copy-ready documentation</label>
+<textarea id="summaryText"></textarea>
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Final Preoperative Optimization Status</h2>
+
+<div class="result">
+<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS:</strong><br><br>
+
+Optimized / Pending / Not optimized<br><br>
+
+Reason: ___________________________________________
+</div>
+
+<div class="good" style="padding:18px;margin-top:18px;">
+Patient meets TSJH perioperative consensus guidelines to proceed with
+elective surgery on scheduled surgery date at this time.
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Clinical Reminder</h2>
+
+<p>
+Pulmonary risk calculators are screening and risk-stratification tools.
+Abnormal scores should be interpreted in the context of current respiratory
+symptoms, baseline function, procedure risk, anesthesia plan, pulmonary
+hypertension, oxygen requirement and surgical venue capabilities.
+</p>
+
+<p>
+Do not delay elective surgery solely because a screening score is elevated
+without determining whether the finding represents an active or modifiable
+clinical problem.
+</p>
+
+</section>
+
+</main>
+
+<footer>
+Preoperative Optimization Handbook • Pulmonary Risk Calculators
+</footer>
+
+
+<script>
+
+let stopScore = null;
+let aroScore = null;
+let catScore = null;
+let bodeScore = null;
+let pulmonaryFlags = 0;
+
+
+function calcSTOP(){
+
+  stopScore = document.querySelectorAll(".sb:checked").length;
+
+  let interpretation = "";
+
+  if(stopScore <= 2){
+    interpretation = "Low STOP-BANG screening risk.";
+  }
+  else if(stopScore <= 4){
+    interpretation = "Intermediate STOP-BANG screening risk.";
+  }
+  else{
+    interpretation = "High STOP-BANG screening risk.";
+  }
+
+  document.getElementById("stopResult").innerHTML =
+    '<span class="score">STOP-BANG: ' + stopScore + ' / 8</span><br>' +
+    interpretation;
+}
+
+
+function calcAro(){
+
+  const ids = [
+    "aroSurg",
+    "aroAlb",
+    "aroBun",
+    "aroFunc",
+    "aroCopd",
+    "aroAge"
+  ];
+
+  aroScore = ids.reduce((sum,id)=>{
+    return sum + (parseInt(document.getElementById(id).value) || 0);
+  },0);
+
+  let message = "";
+
+  if(aroScore >= 4){
+    message =
+      "TSJH screening threshold reached. Review pulmonary risk, anesthesia " +
+      "considerations and appropriateness of surgical venue.";
+  }
+  else{
+    message =
+      "Below the handbook TSJH escalation threshold. Continue individualized " +
+      "clinical assessment.";
+  }
+
+  document.getElementById("aroResult").innerHTML =
+    '<span class="score">Arozullah score: ' + aroScore + '</span><br>' +
+    message;
+}
+
+
+function calcCAT(){
+
+  catScore = 0;
+
+  document.querySelectorAll(".cat").forEach(el=>{
+    catScore += parseInt(el.value) || 0;
+  });
+
+  let interpretation = "";
+
+  if(catScore <= 10){
+    interpretation = "Lower COPD symptom burden.";
+  }
+  else if(catScore <= 20){
+    interpretation = "Moderate COPD symptom burden.";
+  }
+  else if(catScore <= 30){
+    interpretation = "High COPD symptom burden.";
+  }
+  else{
+    interpretation = "Very high COPD symptom burden.";
+  }
+
+  let flag =
+    catScore > 10
+    ? "<br><strong>TSJH screening flag: CAT >10.</strong>"
+    : "";
+
+  document.getElementById("catResult").innerHTML =
+    '<span class="score">CAT: ' + catScore + ' / 40</span><br>' +
+    interpretation + flag;
+}
+
+
+function calcBODE(){
+
+  const bmi = parseFloat(document.getElementById("bmi").value);
+  const fev1 = parseFloat(document.getElementById("fev1").value);
+  const mmrc = parseInt(document.getElementById("mmrc").value);
+  const walk = parseFloat(document.getElementById("walk").value);
+
+  if(
+    Number.isNaN(bmi) ||
+    Number.isNaN(fev1) ||
+    Number.isNaN(mmrc) ||
+    Number.isNaN(walk)
+  ){
+    document.getElementById("bodeResult").innerHTML =
+      "<strong>Please enter all four BODE variables.</strong>";
+    return;
+  }
+
+  let score = 0;
+
+  /* FEV1 */
+  if(fev1 >= 65) score += 0;
+  else if(fev1 >= 50) score += 1;
+  else if(fev1 >= 36) score += 2;
+  else score += 3;
+
+  /* 6MWD */
+  if(walk >= 350) score += 0;
+  else if(walk >= 250) score += 1;
+  else if(walk >= 150) score += 2;
+  else score += 3;
+
+  /* mMRC */
+  if(mmrc <= 1) score += 0;
+  else if(mmrc === 2) score += 1;
+  else if(mmrc === 3) score += 2;
+  else score += 3;
+
+  /* BMI */
+  if(bmi <= 21) score += 1;
+
+  bodeScore = score;
+
+  let message = "";
+
+  if(score >= 5){
+    message =
+      "<strong>TSJH screening flag: BODE ≥5. Pulmonary/anesthesia/venue review should be considered.</strong>";
+  }
+  else{
+    message =
+      "Below the handbook TSJH BODE escalation threshold.";
+  }
+
+  document.getElementById("bodeResult").innerHTML =
+    '<span class="score">BODE: ' + score + ' / 10</span><br>' +
+    message;
+}
+
+
+function checkFlags(){
+
+  pulmonaryFlags =
+    document.querySelectorAll(".redflag:checked").length;
+
+  const box = document.getElementById("flagResult");
+
+  if(pulmonaryFlags === 0){
+
+    box.className = "result good";
+
+    box.innerHTML =
+      "<strong>No listed TSJH pulmonary red flags selected.</strong><br>" +
+      "Continue individualized pulmonary and anesthesia assessment.";
+
+  } else {
+
+    box.className = "result bad";
+
+    box.innerHTML =
+      "<strong>" + pulmonaryFlags +
+      " pulmonary red flag(s) identified.</strong><br>" +
+      "Review pulmonary stability, anesthesia requirements and surgical " +
+      "venue/HLOC appropriateness before final optimization.";
+
+  }
+}
+
+
+function generateSummary(){
+
+  let lines = [];
+
+  lines.push("PREOPERATIVE PULMONARY RISK ASSESSMENT");
+
+  if(stopScore !== null){
+    lines.push("STOP-BANG: " + stopScore + "/8.");
+  }
+
+  if(aroScore !== null){
+    lines.push("Arozullah respiratory failure risk index: " + aroScore + ".");
+  }
+
+  if(catScore !== null){
+    lines.push("CAT score: " + catScore + "/40.");
+  }
+
+  if(bodeScore !== null){
+    lines.push("BODE score: " + bodeScore + "/10.");
+  }
+
+  if(pulmonaryFlags > 0){
+    lines.push(
+      pulmonaryFlags +
+      " TSJH pulmonary red flag(s) identified; pulmonary/anesthesia/venue " +
+      "review should be completed as clinically indicated."
+    );
+  }
+  else{
+    lines.push(
+      "No listed TSJH pulmonary red flags were selected on current screening."
+    );
+  }
+
+  const osa = document.getElementById("osa").value;
+  const pap = document.getElementById("pap").value;
+  const papUse = document.getElementById("papUse").value;
+
+  if(osa){
+    lines.push("Known OSA: " + osa + ".");
+  }
+
+  if(pap){
+    lines.push("PAP prescribed: " + pap + ".");
+  }
+
+  if(papUse){
+    lines.push("PAP tolerance/compliance: " + papUse + ".");
+  }
+
+  if(osa === "Yes" && papUse === "Yes"){
+    lines.push(
+      "Recommend PAP anytime asleep when clinically appropriate; RT assistance as needed."
+    );
+  }
+
+  if(osa === "Yes" && papUse === "No"){
+    lines.push(
+      "OSA with PAP intolerance/nonuse: recommend continuous pulse oximetry " +
+      "postoperatively with NIPPV and/or supplemental oxygen if clinically warranted."
+    );
+  }
+
+  const extra = document.getElementById("extra").value.trim();
+
+  if(extra){
+    lines.push("Additional pulmonary information: " + extra);
+  }
+
+  lines.push(
+    "Pulmonary risk assessment should be integrated with current symptoms, " +
+    "baseline oxygen requirement, functional status, procedure risk and anesthesia plan."
+  );
+
+  document.getElementById("summaryText").value =
+    lines.join(" ");
+}
+
+
+function copySummary(){
+
+  const text = document.getElementById("summaryText");
+
+  if(!text.value){
+    generateSummary();
+  }
+
+  text.select();
+  text.setSelectionRange(0,99999);
+
+  navigator.clipboard.writeText(text.value)
+    .then(()=>{
+      alert("Pulmonary summary copied.");
+    })
+    .catch(()=>{
+      document.execCommand("copy");
+      alert("Pulmonary summary copied.");
+    });
+}
+
+
+function clearAll(){
+
+  document.querySelectorAll(
+    'input[type="checkbox"]'
+  ).forEach(el=>el.checked=false);
+
+  document.querySelectorAll(
+    'input[type="number"]'
+  ).forEach(el=>el.value="");
+
+  document.querySelectorAll("select").forEach(el=>{
+    el.selectedIndex=0;
+  });
+
+  document.getElementById("extra").value="";
+  document.getElementById("summaryText").value="";
+
+  stopScore=null;
+  aroScore=null;
+  catScore=null;
+  bodeScore=null;
+  pulmonaryFlags=0;
+
+  document.getElementById("stopResult").innerHTML =
+    '<span class="score">STOP-BANG: ___ / 8</span>';
+
+  document.getElementById("aroResult").innerHTML =
+    '<span class="score">Arozullah score: ___</span>';
+
+  document.getElementById("catResult").innerHTML =
+    '<span class="score">CAT: ___ / 40</span>';
+
+  document.getElementById("bodeResult").innerHTML =
+    '<span class="score">BODE: ___ / 10</span>';
+
+  document.getElementById("flagResult").className="result";
+  document.getElementById("flagResult").innerHTML =
+    "No pulmonary red-flag assessment completed.";
+}
+
+</script>
+
+</body>
+</html>

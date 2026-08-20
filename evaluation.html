@@ -371,7 +371,611 @@ staff, and other members of the perioperative care team.
 </p>
 
 </section>
+<!-- =========================================================
+     INTERACTIVE CORE PREOPERATIVE EVALUATION
+========================================================= -->
 
+<section id="coreEvaluationInteractive">
+
+<h2>Interactive Core Preoperative Evaluation</h2>
+
+<p>
+Use this patient-specific tool to organize the core preoperative medical
+evaluation, identify unresolved clinical issues, and generate a concise
+optimization summary.
+</p>
+
+<div class="important">
+<strong>Clinical decision support:</strong>
+Final recommendations should reflect the patient's current clinical status,
+procedure risk, applicable TSJH perioperative consensus guidance, anesthesia
+requirements and patient-specific medical judgment.
+</div>
+
+
+<div class="formula-box">
+
+<h3>Patient / Procedure</h3>
+
+<label><strong>Patient</strong></label><br>
+<input type="text" id="cePatient"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Chief complaint / surgical diagnosis</strong></label><br>
+<input type="text" id="ceDiagnosis"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Planned procedure</strong></label><br>
+<input type="text" id="ceProcedure"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Surgeon</strong></label><br>
+<input type="text" id="ceSurgeon"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Surgery Date / Date of Service</strong></label><br>
+<input type="date" id="ceDOS"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Current Clinical Status</h3>
+
+<label><strong>Any active or unstable medical condition?</strong></label><br>
+<select id="ceUnstable"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>New/worsening chest pain, dyspnea, syncope or neurologic symptoms?</strong></label><br>
+<select id="ceSymptoms"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>Recent ER visit or hospitalization?</strong></label><br>
+<select id="ceHospital"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>Active infection or untreated clinically significant infection?</strong></label><br>
+<select id="ceInfection"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Functional & Risk Screening</h3>
+
+<label><strong>DASI score</strong></label><br>
+<input type="number" step="0.01" id="ceDASI"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>RCRI points</strong></label><br>
+<input type="number" min="0" id="ceRCRI"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>STOP-BANG total</strong></label><br>
+<input type="number" min="0" max="8" id="ceSTOP"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>CFS</strong></label><br>
+<input type="number" min="1" max="9" id="ceCFS"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Preoperative Cardiac Guidelines Application</h3>
+
+<label><strong>Surgical risk</strong></label><br>
+<select id="ceSurgicalRisk"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Select</option>
+<option value="Low (&lt;1%)">Low (&lt;1%)</option>
+<option value="Intermediate (1–5%)">Intermediate (1–5%)</option>
+<option value="High (&gt;5%)">High (&gt;5%)</option>
+</select>
+
+<label><strong>Active cardiac problem?</strong></label><br>
+<select id="ceActiveCardiac"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>BNP / NT-proBNP screening</strong></label><br>
+<select id="ceBNP"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes-pending">Yes — pending</option>
+<option value="yes-complete">Yes — completed/reviewed</option>
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Testing / Medication / Record Closure</h3>
+
+<label><strong>Vitals acceptable and reviewed?</strong></label><br>
+<select id="ceVitals"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>Required labs complete and abnormalities addressed?</strong></label><br>
+<select id="ceLabs"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>Required EKG/testing complete and reviewed?</strong></label><br>
+<select id="ceTesting"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+<label><strong>Required medication hold plan resolved?</strong></label><br>
+<select id="ceMeds"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+<label><strong>Required specialist recommendation reviewed?</strong></label><br>
+<select id="ceSpecialist"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+<label><strong>Anesthesia-specific issue resolved when applicable?</strong></label><br>
+<select id="ceAnesthesia"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Postoperative Planning</h3>
+
+<label><strong>Cardiac surveillance plan established when indicated?</strong></label><br>
+<select id="ceCardiacMonitor"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>OSA / respiratory monitoring plan established when indicated?</strong></label><br>
+<select id="ceRespMonitor"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>Venue / HLOC appropriate?</strong></label><br>
+<select id="ceVenue"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Assessment Details</h3>
+
+<label><strong>Clinically significant findings / optimization performed</strong></label><br>
+<textarea id="ceFindings"
+rows="5"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+<label><strong>Pending item / owner / closure plan</strong></label><br>
+<textarea id="cePendingDetails"
+rows="5"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<div class="formula-box">
+
+<button type="button" id="ceGenerate"
+style="background:#17324d;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Generate Core Evaluation
+</button>
+
+<button type="button" id="ceCopy"
+style="background:#2f6fb0;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Copy Summary
+</button>
+
+<button type="button" id="cePrint"
+style="background:#356f44;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Print
+</button>
+
+<button type="button" id="ceClear"
+style="background:#8b2f2f;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Clear
+</button>
+
+</div>
+
+
+<div id="ceResult"
+class="formula-box"
+style="display:none;margin-top:20px;">
+</div>
+
+
+<script>
+
+function ceVal(id) {
+  const el = document.getElementById(id);
+  return el ? el.value : "";
+}
+
+
+function generateCoreEvaluation() {
+
+  const pending = [];
+  const stop = [];
+
+  if (ceVal("ceUnstable") === "yes") {
+    stop.push(
+      "Active or unstable medical condition requires evaluation and treatment before elective surgery."
+    );
+  }
+
+  if (ceVal("ceSymptoms") === "yes") {
+    pending.push(
+      "New or worsening cardiopulmonary/neurologic symptoms require clinical reassessment."
+    );
+  }
+
+  if (ceVal("ceHospital") === "yes") {
+    pending.push(
+      "Recent ER visit or hospitalization requires interval record review and reassessment."
+    );
+  }
+
+  if (ceVal("ceInfection") === "yes") {
+    pending.push(
+      "Active or clinically significant infection requires evaluation and treatment as clinically indicated."
+    );
+  }
+
+  if (ceVal("ceActiveCardiac") === "yes") {
+    pending.push(
+      "Active cardiac problem requires appropriate cardiovascular evaluation before final optimization."
+    );
+  }
+
+  const checks = [
+    ["ceVitals","Abnormal or unresolved vital-sign concern remains."],
+    ["ceLabs","Required laboratory testing or clinically meaningful abnormality remains unresolved."],
+    ["ceTesting","Required EKG/testing remains incomplete or unreviewed."],
+    ["ceMeds","Required perioperative medication plan remains unresolved."],
+    ["ceSpecialist","Required specialist recommendation remains outstanding."],
+    ["ceAnesthesia","Required anesthesia-specific issue remains unresolved."],
+    ["ceCardiacMonitor","Required postoperative cardiac surveillance plan remains incomplete."],
+    ["ceRespMonitor","Required postoperative respiratory monitoring plan remains incomplete."],
+    ["ceVenue","Surgical venue / higher-level-of-care determination remains unresolved."]
+  ];
+
+  checks.forEach(function(item) {
+    if (ceVal(item[0]) === "no") {
+      pending.push(item[1]);
+    }
+  });
+
+  if (ceVal("ceBNP") === "yes-pending") {
+    pending.push(
+      "BNP / NT-proBNP screening is indicated and remains pending."
+    );
+  }
+
+  let status = "Optimized";
+  let reason =
+    "Necessary medical evaluation and perioperative planning are complete with no unresolved clinically meaningful issue identified.";
+
+  if (stop.length > 0) {
+    status = "Not optimized";
+    reason = stop.join(" ");
+  }
+  else if (pending.length > 0) {
+    status = "Pending";
+    reason = pending.join(" ");
+  }
+
+  let html = "";
+
+  html += "<h2>Core Preoperative Evaluation Summary</h2>";
+
+  if (ceVal("cePatient")) {
+    html += "<strong>Patient:</strong> " + ceVal("cePatient") + "<br>";
+  }
+
+  if (ceVal("ceDiagnosis")) {
+    html += "<strong>Diagnosis:</strong> " + ceVal("ceDiagnosis") + "<br>";
+  }
+
+  if (ceVal("ceProcedure")) {
+    html += "<strong>Procedure:</strong> " + ceVal("ceProcedure") + "<br>";
+  }
+
+  if (ceVal("ceSurgeon")) {
+    html += "<strong>Surgeon:</strong> " + ceVal("ceSurgeon") + "<br>";
+  }
+
+  if (ceVal("ceDOS")) {
+    html += "<strong>Date of Service:</strong> " + ceVal("ceDOS") + "<br>";
+  }
+
+
+  html += "<h3>Functional & Risk Screening</h3>";
+
+  html +=
+    "<p>" +
+    "<strong>DASI:</strong> " + (ceVal("ceDASI") || "—") + "<br>" +
+    "<strong>RCRI:</strong> " + (ceVal("ceRCRI") || "—") + "<br>" +
+    "<strong>STOP-BANG:</strong> " + (ceVal("ceSTOP") || "—") + "<br>" +
+    "<strong>CFS:</strong> " + (ceVal("ceCFS") || "—") +
+    "</p>";
+
+
+  html += "<h3>Preoperative Cardiac Guidelines Application</h3>";
+
+  html +=
+    "<p>" +
+    "<strong>Surgical Risk:</strong> " + (ceVal("ceSurgicalRisk") || "—") + "<br>" +
+    "<strong>RCRI:</strong> " + (ceVal("ceRCRI") || "—") + "<br>" +
+    "<strong>Active Cardiac Problems:</strong> " +
+    (ceVal("ceActiveCardiac") === "yes" ? "Yes" : "No") + "<br>" +
+    "<strong>BNP screening:</strong> " +
+    (ceVal("ceBNP") === "no" ? "No" : "Yes") +
+    "</p>";
+
+
+  if (ceVal("ceFindings")) {
+    html +=
+      "<h3>Risk Stratification & Medical Optimization</h3><p>" +
+      ceVal("ceFindings") +
+      "</p>";
+  }
+
+
+  if (pending.length > 0) {
+
+    html += "<h3>Pending Items</h3><ol>";
+
+    pending.forEach(function(item) {
+      html += "<li>" + item + "</li>";
+    });
+
+    html += "</ol>";
+  }
+
+
+  if (ceVal("cePendingDetails")) {
+    html +=
+      "<h3>Pending Item / Owner / Closure Plan</h3><p>" +
+      ceVal("cePendingDetails") +
+      "</p>";
+  }
+
+
+  html += "<hr>";
+
+  html += "<h3>FINAL PREOPERATIVE OPTIMIZATION STATUS</h3>";
+
+  html +=
+    "<p><strong>" +
+    status +
+    "</strong></p>";
+
+  html +=
+    "<p><strong>Reason:</strong> " +
+    reason +
+    "</p>";
+
+
+  if (status === "Optimized") {
+
+    html +=
+      "<div class='important'>" +
+      "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time." +
+      "</div>";
+  }
+
+
+  html += "<hr>";
+
+  html += "<h3>Copy-Ready Documentation</h3>";
+
+  html +=
+    "<p>Preoperative medical evaluation completed. " +
+    "Functional & Risk Screening: DASI " +
+    (ceVal("ceDASI") || "—") +
+    ", RCRI " +
+    (ceVal("ceRCRI") || "—") +
+    ", STOP-BANG " +
+    (ceVal("ceSTOP") || "—") +
+    ", CFS " +
+    (ceVal("ceCFS") || "—") +
+    ". ";
+
+  html +=
+    "<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS: " +
+    status +
+    ".</strong> ";
+
+  if (status === "Optimized") {
+    html +=
+      "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time.";
+  } else {
+    html +=
+      "Reason: " +
+      reason;
+  }
+
+  html += "</p>";
+
+
+  const result =
+    document.getElementById("ceResult");
+
+  result.innerHTML = html;
+  result.style.display = "block";
+
+  result.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+}
+
+
+async function copyCoreEvaluation() {
+
+  generateCoreEvaluation();
+
+  const text =
+    document.getElementById("ceResult").innerText;
+
+  try {
+
+    await navigator.clipboard.writeText(text);
+
+    alert("Core preoperative evaluation copied.");
+
+  } catch (error) {
+
+    const temp =
+      document.createElement("textarea");
+
+    temp.value = text;
+
+    document.body.appendChild(temp);
+
+    temp.select();
+
+    document.execCommand("copy");
+
+    document.body.removeChild(temp);
+
+    alert("Core preoperative evaluation copied.");
+  }
+}
+
+
+function printCoreEvaluation() {
+
+  generateCoreEvaluation();
+
+  setTimeout(function() {
+    window.print();
+  },150);
+}
+
+
+function clearCoreEvaluation() {
+
+  if (
+    !confirm(
+      "Clear all patient-specific evaluation information?"
+    )
+  ) {
+    return;
+  }
+
+  document
+    .querySelectorAll(
+      "#coreEvaluationInteractive input, #coreEvaluationInteractive textarea"
+    )
+    .forEach(function(el) {
+      el.value = "";
+    });
+
+  document
+    .querySelectorAll(
+      "#coreEvaluationInteractive select"
+    )
+    .forEach(function(el) {
+      el.selectedIndex = 0;
+    });
+
+  const result =
+    document.getElementById("ceResult");
+
+  result.innerHTML = "";
+  result.style.display = "none";
+}
+
+
+document
+  .getElementById("ceGenerate")
+  .addEventListener(
+    "click",
+    generateCoreEvaluation
+  );
+
+document
+  .getElementById("ceCopy")
+  .addEventListener(
+    "click",
+    copyCoreEvaluation
+  );
+
+document
+  .getElementById("cePrint")
+  .addEventListener(
+    "click",
+    printCoreEvaluation
+  );
+
+document
+  .getElementById("ceClear")
+  .addEventListener(
+    "click",
+    clearCoreEvaluation
+  );
+
+</script>
+
+</section>
 </main>
 
 <footer>

@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardiac Testing | Preoperative Optimization Handbook</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #f4f7fb;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #123b63, #1d5d8f);
+      color: white;
+      padding: 28px 20px;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
+
+    header p {
+      margin: 0;
+      opacity: 0.95;
+    }
+
+    nav {
+      background: white;
+      border-bottom: 1px solid #dbe3ec;
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      color: #123b63;
+      text-decoration: none;
+      font-weight: 600;
+      margin-right: 18px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 18px 60px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      border: 1px solid #e3e8ef;
+    }
+
+    h2 {
+      color: #123b63;
+      margin-top: 0;
+      border-bottom: 2px solid #e4edf5;
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      color: #1d5d8f;
+      margin-bottom: 8px;
+    }
+
+    .alert {
+      background: #fff4e5;
+      border-left: 5px solid #f59e0b;
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 14px 0;
+    }
+
+    .success {
+      background: #eaf7ee;
+      border-left: 5px solid #2e8b57;
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 14px 0;
+    }
+
+    .danger {
+      background: #fdecec;
+      border-left: 5px solid #c0392b;
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 14px 0;
+    }
+
+    .bluebox {
+      background: #eef6fc;
+      border-left: 5px solid #1d5d8f;
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 14px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+
+    th, td {
+      border: 1px solid #d9e1e8;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #123b63;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    ul, ol {
+      padding-left: 22px;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .mini {
+      background: #f8fafc;
+      border: 1px solid #dfe7ef;
+      border-radius: 10px;
+      padding: 15px;
+    }
+
+    .mini h3 {
+      margin-top: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #123b63;
+      color: white;
+      border-radius: 20px;
+      padding: 4px 10px;
+      font-size: 13px;
+      margin: 2px 4px 2px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #667085;
+      font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+      header h1 {
+        font-size: 25px;
+      }
+
+      .card {
+        padding: 17px;
+      }
+
+      table {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Cardiac Testing Before Elective Noncardiac Surgery</h1>
+  <p>Preoperative testing, interpretation, timing, and perioperative decision support</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="evaluation.html">Preop Evaluation</a>
+  <a href="cardiac.html">Cardiac</a>
+  <a href="ekg.html">EKG</a>
+</nav>
+
+<main class="container">
+
+  <section class="card">
+    <h2>Purpose</h2>
+
+    <p>
+      Preoperative cardiac testing should be ordered only when the result is expected
+      to change perioperative management, surgical timing, medical therapy, level of care,
+      or the need for additional cardiovascular evaluation.
+    </p>
+
+    <div class="success">
+      <strong>Key Principle:</strong> Do not order routine cardiac testing solely because
+      surgery is planned. Use the same indications for cardiovascular testing that would
+      apply outside the perioperative setting.
+    </div>
+  </section>
+
+
+  <section class="card">
+    <h2>Stepwise Cardiac Testing Approach</h2>
+
+    <ol>
+      <li>Determine urgency of surgery.</li>
+      <li>Identify active or unstable cardiac conditions.</li>
+      <li>Determine surgical procedural risk.</li>
+      <li>Calculate RCRI.</li>
+      <li>Assess functional capacity using self-reported DASI.</li>
+      <li>Determine whether BNP or NT-proBNP screening is indicated.</li>
+      <li>Review prior cardiac testing and determine whether repeat testing is necessary.</li>
+      <li>Order additional testing only if results are expected to alter management.</li>
+    </ol>
+  </section>
+
+
+  <section class="card">
+    <h2>Active Cardiac Conditions</h2>
+
+    <p>
+      Elective surgery should generally be deferred for evaluation and treatment when
+      an unstable cardiovascular condition is present.
+    </p>
+
+    <div class="danger">
+      <strong>Examples requiring further evaluation:</strong>
+      <ul>
+        <li>Acute coronary syndrome or suspected active myocardial ischemia</li>
+        <li>Decompensated heart failure</li>
+        <li>Unstable or clinically significant arrhythmia</li>
+        <li>Symptomatic severe valvular heart disease</li>
+        <li>New unexplained cardiopulmonary symptoms concerning for cardiac disease</li>
+      </ul>
+    </div>
+  </section>
+
+
+  <section class="card">
+    <h2>12-Lead Electrocardiogram</h2>
+
+    <div class="quick-grid">
+
+      <div class="mini">
+        <h3>Consider Preoperative EKG</h3>
+        <ul>
+          <li>Known coronary artery disease</li>
+          <li>Significant arrhythmia</li>
+          <li>Peripheral arterial disease</li>
+          <li>Cerebrovascular disease</li>
+          <li>Structural heart disease</li>
+          <li>Significant cardiac symptoms</li>
+          <li>Elevated-risk surgery when clinically appropriate</li>
+        </ul>
+      </div>
+
+      <div class="mini">
+        <h3>Routine EKG Usually Not Needed</h3>
+        <ul>
+          <li>Asymptomatic low-risk patient</li>
+          <li>Low-risk surgery without cardiac disease</li>
+          <li>No clinical indication outside the surgical setting</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="alert">
+      <strong>New EKG abnormality:</strong> Compare with prior tracing when available.
+      New ischemic changes, significant conduction abnormalities, concerning arrhythmias,
+      or unexplained abnormalities may require additional evaluation before elective surgery.
+    </div>
+
+    <div class="bluebox">
+      <strong>Left Bundle Branch Block:</strong> For elective surgery, a newly identified
+      or clinically significant LBBB should prompt cardiovascular evaluation or appropriate
+      ischemic assessment. If nuclear stress testing is selected, pharmacologic vasodilator
+      testing such as regadenoson is generally preferred over an exercise ECG-based ischemia
+      assessment because LBBB may interfere with interpretation.
+    </div>
+  </section>
+
+
+  <section class="card">
+    <h2>Echocardiography</h2>
+
+    <p>
+      Routine repeat echocardiography is not required in every patient with known cardiac disease.
+      Order or obtain an updated study when the information may change perioperative management.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Clinical Situation</th>
+          <th>Preoperative Consideration</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>New or worsening dyspnea</td>
+          <td>Consider assessment of ventricular and valvular function.</td>
+        </tr>
+
+        <tr>
+          <td>Suspected new heart failure</td>
+          <td>Evaluate ventricular function before elective surgery when clinically indicated.</td>
+        </tr>
+
+        <tr>
+          <td>Known heart failure with clinical deterioration</td>
+          <td>Updated echocardiography may be appropriate.</td>
+        </tr>
+
+        <tr>
+          <td>Clinically stable heart failure with recent adequate study</td>
+          <td>Routine repeat testing is generally unnecessary solely because surgery is planned.</td>
+        </tr>
+
+        <tr>
+          <td>Suspected moderate or severe valvular disease</td>
+          <td>Obtain or review recent echocardiographic assessment and cardiovascular evaluation as appropriate.</td>
+        </tr>
+
+        <tr>
+          <td>Stable known valve disease with adequate recent assessment</td>
+          <td>Repeat testing depends on interval, symptoms, severity, and expected progression.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+
+  <section class="card">
+    <h2>Aortic Stenosis</h2>
+
+    <p>
+      Patients with moderate-to-severe or symptomatic aortic stenosis require careful
+      perioperative assessment. Confirm severity, symptoms, ventricular function, and
+      cardiovascular recommendations before elective surgery.
+    </p>
+
+    <div class="danger">
+      <strong>Severe Aortic Stenosis Parameters:</strong>
+      <ul>
+        <li>Aortic valve area &lt; 1.0 cm²</li>
+        <li>Mean gradient &gt; 40 mmHg</li>
+        <li>Peak velocity &gt; 4.0 m/s</li>
+      </ul>
+    </div>
+
+    <p>
+      Severe or symptomatic aortic stenosis may exceed the capabilities of a freestanding
+      orthopedic or spine hospital and may require higher-level cardiovascular and anesthetic resources.
+    </p>
+  </section>
+
+
+  <section class="card">
+    <h2>Mitral Stenosis</h2>
+
+    <p>
+      Moderate-to-severe mitral stenosis should have appropriate cardiovascular evaluation
+      and recent assessment of severity, symptoms, pulmonary pressures, rhythm, and ventricular function.
+    </p>
+
+    <div class="alert">
+      <strong>Findings consistent with severe disease may include:</strong>
+      <ul>
+        <li>Mitral valve area ≤ 1.5 cm²</li>
+        <li>Mean mitral gradient ≥ 10 mmHg</li>
+        <li>Pulmonary artery systolic pressure &gt; 50 mmHg</li>
+      </ul>
+    </div>
+  </section>
+
+
+  <section class="card">
+    <h2>Heart Failure and Cardiomyopathy</h2>
+
+    <p>
+      Cardiovascular risk increases in patients with heart failure, particularly with
+      reduced ejection fraction, recent decompensation, or active symptoms.
+    </p>
+
+    <div class="bluebox">
+      <strong>Evaluate:</strong>
+      <ul>
+        <li>Recent heart-failure symptoms or admissions</li>
+        <li>Ejection fraction</li>
+        <li>NYHA functional class</li>
+        <li>Guideline-directed medical therapy</li>
+        <li>Volume status</li>
+        <li>Functional capacity</li>
+        <li>Recent cardiology recommendations</li>
+      </ul>
+    </div>
+
+    <div class="danger">
+      <strong>Higher-Level-of-Care Consideration:</strong> Severely reduced LV systolic function,
+      especially an EF below approximately 35%, requires individualized cardiovascular and
+      anesthesia review and may not be appropriate for a limited-resource surgical facility.
+    </div>
+  </section>
+
+
+  <section class="card">
+    <h2>Stress Testing</h2>
+
+    <p>
+      Stress testing should not be performed routinely before surgery.
+    </p>
+
+    <div class="success">
+      <strong>Consider stress testing only when:</strong>
+      <ul>
+        <li>The patient has elevated perioperative cardiovascular risk, AND</li>
+        <li>Functional capacity is poor or unknown, AND</li>
+        <li>The result would change management.</li>
+      </ul>
+    </div>
+
+    <p>
+      A patient with acceptable functional capacity, stable symptoms, and no other
+      indication for ischemic evaluation generally does not need stress testing solely
+      for preoperative risk stratification.
+    </p>
+
+    <h3>After a Normal Stress Test</h3>
+
+    <p>
+      A normal stress test does not itself create a mandatory waiting period before
+      noncardiac surgery. Once the study has been reviewed, the patient is clinically
+      stable, and no additional intervention or evaluation is required, surgery may
+      proceed according to the overall perioperative plan.
+    </p>
+  </section>
+
+
+  <section class="card">
+    <h2>Coronary CT Angiography</h2>
+
+    <p>
+      Coronary CT angiography is not a routine screening study for preoperative patients.
+      It may be considered in selected patients when coronary anatomy needs clarification
+      and the result is expected to change management.
+    </p>
+
+    <p>
+      Consider renal function, contrast exposure, coronary calcium burden, heart rate,
+      and whether another testing strategy would be more appropriate.
+    </p>
+  </section>
+
+
+  <section class="card">
+    <h2>Cardiac Catheterization / Coronary Angiography</h2>
+
+    <p>
+      Invasive coronary angiography should not be performed solely because noncardiac
+      surgery is planned. The indication should be the same as it would be in a patient
+      who was not preparing for surgery.
+    </p>
+
+    <div class="success">
+      <strong>If catheterization shows no obstructive disease requiring intervention:</strong>
+      there is no automatic waiting period solely because diagnostic angiography was performed.
+      Proceed when clinically stable, the access site is satisfactory, renal function is acceptable
+      when relevant, and the cardiology plan has been reviewed.
+    </div>
+
+    <div class="alert">
+      If PCI or another cardiac intervention is performed, surgical timing changes and
+      must account for stent type, indication for PCI, antiplatelet therapy, bleeding risk,
+      and the urgency of noncardiac surgery.
+    </div>
+  </section>
+
+
+  <section class="card">
+    <h2>Prior PCI and Coronary Stents</h2>
+
+    <p>
+      Determine the date, indication, and type of coronary intervention before recommending
+      interruption of antiplatelet therapy.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Information Needed</th>
+          <th>Why It Matters</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Date of PCI</td>
+          <td>Determines whether elective surgery should be delayed.</td>
+        </tr>
+
+        <tr>
+          <td>Reason for PCI</td>
+          <td>Acute coronary syndrome carries different risk than stable coronary disease.</td>
+        </tr>
+
+        <tr>
+          <td>Stent type</td>
+          <td>Helps determine antiplatelet requirements and recommended timing.</td>
+        </tr>
+
+        <tr>
+          <td>Aspirin / P2Y12 therapy</td>
+          <td>Stopping therapy too early may cause stent thrombosis.</td>
+        </tr>
+
+        <tr>
+          <td>Planned surgical bleeding risk</td>
+          <td>Must be balanced against thrombotic risk.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="danger">
+      Do not independently discontinue dual antiplatelet therapy in a recently stented patient.
+      Coordinate with cardiology, anesthesia, and the surgeon.
+    </div>
+  </section>
+
+
+  <section class="card">
+    <h2>BNP / NT-proBNP Screening</h2>
+
+    <p>
+      Natriuretic peptide testing can help identify patients at increased risk for
+      postoperative cardiovascular events when clinical risk is elevated.
+    </p>
+
+    <div class="bluebox">
+      <strong>TSJR / TSJH Screening Trigger:</strong><br>
+      Obtain BNP or NT-proBNP when:
+      <ul>
+        <li>RCRI ≥ 1, OR</li>
+        <li>Age ≥ 65 years, OR</li>
+        <li>Age 45–64 years with significant cardiovascular disease.</li>
+      </ul>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Biomarker</th>
+          <th>Threshold</th>
+          <th>Postoperative Plan</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>BNP</td>
+          <td>≥ 92 pg/mL</td>
+          <td>Postoperative EKG and daily troponins for 48–72 hours.</td>
+        </tr>
+
+        <tr>
+          <td>NT-proBNP</td>
+          <td>≥ 300 ng/L</td>
+          <td>Postoperative EKG and daily troponins for 48–72 hours.</td>
+        </tr>
+
+        <tr>
+          <td>Below threshold</td>
+          <td>BNP &lt; 92 or NT-proBNP &lt; 300</td>
+          <td>No routine postoperative cardiac-surveillance protocol based solely on biomarker result.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="success">
+      <strong>SmartPhrase:</strong><br><br>
+      BNP screening. Obtain BNP because of age greater than 65 years and RCRI score of 1.
+      If BNP is 92 pg/mL or greater, implement the TSJH postoperative cardiac-surveillance
+      protocol with postoperative EKG and daily troponins for 48–72 hours.
+    </div>
+  </section>
+
+
+  <section class="card">
+    <h2>Postoperative Troponin Surveillance</h2>
+
+    <p>
+      Patients meeting institutional high-risk criteria may require postoperative
+      surveillance for myocardial injury even when they do not report classic ischemic symptoms.
+    </p>
+
+    <div class="bluebox">
+      When indicated by institutional protocol:
+      <ul>
+        <li>Obtain postoperative EKG.</li>
+        <li>Obtain daily troponin levels for 48–72 hours.</li>
+        <li>Evaluate abnormal values in the clinical context.</li>
+        <li>Assess for ischemia, arrhythmia, anemia, hypotension, hypoxia, sepsis, or other causes of myocardial injury.</li>
+      </ul>
+    </div>
+  </section>
+
+
+  <section class="card">
+    <h2>When Prior Cardiac Testing May Be Sufficient</h2>
+
+    <p>
+      Do not automatically repeat a test merely because it was performed months earlier.
+      Review whether the patient's clinical condition has changed.
+    </p>
+
+    <div class="quick-grid">
+
+      <div class="mini">
+        <h3>Usually No Repeat Needed</h3>
+        <ul>
+          <li>No new symptoms</li>
+          <li>No significant change in functional capacity</li>
+          <li>Known stable disease</li>
+          <li>Prior study adequately answers the clinical question</li>
+          <li>No expected change in management</li>
+        </ul>
+      </div>
+
+      <div class="mini">
+        <h3>Consider Updated Testing</h3>
+        <ul>
+          <li>New chest pain</li>
+          <li>New or worsening dyspnea</li>
+          <li>Syncope or concerning presyncope</li>
+          <li>Heart-failure exacerbation</li>
+          <li>New murmur or suspected valve progression</li>
+          <li>New significant EKG abnormality</li>
+          <li>Major decline in functional status</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="card">
+    <h2>Cardiology Consultation</h2>
+
+    <p>
+      Cardiology consultation is most useful when a specific question needs to be answered,
+      rather than requesting nonspecific “cardiac clearance.”
+    </p>
+
+    <h3>Examples of Appropriate Questions</h3>
+
+    <ul>
+      <li>Is additional ischemic testing indicated?</li>
+      <li>Is the patient's heart failure medically optimized?</li>
+      <li>Does this valve lesion require intervention before surgery?</li>
+      <li>Can antiplatelet therapy be interrupted safely?</li>
+      <li>Does this arrhythmia require additional treatment before surgery?</li>
+      <li>Is the patient suitable for this surgical facility or should surgery occur at a higher level of care?</li>
+    </ul>
+
+    <div class="success">
+      <strong>Preferred documentation:</strong> State whether the patient is medically optimized,
+      whether additional cardiac testing is required, and any specific perioperative medication,
+      monitoring, or level-of-care recommendations.
+    </div>
+  </section>
+
+
+  <section class="card">
+    <h2>Testing That Should Not Be Ordered Routinely</h2>
+
+    <ul>
+      <li>Echocardiogram in every preoperative patient</li>
+      <li>Stress test solely because of age</li>
+      <li>Stress test solely because orthopedic or spine surgery is planned</li>
+      <li>Coronary angiography solely to obtain surgical clearance</li>
+      <li>Repeat testing when a recent adequate study exists and there has been no clinical change</li>
+      <li>Routine cardiac biomarkers in low-risk patients without an indication</li>
+    </ul>
+  </section>
+
+
+  <section class="card">
+    <h2>Preoperative Provider Quick Decision Guide</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Finding</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>No cardiac symptoms, low procedural risk</td>
+          <td>Proceed without additional routine cardiac testing when otherwise appropriate.</td>
+        </tr>
+
+        <tr>
+          <td>Good functional capacity and stable cardiac disease</td>
+          <td>Additional ischemic testing generally not required solely for surgery.</td>
+        </tr>
+
+        <tr>
+          <td>Poor or unknown functional capacity with elevated cardiac risk</td>
+          <td>Consider BNP/NT-proBNP and selective further testing if results will change management.</td>
+        </tr>
+
+        <tr>
+          <td>New chest pain or suspected ACS</td>
+          <td>Defer elective surgery and obtain urgent cardiovascular evaluation.</td>
+        </tr>
+
+        <tr>
+          <td>Decompensated heart failure</td>
+          <td>Defer elective surgery until evaluated and optimized.</td>
+        </tr>
+
+        <tr>
+          <td>New significant arrhythmia</td>
+          <td>Evaluate before elective surgery.</td>
+        </tr>
+
+        <tr>
+          <td>Moderate-to-severe valve disease</td>
+          <td>Confirm recent echo and cardiovascular assessment.</td>
+        </tr>
+
+        <tr>
+          <td>Normal stress test with no intervention required</td>
+          <td>No test-related mandatory waiting interval; proceed when overall clinical evaluation is complete.</td>
+        </tr>
+
+        <tr>
+          <td>Diagnostic cardiac catheterization without intervention</td>
+          <td>No automatic surgical waiting period; verify stability, access-site status, renal function when applicable, and cardiology recommendations.</td>
+        </tr>
+
+        <tr>
+          <td>PCI/stent performed</td>
+          <td>Do not proceed based on diagnostic cath timing rules. Follow PCI-specific surgical timing and antiplatelet guidance.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+
+  <section class="card">
+    <h2>Documentation Checklist</h2>
+
+    <p>For patients with cardiovascular disease, document:</p>
+
+    <ul>
+      <li>Cardiac diagnoses</li>
+      <li>Current symptoms</li>
+      <li>RCRI score</li>
+      <li>DASI score</li>
+      <li>Active cardiac problems: Yes / No</li>
+      <li>Surgical risk: Low / Intermediate / High</li>
+      <li>BNP screening: Yes / No</li>
+      <li>Date and interpretation of most recent EKG</li>
+      <li>Date and interpretation of echocardiogram when applicable</li>
+      <li>Date and interpretation of stress testing when applicable</li>
+      <li>Date and findings of cardiac catheterization or PCI when applicable</li>
+      <li>Most recent cardiology visit and recommendations</li>
+      <li>Perioperative medication recommendations</li>
+      <li>Need for postoperative cardiac surveillance</li>
+      <li>Final preoperative optimization status</li>
+    </ul>
+  </section>
+
+
+  <section class="card">
+    <h2>Final Preoperative Status</h2>
+
+    <div class="quick-grid">
+
+      <div class="mini">
+        <h3>Optimized</h3>
+        <p>
+          Cardiac evaluation is complete, no additional testing or treatment is required,
+          and the patient meets applicable perioperative criteria to proceed.
+        </p>
+      </div>
+
+      <div class="mini">
+        <h3>Pending</h3>
+        <p>
+          Additional cardiac records, testing, specialist recommendations, or medication
+          instructions are required before final determination.
+        </p>
+      </div>
+
+      <div class="mini">
+        <h3>Not Optimized</h3>
+        <p>
+          An active or inadequately evaluated cardiovascular condition requires treatment,
+          additional evaluation, postponement, or consideration of a higher level of care.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="card">
+    <h2>Clinical Reminder</h2>
+
+    <div class="alert">
+      This handbook is intended to support clinical decision-making and does not replace
+      individualized physician, anesthesia, cardiology, or surgeon judgment. Apply current
+      institutional policy and national perioperative cardiovascular guidelines when making
+      patient-specific decisions.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Preoperative Optimization Handbook &bull; Cardiac Testing Chapter
+</footer>
+
+</body>
+</html>

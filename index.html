@@ -1,535 +1,837 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>TSJH Handbook of Preoperative Care</title>
+<title>Preoperative Optimization Handbook</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+:root {
+  --navy: #17324d;
+  --blue: #3178a8;
+  --light-blue: #eef6fb;
+  --bg: #f4f7f9;
+  --card: #ffffff;
+  --text: #1f2933;
+  --muted: #52606d;
+  --border: #d9e2ec;
+  --green-bg: #eef9f0;
+  --green: #2d7a46;
+  --red-bg: #fff5f5;
+  --red: #b42318;
+  --gold-bg: #fff9e8;
+  --gold: #b77900;
+}
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      background: #f4f7fa;
-      color: #1f2937;
-      line-height: 1.6;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    header {
-      background: linear-gradient(135deg, #123a63, #1e5b8f);
-      color: white;
-      padding: 50px 20px;
-      text-align: center;
-    }
+html {
+  scroll-behavior: smooth;
+}
 
-    header h1 {
-      font-size: 2.3rem;
-      margin-bottom: 10px;
-    }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+}
 
-    header p {
-      font-size: 1.05rem;
-      max-width: 800px;
-      margin: auto;
-      opacity: 0.95;
-    }
+header {
+  background: var(--navy);
+  color: white;
+  padding: 38px 20px 30px;
+  text-align: center;
+}
 
-    nav {
-      background: #ffffff;
-      padding: 14px 20px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+header h1 {
+  margin: 0 0 8px;
+  font-size: 2.25rem;
+}
 
-    nav a {
-      display: inline-block;
-      color: #174c7e;
-      text-decoration: none;
-      font-weight: 600;
-      margin: 5px 10px;
-    }
+header p {
+  margin: 0 auto;
+  max-width: 850px;
+  opacity: .95;
+}
 
-    nav a:hover {
-      color: #0f2f4e;
-      text-decoration: underline;
-    }
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  padding: 11px 14px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+}
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 35px 20px;
-    }
+.top-nav a {
+  color: var(--navy);
+  text-decoration: none;
+  font-weight: bold;
+  margin: 5px 8px;
+  display: inline-block;
+  font-size: .92rem;
+}
 
-    .intro {
-      background: white;
-      padding: 28px;
-      border-radius: 14px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
-      margin-bottom: 30px;
-    }
+main {
+  max-width: 1250px;
+  margin: 24px auto;
+  padding: 0 18px 45px;
+}
 
-    .intro h2 {
-      color: #174c7e;
-      margin-bottom: 12px;
-    }
+.hero-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
 
-    .section-title {
-      color: #123a63;
-      font-size: 1.6rem;
-      margin: 35px 0 18px;
-    }
+.hero-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  border-top: 5px solid var(--blue);
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-    }
+.hero-card h2 {
+  color: var(--navy);
+  margin-top: 0;
+  font-size: 1.2rem;
+}
 
-    .card {
-      background: white;
-      border-radius: 14px;
-      padding: 22px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
-      border-top: 5px solid #2c78ad;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
+section {
+  background: white;
+  margin-bottom: 22px;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
 
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.11);
-    }
+section h2 {
+  color: var(--navy);
+  margin-top: 0;
+  padding-bottom: 9px;
+  border-bottom: 2px solid var(--border);
+}
 
-    .card h3 {
-      color: #174c7e;
-      margin-bottom: 8px;
-      font-size: 1.15rem;
-    }
+section > p:first-of-type {
+  color: var(--muted);
+}
 
-    .card p {
-      color: #4b5563;
-      font-size: 0.95rem;
-    }
+.chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 16px;
+}
 
-    .card a {
-      display: inline-block;
-      margin-top: 12px;
-      color: #1d6698;
-      font-weight: 700;
-      text-decoration: none;
-    }
+.chapter-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 17px;
+  background: #fbfcfd;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
 
-    .card a:hover {
-      text-decoration: underline;
-    }
+.chapter-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
 
-    .quick-reference {
-      background: #eaf3f9;
-      border-left: 6px solid #1e6b9e;
-      padding: 24px;
-      border-radius: 10px;
-      margin-top: 35px;
-    }
+.chapter-card h3 {
+  margin: 0 0 7px;
+  color: var(--navy);
+  font-size: 1.05rem;
+}
 
-    .quick-reference h2 {
-      color: #123a63;
-      margin-bottom: 12px;
-    }
+.chapter-card p {
+  margin: 0 0 12px;
+  font-size: .91rem;
+  color: var(--muted);
+}
 
-    .quick-reference ul {
-      padding-left: 22px;
-    }
+.button {
+  display: inline-block;
+  background: var(--navy);
+  color: white !important;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 9px 14px;
+  border-radius: 7px;
+  font-size: .88rem;
+}
 
-    .quick-reference li {
-      margin-bottom: 8px;
-    }
+.button-blue {
+  background: var(--blue);
+}
 
-    .disclaimer {
-      background: #fff8e6;
-      border-left: 6px solid #d39b26;
-      padding: 22px;
-      border-radius: 10px;
-      margin-top: 30px;
-      font-size: 0.92rem;
-    }
+.button-green {
+  background: var(--green);
+}
 
-    footer {
-      margin-top: 45px;
-      background: #123a63;
-      color: white;
-      text-align: center;
-      padding: 30px 20px;
-      font-size: 0.9rem;
-    }
+.button-gray {
+  background: var(--muted);
+}
 
-    .badge {
-      display: inline-block;
-      background: #dcecf7;
-      color: #174c7e;
-      font-weight: 700;
-      border-radius: 20px;
-      padding: 5px 11px;
-      margin-bottom: 10px;
-      font-size: 0.8rem;
-    }
+.warning-box {
+  background: var(--red-bg);
+  border-left: 5px solid var(--red);
+  padding: 15px;
+  margin: 15px 0;
+}
 
-    @media (max-width: 600px) {
-      header {
-        padding: 38px 18px;
-      }
+.clinical-box {
+  background: var(--light-blue);
+  border-left: 5px solid var(--blue);
+  padding: 15px;
+  margin: 15px 0;
+}
 
-      header h1 {
-        font-size: 1.8rem;
-      }
+.success-box {
+  background: var(--green-bg);
+  border-left: 5px solid var(--green);
+  padding: 15px;
+  margin: 15px 0;
+}
 
-      nav a {
-        margin: 5px 6px;
-        font-size: 0.9rem;
-      }
+.gold-box {
+  background: var(--gold-bg);
+  border-left: 5px solid var(--gold);
+  padding: 15px;
+  margin: 15px 0;
+}
 
-      .container {
-        padding: 25px 15px;
-      }
-    }
-  </style>
+.quick-links {
+  text-align: center;
+}
+
+.quick-links a {
+  margin: 6px;
+}
+
+.search-wrap {
+  margin: 15px 0 5px;
+}
+
+#chapterSearch {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #aab7c4;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.no-results {
+  display: none;
+  padding: 15px;
+  background: var(--red-bg);
+  border-left: 5px solid var(--red);
+  margin-top: 14px;
+}
+
+.status-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.status-table th,
+.status-table td {
+  border: 1px solid var(--border);
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.status-table th {
+  background: #eaf0f5;
+  color: var(--navy);
+}
+
+footer {
+  text-align: center;
+  padding: 28px 18px;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+@media(max-width:950px) {
+  .hero-grid,
+  .chapter-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width:650px) {
+  header h1 {
+    font-size: 1.55rem;
+  }
+
+  .hero-grid,
+  .chapter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  main {
+    padding: 0 12px 35px;
+  }
+
+  section {
+    padding: 18px;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>TSJH Handbook of Preoperative Care</h1>
-  <p>
-    A practical clinical resource for preoperative assessment,
-    medical optimization, risk stratification, perioperative planning,
-    and interdisciplinary communication.
-  </p>
+<h1>Preoperative Optimization Handbook</h1>
+<p>
+Clinical decision support for elective spine, joint, orthopedic, pain and
+noncardiac surgery — evaluation, optimization, testing, medication management,
+risk assessment and postoperative planning.
+</p>
 </header>
 
-<nav>
-  <a href="#evaluation">Evaluation</a>
-  <a href="#cardiac">Cardiac</a>
-  <a href="#pulmonary">Pulmonary</a>
-  <a href="#testing">Testing</a>
-  <a href="#medications">Medications</a>
-  <a href="#tools">Screening Tools</a>
-  <a href="#forms">Forms</a>
+<nav class="top-nav">
+<a href="#start">Start Here</a>
+<a href="#cardiac">Cardiac</a>
+<a href="#pulmonary">Pulmonary</a>
+<a href="#labs">Labs</a>
+<a href="#medications">Medications</a>
+<a href="#workflow">Workflow</a>
+<a href="#tools">Tools</a>
+<a href="#forms">Forms</a>
 </nav>
 
-<main class="container">
+<main>
 
-  <section class="intro">
-    <span class="badge">Clinical Reference</span>
-    <h2>Welcome</h2>
-    <p>
-      This handbook is designed to support consistent, evidence-informed
-      preoperative evaluation of patients undergoing elective spine,
-      orthopedic, pain-management, and other noncardiac procedures.
-    </p>
-    <br>
-    <p>
-      Content is organized for rapid clinical use by providers, nurses,
-      anesthesia personnel, surgeons, and other members of the perioperative team.
-    </p>
-  </section>
+<div class="hero-grid">
 
-  <h2 class="section-title" id="evaluation">Preoperative Evaluation</h2>
+<div class="hero-card">
+<h2>Provider Starting Point</h2>
+<p>Use the quick dashboard during active H&P review.</p>
+<a class="button" href="provider-quick-reference-dashboard.html">
+Open Provider Dashboard
+</a>
+</div>
 
-  <section class="grid">
+<div class="hero-card">
+<h2>Master H&P</h2>
+<p>Full TruBridge-friendly preoperative H&P and SmartPhrase structure.</p>
+<a class="button" href="master-preop-hp.html">
+Open Master H&P
+</a>
+</div>
 
-    <div class="card">
-      <h3>Preoperative H&amp;P</h3>
-      <p>
-        Standardized history and physical examination, functional assessment,
-        risk screening, optimization, and perioperative planning.
-      </p>
-      <a href="#">Open Chapter →</a>
-    </div>
+<div class="hero-card">
+<h2>Final Readiness</h2>
+<p>Complete the 24–48 hour review before the scheduled procedure.</p>
+<a class="button" href="final-readiness-checklist.html">
+Open Final Checklist
+</a>
+</div>
 
-    <div class="card">
-      <h3>Risk Stratification</h3>
-      <p>
-        Surgical risk classification, RCRI assessment, functional capacity,
-        frailty, pulmonary risk, and perioperative decision-making.
-      </p>
-      <a href="#">Open Chapter →</a>
-    </div>
+</div>
 
-    <div class="card">
-      <h3>Optimization Status</h3>
-      <p>
-        Framework for determining whether a patient is Optimized, Pending,
-        or Not Optimized before elective surgery.
-      </p>
-      <a href="#">Open Chapter →</a>
-    </div>
 
-  </section>
+<section id="start">
 
-  <h2 class="section-title" id="cardiac">Cardiovascular Evaluation</h2>
+<h2>Search the Handbook</h2>
 
-  <section class="grid">
+<p>
+Type a topic, medication, condition or test to quickly locate the appropriate chapter.
+</p>
 
-    <div class="card">
-      <h3>2024 AHA/ACC Guidance</h3>
-      <p>
-        Stepwise cardiovascular risk assessment for patients undergoing
-        noncardiac surgery.
-      </p>
-      <a href="#">Open Chapter →</a>
-    </div>
+<div class="search-wrap">
+<input
+type="text"
+id="chapterSearch"
+placeholder="Search: LBBB, anemia, PFT, Eliquis, GLP-1, BNP, OSA, wound, surveillance..."
+onkeyup="searchChapters()">
+</div>
 
-    <div class="card">
-      <h3>RCRI &amp; BNP Screening</h3>
-      <p>
-        Guidance for Revised Cardiac Risk Index scoring and perioperative
-        BNP or NT-proBNP screening.
-      </p>
-      <a href="#">Open Chapter →</a>
-    </div>
+<div id="noResults" class="no-results">
+No matching handbook section was found.
+</div>
 
-    <div class="card">
-      <h3>Cardiac Testing</h3>
-      <p>
-        ECG, echocardiography, stress testing, cardiac catheterization,
-        valvular disease, heart failure, arrhythmias, and implanted devices.
-      </p>
-      <a href="#">Open Chapter →</a>
-    </div>
+</section>
 
-  </section>
 
-  <h2 class="section-title" id="pulmonary">Pulmonary &amp; Sleep Evaluation</h2>
+<section>
 
-  <section class="grid">
+<h2>Core Preoperative Evaluation</h2>
 
-    <div class="card">
-      <h3>Obstructive Sleep Apnea</h3>
-      <p>
-        STOP-BANG screening, PAP therapy, postoperative monitoring,
-        oxygenation, and respiratory precautions.
-      </p>
-      <a href="#">Open Chapter →</a>
-    </div>
+<div class="chapter-grid">
 
-    <div class="card">
-      <h3>COPD &amp; Pulmonary Disease</h3>
-      <p>
-        COPD severity, CAT, BODE, pulmonary function testing,
-        oxygen requirements, and perioperative pulmonary risk.
-      </p>
-      <a href="#">Open Chapter →</a>
-    </div>
+<div class="chapter-card searchable">
+<h3>Preoperative Evaluation</h3>
+<p>Core preoperative evaluation framework and clinical assessment.</p>
+<a class="button" href="evaluation.html">Open</a>
+</div>
 
-    <div class="card">
-      <h3>Pulmonary Function Tests</h3>
-      <p>
-        Practical interpretation of spirometry, lung volumes,
-        diffusion capacity, and clinically significant abnormalities.
-      </p>
-      <a href="#">Open Chapter →</a>
-    </div>
+<div class="chapter-card searchable">
+<h3>Master Preoperative H&P</h3>
+<p>Complete note structure with required optimization status and TruBridge SmartPhrase.</p>
+<a class="button" href="master-preop-hp.html">Open</a>
+</div>
 
-  </section>
+<div class="chapter-card searchable">
+<h3>Provider Optimization Workflow</h3>
+<p>What the provider can optimize directly and when specialty escalation is appropriate.</p>
+<a class="button" href="provider-optimization-workflow.html">Open</a>
+</div>
 
-  <h2 class="section-title" id="testing">Laboratory &amp; Diagnostic Testing</h2>
+<div class="chapter-card searchable">
+<h3>Provider Quick Reference</h3>
+<p>Major thresholds, risk tools, medication reminders and clinical red flags.</p>
+<a class="button" href="provider-quick-reference-dashboard.html">Open</a>
+</div>
 
-  <section class="grid">
+<div class="chapter-card searchable">
+<h3>Preoperative Red Flags</h3>
+<p>Do-not-miss findings, escalation triggers and HLOC considerations.</p>
+<a class="button" href="preop-red-flags.html">Open</a>
+</div>
 
-    <div class="card">
-      <h3>Preoperative Laboratory Testing</h3>
-      <p>
-        CBC, BMP/CMP, coagulation studies, A1c, renal function,
-        anemia assessment, and abnormal laboratory follow-up.
-      </p>
-      <a href="#">Open Chapter →</a>
-    </div>
+<div class="chapter-card searchable">
+<h3>Surgery Risk Taxonomy</h3>
+<p>Procedure types, approximate OR duration, blood-loss burden and surgical risk.</p>
+<a class="button" href="surgery-risk-taxonomy.html">Open</a>
+</div>
 
-    <div class="card">
-      <h3>Urinalysis &amp; Urine Culture</h3>
-      <p>
-        When abnormal urinalysis findings require treatment,
-        culture, additional evaluation, or no intervention.
-      </p>
-      <a href="#">Open Chapter →</a>
-    </div>
+</div>
+</section>
 
-    <div class="card">
-      <h3>ECG Interpretation</h3>
-      <p>
-        Common preoperative ECG findings and guidance regarding
-        which abnormalities require additional cardiovascular evaluation.
-      </p>
-      <a href="#">Open Chapter →</a>
-    </div>
 
-  </section>
+<section id="cardiac">
 
-  <h2 class="section-title" id="medications">Medication Management</h2>
+<h2>Cardiovascular Evaluation</h2>
 
-  <section class="grid">
+<div class="chapter-grid">
 
-    <div class="card">
-      <h3>Anticoagulants &amp; Antiplatelets</h3>
-      <p>
-        Perioperative interruption, resumption, procedural considerations,
-        and when additional guidance is required.
-      </p>
-      <a href="#">Open Chapter →</a>
-    </div>
+<div class="chapter-card searchable">
+<h3>Cardiac Evaluation</h3>
+<p>Cardiovascular perioperative assessment and TSJH pathway considerations.</p>
+<a class="button" href="cardiac.html">Open</a>
+</div>
 
-    <div class="card">
-      <h3>Diabetes Medications</h3>
-      <p>
-        Perioperative management of insulin, oral medications,
-        GLP-1 receptor agonists, and other glucose-lowering therapies.
-      </p>
-      <a href="#">Open Chapter →</a>
-    </div>
+<div class="chapter-card searchable">
+<h3>Cardiac Testing</h3>
+<p>Stress testing, echocardiography, catheterization and perioperative testing decisions.</p>
+<a class="button" href="cardiac-testing.html">Open</a>
+</div>
 
-    <div class="card">
-      <h3>Chronic Medications</h3>
-      <p>
-        Practical recommendations for antihypertensives,
-        psychiatric medications, steroids, supplements, and other therapies.
-      </p>
-      <a href="#">Open Chapter →</a>
-    </div>
+<div class="chapter-card searchable">
+<h3>EKG Interpretation</h3>
+<p>Rhythms, blocks, ischemic findings, QTc, AF and the LBBB pathway.</p>
+<a class="button" href="ekg-interpretation-preop.html">Open</a>
+</div>
 
-  </section>
+<div class="chapter-card searchable">
+<h3>Testing & Surveillance Windows</h3>
+<p>When prior cardiac and medical testing remains usable and when repeat testing is needed.</p>
+<a class="button" href="testing-surveillance-master.html">Open</a>
+</div>
 
-  <h2 class="section-title" id="tools">Screening &amp; Assessment Tools</h2>
+<div class="chapter-card searchable">
+<h3>Surveillance Imaging</h3>
+<p>Aneurysms, carotids, valve disease and chronic imaging findings.</p>
+<a class="button" href="surveillance-imaging-followup.html">Open</a>
+</div>
 
-  <section class="grid">
+<div class="chapter-card searchable">
+<h3>Postoperative Cardiac Surveillance</h3>
+<p>BNP/NT-proBNP thresholds, postoperative EKG and troponin surveillance.</p>
+<a class="button" href="postoperative-monitoring-protocols.html">Open</a>
+</div>
 
-    <div class="card">
-      <h3>DASI</h3>
-      <p>
-        Self-reported Duke Activity Status Index for functional capacity assessment.
-      </p>
-      <a href="#">Open Tool →</a>
-    </div>
+</div>
 
-    <div class="card">
-      <h3>STOP-BANG</h3>
-      <p>
-        Screening tool for identification of patients at increased risk
-        for obstructive sleep apnea.
-      </p>
-      <a href="#">Open Tool →</a>
-    </div>
+<div class="warning-box">
+<strong>TSJH surveillance trigger:</strong>
+BNP ≥92 pg/mL or NT-proBNP ≥300 ng/L → postoperative EKG and daily troponins
+for 48–72 hours under the applicable protocol.
+</div>
 
-    <div class="card">
-      <h3>Clinical Frailty Scale</h3>
-      <p>
-        Standardized assessment of frailty and physiologic reserve.
-      </p>
-      <a href="#">Open Tool →</a>
-    </div>
+</section>
 
-    <div class="card">
-      <h3>RCRI</h3>
-      <p>
-        Revised Cardiac Risk Index for prediction of perioperative
-        cardiovascular complications.
-      </p>
-      <a href="#">Open Tool →</a>
-    </div>
 
-    <div class="card">
-      <h3>Arozullah Respiratory Risk</h3>
-      <p>
-        Assessment of postoperative respiratory failure risk.
-      </p>
-      <a href="#">Open Tool →</a>
-    </div>
+<section id="pulmonary">
 
-    <div class="card">
-      <h3>CAT &amp; BODE</h3>
-      <p>
-        COPD symptom burden and multidimensional pulmonary disease assessment.
-      </p>
-      <a href="#">Open Tool →</a>
-    </div>
+<h2>Pulmonary, OSA & PFT Evaluation</h2>
 
-  </section>
+<div class="chapter-grid">
 
-  <h2 class="section-title" id="forms">Clinical Forms &amp; Checklists</h2>
+<div class="chapter-card searchable">
+<h3>Pulmonary Evaluation</h3>
+<p>COPD, asthma, OSA, oxygen dependence and perioperative pulmonary risk.</p>
+<a class="button" href="pulmonary.html">Open</a>
+</div>
 
-  <section class="grid">
+<div class="chapter-card searchable">
+<h3>PFT Interpretation</h3>
+<p>Interpret obstruction, restriction, bronchodilator response and diffusion capacity.</p>
+<a class="button" href="pft-interpretation.html">Open</a>
+</div>
 
-    <div class="card">
-      <h3>Provider Questionnaire</h3>
-      <p>
-        Structured preoperative provider assessment and optimization worksheet.
-      </p>
-      <a href="#">Open Form →</a>
-    </div>
+<div class="chapter-card searchable">
+<h3>Anesthesia Handoff</h3>
+<p>Airway, severe OSA, pulmonary disease, pulmonary hypertension and venue review.</p>
+<a class="button" href="anesthesia-handoff-escalation.html">Open</a>
+</div>
 
-    <div class="card">
-      <h3>Nursing Questionnaire</h3>
-      <p>
-        Standardized nursing intake and preoperative screening form.
-      </p>
-      <a href="#">Open Form →</a>
-    </div>
+<div class="chapter-card searchable">
+<h3>Postoperative Respiratory Monitoring</h3>
+<p>PAP, continuous oximetry, NIPPV, oxygen and pulmonary-expansion planning.</p>
+<a class="button" href="postoperative-monitoring-protocols.html">Open</a>
+</div>
 
-    <div class="card">
-      <h3>Anesthesia Patient Questionnaire</h3>
-      <p>
-        Patient-facing questionnaire designed to identify anesthesia
-        and perioperative risk factors.
-      </p>
-      <a href="#">Open Form →</a>
-    </div>
+</div>
 
-    <div class="card">
-      <h3>Optimization Checklist</h3>
-      <p>
-        Final review checklist to identify unresolved concerns
-        and reduce preventable same-day cancellations.
-      </p>
-      <a href="#">Open Checklist →</a>
-    </div>
+</section>
 
-  </section>
 
-  <section class="quick-reference">
-    <h2>Quick Reference</h2>
-    <ul>
-      <li>Confirm procedure, surgeon, and surgery date.</li>
-      <li>Identify active medical or cardiovascular concerns.</li>
-      <li>Assess functional capacity with DASI.</li>
-      <li>Calculate RCRI when indicated.</li>
-      <li>Screen for OSA using STOP-BANG.</li>
-      <li>Assess frailty with the Clinical Frailty Scale.</li>
-      <li>Review medications requiring perioperative adjustment.</li>
-      <li>Address clinically significant abnormal laboratory or diagnostic findings.</li>
-      <li>Document final preoperative optimization status.</li>
-    </ul>
-  </section>
+<section id="labs">
 
-  <section class="disclaimer">
-    <strong>Clinical Disclaimer:</strong>
-    This handbook is intended as an educational and clinical decision-support
-    resource. It does not replace individualized clinical judgment, current
-    institutional policy, surgeon or anesthesia recommendations, specialist
-    consultation, or applicable evidence-based guidelines. Recommendations
-    should be reviewed and updated as standards of care evolve.
-  </section>
+<h2>Laboratory Interpretation & Medical Optimization</h2>
+
+<div class="chapter-grid">
+
+<div class="chapter-card searchable">
+<h3>Laboratory Interpretation Master Guide</h3>
+<p>CBC, BMP/CMP, coags, renal function, electrolytes, glucose, A1c and UA.</p>
+<a class="button" href="laboratory-interpretation-master.html">Open</a>
+</div>
+
+<div class="chapter-card searchable">
+<h3>Anemia Optimization</h3>
+<p>Microcytic, normocytic and macrocytic anemia with built-in interpretation tools.</p>
+<a class="button" href="anemia-optimization.html">Open</a>
+</div>
+
+<div class="chapter-card searchable">
+<h3>Infection, Wound & Urinary Screening</h3>
+<p>UTI vs asymptomatic bacteriuria, skin wounds, implant infection risk and antibiotics.</p>
+<a class="button" href="infection-wound-implant-screening.html">Open</a>
+</div>
+
+<div class="chapter-card searchable">
+<h3>Surveillance Imaging</h3>
+<p>Chronic disease imaging and when medical follow-up is due before surgery.</p>
+<a class="button" href="surveillance-imaging-followup.html">Open</a>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="medications">
+
+<h2>Perioperative Medication Management</h2>
+
+<div class="chapter-grid">
+
+<div class="chapter-card searchable">
+<h3>Perioperative Medication Guide</h3>
+<p>Searchable hold/continue guide for anticoagulants, antiplatelets and chronic medications.</p>
+<a class="button" href="perioperative-medications.html">Open</a>
+</div>
+
+<div class="chapter-card searchable">
+<h3>GLP-1, SGLT2 & Insulin</h3>
+<p>Aspiration risk, euglycemic DKA prevention, insulin pumps and diabetes planning.</p>
+<a class="button" href="glp1-sglt2-diabetes.html">Open</a>
+</div>
+
+<div class="chapter-card searchable">
+<h3>Anticoagulation Calculator</h3>
+<p>Access the MDCalc perioperative anticoagulation management algorithm.</p>
+<a
+class="button button-blue"
+href="https://www.mdcalc.com/calc/10586/perioperative-anticoagulation-management-algorithm"
+target="_blank"
+rel="noopener noreferrer">
+Open MDCalc
+</a>
+</div>
+
+<div class="chapter-card searchable">
+<h3>Rheumatology / Immunosuppression</h3>
+<p>DMARDs, biologics, JAK inhibitors and immunosuppression planning.</p>
+<a class="button" href="rheumatology-immunosuppression.html">Open</a>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="workflow">
+
+<h2>Preoperative Workflow & Operations</h2>
+
+<div class="chapter-grid">
+
+<div class="chapter-card searchable">
+<h3>RN Preoperative Workflow</h3>
+<p>Record collection, screening, standing-order boundaries and escalation.</p>
+<a class="button" href="rn-preop-workflow.html">Open</a>
+</div>
+
+<div class="chapter-card searchable">
+<h3>Provider Optimization Workflow</h3>
+<p>Medical interpretation, direct optimization and specialty escalation.</p>
+<a class="button" href="provider-optimization-workflow.html">Open</a>
+</div>
+
+<div class="chapter-card searchable">
+<h3>Anesthesia Handoff & Escalation</h3>
+<p>Focused questions for airway, device, pulmonary, aspiration and venue concerns.</p>
+<a class="button" href="anesthesia-handoff-escalation.html">Open</a>
+</div>
+
+<div class="chapter-card searchable">
+<h3>Roles & Responsibility Matrix</h3>
+<p>Who collects, interprets, decides, escalates and closes each issue.</p>
+<a class="button" href="roles-responsibility-matrix.html">Open</a>
+</div>
+
+<div class="chapter-card searchable">
+<h3>Communication & Cancellation Prevention</h3>
+<p>Ownership, SBAR, patient teach-back and same-day cancellation reduction.</p>
+<a class="button" href="communication-cancellation-prevention.html">Open</a>
+</div>
+
+<div class="chapter-card searchable">
+<h3>Final 24–48 Hour Readiness</h3>
+<p>Master last-look checklist for unresolved issues and interval changes.</p>
+<a class="button" href="final-readiness-checklist.html">Open</a>
+</div>
+
+<div class="chapter-card searchable">
+<h3>Postoperative Monitoring</h3>
+<p>Cardiac, respiratory, renal, metabolic and neurologic surveillance planning.</p>
+<a class="button" href="postoperative-monitoring-protocols.html">Open</a>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="forms">
+
+<h2>Forms & Documentation</h2>
+
+<div class="chapter-grid">
+
+<div class="chapter-card searchable">
+<h3>Provider / RN / Anesthesia Questionnaires</h3>
+<p>Printable patient, nurse, provider and anesthesia preoperative forms.</p>
+<a class="button" href="preop-questionnaires-forms.html">Open</a>
+</div>
+
+<div class="chapter-card searchable">
+<h3>Master TruBridge H&P</h3>
+<p>Copyable SmartPhrase and standardized preoperative documentation.</p>
+<a class="button" href="master-preop-hp.html">Open</a>
+</div>
+
+<div class="chapter-card searchable">
+<h3>Final Readiness Documentation</h3>
+<p>Optimized, Pending and Not optimized final-status documentation.</p>
+<a class="button" href="final-readiness-checklist.html">Open</a>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="tools">
+
+<h2>Clinical Calculators & Evidence Resources</h2>
+
+<div class="chapter-grid">
+
+<div class="chapter-card searchable">
+<h3>Clinical Calculators Resource Center</h3>
+<p>Central access to handbook calculators, MDCalc and evidence resources.</p>
+<a class="button" href="clinical-calculators-resources.html">Open</a>
+</div>
+
+<div class="chapter-card searchable">
+<h3>MDCalc</h3>
+<p>RCRI and other clinical decision-support calculators.</p>
+<a
+class="button button-blue"
+href="https://www.mdcalc.com/"
+target="_blank"
+rel="noopener noreferrer">
+Open MDCalc
+</a>
+</div>
+
+<div class="chapter-card searchable">
+<h3>OpenEvidence</h3>
+<p>Focused evidence search for unusual or complex perioperative questions.</p>
+<a
+class="button button-blue"
+href="https://www.openevidence.com/"
+target="_blank"
+rel="noopener noreferrer">
+Open OpenEvidence
+</a>
+</div>
+
+<div class="chapter-card searchable">
+<h3>Anemia Calculator</h3>
+<p>Determine likely anemia pattern and guide preoperative evaluation.</p>
+<a class="button" href="anemia-optimization.html">Open</a>
+</div>
+
+<div class="chapter-card searchable">
+<h3>PFT Interpretation Tool</h3>
+<p>Enter pulmonary-function findings and determine likely pattern and next steps.</p>
+<a class="button" href="pft-interpretation.html">Open</a>
+</div>
+
+<div class="chapter-card searchable">
+<h3>Medication Search</h3>
+<p>Search common perioperative medications and hold considerations.</p>
+<a class="button" href="perioperative-medications.html">Open</a>
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Final Optimization Status</h2>
+
+<table class="status-table">
+
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td><strong>Optimized</strong></td>
+<td>
+Required evaluation is complete, clinically important conditions have been
+addressed and no unresolved medical issue prevents the planned perioperative pathway.
+</td>
+</tr>
+
+<tr>
+<td><strong>Pending</strong></td>
+<td>
+A required result, recommendation, medication decision, anesthesia review or
+other clinically important item remains unresolved.
+</td>
+</tr>
+
+<tr>
+<td><strong>Not optimized</strong></td>
+<td>
+A current medical condition requires treatment, stabilization, delay or
+higher-level-of-care planning before elective surgery.
+</td>
+</tr>
+
+</table>
+
+<div class="success-box">
+<strong>Standard optimized language:</strong><br><br>
+
+Patient meets TSJH perioperative consensus guidelines to proceed with elective
+surgery on scheduled surgery date at this time.
+</div>
+
+<div class="warning-box">
+Avoid the phrase <strong>“cleared for surgery.”</strong>
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Fastest Workflow</h2>
+
+<div class="gold-box">
+
+<strong>For a routine H&P:</strong><br><br>
+
+1. Open the Provider Quick-Reference Dashboard.<br><br>
+
+2. Use the Master H&P template.<br><br>
+
+3. Open a specialty chapter only when an abnormality requires interpretation.<br><br>
+
+4. Use the medication guide for anticoagulants, GLP-1, SGLT2 and insulin questions.<br><br>
+
+5. Complete the Final 24–48 Hour Readiness Checklist before surgery.<br><br>
+
+6. Document the final status as Optimized, Pending or Not optimized.
+
+</div>
+
+</section>
 
 </main>
 
 <footer>
-  <p><strong>TSJH Handbook of Preoperative Care</strong></p>
-  <p>Preoperative Assessment • Optimization • Perioperative Risk Management</p>
+Preoperative Optimization Handbook · Clinical Education & Decision Support
 </footer>
+
+
+<script>
+
+function searchChapters() {
+
+  const input =
+    document.getElementById("chapterSearch").value.toLowerCase().trim();
+
+  const cards =
+    document.querySelectorAll(".searchable");
+
+  let found = 0;
+
+  cards.forEach(function(card) {
+
+    const text =
+      card.innerText.toLowerCase();
+
+    if (!input || text.includes(input)) {
+
+      card.style.display = "";
+      found++;
+
+    } else {
+
+      card.style.display = "none";
+
+    }
+
+  });
+
+  document.getElementById("noResults").style.display =
+    found === 0 ? "block" : "none";
+}
+
+</script>
 
 </body>
 </html>

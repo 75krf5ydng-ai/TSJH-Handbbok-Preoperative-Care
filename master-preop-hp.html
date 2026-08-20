@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Master Preoperative H&P & TruBridge SmartPhrase</title>
+
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: #f4f7f9;
+  color: #1f2933;
+  line-height: 1.6;
+}
+
+header {
+  background: #17324d;
+  color: white;
+  padding: 28px 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+}
+
+header p { margin: 0; }
+
+nav {
+  background: white;
+  padding: 12px 20px;
+  border-bottom: 1px solid #d9e2ec;
+  text-align: center;
+}
+
+nav a {
+  color: #17324d;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 7px;
+}
+
+main {
+  max-width: 1180px;
+  margin: 24px auto;
+  padding: 0 18px 40px;
+}
+
+section {
+  background: white;
+  margin-bottom: 22px;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+h2 {
+  color: #17324d;
+  border-bottom: 2px solid #d9e2ec;
+  padding-bottom: 8px;
+}
+
+h3 {
+  color: #274c6b;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+}
+
+th, td {
+  border: 1px solid #cbd5e1;
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #eaf0f5;
+  color: #17324d;
+}
+
+.clinical-box {
+  background: #eef6fb;
+  border-left: 5px solid #3178a8;
+  padding: 15px;
+  margin: 16px 0;
+}
+
+.warning-box {
+  background: #fff5f5;
+  border-left: 5px solid #b42318;
+  padding: 15px;
+  margin: 16px 0;
+}
+
+.success-box {
+  background: #eef9f0;
+  border-left: 5px solid #2d7a46;
+  padding: 15px;
+  margin: 16px 0;
+}
+
+.formula-box {
+  background: #f7f7fb;
+  border: 1px solid #d8d8e5;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 16px 0;
+  white-space: pre-wrap;
+}
+
+.copy-box {
+  width: 100%;
+  min-height: 500px;
+  padding: 14px;
+  border: 1px solid #aab7c4;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+button {
+  background: #17324d;
+  color: white;
+  border: none;
+  padding: 13px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+footer {
+  text-align: center;
+  padding: 24px;
+  color: #52606d;
+  font-size: .9rem;
+}
+
+@media(max-width:700px) {
+  table { font-size: .78rem; }
+  header h1 { font-size: 1.4rem; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Master Preoperative H&P & TruBridge SmartPhrase</h1>
+<p>Standardized medical optimization note for elective noncardiac surgery</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="provider-optimization-workflow.html">Provider Workflow</a>
+<a href="provider-quick-reference-dashboard.html">Quick Reference</a>
+<a href="final-readiness-checklist.html">Final Readiness</a>
+<a href="provider-resources.html">Resources</a>
+</nav>
+
+<main>
+
+<section>
+<h2>Purpose</h2>
+
+<p>
+This template provides a consistent structure for preoperative medical
+evaluation and optimization while remaining concise enough for routine use in
+TruBridge.
+</p>
+
+<div class="clinical-box">
+Use the surgery date as the Date of Service and in the procedure line and
+Assessment & Plan #1.
+</div>
+
+<div class="warning-box">
+Avoid the phrase “cleared for surgery.” Use Optimized, Pending or Not optimized
+for final preoperative status.
+</div>
+</section>
+
+
+<section>
+<h2>Core H&P Structure</h2>
+
+<div class="formula-box">
+Reason for Consultation
+
+HPI
+
+Anesthesia History
+
+Medical History
+
+Surgical History
+
+Family History
+
+Social History
+
+Allergies
+
+Home Medications
+
+ROS
+
+Physical Exam
+
+Vitals
+
+Labs / Diagnostics
+
+Functional & Risk Screening
+
+Preoperative Cardiac Guidelines Application
+
+Risk Stratification & Medical Optimization
+
+Assessment & Plan
+
+Postoperative Plan
+
+DVT Prophylaxis
+
+Disposition
+
+Final Preoperative Optimization Status
+</div>
+</section>
+
+
+<section>
+<h2>Reason for Consultation</h2>
+
+<div class="formula-box">
+Preoperative medical evaluation and optimization at the request of Dr. ___ for planned ___ on ___.
+</div>
+</section>
+
+
+<section>
+<h2>HPI</h2>
+
+<div class="formula-box">
+Patient is a ___-year-old ___ presenting for preoperative medical evaluation prior to planned ___ with Dr. ___ on ___. Patient reports ___. Functional limitation is primarily due to ___. Denies current chest pain, exertional pressure, worsening dyspnea, orthopnea, PND, syncope, fever, active infection symptoms or other acute medical change unless otherwise noted below.
+</div>
+
+<div class="clinical-box">
+Extract medication details, abnormal vitals, labs, symptoms and test results into
+their appropriate sections rather than repeating them throughout the HPI.
+</div>
+</section>
+
+
+<section>
+<h2>Anesthesia History</h2>
+
+<div class="formula-box">
+Prior anesthesia complication: Yes / No
+If yes: ___
+
+Difficult airway/intubation: Yes / No
+PONV: Yes / No
+Delayed emergence: Yes / No
+Postoperative ventilation: Yes / No
+Malignant hyperthermia history: Yes / No
+Other: ___
+</div>
+</section>
+
+
+<section>
+<h2>Medical History</h2>
+
+<div class="formula-box">
+Cardiovascular: ___
+Pulmonary: ___
+Neurologic: ___
+Endocrine: ___
+Renal: ___
+Hematologic: ___
+GI/Hepatic: ___
+Rheumatologic/Immunologic: ___
+Other: ___
+</div>
+</section>
+
+
+<section>
+<h2>Surgical History</h2>
+
+<div class="formula-box">
+___
+</div>
+</section>
+
+
+<section>
+<h2>Family History</h2>
+
+<div class="formula-box">
+___
+</div>
+</section>
+
+
+<section>
+<h2>Social History</h2>
+
+<div class="formula-box">
+Tobacco: ___
+Alcohol: ___
+Recreational drugs: ___
+Living situation: ___
+Baseline mobility: ___
+Assistive device: ___
+Postoperative support: ___
+</div>
+</section>
+
+
+<section>
+<h2>Allergies</h2>
+
+<div class="formula-box">
+Medication / substance: ___
+Reaction: ___
+</div>
+</section>
+
+
+<section>
+<h2>Home Medications</h2>
+
+<table>
+<tr>
+<th>Medication</th>
+<th>Dose / Frequency</th>
+<th>Perioperative Plan</th>
+</tr>
+
+<tr>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+</tr>
+
+<tr>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+</tr>
+
+<tr>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+</tr>
+</table>
+
+<div class="clinical-box">
+Explicitly identify anticoagulants, antiplatelets, SGLT2 inhibitors, GLP-1/GIP
+agents, insulin, chronic steroids, biologics/JAK inhibitors and chronic opioid/
+buprenorphine/methadone therapy when present.
+</div>
+</section>
+
+
+<section>
+<h2>ROS</h2>
+
+<div class="formula-box">
+Constitutional: Denies fever/chills unless noted.
+Cardiovascular: Denies chest pain, exertional pressure, palpitations, syncope unless noted.
+Respiratory: Denies acute dyspnea, wheezing or productive cough unless noted.
+GI: Denies acute nausea/vomiting unless noted.
+GU: Denies dysuria, frequency, urgency or flank pain unless noted.
+Neurologic: Denies new focal weakness, speech change or acute neurologic symptoms unless noted.
+Skin: Denies active wound, cellulitis or drainage unless noted.
+Other: ___
+</div>
+</section>
+
+
+<section>
+<h2>Physical Exam</h2>
+
+<div class="formula-box">
+General: Alert, cooperative, no acute distress.
+HEENT: ___
+Neck: ___
+Cardiovascular: Regular rate/rhythm unless otherwise noted; ___
+Respiratory: Clear / ___
+Abdomen: Soft, nondistended, ___
+Extremities: ___
+Neurologic: Grossly nonfocal / baseline deficits noted: ___
+Skin: No active infectious lesion near operative site / ___
+</div>
+</section>
+
+
+<section>
+<h2>Vitals</h2>
+
+<table>
+<tr>
+<th>BP</th>
+<th>HR</th>
+<th>RR</th>
+<th>Temp</th>
+<th>SpO2</th>
+<th>BMI</th>
+</tr>
+
+<tr>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+</tr>
+</table>
+</section>
+
+
+<section>
+<h2>Labs / Diagnostics</h2>
+
+<table>
+
+<tr>
+<th>Study</th>
+<th>Result</th>
+<th>Interpretation / Action</th>
+</tr>
+
+<tr>
+<td>CBC</td>
+<td>___</td>
+<td>___</td>
+</tr>
+
+<tr>
+<td>BMP/CMP</td>
+<td>___</td>
+<td>___</td>
+</tr>
+
+<tr>
+<td>A1c</td>
+<td>___</td>
+<td>___</td>
+</tr>
+
+<tr>
+<td>PT/INR/PTT</td>
+<td>___</td>
+<td>___</td>
+</tr>
+
+<tr>
+<td>UA / culture</td>
+<td>___</td>
+<td>___</td>
+</tr>
+
+<tr>
+<td>EKG</td>
+<td>___</td>
+<td>___</td>
+</tr>
+
+<tr>
+<td>BNP / NT-proBNP</td>
+<td>___</td>
+<td>___</td>
+</tr>
+
+<tr>
+<td>Other testing</td>
+<td>___</td>
+<td>___</td>
+</tr>
+
+</table>
+
+<div class="warning-box">
+Address clinically relevant abnormal values in the Assessment & Plan rather than
+listing them without interpretation.
+</div>
+</section>
+
+
+<section>
+<h2>Functional & Risk Screening</h2>
+
+<div class="formula-box">
+DASI: ___
+STOP-BANG: ___
+CFS: ___
+RCRI: ___
+</div>
+</section>
+
+
+<section>
+<h2>Preoperative Cardiac Guidelines Application</h2>
+
+<div class="formula-box">
+Surgical Risk: Low / Intermediate / High
+RCRI: ___
+Active Cardiac Problems: Yes / No
+If Yes: ___
+BNP Screening: Yes / No
+</div>
+</section>
+
+
+<section>
+<h2>BNP SmartPhrase</h2>
+
+<div class="formula-box">
+BNP screening. Obtain BNP because of age greater than 65 years and RCRI score of 1. If BNP is 92 pg/mL or greater, implement the TSJH postoperative cardiac-surveillance protocol with postoperative EKG and daily troponins for 48–72 hours.
+</div>
+</section>
+
+
+<section>
+<h2>Risk Stratification & Medical Optimization</h2>
+
+<div class="formula-box">
+1. Cardiovascular: ___
+
+2. Pulmonary / OSA: ___
+
+3. Diabetes / endocrine: ___
+
+4. Renal / electrolytes: ___
+
+5. Hematology / anemia: ___
+
+6. Infection / wound: ___
+
+7. Anticoagulant / antiplatelet management: ___
+
+8. Frailty / mobility / disposition: ___
+
+9. Other perioperative issue: ___
+</div>
+</section>
+
+
+<section>
+<h2>Assessment & Plan — Required #1 Format</h2>
+
+<div class="success-box">
+<strong>1. [Chief complaint diagnosis]. Planned [procedure] with Dr. [Last name] on [surgery date]. DVT prophy, PT and analgesia guided by surgeon.</strong>
+</div>
+
+<div class="formula-box">
+1. ___ . Planned ___ with Dr. ___ on ___. DVT prophy, PT and analgesia guided by surgeon.
+</div>
+</section>
+
+
+<section>
+<h2>Assessment & Plan — Additional Diagnoses</h2>
+
+<div class="formula-box">
+2. ___ . ___
+
+3. ___ . ___
+
+4. ___ . ___
+
+5. ___ . ___
+
+6. ___ . ___
+
+7. ___ . ___
+
+8. ___ . ___
+</div>
+</section>
+
+
+<section>
+<h2>Common A&P Language — OSA</h2>
+
+<div class="formula-box">
+Known OSA. STOP-BANG ___. Patient is compliant with PAP / intolerant of PAP and stopped routine PAP use approximately ___. Recommend PAP anytime asleep when tolerated, RT assistance as needed and continuous pulse oximetry when indicated. NIPPV and/or supplemental oxygen if clinically warranted.
+</div>
+</section>
+
+
+<section>
+<h2>Common A&P Language — Stable CKD</h2>
+
+<div class="formula-box">
+CKD with creatinine ___ and eGFR ___. Renal function is stable / changed compared with baseline ___. Avoid nephrotoxins and NSAIDs when clinically appropriate, maintain perioperative volume status and monitor renal function/electrolytes as indicated.
+</div>
+</section>
+
+
+<section>
+<h2>Common A&P Language — Anemia</h2>
+
+<div class="formula-box">
+Anemia with Hgb ___, prior ___, MCV ___. Pattern is most consistent with ___. No evidence of active bleeding / ___. Expected surgical blood loss is ___. Additional treatment/workup ___ required before surgery.
+</div>
+</section>
+
+
+<section>
+<h2>Common A&P Language — Diabetes</h2>
+
+<div class="formula-box">
+Type ___ diabetes with A1c ___ and current glucose ___. Perioperative medication plan reviewed including ___. SGLT2 hold ___ completed. GLP-1 GI symptom/aspiration-risk review ___. Basal insulin/pump plan established as applicable.
+</div>
+</section>
+
+
+<section>
+<h2>Common A&P Language — Anticoagulation</h2>
+
+<div class="formula-box">
+Chronic anticoagulation with ___ for ___. Last dose ___. Renal function ___. Planned hold interval ___. Bridging is / is not indicated according to applicable perioperative anticoagulation pathway. Postoperative resumption guided by surgeon/medical plan after adequate hemostasis.
+</div>
+</section>
+
+
+<section>
+<h2>Common A&P Language — Abnormal UA Without Symptoms</h2>
+
+<div class="formula-box">
+Abnormal urinalysis reviewed. Patient denies dysuria, urinary frequency/urgency, suprapubic pain, flank pain, fever or chills. No clinical evidence of symptomatic UTI at this time. Abnormal UA alone does not establish infection.
+</div>
+</section>
+
+
+<section>
+<h2>Common A&P Language — LBBB</h2>
+
+<div class="formula-box">
+LBBB identified on EKG. Prior tracing/testing reviewed: ___. Under the TSJH perioperative pathway, adequate prior cardiovascular assessment is required; when not already established, pharmacologic nuclear stress testing such as Lexiscan/regadenoson or cardiology evaluation is required before elective surgery.
+</div>
+</section>
+
+
+<section>
+<h2>Postoperative Plan</h2>
+
+<div class="formula-box">
+Postoperative medical management to include:
+
+Cardiac surveillance: ___
+Continuous pulse oximetry: ___
+PAP anytime asleep: ___
+RT assistance: ___
+NIPPV/O2 if warranted: ___
+Glucose monitoring: ___
+Renal/electrolyte monitoring: ___
+Bowel regimen: ___
+Delirium/fall precautions: ___
+Other: ___
+</div>
+</section>
+
+
+<section>
+<h2>DVT Prophylaxis</h2>
+
+<div class="formula-box">
+DVT prophylaxis guided by surgeon. Chronic anticoagulant/antiplatelet resumption to follow surgeon-directed timing with medical/cardiology input when indicated.
+</div>
+</section>
+
+
+<section>
+<h2>Disposition</h2>
+
+<div class="formula-box">
+Expected disposition: Home / OP PT / Inpatient / Rehab / SNF / Other
+
+Home support: ___
+Own RW: Yes / No / N/A
+OP PT arranged: Yes / No / N/A
+Disposition concern: ___
+</div>
+</section>
+
+
+<section>
+<h2>Final Preoperative Optimization Status</h2>
+
+<div class="formula-box">
+<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS:</strong>
+
+Optimized / Pending / Not optimized
+
+Reason: ___
+</div>
+
+<div class="success-box">
+Patient meets TSJH perioperative consensus guidelines to proceed with elective
+surgery on scheduled surgery date at this time.
+</div>
+</section>
+
+
+<section>
+<h2>Pending Status Example</h2>
+
+<div class="formula-box">
+FINAL PREOPERATIVE OPTIMIZATION STATUS: Pending. Final determination is pending ___ because ___. Required item has been assigned to ___ and will be reviewed before the scheduled surgery date.
+</div>
+</section>
+
+
+<section>
+<h2>Not Optimized Example</h2>
+
+<div class="formula-box">
+FINAL PREOPERATIVE OPTIMIZATION STATUS: Not optimized. Patient currently has ___ requiring treatment/stabilization before elective surgery. Required intervention includes ___. Surgical team notified.
+</div>
+</section>
+
+
+<section>
+<h2>Condensed TruBridge SmartPhrase</h2>
+
+<textarea id="smartPhrase" class="copy-box">
+**Reason for Consultation**
+Preoperative medical evaluation and optimization at the request of Dr. ___ for planned ___ on ___.
+
+**HPI**
+Patient is a ___-year-old ___ presenting for preoperative evaluation prior to planned ___ with Dr. ___ on ___. Patient reports ___. Denies current chest pain, worsening dyspnea, syncope, fever or other acute medical change unless otherwise noted.
+
+**Anesthesia History**
+Prior anesthesia complication: ___
+Difficult airway: ___
+PONV: ___
+Other: ___
+
+**Medical History**
+___
+
+**Surgical History**
+___
+
+**Family History**
+___
+
+**Social History**
+Tobacco: ___
+Alcohol: ___
+Living situation/support: ___
+Baseline mobility/assistive device: ___
+
+**Allergies**
+___
+
+**Home Medications**
+___
+
+**ROS**
+No acute cardiopulmonary, neurologic or infectious symptoms except as noted above.
+
+**Physical Exam**
+General: Alert, no acute distress.
+CV: ___
+Resp: ___
+Abd: ___
+Ext: ___
+Neuro: ___
+Skin: ___
+
+**Vitals**
+BP ___ HR ___ RR ___ Temp ___ SpO2 ___ BMI ___
+
+**Labs / Diagnostics**
+CBC: ___
+BMP/CMP: ___
+A1c: ___
+Coags: ___
+UA: ___
+EKG: ___
+Other: ___
+
+**Functional & Risk Screening**
+DASI: ___
+STOP-BANG: ___
+CFS: ___
+RCRI: ___
+
+**Preoperative Cardiac Guidelines Application**
+Surgical Risk: ___
+RCRI: ___
+Active Cardiac Problems: Yes / No
+BNP Screening: Yes / No
+
+**Risk Stratification & Medical Optimization**
+1. Cardiovascular: ___
+2. Pulmonary/OSA: ___
+3. Diabetes/endocrine: ___
+4. Renal/electrolytes: ___
+5. Hematology/anemia: ___
+6. Infection/wound: ___
+7. Anticoagulant/antiplatelet: ___
+8. Frailty/disposition: ___
+
+**Assessment & Plan**
+1. ___. Planned ___ with Dr. ___ on ___. DVT prophy, PT and analgesia guided by surgeon.
+2. ___
+3. ___
+4. ___
+5. ___
+
+**Postoperative Plan**
+___
+
+**DVT Prophylaxis**
+Guided by surgeon.
+
+**Disposition**
+___
+
+**FINAL PREOPERATIVE OPTIMIZATION STATUS**
+Optimized / Pending / Not optimized
+
+Reason: ___
+
+Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time.
+</textarea>
+
+<button onclick="copySmartPhrase()">Copy TruBridge SmartPhrase</button>
+
+</section>
+
+
+<section>
+<h2>Provider Final Review</h2>
+
+<div class="formula-box">
+[ ] Surgery date used as DOS
+[ ] Procedure/surgeon correct
+[ ] A&P #1 uses required format
+[ ] Abnormal labs addressed
+[ ] High-risk medications addressed
+[ ] DASI/RCRI/STOP-BANG/CFS recorded
+[ ] Cardiac guideline application documented
+[ ] BNP screening addressed
+[ ] EKG/testing interpreted
+[ ] Anesthesia/specialist issues resolved
+[ ] Postoperative monitoring plan documented
+[ ] Final status stated as Optimized / Pending / Not optimized
+[ ] “Cleared for surgery” language avoided
+</div>
+</section>
+
+</main>
+
+<footer>
+Preoperative Optimization Handbook · Master H&P & TruBridge SmartPhrase
+</footer>
+
+<script>
+function copySmartPhrase() {
+  const box = document.getElementById("smartPhrase");
+  box.select();
+  box.setSelectionRange(0, 99999);
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(box.value)
+      .then(function() {
+        alert("TruBridge SmartPhrase copied.");
+      })
+      .catch(function() {
+        document.execCommand("copy");
+        alert("TruBridge SmartPhrase copied.");
+      });
+  } else {
+    document.execCommand("copy");
+    alert("TruBridge SmartPhrase copied.");
+  }
+}
+</script>
+
+</body>
+</html>

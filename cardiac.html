@@ -729,7 +729,1237 @@
     elective surgery on scheduled surgery date at this time.
   </div>
 </section>
+<!-- =========================================================
+     INTERACTIVE PREOPERATIVE CARDIAC DECISION TOOL
+========================================================= -->
 
+<section id="interactiveCardiacTool">
+
+<h2>Interactive Preoperative Cardiac Evaluation & Decision Tool</h2>
+
+<p>
+Enter the available cardiovascular information below to generate a structured
+perioperative cardiac assessment, identify findings requiring additional review,
+apply TSJH cardiac-surveillance thresholds and create copy-ready provider
+documentation.
+</p>
+
+<div class="warning-box">
+<strong>Clinical decision support only:</strong>
+Final decisions should incorporate the complete clinical picture, current
+ACC/AHA guidance, cardiology/anesthesia recommendations, procedure-specific risk
+and TSJH perioperative consensus criteria.
+</div>
+
+
+<!-- PATIENT / SURGERY -->
+
+<div class="clinical-box">
+
+<h3>Patient & Procedure</h3>
+
+<label><strong>Age</strong></label><br>
+<input type="number" id="cvAge"
+placeholder="Example: 72"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Surgical Risk</strong></label><br>
+<select id="cvSurgicalRisk"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Select</option>
+<option value="Low">Low (&lt;1%)</option>
+<option value="Intermediate">Intermediate (1–5%)</option>
+<option value="High">High (&gt;5%)</option>
+</select>
+
+<label><strong>RCRI Points</strong></label><br>
+<input type="number" id="cvRCRI" min="0" max="6"
+placeholder="0–6"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>DASI Score</strong></label><br>
+<input type="number" id="cvDASI" step="0.1"
+placeholder="Example: 42.7"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+</div>
+
+
+<!-- ACTIVE CARDIAC CONDITIONS -->
+
+<div class="clinical-box">
+
+<h3>Active / Unstable Cardiac Conditions</h3>
+
+<label><strong>Acute coronary syndrome or unstable ischemic symptoms</strong></label><br>
+<select id="cvACS"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Decompensated / acutely worsening heart failure</strong></label><br>
+<select id="cvDecompHF"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Unstable or clinically significant arrhythmia</strong></label><br>
+<select id="cvArrhythmia"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>New chest pain, syncope or concerning cardiac symptoms</strong></label><br>
+<select id="cvSymptoms"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+</div>
+
+
+<!-- HEART FAILURE -->
+
+<div class="clinical-box">
+
+<h3>Heart Failure / LV Function</h3>
+
+<label><strong>Known heart failure / cardiomyopathy</strong></label><br>
+<select id="cvHF"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Most Recent LVEF (%)</strong></label><br>
+<input type="number" id="cvEF"
+min="1" max="90"
+placeholder="Example: 45"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>NYHA Class</strong></label><br>
+<select id="cvNYHA"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Not entered</option>
+<option value="I">I</option>
+<option value="II">II</option>
+<option value="III">III</option>
+<option value="IV">IV</option>
+</select>
+
+<label><strong>CHF hospitalization within last 2 years</strong></label><br>
+<select id="cvHFAdmission"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Guideline-directed medical therapy optimized</strong></label><br>
+<select id="cvGDMT"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="N/A">N/A</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+
+<label><strong>Cardiology evaluation within 12 months when required</strong></label><br>
+<select id="cvCardiology12"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="N/A">N/A</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+
+</div>
+
+
+<!-- VALVULAR -->
+
+<div class="clinical-box">
+
+<h3>Valvular Heart Disease</h3>
+
+<label><strong>Aortic Stenosis</strong></label><br>
+<select id="cvAS"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="None">None / not known</option>
+<option value="Mild">Mild</option>
+<option value="Moderate">Moderate</option>
+<option value="Severe">Severe</option>
+</select>
+
+<label><strong>Aortic Valve Area (cm²), if available</strong></label><br>
+<input type="number" id="cvAVA" step="0.01"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Aortic Mean Gradient (mmHg)</strong></label><br>
+<input type="number" id="cvASGradient"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Aortic Vmax (m/s)</strong></label><br>
+<input type="number" id="cvVmax" step="0.1"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Mitral Stenosis</strong></label><br>
+<select id="cvMS"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="None">None / not known</option>
+<option value="Mild">Mild</option>
+<option value="Moderate">Moderate</option>
+<option value="Severe">Severe</option>
+</select>
+
+<label><strong>Mitral Valve Area (cm²), if available</strong></label><br>
+<input type="number" id="cvMVA" step="0.01"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Mitral Mean Gradient (mmHg)</strong></label><br>
+<input type="number" id="cvMSGradient"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>PASP (mmHg), if available</strong></label><br>
+<input type="number" id="cvPASP"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Moderate/severe valve disease reviewed by cardiology when required</strong></label><br>
+<select id="cvValveReview"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="N/A">N/A</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+
+</div>
+
+
+<!-- PULMONARY HTN -->
+
+<div class="clinical-box">
+
+<h3>Pulmonary Hypertension / Right Heart</h3>
+
+<label><strong>Known pulmonary hypertension</strong></label><br>
+<select id="cvPH"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>RVSP (mmHg), if available</strong></label><br>
+<input type="number" id="cvRVSP"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Severe tricuspid regurgitation</strong></label><br>
+<select id="cvTR"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Moderate/severe RV dysfunction</strong></label><br>
+<select id="cvRVDysfunction"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>WHO Group 1 pulmonary arterial hypertension</strong></label><br>
+<select id="cvWHO1"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No / not known</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Advanced pulmonary vasodilator therapy</strong></label><br>
+<select id="cvVasodilator"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+</div>
+
+
+<!-- ECG -->
+
+<div class="clinical-box">
+
+<h3>EKG / Conduction</h3>
+
+<label><strong>New or unexplained LBBB</strong></label><br>
+<select id="cvLBBB"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>New ischemic EKG changes</strong></label><br>
+<select id="cvIschemicEKG"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Other clinically significant new EKG abnormality</strong></label><br>
+<select id="cvOtherEKG"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+</div>
+
+
+<!-- BNP -->
+
+<div class="clinical-box">
+
+<h3>BNP / NT-proBNP Risk Stratification</h3>
+
+<label><strong>Significant cardiac disease age 45–64</strong></label><br>
+<select id="cvSigCardiac45"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>BNP (pg/mL)</strong></label><br>
+<input type="number" id="cvBNP"
+placeholder="Leave blank if not obtained"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>NT-proBNP (ng/L)</strong></label><br>
+<input type="number" id="cvNTpro"
+placeholder="Leave blank if not obtained"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+</div>
+
+
+<!-- PCI -->
+
+<div class="clinical-box">
+
+<h3>PCI / Coronary Intervention History</h3>
+
+<label><strong>Recent PCI / coronary intervention</strong></label><br>
+<select id="cvPCI"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Balloon">Balloon angioplasty without stent</option>
+<option value="DES-ACS">Drug-eluting stent — ACS indication</option>
+<option value="DES-CCD">Drug-eluting stent — chronic coronary disease</option>
+<option value="Other">Other / uncertain</option>
+</select>
+
+<label><strong>Date of PCI / intervention</strong></label><br>
+<input type="date" id="cvPCIDate"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Would surgery require interruption of antiplatelet therapy</strong></label><br>
+<select id="cvInterruptAPT"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No / N/A</option>
+<option value="Yes">Yes</option>
+<option value="Unknown">Unknown</option>
+</select>
+
+</div>
+
+
+<!-- PRIOR TESTING -->
+
+<div class="clinical-box">
+
+<h3>Existing Cardiac Testing</h3>
+
+<label><strong>Recent echocardiogram reviewed and clinically adequate</strong></label><br>
+<select id="cvEchoReviewed"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="N/A">N/A / not required</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+
+<label><strong>Recent stress test reviewed and clinically adequate</strong></label><br>
+<select id="cvStressReviewed"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="N/A">N/A / not required</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+
+<label><strong>Recent cardiac cath reviewed and clinically adequate</strong></label><br>
+<select id="cvCathReviewed"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="N/A">N/A / not required</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+
+<label><strong>Would additional cardiac testing change perioperative management?</strong></label><br>
+<select id="cvTestingChangesManagement"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+<option value="Uncertain">Uncertain</option>
+</select>
+
+</div>
+
+
+<div class="clinical-box">
+
+<button type="button" id="cvGenerate"
+style="
+background:#17324d;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Generate Cardiac Recommendation
+</button>
+
+<button type="button" id="cvCopy"
+style="
+background:#274c6b;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Copy Cardiac Summary
+</button>
+
+<button type="button" id="cvPrint"
+style="
+background:#356f44;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Print
+</button>
+
+<button type="button" id="cvClear"
+style="
+background:#8b2f2f;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Clear Patient Data
+</button>
+
+</div>
+
+
+<div id="cvResult"
+style="
+display:none;
+margin-top:22px;
+padding:22px;
+background:white;
+border:1px solid #d8e1ec;
+border-radius:8px;">
+</div>
+
+</section>
+
+
+<style>
+
+@media print {
+
+body * {
+    visibility:hidden !important;
+}
+
+#cvResult,
+#cvResult * {
+    visibility:visible !important;
+}
+
+#cvResult {
+    display:block !important;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    padding:20px;
+    border:none;
+    background:white;
+    color:black;
+}
+
+}
+
+</style>
+
+
+<script>
+
+function cvVal(id) {
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : "";
+}
+
+
+function cvDaysSince(dateText) {
+
+    if (!dateText) return null;
+
+    const eventDate = new Date(dateText + "T00:00:00");
+    const today = new Date();
+
+    return Math.floor(
+        (today - eventDate) /
+        (1000 * 60 * 60 * 24)
+    );
+}
+
+
+function generateCardiacRecommendation() {
+
+    let stop = [];
+    let pending = [];
+    let recommendations = [];
+    let monitoring = [];
+    let findings = [];
+
+    const age = parseFloat(cvVal("cvAge"));
+    const rcri = parseFloat(cvVal("cvRCRI"));
+    const dasi = parseFloat(cvVal("cvDASI"));
+    const ef = parseFloat(cvVal("cvEF"));
+
+    const bnp = parseFloat(cvVal("cvBNP"));
+    const ntpro = parseFloat(cvVal("cvNTpro"));
+
+    const surgicalRisk = cvVal("cvSurgicalRisk");
+
+
+    /* FUNCTIONAL CAPACITY */
+
+    if (!isNaN(dasi)) {
+
+        findings.push("DASI: " + dasi + ".");
+
+        if (dasi <= 34) {
+            recommendations.push(
+                "DASI ≤34 indicates poor or reduced functional capacity for purposes of the ACC/AHA stepwise perioperative assessment."
+            );
+        } else {
+            recommendations.push(
+                "DASI >34 supports adequate functional capacity."
+            );
+        }
+    }
+
+
+    /* RCRI */
+
+    if (!isNaN(rcri)) {
+        findings.push("RCRI: " + rcri + ".");
+    }
+
+
+    /* ACTIVE CONDITIONS */
+
+    if (cvVal("cvACS") === "Yes") {
+        stop.push(
+            "Acute coronary syndrome or unstable ischemic symptoms require evaluation and treatment before routine elective surgery."
+        );
+    }
+
+    if (cvVal("cvDecompHF") === "Yes") {
+        stop.push(
+            "Decompensated or acutely worsening heart failure requires stabilization before routine elective surgery."
+        );
+    }
+
+    if (cvVal("cvArrhythmia") === "Yes") {
+        pending.push(
+            "Clinically significant or unstable arrhythmia requires appropriate evaluation before final optimization."
+        );
+    }
+
+    if (cvVal("cvSymptoms") === "Yes") {
+        pending.push(
+            "New chest pain, syncope or concerning cardiac symptoms require evaluation before final optimization."
+        );
+    }
+
+
+    /* HEART FAILURE */
+
+    if (cvVal("cvHF") === "Yes") {
+
+        findings.push("Known heart failure/cardiomyopathy.");
+
+        if (!isNaN(ef)) {
+
+            findings.push("LVEF: " + ef + "%.");
+
+            if (ef < 35) {
+
+                pending.push(
+                    "LVEF <35% meets the TSJH higher-level-of-care threshold."
+                );
+
+            } else {
+
+                if (
+                    cvVal("cvNYHA") === "III" ||
+                    cvVal("cvNYHA") === "IV"
+                ) {
+                    pending.push(
+                        "NYHA III–IV symptoms require further cardiac/venue review."
+                    );
+                }
+
+                if (cvVal("cvHFAdmission") === "Yes") {
+                    pending.push(
+                        "CHF hospitalization within the last 2 years requires review under the TSJH heart-failure pathway."
+                    );
+                }
+
+                if (cvVal("cvGDMT") === "No") {
+                    pending.push(
+                        "Heart-failure guideline-directed therapy is not documented as optimized."
+                    );
+                }
+
+                if (cvVal("cvCardiology12") === "No") {
+                    pending.push(
+                        "Required cardiology evaluation within the prior 12 months is not documented."
+                    );
+                }
+            }
+        }
+    }
+
+
+    /* AORTIC STENOSIS */
+
+    const ava = parseFloat(cvVal("cvAVA"));
+    const asGradient = parseFloat(cvVal("cvASGradient"));
+    const vmax = parseFloat(cvVal("cvVmax"));
+
+    let severeAS =
+        cvVal("cvAS") === "Severe" ||
+        (!isNaN(ava) && ava < 1.0) ||
+        (!isNaN(asGradient) && asGradient > 40) ||
+        (!isNaN(vmax) && vmax > 4.0);
+
+    if (severeAS) {
+
+        stop.push(
+            "Severe aortic stenosis parameters are present; elective surgery at the current facility requires higher-level review/appropriate venue."
+        );
+
+    } else if (
+        cvVal("cvAS") === "Moderate" &&
+        cvVal("cvValveReview") !== "Yes"
+    ) {
+
+        pending.push(
+            "Moderate aortic stenosis requires appropriate cardiovascular review before final optimization."
+        );
+    }
+
+
+    /* MITRAL STENOSIS */
+
+    const mva = parseFloat(cvVal("cvMVA"));
+    const msGradient = parseFloat(cvVal("cvMSGradient"));
+    const pasp = parseFloat(cvVal("cvPASP"));
+
+    let significantMS =
+        cvVal("cvMS") === "Moderate" ||
+        cvVal("cvMS") === "Severe" ||
+        (!isNaN(mva) && mva <= 1.5) ||
+        (!isNaN(msGradient) && msGradient >= 10) ||
+        (!isNaN(pasp) && pasp > 50);
+
+    if (
+        significantMS &&
+        cvVal("cvValveReview") !== "Yes"
+    ) {
+
+        pending.push(
+            "Moderate/severe mitral stenosis parameters require cardiovascular review."
+        );
+    }
+
+
+    /* PULMONARY HTN */
+
+    const rvsp = parseFloat(cvVal("cvRVSP"));
+
+    let phHLOC =
+        cvVal("cvWHO1") === "Yes" ||
+        (!isNaN(rvsp) && rvsp > 65) ||
+        cvVal("cvTR") === "Yes" ||
+        cvVal("cvRVDysfunction") === "Yes" ||
+        cvVal("cvVasodilator") === "Yes";
+
+    if (phHLOC) {
+
+        pending.push(
+            "Pulmonary-hypertension red flag meets the TSJH higher-level-of-care review pathway."
+        );
+    }
+
+
+    /* LBBB / EKG */
+
+    if (cvVal("cvLBBB") === "Yes") {
+
+        pending.push(
+            "LBBB requires cardiology evaluation and/or appropriate pharmacologic nuclear ischemic evaluation when clinically indicated."
+        );
+    }
+
+    if (cvVal("cvIschemicEKG") === "Yes") {
+
+        pending.push(
+            "New ischemic EKG changes require cardiovascular evaluation before final optimization."
+        );
+    }
+
+    if (cvVal("cvOtherEKG") === "Yes") {
+
+        pending.push(
+            "New clinically significant EKG abnormality requires provider review and additional evaluation when indicated."
+        );
+    }
+
+
+    /* BNP SCREENING - TSJH */
+
+    let bnpScreeningIndicated = false;
+
+    if (!isNaN(age) && age >= 65) {
+        bnpScreeningIndicated = true;
+    }
+
+    if (!isNaN(rcri) && rcri >= 1) {
+        bnpScreeningIndicated = true;
+    }
+
+    if (
+        !isNaN(age) &&
+        age >= 45 &&
+        age <= 64 &&
+        cvVal("cvSigCardiac45") === "Yes"
+    ) {
+        bnpScreeningIndicated = true;
+    }
+
+
+    if (
+        bnpScreeningIndicated &&
+        isNaN(bnp) &&
+        isNaN(ntpro)
+    ) {
+
+        pending.push(
+            "BNP/NT-proBNP screening is indicated under the TSJH pathway but no result has been entered."
+        );
+    }
+
+
+    const abnormalBNP =
+        (!isNaN(bnp) && bnp >= 92) ||
+        (!isNaN(ntpro) && ntpro >= 300);
+
+
+    if (!isNaN(bnp)) {
+        findings.push("BNP: " + bnp + " pg/mL.");
+    }
+
+    if (!isNaN(ntpro)) {
+        findings.push("NT-proBNP: " + ntpro + " ng/L.");
+    }
+
+
+    if (abnormalBNP) {
+
+        monitoring.push(
+            "BNP/NT-proBNP meets the postoperative cardiac-surveillance threshold: obtain postoperative EKG and daily troponins for 48–72 hours."
+        );
+    }
+
+
+    if (
+        !isNaN(age) &&
+        age >= 65 &&
+        !isNaN(rcri) &&
+        rcri === 1
+    ) {
+
+        recommendations.push(
+            "BNP screening. Obtain BNP because of age greater than 65 years and RCRI score of 1. If BNP is 92 pg/mL or greater, implement the TSJH postoperative cardiac-surveillance protocol with postoperative EKG and daily troponins for 48–72 hours."
+        );
+    }
+
+
+    /* STRESS TESTING */
+
+    const poorFunction =
+        !isNaN(dasi) && dasi <= 34;
+
+    const elevatedRisk =
+        surgicalRisk === "Intermediate" ||
+        surgicalRisk === "High" ||
+        (!isNaN(rcri) && rcri > 1);
+
+
+    if (
+        poorFunction &&
+        elevatedRisk &&
+        cvVal("cvTestingChangesManagement") === "Yes"
+    ) {
+
+        recommendations.push(
+            "Poor functional capacity plus elevated perioperative risk is present. Additional ischemic evaluation may be considered only if the result is expected to change perioperative management."
+        );
+
+    } else if (
+        surgicalRisk === "Low" ||
+        (!isNaN(dasi) && dasi > 34)
+    ) {
+
+        recommendations.push(
+            "Routine stress testing is not indicated solely for surgery in a low-risk patient/procedure or when functional capacity is adequate."
+        );
+    }
+
+
+    /* EXISTING TESTING */
+
+    if (cvVal("cvEchoReviewed") === "No") {
+        pending.push(
+            "Required/relevant echocardiogram has not been reviewed."
+        );
+    }
+
+    if (cvVal("cvStressReviewed") === "No") {
+        pending.push(
+            "Required/relevant stress study has not been reviewed."
+        );
+    }
+
+    if (cvVal("cvCathReviewed") === "No") {
+        pending.push(
+            "Required/relevant cardiac catheterization report has not been reviewed."
+        );
+    }
+
+
+    /* PCI TIMING */
+
+    const pciType = cvVal("cvPCI");
+    const pciDays = cvDaysSince(cvVal("cvPCIDate"));
+
+    if (
+        pciType !== "No" &&
+        pciDays !== null &&
+        pciDays >= 0
+    ) {
+
+        if (
+            pciType === "Balloon" &&
+            pciDays < 14
+        ) {
+
+            pending.push(
+                "Balloon angioplasty without stent occurred less than 14 days ago; elective surgery timing requires review."
+            );
+        }
+
+
+        if (
+            pciType === "DES-ACS" &&
+            pciDays < 365
+        ) {
+
+            pending.push(
+                "Drug-eluting stent placed for ACS within the prior 12 months; elective surgery timing and antiplatelet interruption require cardiology/perioperative review."
+            );
+        }
+
+
+        if (
+            pciType === "DES-CCD" &&
+            pciDays < 180
+        ) {
+
+            pending.push(
+                "Drug-eluting stent for chronic coronary disease is within the usual 6-month elective-surgery delay interval; review surgery timing and antiplatelet plan."
+            );
+        }
+
+
+        if (
+            cvVal("cvInterruptAPT") === "Yes" &&
+            pciDays < 30
+        ) {
+
+            pending.push(
+                "Recent coronary intervention with planned interruption of antiplatelet therapy presents high thrombotic risk and requires multidisciplinary review."
+            );
+        }
+    }
+
+
+    /* REMOVE DUPLICATES */
+
+    stop = [...new Set(stop)];
+    pending = [...new Set(pending)];
+    recommendations = [...new Set(recommendations)];
+    monitoring = [...new Set(monitoring)];
+    findings = [...new Set(findings)];
+
+
+    /* STATUS */
+
+    let status = "";
+    let reason = "";
+
+    if (stop.length > 0) {
+
+        status = "Not optimized";
+        reason = stop.join(" ");
+
+    } else if (pending.length > 0) {
+
+        status = "Pending";
+        reason = pending.join(" ");
+
+    } else {
+
+        status = "Optimized";
+        reason =
+            "No active cardiac instability or unresolved cardiovascular requirement was identified from the entered information.";
+    }
+
+
+    /* OUTPUT */
+
+    let html = "";
+
+    html += "<h2>Preoperative Cardiac Assessment</h2>";
+
+    html +=
+        "<p><strong>Surgical Risk:</strong> " +
+        (surgicalRisk || "Not entered") +
+        "<br>";
+
+    html +=
+        "<strong>RCRI:</strong> " +
+        (!isNaN(rcri) ? rcri : "Not entered") +
+        "<br>";
+
+    html +=
+        "<strong>DASI:</strong> " +
+        (!isNaN(dasi) ? dasi : "Not entered") +
+        "<br>";
+
+    html +=
+        "<strong>Active Cardiac Problems:</strong> " +
+        (
+            stop.length > 0 ||
+            cvVal("cvArrhythmia") === "Yes" ||
+            cvVal("cvSymptoms") === "Yes"
+            ? "Yes"
+            : "No"
+        ) +
+        "<br>";
+
+    html +=
+        "<strong>BNP Screening:</strong> " +
+        (bnpScreeningIndicated ? "Yes" : "No") +
+        "</p>";
+
+
+    if (findings.length > 0) {
+
+        html += "<h3>Cardiac Findings</h3><ul>";
+
+        findings.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    if (recommendations.length > 0) {
+
+        html += "<h3>Recommended Management</h3><ul>";
+
+        recommendations.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    if (pending.length > 0) {
+
+        html += "<h3>Items Requiring Resolution</h3><ul>";
+
+        pending.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    if (stop.length > 0) {
+
+        html += "<h3>Current High-Risk / Unstable Findings</h3><ul>";
+
+        stop.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    if (monitoring.length > 0) {
+
+        html += "<h3>Postoperative Cardiac Surveillance</h3><ul>";
+
+        monitoring.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    html += "<hr>";
+
+    html += "<h3>FINAL PREOPERATIVE OPTIMIZATION STATUS</h3>";
+
+    html +=
+        "<p><strong>" +
+        status +
+        "</strong></p>";
+
+    html +=
+        "<p><strong>Reason:</strong> " +
+        reason +
+        "</p>";
+
+
+    if (status === "Optimized") {
+
+        html +=
+            "<div class='success-box'>" +
+            "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time." +
+            "</div>";
+    }
+
+
+    html += "<hr>";
+
+    html += "<h3>Copy-Ready Cardiac Summary</h3>";
+
+    html +=
+        "<p>Preoperative cardiovascular risk assessment reviewed. " +
+        "Surgical risk: " +
+        (surgicalRisk || "not entered") +
+        ". RCRI: " +
+        (!isNaN(rcri) ? rcri : "not entered") +
+        ". DASI: " +
+        (!isNaN(dasi) ? dasi : "not entered") +
+        ". ";
+
+
+    if (bnpScreeningIndicated) {
+        html +=
+            "BNP screening indicated under the applicable perioperative pathway. ";
+    }
+
+
+    if (abnormalBNP) {
+        html +=
+            "BNP/NT-proBNP meets the postoperative surveillance threshold; postoperative EKG and daily troponins for 48–72 hours are indicated. ";
+    }
+
+
+    html +=
+        "FINAL PREOPERATIVE OPTIMIZATION STATUS: " +
+        status +
+        ". ";
+
+
+    if (status !== "Optimized") {
+        html += "Reason: " + reason;
+    }
+
+
+    if (status === "Optimized") {
+        html +=
+            "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time.";
+    }
+
+    html += "</p>";
+
+
+    const result =
+        document.getElementById("cvResult");
+
+    result.innerHTML = html;
+
+    result.style.display = "block";
+
+    result.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+}
+
+
+async function copyCardiacSummary() {
+
+    generateCardiacRecommendation();
+
+    const text =
+        document.getElementById("cvResult").innerText;
+
+    try {
+
+        await navigator.clipboard.writeText(text);
+
+        alert("Cardiac summary copied.");
+
+    } catch (error) {
+
+        const temp =
+            document.createElement("textarea");
+
+        temp.value = text;
+
+        temp.style.position = "fixed";
+        temp.style.opacity = "0";
+
+        document.body.appendChild(temp);
+
+        temp.select();
+
+        document.execCommand("copy");
+
+        document.body.removeChild(temp);
+
+        alert("Cardiac summary copied.");
+    }
+}
+
+
+function printCardiacSummary() {
+
+    generateCardiacRecommendation();
+
+    setTimeout(function() {
+        window.print();
+    }, 150);
+}
+
+
+function clearCardiacTool() {
+
+    const ok =
+        confirm(
+            "Clear all patient-specific cardiac information?"
+        );
+
+    if (!ok) return;
+
+    document
+        .querySelectorAll(
+            "#interactiveCardiacTool input, #interactiveCardiacTool textarea"
+        )
+        .forEach(function(el) {
+            el.value = "";
+        });
+
+    document
+        .querySelectorAll(
+            "#interactiveCardiacTool select"
+        )
+        .forEach(function(el) {
+            el.selectedIndex = 0;
+        });
+
+    const result =
+        document.getElementById("cvResult");
+
+    result.innerHTML = "";
+    result.style.display = "none";
+
+    document
+        .getElementById("interactiveCardiacTool")
+        .scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+}
+
+
+document
+.getElementById("cvGenerate")
+.addEventListener(
+    "click",
+    generateCardiacRecommendation
+);
+
+
+document
+.getElementById("cvCopy")
+.addEventListener(
+    "click",
+    copyCardiacSummary
+);
+
+
+document
+.getElementById("cvPrint")
+.addEventListener(
+    "click",
+    printCardiacSummary
+);
+
+
+document
+.getElementById("cvClear")
+.addEventListener(
+    "click",
+    clearCardiacTool
+);
+
+</script>
 </main>
 
 <footer>

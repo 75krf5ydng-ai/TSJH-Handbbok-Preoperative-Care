@@ -830,6 +830,1008 @@
     elective surgery on scheduled surgery date at this time.
   </div>
 </section>
+<!-- =========================================================
+     INTERACTIVE RENAL / CKD / DIALYSIS PREOPERATIVE PLANNER
+========================================================= -->
+
+<section id="interactiveRenalPlanner">
+
+<h2>Interactive Renal / CKD / Dialysis Preoperative Planner</h2>
+
+<p>
+Enter available renal data to identify CKD stage, possible acute kidney injury,
+electrolyte concerns, dialysis considerations and patient-specific
+preoperative recommendations.
+</p>
+
+<div class="warning-box">
+<strong>Clinical decision support:</strong>
+Interpret renal laboratory values in relation to the patient's baseline,
+volume status, medications, comorbidities and planned procedure.
+Acute kidney injury or significant electrolyte abnormalities require
+individualized evaluation before elective surgery.
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Renal Function</h3>
+
+<label><strong>Current creatinine (mg/dL)</strong></label><br>
+<input type="number" step="0.01" id="renalCr"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Baseline creatinine (mg/dL)</strong></label><br>
+<input type="number" step="0.01" id="renalBaselineCr"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>eGFR (mL/min/1.73m²)</strong></label><br>
+<input type="number" step="1" id="renalEGFR"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>BUN (mg/dL)</strong></label><br>
+<input type="number" step="0.1" id="renalBUN"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Known CKD</strong></label><br>
+<select id="renalCKD"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Known recent AKI</strong></label><br>
+<select id="renalKnownAKI"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Electrolytes / Acid-Base</h3>
+
+<label><strong>Sodium (mmol/L)</strong></label><br>
+<input type="number" step="0.1" id="renalNa"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Potassium (mmol/L)</strong></label><br>
+<input type="number" step="0.1" id="renalK"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>CO₂ / bicarbonate (mmol/L)</strong></label><br>
+<input type="number" step="0.1" id="renalCO2"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Calcium (mg/dL)</strong></label><br>
+<input type="number" step="0.1" id="renalCa"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Magnesium (mg/dL)</strong></label><br>
+<input type="number" step="0.1" id="renalMg"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Volume Status / Clinical Stability</h3>
+
+<label><strong>Volume status</strong></label><br>
+<select id="renalVolume"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="Euvolemic">Clinically euvolemic</option>
+<option value="Dehydrated">Dehydration / hypovolemia suspected</option>
+<option value="Overloaded">Volume overload / edema</option>
+<option value="Pulmonary edema">Pulmonary edema / decompensated volume overload</option>
+</select>
+
+<label><strong>Urine output concern / oliguria</strong></label><br>
+<select id="renalOliguria"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Recent vomiting, diarrhea or poor oral intake</strong></label><br>
+<select id="renalLosses"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Symptoms of uremia</strong></label><br>
+<select id="renalUremia"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Dialysis</h3>
+
+<label><strong>Dialysis dependent</strong></label><br>
+<select id="renalDialysis"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Hemodialysis">Hemodialysis</option>
+<option value="Peritoneal">Peritoneal dialysis</option>
+</select>
+
+<label><strong>Last dialysis</strong></label><br>
+<input type="text" id="renalLastDialysis"
+placeholder="Date/time or N/A"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Dialysis plan before surgery confirmed</strong></label><br>
+<select id="renalDialysisPlan"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="N/A">N/A</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+
+<label><strong>Post-dialysis / preoperative potassium available</strong></label><br>
+<select id="renalPostDialysisK"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="N/A">N/A</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Medication / Renal Exposure Review</h3>
+
+<label><strong>NSAID use</strong></label><br>
+<select id="renalNSAID"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>ACE inhibitor / ARB</strong></label><br>
+<select id="renalACE"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Diuretic</strong></label><br>
+<select id="renalDiuretic"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>SGLT2 inhibitor</strong></label><br>
+<select id="renalSGLT2"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Recent iodinated contrast / cardiac catheterization</strong></label><br>
+<select id="renalContrast"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Other nephrotoxic medication/exposure concern</strong></label><br>
+<select id="renalNephrotoxin"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Additional Perioperative Data</h3>
+
+<label><strong>Hemoglobin (g/dL)</strong></label><br>
+<input type="number" step="0.1" id="renalHgb"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Major procedure / significant blood-loss potential</strong></label><br>
+<select id="renalMajorSurgery"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Nephrology involved</strong></label><br>
+<select id="renalNephrology"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Additional comments</strong></label><br>
+<textarea id="renalComments" rows="4"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<div class="clinical-box">
+
+<button type="button" id="renalGenerate"
+style="background:#17324d;color:white;border:none;padding:14px 18px;
+font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Generate Renal Plan
+</button>
+
+<button type="button" id="renalCopy"
+style="background:#274c6b;color:white;border:none;padding:14px 18px;
+font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Copy Plan
+</button>
+
+<button type="button" id="renalPrint"
+style="background:#356f44;color:white;border:none;padding:14px 18px;
+font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Print
+</button>
+
+<button type="button" id="renalClear"
+style="background:#8b2f2f;color:white;border:none;padding:14px 18px;
+font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Clear Patient Data
+</button>
+
+</div>
+
+
+<div id="renalResult"
+style="display:none;margin-top:22px;padding:22px;background:white;
+border:1px solid #d8e1ec;border-radius:8px;">
+</div>
+
+</section>
+
+
+<style>
+
+@media print {
+
+body * {
+visibility:hidden !important;
+}
+
+#renalResult,
+#renalResult * {
+visibility:visible !important;
+}
+
+#renalResult {
+display:block !important;
+position:absolute;
+left:0;
+top:0;
+width:100%;
+padding:20px;
+border:none;
+background:white;
+color:black;
+}
+
+}
+
+</style>
+
+
+<script>
+
+function renalValue(id) {
+const el = document.getElementById(id);
+return el ? el.value.trim() : "";
+}
+
+
+function generateRenalPlan() {
+
+let findings = [];
+let recommendations = [];
+let pending = [];
+let stop = [];
+
+const cr = parseFloat(renalValue("renalCr"));
+const baselineCr = parseFloat(renalValue("renalBaselineCr"));
+const egfr = parseFloat(renalValue("renalEGFR"));
+const bun = parseFloat(renalValue("renalBUN"));
+
+const na = parseFloat(renalValue("renalNa"));
+const k = parseFloat(renalValue("renalK"));
+const co2 = parseFloat(renalValue("renalCO2"));
+const ca = parseFloat(renalValue("renalCa"));
+const mg = parseFloat(renalValue("renalMg"));
+const hgb = parseFloat(renalValue("renalHgb"));
+
+
+/* CKD STAGE */
+
+let ckdStage = "";
+
+if (!isNaN(egfr)) {
+
+if (egfr >= 90) {
+ckdStage = "G1";
+} else if (egfr >= 60) {
+ckdStage = "G2";
+} else if (egfr >= 45) {
+ckdStage = "G3a";
+} else if (egfr >= 30) {
+ckdStage = "G3b";
+} else if (egfr >= 15) {
+ckdStage = "G4";
+} else {
+ckdStage = "G5";
+}
+
+findings.push(
+"eGFR " + egfr +
+" mL/min/1.73m²; GFR category " +
+ckdStage + "."
+);
+
+if (egfr < 30) {
+
+recommendations.push(
+"Advanced renal dysfunction increases perioperative risk and may alter medication dosing, fluid management and electrolyte handling."
+);
+
+}
+
+}
+
+
+/* CREATININE / AKI SCREEN */
+
+if (!isNaN(cr)) {
+findings.push("Current creatinine " + cr + " mg/dL.");
+}
+
+if (!isNaN(baselineCr)) {
+findings.push("Baseline creatinine " + baselineCr + " mg/dL.");
+}
+
+if (!isNaN(cr) && !isNaN(baselineCr)) {
+
+const change = cr - baselineCr;
+const ratio = baselineCr > 0 ? cr / baselineCr : 0;
+
+if (change >= 0.3 || ratio >= 1.5) {
+
+pending.push(
+"Creatinine is significantly increased from the entered baseline. Evaluate for possible acute kidney injury, determine timing of the change and confirm renal stability before elective surgery."
+);
+
+}
+
+}
+
+
+if (renalValue("renalKnownAKI") === "Yes") {
+
+pending.push(
+"Recent or active AKI is reported. Establish cause, trend and clinical stability before final preoperative optimization."
+);
+
+}
+
+
+if (!isNaN(bun)) {
+
+findings.push("BUN " + bun + " mg/dL.");
+
+if (bun > 40) {
+
+recommendations.push(
+"Elevated BUN should be interpreted with creatinine, hydration status, GI bleeding risk, catabolic state and baseline renal function."
+);
+
+}
+
+}
+
+
+/* ELECTROLYTES */
+
+if (!isNaN(k)) {
+
+findings.push("Potassium " + k + " mmol/L.");
+
+if (k <= 2.8 || k >= 6.0) {
+
+stop.push(
+"Severe potassium abnormality requires prompt evaluation and correction before routine elective surgery."
+);
+
+} else if (k < 3.2 || k > 5.5) {
+
+pending.push(
+"Clinically significant potassium abnormality requires confirmation and management before final optimization."
+);
+
+}
+
+}
+
+
+if (!isNaN(na)) {
+
+findings.push("Sodium " + na + " mmol/L.");
+
+if (na <= 125 || na >= 155) {
+
+stop.push(
+"Severe sodium abnormality requires evaluation and correction before routine elective surgery."
+);
+
+} else if (na < 130 || na > 150) {
+
+pending.push(
+"Significant sodium abnormality requires review of symptoms, chronicity, volume status, medications and correction plan."
+);
+
+}
+
+}
+
+
+if (!isNaN(co2)) {
+
+findings.push(
+"CO₂/bicarbonate " + co2 + " mmol/L."
+);
+
+if (co2 < 18) {
+
+pending.push(
+"Low bicarbonate raises concern for clinically significant metabolic acidosis. Review anion gap, renal function, glucose/ketones, medications and clinical status."
+);
+
+}
+
+}
+
+
+if (!isNaN(ca)) {
+
+findings.push("Calcium " + ca + " mg/dL.");
+
+if (ca < 7.5 || ca > 12) {
+
+pending.push(
+"Significant calcium abnormality requires confirmation and evaluation before elective surgery."
+);
+
+}
+
+}
+
+
+if (!isNaN(mg)) {
+
+findings.push("Magnesium " + mg + " mg/dL.");
+
+if (mg < 1.5) {
+
+recommendations.push(
+"Hypomagnesemia should generally be corrected when clinically appropriate, particularly when arrhythmia risk or concurrent potassium abnormality is present."
+);
+
+}
+
+}
+
+
+/* VOLUME */
+
+if (renalValue("renalVolume") === "Dehydrated") {
+
+pending.push(
+"Suspected dehydration/hypovolemia requires correction and reassessment of renal function before final optimization."
+);
+
+}
+
+
+if (renalValue("renalVolume") === "Overloaded") {
+
+pending.push(
+"Volume overload requires assessment and optimization before elective surgery."
+);
+
+}
+
+
+if (renalValue("renalVolume") === "Pulmonary edema") {
+
+stop.push(
+"Pulmonary edema or decompensated volume overload represents active clinical instability requiring treatment before elective surgery."
+);
+
+}
+
+
+if (renalValue("renalOliguria") === "Yes") {
+
+pending.push(
+"Oliguria or reduced urine output requires evaluation for AKI, obstruction, hypovolemia or other acute renal pathology."
+);
+
+}
+
+
+if (renalValue("renalLosses") === "Yes") {
+
+recommendations.push(
+"Recent GI losses or poor intake increase dehydration and AKI risk; reassess volume status, renal function and electrolytes."
+);
+
+}
+
+
+if (renalValue("renalUremia") === "Yes") {
+
+stop.push(
+"Symptoms concerning for clinically significant uremia require renal evaluation and treatment before routine elective surgery."
+);
+
+}
+
+
+/* DIALYSIS */
+
+if (renalValue("renalDialysis") !== "No") {
+
+findings.push(
+"Patient is dialysis dependent: " +
+renalValue("renalDialysis") + "."
+);
+
+if (renalValue("renalLastDialysis")) {
+
+findings.push(
+"Last dialysis: " +
+renalValue("renalLastDialysis") + "."
+);
+
+}
+
+if (renalValue("renalDialysisPlan") !== "Yes") {
+
+pending.push(
+"Perioperative dialysis timing and volume-management plan have not been confirmed."
+);
+
+}
+
+if (renalValue("renalPostDialysisK") === "No") {
+
+pending.push(
+"Current perioperative potassium has not been confirmed for the dialysis patient."
+);
+
+}
+
+recommendations.push(
+"Coordinate dialysis timing, potassium, volume status, vascular-access protection and medication dosing with the renal/anesthesia plan."
+);
+
+}
+
+
+/* MEDICATIONS */
+
+if (renalValue("renalNSAID") === "Yes") {
+
+recommendations.push(
+"NSAID exposure is present. Consider renal function, volume status and perioperative AKI risk when determining continued use."
+);
+
+}
+
+
+if (renalValue("renalACE") === "Yes") {
+
+recommendations.push(
+"ACE inhibitor/ARB therapy identified. Follow the individualized perioperative medication plan based on indication, blood pressure, renal status and anesthesia guidance."
+);
+
+}
+
+
+if (renalValue("renalDiuretic") === "Yes") {
+
+recommendations.push(
+"Diuretic therapy identified. Assess volume status, potassium and the indication before determining the day-of-surgery medication plan."
+);
+
+}
+
+
+if (renalValue("renalSGLT2") === "Yes") {
+
+recommendations.push(
+"SGLT2 inhibitor identified. Confirm the appropriate preoperative hold and assess for dehydration or ketoacidosis risk."
+);
+
+}
+
+
+if (renalValue("renalContrast") === "Yes") {
+
+recommendations.push(
+"Recent iodinated contrast exposure identified. Review post-exposure creatinine when clinically indicated, particularly with CKD or other AKI risk factors."
+);
+
+}
+
+
+if (renalValue("renalNephrotoxin") === "Yes") {
+
+recommendations.push(
+"Potential nephrotoxic exposure identified. Review necessity, dosing and renal trend."
+);
+
+}
+
+
+/* ANEMIA */
+
+if (!isNaN(hgb)) {
+
+findings.push(
+"Hemoglobin " + hgb + " g/dL."
+);
+
+if (hgb < 12) {
+
+recommendations.push(
+"Anemia is present. In CKD, evaluate whether renal disease contributes while also considering iron deficiency, blood loss and other causes."
+);
+
+if (renalValue("renalMajorSurgery") === "Yes") {
+
+pending.push(
+"Anemia is present before a procedure with significant blood-loss potential; determine whether additional evaluation or optimization is warranted."
+);
+
+}
+
+}
+
+}
+
+
+/* COMMENTS */
+
+if (renalValue("renalComments")) {
+
+findings.push(
+"Additional comments: " +
+renalValue("renalComments")
+);
+
+}
+
+
+/* REMOVE DUPLICATES */
+
+findings = [...new Set(findings)];
+recommendations = [...new Set(recommendations)];
+pending = [...new Set(pending)];
+stop = [...new Set(stop)];
+
+
+/* FINAL STATUS */
+
+let status = "";
+let reason = "";
+
+if (stop.length > 0) {
+
+status = "Not optimized";
+reason = stop.join(" ");
+
+} else if (pending.length > 0) {
+
+status = "Pending";
+reason = pending.join(" ");
+
+} else {
+
+status = "Optimized";
+reason =
+"No unresolved clinically significant renal or electrolyte abnormality was identified from the entered information.";
+
+}
+
+
+/* OUTPUT */
+
+let html = "";
+
+html += "<h2>Renal Preoperative Assessment</h2>";
+
+
+if (findings.length) {
+
+html += "<h3>Findings</h3><ul>";
+
+findings.forEach(function(item) {
+html += "<li>" + item + "</li>";
+});
+
+html += "</ul>";
+
+}
+
+
+if (recommendations.length) {
+
+html += "<h3>Perioperative Recommendations</h3><ul>";
+
+recommendations.forEach(function(item) {
+html += "<li>" + item + "</li>";
+});
+
+html += "</ul>";
+
+}
+
+
+if (pending.length) {
+
+html += "<h3>Items Requiring Resolution</h3><ul>";
+
+pending.forEach(function(item) {
+html += "<li>" + item + "</li>";
+});
+
+html += "</ul>";
+
+}
+
+
+if (stop.length) {
+
+html += "<h3>Current Significant Abnormality</h3><ul>";
+
+stop.forEach(function(item) {
+html += "<li>" + item + "</li>";
+});
+
+html += "</ul>";
+
+}
+
+
+html += "<hr>";
+
+html +=
+"<h3>FINAL PREOPERATIVE OPTIMIZATION STATUS</h3>";
+
+html +=
+"<p><strong>" + status + "</strong></p>";
+
+html +=
+"<p><strong>Reason:</strong> " +
+reason +
+"</p>";
+
+
+if (status === "Optimized") {
+
+html +=
+"<div class='success-box'>" +
+"Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time." +
+"</div>";
+
+}
+
+
+/* COPY READY */
+
+html += "<hr>";
+
+html +=
+"<h3>Copy-Ready Provider Documentation</h3>";
+
+html += "<p>";
+
+if (!isNaN(cr)) {
+html += "Creatinine " + cr + " mg/dL. ";
+}
+
+if (!isNaN(egfr)) {
+html +=
+"eGFR " + egfr +
+" mL/min/1.73m² (" +
+ckdStage + "). ";
+}
+
+if (!isNaN(k)) {
+html += "Potassium " + k + " mmol/L. ";
+}
+
+if (renalValue("renalDialysis") !== "No") {
+html +=
+"Dialysis dependent (" +
+renalValue("renalDialysis") +
+"). ";
+}
+
+html +=
+"<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS: " +
+status +
+".</strong> ";
+
+if (status === "Optimized") {
+
+html +=
+"Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time.";
+
+} else {
+
+html +=
+"Reason: " + reason;
+
+}
+
+html += "</p>";
+
+
+const result =
+document.getElementById("renalResult");
+
+result.innerHTML = html;
+
+result.style.display = "block";
+
+result.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+}
+
+
+async function copyRenalPlan() {
+
+generateRenalPlan();
+
+const text =
+document.getElementById("renalResult").innerText;
+
+try {
+
+await navigator.clipboard.writeText(text);
+
+alert("Renal preoperative plan copied.");
+
+} catch (error) {
+
+const temp =
+document.createElement("textarea");
+
+temp.value = text;
+temp.style.position = "fixed";
+temp.style.opacity = "0";
+
+document.body.appendChild(temp);
+
+temp.select();
+
+document.execCommand("copy");
+
+document.body.removeChild(temp);
+
+alert("Renal preoperative plan copied.");
+
+}
+
+}
+
+
+function printRenalPlan() {
+
+generateRenalPlan();
+
+setTimeout(function() {
+window.print();
+},150);
+
+}
+
+
+function clearRenalPlan() {
+
+const ok =
+confirm(
+"Clear all patient-specific renal information?"
+);
+
+if (!ok) return;
+
+document
+.querySelectorAll(
+"#interactiveRenalPlanner input, #interactiveRenalPlanner textarea"
+)
+.forEach(function(el) {
+el.value = "";
+});
+
+document
+.querySelectorAll(
+"#interactiveRenalPlanner select"
+)
+.forEach(function(el) {
+el.selectedIndex = 0;
+});
+
+const result =
+document.getElementById("renalResult");
+
+result.innerHTML = "";
+result.style.display = "none";
+
+document
+.getElementById("interactiveRenalPlanner")
+.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+}
+
+
+document
+.getElementById("renalGenerate")
+.addEventListener(
+"click",
+generateRenalPlan
+);
+
+document
+.getElementById("renalCopy")
+.addEventListener(
+"click",
+copyRenalPlan
+);
+
+document
+.getElementById("renalPrint")
+.addEventListener(
+"click",
+printRenalPlan
+);
+
+document
+.getElementById("renalClear")
+.addEventListener(
+"click",
+clearRenalPlan
+);
+
+</script>
 
 </main>
 

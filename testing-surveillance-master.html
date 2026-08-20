@@ -795,7 +795,93 @@ ul {
     Active or unstable disease requires evaluation or treatment before elective surgery.
   </p>
 </section>
+<section>
+<h2>Interactive Testing Recency & Usability Checker</h2>
 
+<p>
+Use this tool to help determine whether an existing preoperative study may still be usable or whether updated testing, record review, or specialty evaluation should be considered. Clinical changes override time-based guidance.
+</p>
+
+<div class="formula-box">
+
+<label for="testType"><strong>Test / Study</strong></label>
+<select id="testType">
+<option value="">Select test</option>
+<option value="cbc">CBC</option>
+<option value="bmp">BMP / CMP</option>
+<option value="a1c">Hemoglobin A1c</option>
+<option value="coags">PT / INR / PTT</option>
+<option value="ekg">EKG</option>
+<option value="echo">Echocardiogram</option>
+<option value="stress">Stress Test</option>
+<option value="cath">Cardiac Catheterization</option>
+<option value="bnp">BNP / NT-proBNP</option>
+<option value="pft">Pulmonary Function Tests</option>
+<option value="cxr">Chest X-ray</option>
+<option value="sleep">Sleep Study</option>
+<option value="surveillance">Disease-Specific Surveillance Imaging</option>
+</select>
+
+<br><br>
+
+<label for="testDate"><strong>Date of Existing Test</strong></label>
+<input type="date" id="testDate">
+
+<br><br>
+
+<label for="surgeryDate"><strong>Scheduled Surgery Date</strong></label>
+<input type="date" id="surgeryDate">
+
+<br><br>
+
+<label for="clinicalChange"><strong>New symptoms or meaningful clinical change since testing?</strong></label>
+<select id="clinicalChange">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<br><br>
+
+<label for="abnormalTest"><strong>Was the prior test significantly abnormal or unresolved?</strong></label>
+<select id="abnormalTest">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<br><br>
+...
+}
+
+function checkTestRecency() {
+   ...
+}
+
+</script>
+
+</body>
+</html>
+
+<label for="specialistFollowup"><strong>Was specialty follow-up recommended but not completed?</strong></label>
+<select id="specialistFollowup">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<br><br>
+
+<button type="button" onclick="checkTestRecency()">Evaluate Existing Test</button>
+
+<div id="testRecencyResult" class="result-box" style="margin-top:18px;">
+Select the study and enter the dates to generate guidance.
+</div>
+
+</div>
+
+<p class="small">
+<strong>Important:</strong> Test age alone should not determine surgical readiness. New symptoms, interval hospitalization, disease progression, abnormal prior findings, medication changes, or specialist recommendations may require updated evaluation regardless of the date of the prior study.
+</p>
+
+</section>
 </main>
 
 

@@ -1105,6 +1105,215 @@
 
 </main>
 
+<!-- =========================================================
+     INTERACTIVE ANEMIA TYPE CALCULATOR
+========================================================= -->
+
+<main>
+
+<section>
+<h2>Interactive Anemia Type Calculator</h2>
+
+<p>
+Enter available CBC and iron-study results below to generate a preliminary
+anemia classification and suggested preoperative evaluation.
+</p>
+
+<div class="clinical-box">
+
+<label><strong>Hemoglobin (g/dL)</strong></label><br>
+<input type="number" id="hgb" step="0.1" placeholder="Example: 10.8"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>MCV (fL)</strong></label><br>
+<input type="number" id="mcv" step="0.1" placeholder="Example: 74"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Ferritin (ng/mL)</strong></label><br>
+<input type="number" id="ferritin" step="0.1" placeholder="Example: 18"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Serum Iron</strong></label><br>
+<input type="number" id="iron" step="0.1"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>TIBC</strong></label><br>
+<input type="number" id="tibc" step="0.1"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Vitamin B12 (pg/mL)</strong></label><br>
+<input type="number" id="b12" step="0.1"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Folate (ng/mL)</strong></label><br>
+<input type="number" id="folate" step="0.1"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<button onclick="interpretAnemia()"
+style="
+background:#17324d;
+color:white;
+border:none;
+padding:14px 22px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin-top:10px;
+width:100%;
+">
+Interpret Anemia
+</button>
+
+</div>
+
+<div id="anemiaResult"
+style="
+margin-top:20px;
+padding:18px;
+background:#eef4f8;
+border-left:5px solid #2f6fa3;
+border-radius:6px;
+display:none;
+">
+</div>
+
+<div class="warning-box">
+<strong>Clinical reminder:</strong> This tool provides decision support only.
+Interpret results in the context of the laboratory reference ranges, renal
+function, inflammatory conditions, bleeding history, nutritional status,
+medications and the planned procedure. Unexplained or significant anemia may
+require additional evaluation before elective surgery.
+</div>
+
+</section>
+
+</main>
+
+<script>
+function interpretAnemia() {
+
+    const hgb = parseFloat(document.getElementById("hgb").value);
+    const mcv = parseFloat(document.getElementById("mcv").value);
+    const ferritin = parseFloat(document.getElementById("ferritin").value);
+    const iron = parseFloat(document.getElementById("iron").value);
+    const tibc = parseFloat(document.getElementById("tibc").value);
+    const b12 = parseFloat(document.getElementById("b12").value);
+    const folate = parseFloat(document.getElementById("folate").value);
+
+    let result = "";
+    let classification = "";
+    let recommendation = "";
+
+    if (isNaN(hgb) || isNaN(mcv)) {
+        alert("Please enter at least the hemoglobin and MCV.");
+        return;
+    }
+
+    let tsat = null;
+
+    if (!isNaN(iron) && !isNaN(tibc) && tibc > 0) {
+        tsat = (iron / tibc) * 100;
+    }
+
+    if (mcv < 80) {
+
+        classification = "Microcytic anemia";
+
+        if (!isNaN(ferritin) && ferritin < 30) {
+            classification += " — pattern strongly suggestive of iron deficiency";
+            recommendation =
+            "Evaluate for the source of iron deficiency or blood loss. " +
+            "Review menstrual and gastrointestinal bleeding history and consider " +
+            "iron replacement when clinically appropriate.";
+        }
+
+        else if (tsat !== null && tsat < 20) {
+            classification += " — iron-restricted erythropoiesis is possible";
+            recommendation =
+            "Review ferritin, inflammatory status, renal function and possible " +
+            "blood loss. Iron deficiency or functional iron deficiency should be considered.";
+        }
+
+        else {
+            recommendation =
+            "Review ferritin and iron studies. If iron deficiency is not demonstrated, " +
+            "consider anemia of chronic inflammation, thalassemia or another cause of microcytosis.";
+        }
+
+    }
+
+    else if (mcv > 100) {
+
+        classification = "Macrocytic anemia";
+
+        if (!isNaN(b12) && b12 < 200) {
+            classification += " — vitamin B12 deficiency is possible";
+            recommendation =
+            "Evaluate and treat vitamin B12 deficiency and consider the underlying cause.";
+        }
+
+        else if (!isNaN(folate) && folate < 4) {
+            classification += " — folate deficiency is possible";
+            recommendation =
+            "Evaluate nutritional status, medications and other causes of folate deficiency.";
+        }
+
+        else {
+            recommendation =
+            "Review vitamin B12, folate, liver function, thyroid status, alcohol exposure, " +
+            "medications and reticulocyte count. Persistent unexplained macrocytosis may warrant further evaluation.";
+        }
+
+    }
+
+    else {
+
+        classification = "Normocytic anemia";
+
+        if (!isNaN(ferritin) && ferritin < 30) {
+            classification += " — early iron deficiency remains possible";
+            recommendation =
+            "Iron deficiency may precede development of microcytosis. Review iron studies and possible blood loss.";
+        }
+
+        else {
+            recommendation =
+            "Consider chronic kidney disease, anemia of chronic inflammation, occult blood loss, " +
+            "hemolysis or bone-marrow disorders. Review creatinine/eGFR, reticulocyte count and clinical history.";
+        }
+
+    }
+
+    result =
+    "<h3>Anemia Interpretation</h3>" +
+    "<p><strong>Hemoglobin:</strong> " + hgb.toFixed(1) + " g/dL</p>" +
+    "<p><strong>MCV:</strong> " + mcv.toFixed(1) + " fL</p>";
+
+    if (tsat !== null) {
+        result +=
+        "<p><strong>Calculated transferrin saturation:</strong> " +
+        tsat.toFixed(1) + "%</p>";
+    }
+
+    result +=
+    "<p><strong>Preliminary classification:</strong> " +
+    classification + "</p>" +
+
+    "<p><strong>Suggested evaluation:</strong> " +
+    recommendation + "</p>" +
+
+    "<hr>" +
+
+    "<p><strong>Preoperative consideration:</strong> " +
+    "Determine whether the anemia is chronic and stable or new/progressive, " +
+    "consider expected surgical blood loss, and address reversible causes before elective surgery when feasible.</p>";
+
+    const box = document.getElementById("anemiaResult");
+    box.innerHTML = result;
+    box.style.display = "block";
+}
+
+</script>
 <footer>
   Preoperative Optimization Handbook · Anemia Workup & Patient Blood Management
 </footer>

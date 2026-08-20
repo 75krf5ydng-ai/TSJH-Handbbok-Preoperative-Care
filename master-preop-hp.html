@@ -867,7 +867,785 @@ Patient meets TSJH perioperative consensus guidelines to proceed with elective s
 [ ] “Cleared for surgery” language avoided
 </div>
 </section>
+<!-- =========================================================
+     INTERACTIVE PATIENT-SPECIFIC TRUBRIDGE H&P BUILDER
+========================================================= -->
 
+<section id="interactiveHPBuilder">
+
+<h2>Interactive TruBridge Preoperative H&P Builder</h2>
+
+<p>
+Enter patient-specific information below to generate a reusable,
+TruBridge-friendly preoperative medical evaluation.
+</p>
+
+<div class="warning-box">
+<strong>Privacy:</strong>
+Information entered here is intended for the current browser session only.
+No patient data are intentionally stored by this tool. Use Clear Patient Data
+when finished.
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Patient / Surgery Information</h3>
+
+<label><strong>Patient Name</strong></label><br>
+<input type="text" id="hpName"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Date of Birth</strong></label><br>
+<input type="date" id="hpDOB"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Chief Complaint / Surgical Diagnosis</strong></label><br>
+<input type="text" id="hpDiagnosis"
+placeholder="Example: Primary osteoarthritis of right knee"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Planned Procedure</strong></label><br>
+<input type="text" id="hpProcedure"
+placeholder="Example: Right total knee arthroplasty"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Surgeon Last Name</strong></label><br>
+<input type="text" id="hpSurgeon"
+placeholder="Example: Hester"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Surgery Date / Date of Service</strong></label><br>
+<input type="date" id="hpDOS"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Clinical History</h3>
+
+<label><strong>Reason for Consultation</strong></label><br>
+<textarea id="hpReasonConsult" rows="3"
+placeholder="Preoperative medical evaluation and optimization..."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+<label><strong>HPI</strong></label><br>
+<textarea id="hpHPI" rows="7"
+placeholder="Free-text history of present illness..."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+<label><strong>Anesthesia History</strong></label><br>
+<textarea id="hpAnesthesia" rows="4"
+placeholder="Prior anesthesia tolerance, PONV, difficult airway, MH, etc."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+<label><strong>Medical History</strong></label><br>
+<textarea id="hpMedical" rows="6"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+<label><strong>Surgical History</strong></label><br>
+<textarea id="hpSurgical" rows="5"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+<label><strong>Family History</strong></label><br>
+<textarea id="hpFamily" rows="3"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+<label><strong>Social History</strong></label><br>
+<textarea id="hpSocial" rows="4"
+placeholder="Tobacco, alcohol, drugs, living situation..."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+<label><strong>Allergies</strong></label><br>
+<textarea id="hpAllergies" rows="3"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+<label><strong>Home Medications</strong></label><br>
+<textarea id="hpMeds" rows="8"
+placeholder="One medication per line works well."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>ROS / Examination</h3>
+
+<label><strong>Review of Systems</strong></label><br>
+<textarea id="hpROS" rows="6"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+<label><strong>Physical Examination</strong></label><br>
+<textarea id="hpPE" rows="8"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+<label><strong>Vitals</strong></label><br>
+<textarea id="hpVitals" rows="3"
+placeholder="BP, HR, temp, SpO2, BMI..."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Labs / Diagnostics</h3>
+
+<label><strong>Laboratory Results</strong></label><br>
+<textarea id="hpLabs" rows="8"
+placeholder="CBC, BMP/CMP, A1c, coagulation, UA, etc."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+<label><strong>EKG / Imaging / Cardiac Testing</strong></label><br>
+<textarea id="hpDiagnostics" rows="7"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+<label><strong>Abnormal Findings Requiring Action</strong></label><br>
+<textarea id="hpAbnormal" rows="5"
+placeholder="List abnormalities and intended action."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Functional & Risk Screening</h3>
+
+<label><strong>DASI Score</strong></label><br>
+<input type="number" step="0.1" id="hpDASI"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>RCRI Points</strong></label><br>
+<input type="number" min="0" max="6" id="hpRCRI"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>STOP-BANG Total</strong></label><br>
+<input type="number" min="0" max="8" id="hpSTOP"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Clinical Frailty Scale</strong></label><br>
+<input type="number" min="1" max="9" id="hpCFS"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Preoperative Cardiac Guidelines Application</h3>
+
+<label><strong>Surgical Risk</strong></label><br>
+<select id="hpSurgicalRisk"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Select</option>
+<option value="Low">Low</option>
+<option value="Intermediate">Intermediate</option>
+<option value="High">High</option>
+</select>
+
+<label><strong>Active Cardiac Problem</strong></label><br>
+<select id="hpActiveCardiac"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>If Yes, Diagnosis</strong></label><br>
+<input type="text" id="hpCardiacDx"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>BNP Screening</strong></label><br>
+<select id="hpBNP"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+<option value="Completed">Completed</option>
+</select>
+
+<label><strong>BNP / NT-proBNP Result & Interpretation</strong></label><br>
+<textarea id="hpBNPResult" rows="3"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Risk Stratification & Medical Optimization</h3>
+
+<textarea id="hpOptimization" rows="8"
+placeholder="Medical optimization, medication changes, specialty records, testing, risk discussion..."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Assessment & Plan</h3>
+
+<p>
+<strong>A&P #1 will be generated automatically</strong> from the surgical
+diagnosis, procedure, surgeon and surgery date.
+</p>
+
+<label><strong>Additional Diagnoses / Plans</strong></label><br>
+<textarea id="hpAdditionalAP" rows="10"
+placeholder="Enter each additional diagnosis/plan on a separate line."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Postoperative Plan</h3>
+
+<label><strong>Postoperative Medical Plan</strong></label><br>
+<textarea id="hpPostop" rows="6"
+placeholder="PAP, continuous oximetry, glucose monitoring, bowel regimen, respiratory plan, etc."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+<label><strong>DVT Prophylaxis</strong></label><br>
+<textarea id="hpDVT" rows="3"
+placeholder="Guided by surgeon, medication-specific considerations..."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+<label><strong>Disposition</strong></label><br>
+<textarea id="hpDisposition" rows="3"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Final Preoperative Optimization Status</h3>
+
+<select id="hpStatus"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Select</option>
+<option value="Optimized">Optimized</option>
+<option value="Pending">Pending</option>
+<option value="Not optimized">Not optimized</option>
+</select>
+
+<label><strong>Reason</strong></label><br>
+<textarea id="hpStatusReason" rows="4"
+placeholder="Required for Pending or Not optimized."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+
+<button type="button" id="hpGenerate"
+style="
+background:#17324d;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Generate H&P
+</button>
+
+<button type="button" id="hpCopy"
+style="
+background:#274c6b;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Copy for TruBridge
+</button>
+
+<button type="button" id="hpPrint"
+style="
+background:#356f44;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Print
+</button>
+
+<button type="button" id="hpClear"
+style="
+background:#8b2f2f;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Clear Patient Data
+</button>
+
+</div>
+
+
+<div id="hpOutputWrap"
+style="display:none;margin-top:24px;">
+
+<h2>Generated TruBridge H&P</h2>
+
+<textarea id="hpOutput"
+rows="40"
+style="
+width:95%;
+padding:14px;
+font-family:Arial, Helvetica, sans-serif;
+font-size:15px;
+line-height:1.5;
+"></textarea>
+
+</div>
+
+</section>
+
+
+<style>
+
+@media print {
+
+body * {
+    visibility:hidden !important;
+}
+
+#hpOutputWrap,
+#hpOutputWrap * {
+    visibility:visible !important;
+}
+
+#hpOutputWrap {
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+}
+
+#hpOutput {
+    width:100%;
+    height:auto;
+    min-height:95vh;
+    border:none;
+    overflow:visible;
+    white-space:pre-wrap;
+}
+
+}
+
+</style>
+
+
+<script>
+
+function hpVal(id) {
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : "";
+}
+
+
+function hpOrNone(value) {
+    return value ? value : "None reported.";
+}
+
+
+function hpFormatDate(dateString) {
+
+    if (!dateString) return "";
+
+    const parts = dateString.split("-");
+
+    if (parts.length !== 3) return dateString;
+
+    return parts[1] + "/" + parts[2] + "/" + parts[0];
+}
+
+
+function generateHP() {
+
+    const name = hpVal("hpName");
+    const dob = hpFormatDate(hpVal("hpDOB"));
+
+    const diagnosis = hpVal("hpDiagnosis");
+    const procedure = hpVal("hpProcedure");
+    const surgeon = hpVal("hpSurgeon");
+    const dos = hpFormatDate(hpVal("hpDOS"));
+
+    const status = hpVal("hpStatus");
+    const statusReason = hpVal("hpStatusReason");
+
+    let note = "";
+
+
+    note += "PREOPERATIVE MEDICAL EVALUATION\n\n";
+
+
+    if (name) {
+        note += "Patient: " + name + "\n";
+    }
+
+    if (dob) {
+        note += "DOB: " + dob + "\n";
+    }
+
+    if (dos) {
+        note += "Date of Service: " + dos + "\n";
+    }
+
+
+    note += "\nREASON FOR CONSULTATION\n";
+
+    note += hpOrNone(
+        hpVal("hpReasonConsult") ||
+        ("Preoperative medical evaluation and optimization prior to " +
+        procedure + ".")
+    );
+
+
+    note += "\n\nHISTORY OF PRESENT ILLNESS\n";
+    note += hpOrNone(hpVal("hpHPI"));
+
+
+    note += "\n\nANESTHESIA HISTORY\n";
+    note += hpOrNone(hpVal("hpAnesthesia"));
+
+
+    note += "\n\nMEDICAL HISTORY\n";
+    note += hpOrNone(hpVal("hpMedical"));
+
+
+    note += "\n\nSURGICAL HISTORY\n";
+    note += hpOrNone(hpVal("hpSurgical"));
+
+
+    note += "\n\nFAMILY HISTORY\n";
+    note += hpOrNone(hpVal("hpFamily"));
+
+
+    note += "\n\nSOCIAL HISTORY\n";
+    note += hpOrNone(hpVal("hpSocial"));
+
+
+    note += "\n\nALLERGIES\n";
+    note += hpOrNone(hpVal("hpAllergies"));
+
+
+    note += "\n\nHOME MEDICATIONS\n";
+    note += hpOrNone(hpVal("hpMeds"));
+
+
+    note += "\n\nREVIEW OF SYSTEMS\n";
+    note += hpOrNone(hpVal("hpROS"));
+
+
+    note += "\n\nPHYSICAL EXAMINATION\n";
+    note += hpOrNone(hpVal("hpPE"));
+
+
+    note += "\n\nVITALS\n";
+    note += hpOrNone(hpVal("hpVitals"));
+
+
+    note += "\n\nLABS / DIAGNOSTICS\n";
+
+    note += hpOrNone(hpVal("hpLabs"));
+
+    if (hpVal("hpDiagnostics")) {
+        note += "\n\n" + hpVal("hpDiagnostics");
+    }
+
+    if (hpVal("hpAbnormal")) {
+        note += "\n\nAbnormal findings requiring action: " +
+            hpVal("hpAbnormal");
+    }
+
+
+    note += "\n\nFUNCTIONAL & RISK SCREENING\n";
+
+    note += "DASI: " +
+        (hpVal("hpDASI") || "Not entered") + "\n";
+
+    note += "RCRI: " +
+        (hpVal("hpRCRI") || "Not entered") + "\n";
+
+    note += "STOP-BANG: " +
+        (hpVal("hpSTOP") || "Not entered") + "\n";
+
+    note += "CFS: " +
+        (hpVal("hpCFS") || "Not entered");
+
+
+    note += "\n\nPREOPERATIVE CARDIAC GUIDELINES APPLICATION\n";
+
+    note += "Surgical Risk: " +
+        (hpVal("hpSurgicalRisk") || "Not entered") + "\n";
+
+    note += "RCRI: " +
+        (hpVal("hpRCRI") || "Not entered") + "\n";
+
+    note += "Active Cardiac Problems: " +
+        (hpVal("hpActiveCardiac") || "No");
+
+    if (
+        hpVal("hpActiveCardiac") === "Yes" &&
+        hpVal("hpCardiacDx")
+    ) {
+        note += " - " + hpVal("hpCardiacDx");
+    }
+
+    note += "\nBNP Screening: " +
+        (hpVal("hpBNP") || "No");
+
+    if (hpVal("hpBNPResult")) {
+        note += "\nBNP/NT-proBNP: " +
+            hpVal("hpBNPResult");
+    }
+
+
+    note += "\n\nRISK STRATIFICATION & MEDICAL OPTIMIZATION\n";
+    note += hpOrNone(hpVal("hpOptimization"));
+
+
+    note += "\n\nASSESSMENT & PLAN\n";
+
+
+    note +=
+        "1. " +
+        (diagnosis || "Surgical diagnosis") +
+        ". Planned " +
+        (procedure || "procedure") +
+        " with Dr. " +
+        (surgeon || "_____") +
+        " on " +
+        (dos || "_____") +
+        ". DVT prophy, PT and analgesia guided by surgeon.";
+
+
+    const additional =
+        hpVal("hpAdditionalAP");
+
+    if (additional) {
+
+        const lines =
+            additional
+            .split("\n")
+            .filter(function(x) {
+                return x.trim() !== "";
+            });
+
+        lines.forEach(function(line, index) {
+
+            note +=
+                "\n" +
+                (index + 2) +
+                ". " +
+                line.trim();
+
+        });
+    }
+
+
+    note += "\n\nPOSTOPERATIVE PLAN\n";
+    note += hpOrNone(hpVal("hpPostop"));
+
+
+    note += "\n\nDVT PROPHYLAXIS\n";
+
+    note +=
+        hpVal("hpDVT") ||
+        "DVT prophylaxis guided by surgeon.";
+
+
+    note += "\n\nDISPOSITION\n";
+    note += hpOrNone(hpVal("hpDisposition"));
+
+
+    note += "\n\nFINAL PREOPERATIVE OPTIMIZATION STATUS\n";
+
+    note +=
+        (status || "Not selected");
+
+
+    if (statusReason) {
+
+        note +=
+            "\nReason: " +
+            statusReason;
+    }
+
+
+    if (status === "Optimized") {
+
+        note +=
+            "\n\nPatient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time.";
+    }
+
+
+    document.getElementById(
+        "hpOutput"
+    ).value = note;
+
+
+    document.getElementById(
+        "hpOutputWrap"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "hpOutputWrap"
+    ).scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+}
+
+
+async function copyHP() {
+
+    generateHP();
+
+    const text =
+        document.getElementById(
+            "hpOutput"
+        ).value;
+
+    try {
+
+        await navigator.clipboard.writeText(text);
+
+        alert(
+            "TruBridge H&P copied."
+        );
+
+    } catch (error) {
+
+        const box =
+            document.getElementById(
+                "hpOutput"
+            );
+
+        box.focus();
+        box.select();
+
+        document.execCommand("copy");
+
+        alert(
+            "TruBridge H&P copied."
+        );
+    }
+}
+
+
+function printHP() {
+
+    generateHP();
+
+    setTimeout(function() {
+        window.print();
+    }, 150);
+}
+
+
+function clearHP() {
+
+    const confirmed =
+        confirm(
+            "Clear all patient-specific H&P information?"
+        );
+
+    if (!confirmed) return;
+
+
+    document
+        .querySelectorAll(
+            "#interactiveHPBuilder input, #interactiveHPBuilder textarea"
+        )
+        .forEach(function(el) {
+
+            if (
+                el.id !== "hpOutput"
+            ) {
+                el.value = "";
+            }
+
+        });
+
+
+    document
+        .querySelectorAll(
+            "#interactiveHPBuilder select"
+        )
+        .forEach(function(el) {
+            el.selectedIndex = 0;
+        });
+
+
+    document.getElementById(
+        "hpOutput"
+    ).value = "";
+
+
+    document.getElementById(
+        "hpOutputWrap"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "interactiveHPBuilder"
+    ).scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+}
+
+
+document
+.getElementById("hpGenerate")
+.addEventListener(
+    "click",
+    generateHP
+);
+
+
+document
+.getElementById("hpCopy")
+.addEventListener(
+    "click",
+    copyHP
+);
+
+
+document
+.getElementById("hpPrint")
+.addEventListener(
+    "click",
+    printHP
+);
+
+
+document
+.getElementById("hpClear")
+.addEventListener(
+    "click",
+    clearHP
+);
+
+</script>
 </main>
 
 <footer>

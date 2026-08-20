@@ -1017,11 +1017,763 @@ Date: ______________________________________
 </ul>
 </section>
 
+<!-- =========================================================
+     INTERACTIVE PATIENT-SPECIFIC PREOPERATIVE FORMS
+========================================================= -->
+
+<section id="interactivePreopForms">
+
+<h2>Interactive Patient-Specific Preoperative Forms</h2>
+
+<p>
+Complete the sections that apply to the current patient. Generate a consolidated
+preoperative summary for printing, handoff or documentation.
+</p>
+
+<div class="warning-box">
+<strong>Privacy:</strong> Patient information entered into this form is intended
+for the current browser session only. This tool does not intentionally save
+patient information to browser storage. Use Clear Patient Data when finished.
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Patient & Surgery Information</h3>
+
+<label><strong>Patient name</strong></label><br>
+<input type="text" id="pfName"
+placeholder="Patient name"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Date of birth</strong></label><br>
+<input type="date" id="pfDOB"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>MRN / Patient ID</strong></label><br>
+<input type="text" id="pfMRN"
+placeholder="Optional"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Planned procedure</strong></label><br>
+<input type="text" id="pfProcedure"
+placeholder="Example: Right total knee arthroplasty"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Surgeon</strong></label><br>
+<input type="text" id="pfSurgeon"
+placeholder="Surgeon"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Surgery date / DOS</strong></label><br>
+<input type="date" id="pfDOS"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Planned surgical setting</strong></label><br>
+<select id="pfSetting"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Select</option>
+<option value="Outpatient">Outpatient</option>
+<option value="Inpatient">Inpatient</option>
+<option value="Observation">Observation</option>
+<option value="Higher-level-of-care review">Higher-level-of-care review</option>
+</select>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>RN Preoperative Review</h3>
+
+<label><strong>Medication reconciliation complete</strong></label><br>
+<select id="rnMeds"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Select</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+<option value="Pending">Pending</option>
+</select>
+
+<label><strong>Allergies verified</strong></label><br>
+<select id="rnAllergies"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Select</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+
+<label><strong>Recent ER visit / hospitalization</strong></label><br>
+<select id="rnRecentHospital"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Active infection / wound concern</strong></label><br>
+<select id="rnInfection"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+<option value="Uncertain">Uncertain</option>
+</select>
+
+<label><strong>Anticoagulant / antiplatelet medication</strong></label><br>
+<select id="rnAnticoag"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Medication hold instructions confirmed</strong></label><br>
+<select id="rnHold"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Not applicable / Select</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+<option value="Pending">Pending</option>
+</select>
+
+<label><strong>Required records received</strong></label><br>
+<select id="rnRecords"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Select</option>
+<option value="Complete">Complete</option>
+<option value="Incomplete">Incomplete</option>
+<option value="Pending">Pending</option>
+</select>
+
+<label><strong>RN issues / pending items</strong></label><br>
+<textarea id="rnIssues"
+rows="4"
+placeholder="Missing records, medication questions, abnormal findings, communication needs..."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Provider Preoperative Review</h3>
+
+<label><strong>DASI score</strong></label><br>
+<input type="number" id="prDASI" step="0.1"
+placeholder="Enter score"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>RCRI score</strong></label><br>
+<input type="number" id="prRCRI" min="0" max="6"
+placeholder="Enter score"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>STOP-BANG score</strong></label><br>
+<input type="number" id="prSTOPBANG" min="0" max="8"
+placeholder="Enter score"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Clinical Frailty Scale</strong></label><br>
+<input type="number" id="prCFS" min="1" max="9"
+placeholder="Enter score"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Surgical risk</strong></label><br>
+<select id="prSurgicalRisk"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Select</option>
+<option value="Low">Low</option>
+<option value="Intermediate">Intermediate</option>
+<option value="High">High</option>
+</select>
+
+<label><strong>Active cardiac problem</strong></label><br>
+<select id="prCardiac"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>BNP screening indicated</strong></label><br>
+<select id="prBNP"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Select</option>
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+<option value="Completed">Completed</option>
+</select>
+
+<label><strong>Pulmonary risk concern</strong></label><br>
+<select id="prPulmonary"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Abnormal labs requiring action</strong></label><br>
+<select id="prLabs"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Provider findings / optimization plan</strong></label><br>
+<textarea id="prPlan"
+rows="6"
+placeholder="Relevant diagnoses, abnormal labs, medication issues, testing, referrals, optimization actions..."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Anesthesia Review</h3>
+
+<label><strong>Prior difficult airway / failed intubation</strong></label><br>
+<select id="anAirway"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Prior major anesthesia complication</strong></label><br>
+<select id="anComplication"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Malignant hyperthermia history / family history</strong></label><br>
+<select id="anMH"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Severe OSA / PAP intolerance</strong></label><br>
+<select id="anOSA"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Significant pulmonary disease / oxygen dependence</strong></label><br>
+<select id="anPulmonary"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Pulmonary hypertension / RV concern</strong></label><br>
+<select id="anPH"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Pacemaker / ICD management issue</strong></label><br>
+<select id="anDevice"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Neuraxial anticoagulation timing concern</strong></label><br>
+<select id="anAnticoag"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>GLP-1 / aspiration concern</strong></label><br>
+<select id="anGLP1"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Insulin pump / perioperative insulin issue</strong></label><br>
+<select id="anInsulin"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Anesthesia comments / recommendations</strong></label><br>
+<textarea id="anComments"
+rows="5"
+placeholder="Airway, venue, monitoring, medication, anesthetic or escalation recommendations..."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Final Readiness</h3>
+
+<label><strong>Final Preoperative Optimization Status</strong></label><br>
+<select id="pfStatus"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Select</option>
+<option value="Optimized">Optimized</option>
+<option value="Pending">Pending</option>
+<option value="Not optimized">Not optimized</option>
+</select>
+
+<label><strong>Reason / unresolved items</strong></label><br>
+<textarea id="pfReason"
+rows="5"
+placeholder="Reason for Pending or Not optimized; unresolved items; final considerations..."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+<button type="button" id="pfGenerate"
+style="
+background:#17324d;
+color:white;
+border:none;
+padding:14px 20px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;
+">
+Generate Patient Summary
+</button>
+
+<button type="button" id="pfCopy"
+style="
+background:#274c6b;
+color:white;
+border:none;
+padding:14px 20px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;
+">
+Copy Summary
+</button>
+
+<button type="button" id="pfPrint"
+style="
+background:#356f44;
+color:white;
+border:none;
+padding:14px 20px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;
+">
+Print Patient Form
+</button>
+
+<button type="button" id="pfClear"
+style="
+background:#8b2f2f;
+color:white;
+border:none;
+padding:14px 20px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;
+">
+Clear Patient Data
+</button>
+
+</div>
+
+
+<div id="pfSummary"
+style="
+display:none;
+margin-top:24px;
+padding:22px;
+background:white;
+border:1px solid #d8e1ec;
+border-radius:8px;
+">
+</div>
+
+</section>
+
+
+<style>
+
+@media print {
+
+    body * {
+        visibility: hidden !important;
+    }
+
+    #pfSummary,
+    #pfSummary * {
+        visibility: visible !important;
+    }
+
+    #pfSummary {
+        display:block !important;
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+        border:none;
+        padding:20px;
+        background:white;
+        color:black;
+        font-family:Arial, Helvetica, sans-serif;
+        font-size:12pt;
+        line-height:1.45;
+    }
+
+}
+
+</style>
+
+
 </main>
 
 <footer>
-Preoperative Optimization Handbook · Provider, RN & Anesthesia Questionnaires
+Preoperative Optimization Handbook · Interactive Preoperative Forms
 </footer>
+
+
+<script>
+
+function val(id) {
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : "";
+}
+
+function safe(v) {
+    return v && v !== "" ? v : "Not entered";
+}
+
+function yesOnly(label, id, array) {
+    if (val(id) === "Yes") {
+        array.push(label);
+    }
+}
+
+
+function generatePatientSummary() {
+
+    const name = safe(val("pfName"));
+    const dob = safe(val("pfDOB"));
+    const mrn = safe(val("pfMRN"));
+    const procedure = safe(val("pfProcedure"));
+    const surgeon = safe(val("pfSurgeon"));
+    const dos = safe(val("pfDOS"));
+    const setting = safe(val("pfSetting"));
+
+    const status = safe(val("pfStatus"));
+    const reason = safe(val("pfReason"));
+
+    let rnFlags = [];
+    let providerFlags = [];
+    let anesthesiaFlags = [];
+
+    if (val("rnMeds") === "No" || val("rnMeds") === "Pending") {
+        rnFlags.push("Medication reconciliation incomplete/pending");
+    }
+
+    if (val("rnRecentHospital") === "Yes") {
+        rnFlags.push("Recent ER visit or hospitalization");
+    }
+
+    if (val("rnInfection") === "Yes" || val("rnInfection") === "Uncertain") {
+        rnFlags.push("Active or possible infection/wound concern");
+    }
+
+    if (val("rnAnticoag") === "Yes") {
+        rnFlags.push("Anticoagulant/antiplatelet medication present");
+    }
+
+    if (val("rnHold") === "No" || val("rnHold") === "Pending") {
+        rnFlags.push("Medication hold instructions unresolved");
+    }
+
+    if (val("rnRecords") === "Incomplete" || val("rnRecords") === "Pending") {
+        rnFlags.push("Required records incomplete/pending");
+    }
+
+
+    if (val("prCardiac") === "Yes") {
+        providerFlags.push("Active cardiac concern");
+    }
+
+    if (val("prPulmonary") === "Yes") {
+        providerFlags.push("Pulmonary risk concern");
+    }
+
+    if (val("prLabs") === "Yes") {
+        providerFlags.push("Abnormal laboratory finding requiring action");
+    }
+
+
+    yesOnly("Prior difficult airway / failed intubation", "anAirway", anesthesiaFlags);
+    yesOnly("Prior major anesthesia complication", "anComplication", anesthesiaFlags);
+    yesOnly("Malignant hyperthermia concern", "anMH", anesthesiaFlags);
+    yesOnly("Severe OSA / PAP intolerance", "anOSA", anesthesiaFlags);
+    yesOnly("Significant pulmonary disease / oxygen dependence", "anPulmonary", anesthesiaFlags);
+    yesOnly("Pulmonary hypertension / RV concern", "anPH", anesthesiaFlags);
+    yesOnly("Pacemaker / ICD management issue", "anDevice", anesthesiaFlags);
+    yesOnly("Neuraxial anticoagulation timing concern", "anAnticoag", anesthesiaFlags);
+    yesOnly("GLP-1 / aspiration concern", "anGLP1", anesthesiaFlags);
+    yesOnly("Insulin pump / perioperative insulin concern", "anInsulin", anesthesiaFlags);
+
+
+    let html = "";
+
+    html += "<h2>Patient Preoperative Assessment Summary</h2>";
+
+    html += "<p>";
+    html += "<strong>Patient:</strong> " + name + "<br>";
+    html += "<strong>DOB:</strong> " + dob + "<br>";
+    html += "<strong>MRN / Patient ID:</strong> " + mrn + "<br>";
+    html += "<strong>Procedure:</strong> " + procedure + "<br>";
+    html += "<strong>Surgeon:</strong> " + surgeon + "<br>";
+    html += "<strong>Date of Service / Surgery Date:</strong> " + dos + "<br>";
+    html += "<strong>Planned Setting:</strong> " + setting;
+    html += "</p>";
+
+    html += "<hr>";
+
+    html += "<h3>RN Preoperative Review</h3>";
+
+    html += "<p>";
+    html += "Medication reconciliation: " + safe(val("rnMeds")) + "<br>";
+    html += "Allergies verified: " + safe(val("rnAllergies")) + "<br>";
+    html += "Recent ER/hospitalization: " + safe(val("rnRecentHospital")) + "<br>";
+    html += "Infection/wound concern: " + safe(val("rnInfection")) + "<br>";
+    html += "Anticoagulant/antiplatelet: " + safe(val("rnAnticoag")) + "<br>";
+    html += "Medication hold instructions: " + safe(val("rnHold")) + "<br>";
+    html += "Records: " + safe(val("rnRecords")) + "<br>";
+    html += "RN issues/pending items: " + safe(val("rnIssues"));
+    html += "</p>";
+
+    if (rnFlags.length > 0) {
+        html += "<p><strong>RN Flags:</strong></p><ul>";
+        rnFlags.forEach(function(x) {
+            html += "<li>" + x + "</li>";
+        });
+        html += "</ul>";
+    }
+
+
+    html += "<h3>Provider Assessment</h3>";
+
+    html += "<p>";
+    html += "DASI: " + safe(val("prDASI")) + "<br>";
+    html += "RCRI: " + safe(val("prRCRI")) + "<br>";
+    html += "STOP-BANG: " + safe(val("prSTOPBANG")) + "<br>";
+    html += "CFS: " + safe(val("prCFS")) + "<br>";
+    html += "Surgical Risk: " + safe(val("prSurgicalRisk")) + "<br>";
+    html += "Active Cardiac Problem: " + safe(val("prCardiac")) + "<br>";
+    html += "BNP Screening: " + safe(val("prBNP")) + "<br>";
+    html += "Pulmonary Risk Concern: " + safe(val("prPulmonary")) + "<br>";
+    html += "Abnormal Labs Requiring Action: " + safe(val("prLabs")) + "<br>";
+    html += "Provider Optimization Plan: " + safe(val("prPlan"));
+    html += "</p>";
+
+    if (providerFlags.length > 0) {
+        html += "<p><strong>Provider Flags:</strong></p><ul>";
+        providerFlags.forEach(function(x) {
+            html += "<li>" + x + "</li>";
+        });
+        html += "</ul>";
+    }
+
+
+    html += "<h3>Anesthesia Review</h3>";
+
+    if (anesthesiaFlags.length > 0) {
+
+        html += "<ul>";
+
+        anesthesiaFlags.forEach(function(x) {
+            html += "<li>" + x + "</li>";
+        });
+
+        html += "</ul>";
+
+    } else {
+
+        html += "<p>No anesthesia-specific trigger selected.</p>";
+    }
+
+    html += "<p><strong>Anesthesia Comments:</strong> " +
+        safe(val("anComments")) +
+        "</p>";
+
+
+    html += "<hr>";
+
+    html += "<h3>FINAL PREOPERATIVE OPTIMIZATION STATUS</h3>";
+
+    html += "<p><strong>" + status + "</strong></p>";
+
+    html += "<p><strong>Reason:</strong> " + reason + "</p>";
+
+
+    if (status === "Optimized") {
+
+        html +=
+            "<p><strong>Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time.</strong></p>";
+    }
+
+
+    html +=
+        "<p style='margin-top:30px;'>Generated from the Preoperative Optimization Handbook patient-specific workflow. Final clinical decisions remain subject to provider, anesthesia, surgeon and institutional requirements.</p>";
+
+
+    const box = document.getElementById("pfSummary");
+
+    box.innerHTML = html;
+
+    box.style.display = "block";
+
+    box.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+async function copyPatientSummary() {
+
+    const box = document.getElementById("pfSummary");
+
+    if (box.style.display === "none" || box.innerText.trim() === "") {
+        generatePatientSummary();
+    }
+
+    const text =
+        document.getElementById("pfSummary").innerText;
+
+    try {
+
+        await navigator.clipboard.writeText(text);
+
+        alert("Patient summary copied.");
+
+    } catch (err) {
+
+        const textarea =
+            document.createElement("textarea");
+
+        textarea.value = text;
+
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+
+        document.body.appendChild(textarea);
+
+        textarea.select();
+
+        document.execCommand("copy");
+
+        document.body.removeChild(textarea);
+
+        alert("Patient summary copied.");
+    }
+}
+
+
+function printPatientSummary() {
+
+    const box = document.getElementById("pfSummary");
+
+    if (box.style.display === "none" || box.innerText.trim() === "") {
+        generatePatientSummary();
+    }
+
+    setTimeout(function() {
+        window.print();
+    }, 150);
+}
+
+
+function clearPatientData() {
+
+    const ok = confirm(
+        "Clear all patient-specific information from this form?"
+    );
+
+    if (!ok) return;
+
+    document
+        .querySelectorAll(
+            "#interactivePreopForms input, #interactivePreopForms textarea"
+        )
+        .forEach(function(el) {
+
+            if (
+                el.type === "checkbox" ||
+                el.type === "radio"
+            ) {
+                el.checked = false;
+            } else {
+                el.value = "";
+            }
+
+        });
+
+
+    document
+        .querySelectorAll(
+            "#interactivePreopForms select"
+        )
+        .forEach(function(el) {
+            el.selectedIndex = 0;
+        });
+
+
+    const box =
+        document.getElementById("pfSummary");
+
+    box.innerHTML = "";
+    box.style.display = "none";
+
+    window.scrollTo({
+        top: document.getElementById(
+            "interactivePreopForms"
+        ).offsetTop,
+        behavior: "smooth"
+    });
+}
+
+
+document
+    .getElementById("pfGenerate")
+    .addEventListener(
+        "click",
+        generatePatientSummary
+    );
+
+document
+    .getElementById("pfCopy")
+    .addEventListener(
+        "click",
+        copyPatientSummary
+    );
+
+document
+    .getElementById("pfPrint")
+    .addEventListener(
+        "click",
+        printPatientSummary
+    );
+
+document
+    .getElementById("pfClear")
+    .addEventListener(
+        "click",
+        clearPatientData
+    );
+
+</script>
 
 </body>
 </html>

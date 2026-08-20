@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Preoperative Handbook Audit Center</title>
+
+<style>
+:root {
+  --bg: #f4f7fb;
+  --card: #ffffff;
+  --text: #172033;
+  --muted: #667085;
+  --border: #d9e1ec;
+  --accent: #1d4ed8;
+  --good: #157347;
+  --warn: #9a6700;
+  --bad: #b42318;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+header {
+  background: linear-gradient(135deg, #173b75, #2457a6);
+  color: white;
+  padding: 28px 18px;
+}
+
+.wrap {
+  max-width: 1100px;
+  margin: auto;
+}
+
+header h1 {
+  margin: 0 0 6px;
+  font-size: 28px;
+}
+
+header p {
+  margin: 0;
+  opacity: .92;
+}
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px 14px 60px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 7px rgba(0,0,0,.04);
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 21px;
+}
+
+button {
+  border: 0;
+  border-radius: 9px;
+  padding: 11px 15px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  margin: 4px 5px 4px 0;
+}
+
+.primary {
+  background: var(--accent);
+  color: white;
+}
+
+.secondary {
+  background: #e8eef8;
+  color: #173b75;
+}
+
+.danger {
+  background: #fee4e2;
+  color: var(--bad);
+}
+
+.good {
+  background: #dcfae6;
+  color: var(--good);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.stat {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+  background: #fafcff;
+}
+
+.stat strong {
+  display: block;
+  font-size: 28px;
+}
+
+.stat span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.score {
+  font-size: 42px;
+  font-weight: 800;
+}
+
+.scoreLabel {
+  color: var(--muted);
+}
+
+.progress {
+  width: 100%;
+  height: 14px;
+  background: #e7ebf1;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progressBar {
+  width: 0%;
+  height: 100%;
+  background: #1d4ed8;
+  transition: width .4s ease;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th, td {
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  padding: 10px 8px;
+  vertical-align: top;
+}
+
+th {
+  background: #f7f9fc;
+}
+
+.ok {
+  color: var(--good);
+  font-weight: 700;
+}
+
+.warn {
+  color: var(--warn);
+  font-weight: 700;
+}
+
+.bad {
+  color: var(--bad);
+  font-weight: 700;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  word-break: break-all;
+}
+
+textarea {
+  width: 100%;
+  min-height: 210px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  resize: vertical;
+}
+
+.notice {
+  background: #eef4ff;
+  border-left: 4px solid #2457a6;
+  padding: 12px 14px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+}
+
+.small {
+  font-size: 13px;
+}
+
+#loading {
+  display: none;
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+.homeLink {
+  display: inline-block;
+  color: white;
+  margin-top: 14px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.filterRow {
+  margin-bottom: 12px;
+}
+
+.filterRow button {
+  font-size: 13px;
+  padding: 8px 11px;
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  th, td {
+    padding: 8px 5px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Preoperative Handbook Audit Center</h1>
+    <p>Website integrity, page inventory, link verification and missing-page review</p>
+    <a class="homeLink" href="index.html">← Return to Handbook</a>
+  </div>
+</header>
+
+<main>
+
+<section class="card">
+  <h2>Handbook Audit</h2>
+
+  <div class="notice">
+    This tool reviews links found in <strong>index.html</strong>. It identifies handbook pages that load successfully, missing or broken pages, duplicate links, empty links, anchor links and external resources.
+  </div>
+
+  <button class="primary" onclick="runAudit()">Run Full Audit</button>
+  <button class="secondary" onclick="location.reload()">Reset</button>
+
+  <div id="loading">Auditing handbook pages…</div>
+</section>
+
+<section class="card">
+  <h2>Audit Score</h2>
+
+  <div class="score" id="auditScore">—</div>
+  <div class="scoreLabel">Handbook link integrity score</div>
+
+  <div class="progress">
+    <div class="progressBar" id="progressBar"></div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Summary</h2>
+
+  <div class="grid">
+    <div class="stat">
+      <strong id="totalCount">0</strong>
+      <span>Total Links</span>
+    </div>
+
+    <div class="stat">
+      <strong id="goodCount">0</strong>
+      <span>Working Pages</span>
+    </div>
+
+    <div class="stat">
+      <strong id="missingCount">0</strong>
+      <span>Missing / Broken</span>
+    </div>
+
+    <div class="stat">
+      <strong id="duplicateCount">0</strong>
+      <span>Duplicate Links</span>
+    </div>
+
+    <div class="stat">
+      <strong id="externalCount">0</strong>
+      <span>External Links</span>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Page Audit Results</h2>
+
+  <div class="filterRow">
+    <button class="secondary" onclick="showFilter('all')">All</button>
+    <button class="good" onclick="showFilter('working')">Working</button>
+    <button class="danger" onclick="showFilter('missing')">Missing</button>
+    <button class="secondary" onclick="showFilter('external')">External</button>
+    <button class="secondary" onclick="showFilter('duplicate')">Duplicates</button>
+  </div>
+
+  <div style="overflow-x:auto">
+    <table>
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Link Text</th>
+          <th>File / URL</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+
+      <tbody id="auditBody">
+        <tr>
+          <td colspan="4" class="muted">
+            Run the audit to populate results.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Missing-Page Report</h2>
+
+  <p class="small muted">
+    Use this list to identify handbook pages that still need to be created, renamed or linked correctly.
+  </p>
+
+  <textarea id="missingReport" readonly>
+Run the audit to generate the missing-page report.
+  </textarea>
+
+  <br>
+
+  <button class="primary" onclick="copyMissingReport()">
+    Copy Missing-Page Report
+  </button>
+</section>
+
+<section class="card">
+  <h2>Handbook File Inventory</h2>
+
+  <p class="small muted">
+    This inventory is created from internal HTML links detected in the handbook index.
+  </p>
+
+  <textarea id="inventoryReport" readonly>
+Run the audit to generate the handbook inventory.
+  </textarea>
+
+  <br>
+
+  <button class="secondary" onclick="copyInventory()">
+    Copy File Inventory
+  </button>
+</section>
+
+<section class="card">
+  <h2>Audit Interpretation</h2>
+
+  <p><strong>Working:</strong> The linked handbook page was successfully located.</p>
+  <p><strong>Missing:</strong> The page could not be found or returned an error. Verify the filename and capitalization or create the missing HTML file.</p>
+  <p><strong>Duplicate:</strong> The same destination appears more than once in the handbook index. Some duplicates may be intentional.</p>
+  <p><strong>External:</strong> The link points outside the handbook and is listed separately from internal page integrity scoring.</p>
+  <p><strong>Anchor:</strong> The link points to another section on the same page and does not require a separate HTML file.</p>
+</section>
+
+</main>
+
+<script>
+let auditResults = [];
+let currentFilter = "all";
+
+async function runAudit() {
+  const loading = document.getElementById("loading");
+  loading.style.display = "block";
+  auditResults = [];
+
+  try {
+    const response = await fetch(
+      "index.html?audit=" + Date.now(),
+      { cache: "no-store" }
+    );
+
+    if (!response.ok) {
+      throw new Error("Unable to load index.html");
+    }
+
+    const html = await response.text();
+    const parser = new DOMParser();
+    const documentCopy = parser.parseFromString(html, "text/html");
+    const links = Array.from(documentCopy.querySelectorAll("a"));
+    const seen = {};
+
+    for (const link of links) {
+      const hrefRaw = (link.getAttribute("href") || "").trim();
+      const text = (link.textContent || "")
+        .replace(/\s+/g, " ")
+        .trim() || "(No link text)";
+
+      if (!hrefRaw) {
+        auditResults.push({
+          text,
+          href: "",
+          status: "missing",
+          type: "Empty link",
+          duplicate: false
+        });
+        continue;
+      }
+
+      if (hrefRaw.startsWith("#")) {
+        auditResults.push({
+          text,
+          href: hrefRaw,
+          status: "anchor",
+          type: "Page anchor",
+          duplicate: false
+        });
+        continue;
+      }
+
+      if (
+        hrefRaw.startsWith("mailto:") ||
+        hrefRaw.startsWith("tel:")
+      ) {
+        auditResults.push({
+          text,
+          href: hrefRaw,
+          status: "external",
+          type: "Contact link",
+          duplicate: false
+        });
+        continue;
+      }
+
+      if (hrefRaw.startsWith("javascript:")) {
+        auditResults.push({
+          text,
+          href: hrefRaw,
+          status: "anchor",
+          type: "JavaScript action",
+          duplicate: false
+        });
+        continue;
+      }
+
+      if (
+        hrefRaw.startsWith("http://") ||
+        hrefRaw.startsWith("https://")
+      ) {
+        auditResults.push({
+          text,
+          href: hrefRaw,
+          status: "external",
+          type: "External resource",
+          duplicate: false
+        });
+        continue;
+      }
+
+      let cleaned = hrefRaw.split("#")[0].split("?")[0];
+
+      if (!cleaned) {
+        auditResults.push({
+          text,
+          href: hrefRaw,
+          status: "anchor",
+          type: "Page anchor",
+          duplicate: false
+        });
+        continue;
+      }
+
+      const duplicate = Boolean(seen[cleaned]);
+      seen[cleaned] = true;
+
+      let status = "working";
+
+      try {
+        const check = await fetch(
+          cleaned + "?audit=" + Date.now(),
+          { cache: "no-store" }
+        );
+
+        if (!check.ok) {
+          status = "missing";
+        }
+      } catch (error) {
+        status = "missing";
+      }
+
+      auditResults.push({
+        text,
+        href: cleaned,
+        status,
+        type: duplicate
+          ? "Duplicate internal page"
+          : "Internal page",
+        duplicate
+      });
+    }
+
+    renderAudit();
+    generateMissingReport();
+    generateInventory();
+
+  } catch (error) {
+    alert(
+      "Audit could not run. Make sure index.html and audit.html are published in the same GitHub Pages folder."
+    );
+    console.error(error);
+  } finally {
+    loading.style.display = "none";
+  }
+}
+
+function renderAudit() {
+  let totalInternal = 0;
+  let working = 0;
+  let missing = 0;
+  let duplicates = 0;
+  let external = 0;
+
+  auditResults.forEach(result => {
+    if (
+      result.status === "working" ||
+      result.status === "missing"
+    ) {
+      totalInternal++;
+    }
+
+    if (result.status === "working") working++;
+    if (result.status === "missing") missing++;
+    if (result.duplicate) duplicates++;
+    if (result.status === "external") external++;
+  });
+
+  document.getElementById("totalCount").textContent = auditResults.length;
+  document.getElementById("goodCount").textContent = working;
+  document.getElementById("missingCount").textContent = missing;
+  document.getElementById("duplicateCount").textContent = duplicates;
+  document.getElementById("externalCount").textContent = external;
+
+  let score = 100;
+
+  if (totalInternal > 0) {
+    score = Math.round((working / totalInternal) * 100);
+  }
+
+  document.getElementById("auditScore").textContent = score + "%";
+  document.getElementById("progressBar").style.width = score + "%";
+
+  showFilter(currentFilter);
+}
+
+function showFilter(filter) {
+  currentFilter = filter;
+  const body = document.getElementById("auditBody");
+  body.innerHTML = "";
+
+  const filtered = auditResults.filter(result => {
+    if (filter === "all") return true;
+    if (filter === "working") return result.status === "working";
+    if (filter === "missing") return result.status === "missing";
+    if (filter === "external") return result.status === "external";
+    if (filter === "duplicate") return result.duplicate;
+    return true;
+  });
+
+  if (!filtered.length) {
+    body.innerHTML = `
+      <tr>
+        <td colspan="4" class="muted">
+          No results in this category.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  filtered.forEach(result => {
+    const row = document.createElement("tr");
+
+    let label = "";
+    let cssClass = "";
+
+    if (result.status === "working") {
+      label = "✓ Working";
+      cssClass = "ok";
+    } else if (result.status === "missing") {
+      label = "✕ Missing";
+      cssClass = "bad";
+    } else if (result.status === "external") {
+      label = "External";
+      cssClass = "warn";
+    } else {
+      label = "Anchor";
+      cssClass = "muted";
+    }
+
+    if (result.duplicate) {
+      label += " / Duplicate";
+    }
+
+    row.innerHTML = `
+      <td class="${cssClass}">
+        ${escapeHTML(label)}
+      </td>
+      <td>
+        ${escapeHTML(result.text)}
+      </td>
+      <td class="code">
+        ${escapeHTML(result.href)}
+      </td>
+      <td>
+        ${escapeHTML(result.type)}
+      </td>
+    `;
+
+    body.appendChild(row);
+  });
+}
+
+function generateMissingReport() {
+  const missing = auditResults.filter(
+    item => item.status === "missing"
+  );
+
+  let report =
+`PREOPERATIVE HANDBOOK
+MISSING-PAGE AUDIT REPORT
+
+Generated:
+${new Date().toLocaleString()}
+
+----------------------------------------
+SUMMARY
+----------------------------------------
+
+Total links reviewed:
+${auditResults.length}
+
+Missing or broken links:
+${missing.length}
+
+----------------------------------------
+MISSING / BROKEN PAGES
+----------------------------------------
+
+`;
+
+  if (!missing.length) {
+    report += "No missing handbook pages detected.\n";
+  } else {
+    missing.forEach((item, index) => {
+      report +=
+`${index + 1}. ${item.text}
+File: ${item.href || "(empty link)"}
+
+`;
+    });
+  }
+
+  document.getElementById("missingReport").value = report;
+}
+
+function generateInventory() {
+  const files = auditResults
+    .filter(
+      item =>
+        (
+          item.status === "working" ||
+          item.status === "missing"
+        ) &&
+        item.href
+    )
+    .map(item => item.href);
+
+  const unique = [...new Set(files)]
+    .sort((a, b) => a.localeCompare(b));
+
+  let report =
+`PREOPERATIVE HANDBOOK
+HTML FILE INVENTORY
+
+Generated:
+${new Date().toLocaleString()}
+
+Total unique internal files:
+${unique.length}
+
+----------------------------------------
+FILES
+----------------------------------------
+
+`;
+
+  unique.forEach((file, index) => {
+    report += `${index + 1}. ${file}\n`;
+  });
+
+  document.getElementById("inventoryReport").value = report;
+}
+
+async function copyMissingReport() {
+  const box = document.getElementById("missingReport");
+
+  try {
+    await navigator.clipboard.writeText(box.value);
+    alert("Missing-page report copied.");
+  } catch (error) {
+    box.select();
+    document.execCommand("copy");
+    alert("Missing-page report copied.");
+  }
+}
+
+async function copyInventory() {
+  const box = document.getElementById("inventoryReport");
+
+  try {
+    await navigator.clipboard.writeText(box.value);
+    alert("Handbook file inventory copied.");
+  } catch (error) {
+    box.select();
+    document.execCommand("copy");
+    alert("Handbook file inventory copied.");
+  }
+}
+
+function escapeHTML(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+</script>
+
+</body>
+</html>

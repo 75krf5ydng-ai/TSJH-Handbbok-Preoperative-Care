@@ -1041,7 +1041,647 @@ surgery on scheduled surgery date at this time.
 <li>Final status should be Optimized, Pending or Not optimized.</li>
 </ul>
 </section>
+<!-- =========================================================
+     INTERACTIVE PROVIDER OPTIMIZATION WORKFLOW
+========================================================= -->
 
+<section id="providerWorkflowInteractive">
+
+<h2>Interactive Provider Optimization Workflow</h2>
+
+<p>
+Use this patient-specific workflow to confirm preoperative medical review,
+identify unresolved issues, assign escalation needs, and generate the final
+preoperative optimization status.
+</p>
+
+<div class="formula-box">
+
+<h3>Patient / Procedure</h3>
+
+<label><strong>Patient</strong></label><br>
+<input type="text" id="pwPatient"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Procedure</strong></label><br>
+<input type="text" id="pwProcedure"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Surgeon</strong></label><br>
+<input type="text" id="pwSurgeon"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Surgery Date / Date of Service</strong></label><br>
+<input type="date" id="pwDOS"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Functional & Risk Screening</h3>
+
+<label><strong>DASI score</strong></label><br>
+<input type="number" step="0.01" id="pwDASI"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>RCRI points</strong></label><br>
+<input type="number" min="0" id="pwRCRI"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>STOP-BANG total</strong></label><br>
+<input type="number" min="0" max="8" id="pwSTOP"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>CFS</strong></label><br>
+<input type="number" min="1" max="9" id="pwCFS"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Preoperative Cardiac Guidelines Application</h3>
+
+<label><strong>Surgical risk</strong></label><br>
+<select id="pwSurgicalRisk"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Select</option>
+<option value="Low">Low (&lt;1%)</option>
+<option value="Intermediate">Intermediate (1–5%)</option>
+<option value="High">High (&gt;5%)</option>
+</select>
+
+<label><strong>Active cardiac problem?</strong></label><br>
+<select id="pwActiveCardiac"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>BNP / NT-proBNP screening indicated?</strong></label><br>
+<select id="pwBNP"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+<option value="completed">Completed / reviewed</option>
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Provider Review</h3>
+
+<label><strong>Active medical instability?</strong></label><br>
+<select id="pwUnstable"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>Vitals reviewed and acceptable?</strong></label><br>
+<select id="pwVitals"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>Labs reviewed and clinically meaningful abnormalities addressed?</strong></label><br>
+<select id="pwLabs"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>EKG reviewed when indicated?</strong></label><br>
+<select id="pwEKG"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>Required testing completed and reviewed?</strong></label><br>
+<select id="pwTesting"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Medication / Specialty / Anesthesia Closure</h3>
+
+<label><strong>Required medication holds verified?</strong></label><br>
+<select id="pwMeds"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+<label><strong>Required specialist recommendations reviewed?</strong></label><br>
+<select id="pwSpecialist"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+<label><strong>Anesthesia review completed when required?</strong></label><br>
+<select id="pwAnesthesia"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+<label><strong>Venue / HLOC determination finalized?</strong></label><br>
+<select id="pwVenue"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Postoperative Planning</h3>
+
+<label><strong>Cardiac surveillance plan established if indicated?</strong></label><br>
+<select id="pwCardiacMonitor"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>Respiratory / OSA monitoring plan established if indicated?</strong></label><br>
+<select id="pwRespMonitor"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>Mobility / disposition plan appropriate?</strong></label><br>
+<select id="pwDisposition"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Pending Item Closure</h3>
+
+<label><strong>Any clinically meaningful item still pending?</strong></label><br>
+<select id="pwPending"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>Pending item / owner / closure plan</strong></label><br>
+<textarea id="pwPendingDetails"
+rows="5"
+placeholder="Example: repeat K pending; owner SPA; cardiology note requested; anesthesia review scheduled..."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+<label><strong>Additional provider comments</strong></label><br>
+<textarea id="pwComments"
+rows="5"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<div class="formula-box">
+
+<button type="button" id="pwGenerate"
+style="background:#17324d;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Generate Provider Optimization Summary
+</button>
+
+<button type="button" id="pwCopy"
+style="background:#2f6fb0;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Copy Summary
+</button>
+
+<button type="button" id="pwPrint"
+style="background:#356f44;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Print
+</button>
+
+<button type="button" id="pwClear"
+style="background:#8b2f2f;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Clear
+</button>
+
+</div>
+
+
+<div id="pwResult"
+class="formula-box"
+style="display:none;margin-top:20px;">
+</div>
+
+
+<script>
+
+function pwVal(id) {
+  const el = document.getElementById(id);
+  return el ? el.value : "";
+}
+
+
+function generateProviderWorkflow() {
+
+  const pending = [];
+  const stop = [];
+
+  if (pwVal("pwUnstable") === "yes") {
+    stop.push(
+      "Active or unstable medical condition requires evaluation and treatment before elective surgery."
+    );
+  }
+
+  if (pwVal("pwActiveCardiac") === "yes") {
+    pending.push(
+      "Active cardiac problem requires appropriate cardiovascular evaluation before final optimization."
+    );
+  }
+
+  const checks = [
+    ["pwVitals","Vitals require additional review or optimization."],
+    ["pwLabs","Clinically meaningful laboratory abnormality remains unresolved."],
+    ["pwEKG","Required EKG remains incomplete or unreviewed."],
+    ["pwTesting","Required testing remains incomplete or unreviewed."],
+    ["pwMeds","Required perioperative medication hold plan remains unresolved."],
+    ["pwSpecialist","Required specialist recommendation remains outstanding."],
+    ["pwAnesthesia","Required anesthesia review remains incomplete."],
+    ["pwVenue","Venue / higher-level-of-care determination remains unresolved."],
+    ["pwCardiacMonitor","Required postoperative cardiac surveillance plan remains incomplete."],
+    ["pwRespMonitor","Required postoperative respiratory monitoring plan remains incomplete."],
+    ["pwDisposition","Required mobility / disposition planning remains unresolved."]
+  ];
+
+  checks.forEach(function(item) {
+    if (pwVal(item[0]) === "no") {
+      pending.push(item[1]);
+    }
+  });
+
+
+  if (
+    pwVal("pwBNP") === "yes"
+  ) {
+    pending.push(
+      "BNP / NT-proBNP screening is indicated and should be completed/reviewed according to the perioperative cardiac-surveillance pathway."
+    );
+  }
+
+
+  if (
+    pwVal("pwPending") === "yes"
+  ) {
+    pending.push(
+      "One or more clinically meaningful preoperative items remain pending."
+    );
+  }
+
+
+  let status = "Optimized";
+  let reason =
+    "No unresolved medical optimization, testing, medication, specialist, anesthesia, venue, monitoring, or disposition issue identified.";
+
+  if (stop.length > 0) {
+    status = "Not optimized";
+    reason = stop.join(" ");
+  }
+  else if (pending.length > 0) {
+    status = "Pending";
+    reason = pending.join(" ");
+  }
+
+
+  let html = "";
+
+  html += "<h2>Provider Optimization Summary</h2>";
+
+  if (pwVal("pwPatient")) {
+    html +=
+      "<strong>Patient:</strong> " +
+      pwVal("pwPatient") +
+      "<br>";
+  }
+
+  if (pwVal("pwProcedure")) {
+    html +=
+      "<strong>Procedure:</strong> " +
+      pwVal("pwProcedure") +
+      "<br>";
+  }
+
+  if (pwVal("pwSurgeon")) {
+    html +=
+      "<strong>Surgeon:</strong> " +
+      pwVal("pwSurgeon") +
+      "<br>";
+  }
+
+  if (pwVal("pwDOS")) {
+    html +=
+      "<strong>Date of Service / Surgery Date:</strong> " +
+      pwVal("pwDOS") +
+      "<br>";
+  }
+
+
+  html +=
+    "<h3>Functional & Risk Screening</h3>";
+
+  html +=
+    "<p>" +
+    "<strong>DASI:</strong> " +
+    (pwVal("pwDASI") || "—") +
+    "<br>" +
+    "<strong>RCRI:</strong> " +
+    (pwVal("pwRCRI") || "—") +
+    "<br>" +
+    "<strong>STOP-BANG:</strong> " +
+    (pwVal("pwSTOP") || "—") +
+    "<br>" +
+    "<strong>CFS:</strong> " +
+    (pwVal("pwCFS") || "—") +
+    "</p>";
+
+
+  html +=
+    "<h3>Preoperative Cardiac Guidelines Application</h3>";
+
+  html +=
+    "<p>" +
+    "<strong>Surgical Risk:</strong> " +
+    (pwVal("pwSurgicalRisk") || "—") +
+    "<br>" +
+    "<strong>RCRI:</strong> " +
+    (pwVal("pwRCRI") || "—") +
+    "<br>" +
+    "<strong>Active Cardiac Problems:</strong> " +
+    (pwVal("pwActiveCardiac") === "yes" ? "Yes" : "No") +
+    "<br>" +
+    "<strong>BNP screening:</strong> " +
+    (
+      pwVal("pwBNP") === "no"
+        ? "No"
+        : "Yes"
+    ) +
+    "</p>";
+
+
+  if (stop.length > 0) {
+    html +=
+      "<h3>Active Medical Issue</h3><ul>";
+
+    stop.forEach(function(item) {
+      html += "<li>" + item + "</li>";
+    });
+
+    html += "</ul>";
+  }
+
+
+  if (pending.length > 0) {
+    html +=
+      "<h3>Risk Stratification & Medical Optimization</h3><ol>";
+
+    pending.forEach(function(item) {
+      html += "<li>" + item + "</li>";
+    });
+
+    html += "</ol>";
+  }
+
+
+  if (pwVal("pwPendingDetails")) {
+    html +=
+      "<h3>Pending Item / Owner / Closure Plan</h3><p>" +
+      pwVal("pwPendingDetails") +
+      "</p>";
+  }
+
+
+  if (pwVal("pwComments")) {
+    html +=
+      "<h3>Additional Provider Comments</h3><p>" +
+      pwVal("pwComments") +
+      "</p>";
+  }
+
+
+  html += "<hr>";
+
+  html +=
+    "<h3>FINAL PREOPERATIVE OPTIMIZATION STATUS</h3>";
+
+  html +=
+    "<p><strong>" +
+    status +
+    "</strong></p>";
+
+  html +=
+    "<p><strong>Reason:</strong> " +
+    reason +
+    "</p>";
+
+
+  if (status === "Optimized") {
+
+    html +=
+      "<div class='success-box'>" +
+      "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time." +
+      "</div>";
+
+  }
+
+
+  html += "<hr>";
+
+  html +=
+    "<h3>Copy-Ready Provider Documentation</h3>";
+
+  html +=
+    "<p>Preoperative medical evaluation and optimization reviewed. ";
+
+  html +=
+    "Functional & Risk Screening: DASI " +
+    (pwVal("pwDASI") || "—") +
+    ", RCRI " +
+    (pwVal("pwRCRI") || "—") +
+    ", STOP-BANG " +
+    (pwVal("pwSTOP") || "—") +
+    ", CFS " +
+    (pwVal("pwCFS") || "—") +
+    ". ";
+
+  html +=
+    "<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS: " +
+    status +
+    ".</strong> ";
+
+  if (status === "Optimized") {
+
+    html +=
+      "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time.";
+
+  } else {
+
+    html +=
+      "Reason: " +
+      reason;
+
+  }
+
+  html += "</p>";
+
+
+  const result =
+    document.getElementById("pwResult");
+
+  result.innerHTML = html;
+  result.style.display = "block";
+
+  result.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+}
+
+
+async function copyProviderWorkflow() {
+
+  generateProviderWorkflow();
+
+  const text =
+    document.getElementById("pwResult").innerText;
+
+  try {
+
+    await navigator.clipboard.writeText(text);
+
+    alert("Provider optimization summary copied.");
+
+  } catch (error) {
+
+    const temp =
+      document.createElement("textarea");
+
+    temp.value = text;
+
+    document.body.appendChild(temp);
+
+    temp.select();
+
+    document.execCommand("copy");
+
+    document.body.removeChild(temp);
+
+    alert("Provider optimization summary copied.");
+  }
+}
+
+
+function printProviderWorkflow() {
+
+  generateProviderWorkflow();
+
+  setTimeout(function() {
+    window.print();
+  },150);
+}
+
+
+function clearProviderWorkflow() {
+
+  if (
+    !confirm(
+      "Clear all patient-specific provider workflow information?"
+    )
+  ) {
+    return;
+  }
+
+  document
+    .querySelectorAll(
+      "#providerWorkflowInteractive input, #providerWorkflowInteractive textarea"
+    )
+    .forEach(function(el) {
+      el.value = "";
+    });
+
+  document
+    .querySelectorAll(
+      "#providerWorkflowInteractive select"
+    )
+    .forEach(function(el) {
+      el.selectedIndex = 0;
+    });
+
+  const result =
+    document.getElementById("pwResult");
+
+  result.innerHTML = "";
+  result.style.display = "none";
+}
+
+
+document
+  .getElementById("pwGenerate")
+  .addEventListener(
+    "click",
+    generateProviderWorkflow
+  );
+
+document
+  .getElementById("pwCopy")
+  .addEventListener(
+    "click",
+    copyProviderWorkflow
+  );
+
+document
+  .getElementById("pwPrint")
+  .addEventListener(
+    "click",
+    printProviderWorkflow
+  );
+
+document
+  .getElementById("pwClear")
+  .addEventListener(
+    "click",
+    clearProviderWorkflow
+  );
+
+</script>
+
+</section>
 </main>
 
 <footer>

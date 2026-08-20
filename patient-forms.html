@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient-Facing Preoperative & Anesthesia Questionnaires</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      background: #f4f7f9;
+      color: #1f2933;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #17324d;
+      color: white;
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+    }
+
+    header p {
+      margin: 0;
+    }
+
+    nav {
+      background: #ffffff;
+      padding: 12px 20px;
+      border-bottom: 1px solid #d9e2ec;
+      text-align: center;
+    }
+
+    nav a {
+      color: #17324d;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 7px;
+    }
+
+    main {
+      max-width: 1050px;
+      margin: 24px auto;
+      padding: 0 18px 40px;
+    }
+
+    section {
+      background: white;
+      margin-bottom: 22px;
+      padding: 24px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    h2 {
+      color: #17324d;
+      border-bottom: 2px solid #d9e2ec;
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      color: #274c6b;
+      margin-top: 22px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+    }
+
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #eaf0f5;
+      color: #17324d;
+    }
+
+    .form-box {
+      background: #fbfcfd;
+      border: 1px solid #d9e2ec;
+      border-radius: 8px;
+      padding: 18px;
+      margin: 16px 0;
+    }
+
+    .clinical-box {
+      background: #eef6fb;
+      border-left: 5px solid #3178a8;
+      padding: 15px;
+      margin: 16px 0;
+    }
+
+    .warning-box {
+      background: #fff5f5;
+      border-left: 5px solid #b42318;
+      padding: 15px;
+      margin: 16px 0;
+    }
+
+    .page-break {
+      margin-top: 35px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #52606d;
+      font-size: 0.9rem;
+    }
+
+    @media print {
+      nav {
+        display: none;
+      }
+
+      body {
+        background: white;
+      }
+
+      section {
+        box-shadow: none;
+        page-break-inside: avoid;
+      }
+
+      .page-break {
+        page-break-before: always;
+      }
+    }
+
+    @media (max-width: 700px) {
+      table {
+        font-size: 0.84rem;
+      }
+
+      header h1 {
+        font-size: 1.45rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Patient-Facing Preoperative & Anesthesia Questionnaires</h1>
+  <p>Simple forms patients can complete before the preoperative visit</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="questionnaires.html">Clinical Questionnaires</a>
+  <a href="screening-tools.html">Screening Tools</a>
+  <a href="medications.html">Medications</a>
+</nav>
+
+<main>
+
+<section>
+  <h2>Patient Preoperative Medical Questionnaire</h2>
+
+  <p>
+    Please complete this form as accurately as possible. Bring an updated
+    medication list and any requested medical records to your preoperative
+    appointment.
+  </p>
+
+  <div class="form-box">
+    <strong>Patient Information</strong><br><br>
+
+    Name: _______________________________________________<br><br>
+
+    Date of birth: ______________________________________<br><br>
+
+    Phone number: _______________________________________<br><br>
+
+    Planned surgery: ____________________________________<br><br>
+
+    Surgeon: ____________________________________________<br><br>
+
+    Surgery date: _______________________________________
+  </div>
+
+  <div class="form-box">
+    <strong>Primary Care and Specialists</strong><br><br>
+
+    Primary care provider: _______________________________<br><br>
+
+    Cardiologist: _______________________________________<br><br>
+
+    Pulmonologist: ______________________________________<br><br>
+
+    Neurologist: ________________________________________<br><br>
+
+    Nephrologist: _______________________________________<br><br>
+
+    Other specialist: ___________________________________
+  </div>
+</section>
+
+<section>
+  <h2>Recent Health Changes</h2>
+
+  <p>In the last 30 days, have you had any of the following?</p>
+
+  <div class="form-box">
+    [ ] Emergency room visit<br><br>
+    [ ] Hospital admission<br><br>
+    [ ] Chest pain or pressure<br><br>
+    [ ] New or worsening shortness of breath<br><br>
+    [ ] Fainting or near-fainting<br><br>
+    [ ] New irregular heartbeat or palpitations<br><br>
+    [ ] Fever<br><br>
+    [ ] Pneumonia or respiratory infection<br><br>
+    [ ] New cough or wheezing<br><br>
+    [ ] Urinary infection<br><br>
+    [ ] Skin infection or open wound<br><br>
+    [ ] Stroke or TIA symptoms<br><br>
+    [ ] New weakness or numbness<br><br>
+    [ ] Fall or injury<br><br>
+    [ ] New medication<br><br>
+    [ ] None of the above
+  </div>
+
+  <div class="warning-box">
+    Tell the preoperative team immediately if you develop new chest pain,
+    trouble breathing, fever, stroke-like symptoms or another major change in
+    your health before surgery.
+  </div>
+</section>
+
+<section>
+  <h2>Heart and Circulation</h2>
+
+  <div class="form-box">
+    Have you ever been diagnosed with:<br><br>
+
+    [ ] Heart attack<br>
+    [ ] Coronary artery disease<br>
+    [ ] Heart stent<br>
+    [ ] Bypass surgery<br>
+    [ ] Heart failure<br>
+    [ ] Cardiomyopathy<br>
+    [ ] Atrial fibrillation or flutter<br>
+    [ ] Pacemaker<br>
+    [ ] Defibrillator / ICD<br>
+    [ ] Heart valve disease<br>
+    [ ] Pulmonary hypertension<br>
+    [ ] High blood pressure<br>
+    [ ] Stroke or TIA<br>
+    [ ] Blood clot / DVT<br>
+    [ ] Pulmonary embolism<br>
+    [ ] None
+  </div>
+
+  <div class="form-box">
+    Date of last cardiology visit: _______________________<br><br>
+
+    Date of last echocardiogram: ________________________<br><br>
+
+    Date of last stress test: ___________________________<br><br>
+
+    Date of last heart catheterization: _________________
+  </div>
+</section>
+
+<section>
+  <h2>Breathing and Sleep</h2>
+
+  <div class="form-box">
+    Have you been diagnosed with:<br><br>
+
+    [ ] COPD<br>
+    [ ] Asthma<br>
+    [ ] Sleep apnea<br>
+    [ ] Pulmonary fibrosis<br>
+    [ ] Pulmonary hypertension<br>
+    [ ] Chronic respiratory failure<br>
+    [ ] None
+  </div>
+
+  <div class="form-box">
+    Do you use CPAP or BiPAP? Yes / No<br><br>
+
+    If prescribed but not used, why?
+    _______________________________________________<br><br>
+
+    Do you use oxygen at home? Yes / No<br><br>
+
+    If yes:<br>
+    [ ] At night only<br>
+    [ ] With activity<br>
+    [ ] As needed<br>
+    [ ] 24 hours a day<br><br>
+
+    Oxygen flow rate: ______________________________
+  </div>
+</section>
+
+<section>
+  <h2>Diabetes and Hormone Conditions</h2>
+
+  <div class="form-box">
+    Do you have diabetes? Yes / No<br><br>
+
+    Type 1 / Type 2 / Other / Unsure<br><br>
+
+    Do you use insulin? Yes / No<br><br>
+
+    Do you use an insulin pump? Yes / No<br><br>
+
+    Do you use a continuous glucose monitor? Yes / No<br><br>
+
+    Most recent A1c if known: ______________________
+  </div>
+
+  <div class="form-box">
+    Are you taking an SGLT2 inhibitor such as:<br>
+    [ ] Jardiance / empagliflozin<br>
+    [ ] Farxiga / dapagliflozin<br>
+    [ ] Invokana / canagliflozin<br>
+    [ ] Steglatro / ertugliflozin<br>
+    [ ] Other / unsure<br><br>
+
+    Are you taking a GLP-1 medication such as:<br>
+    [ ] Ozempic<br>
+    [ ] Wegovy<br>
+    [ ] Mounjaro<br>
+    [ ] Zepbound<br>
+    [ ] Trulicity<br>
+    [ ] Victoza<br>
+    [ ] Other / unsure
+  </div>
+
+  <div class="form-box">
+    Do you currently have:<br><br>
+
+    [ ] Nausea<br>
+    [ ] Vomiting<br>
+    [ ] Abdominal bloating<br>
+    [ ] Feeling full quickly<br>
+    [ ] Gastroparesis<br>
+    [ ] None
+  </div>
+
+  <div class="form-box">
+    Do you have thyroid disease? Yes / No<br><br>
+
+    Do you take chronic steroid medication such as prednisone?
+    Yes / No<br><br>
+
+    Have you been diagnosed with adrenal insufficiency?
+    Yes / No
+  </div>
+</section>
+
+<section>
+  <h2>Kidneys and Urinary History</h2>
+
+  <div class="form-box">
+    [ ] Chronic kidney disease<br>
+    [ ] Kidney failure<br>
+    [ ] Dialysis<br>
+    [ ] Kidney transplant<br>
+    [ ] Kidney stones<br>
+    [ ] Frequent urinary infections<br>
+    [ ] None
+  </div>
+
+  <div class="form-box">
+    Are you currently having:<br><br>
+
+    [ ] Burning with urination<br>
+    [ ] New urinary frequency<br>
+    [ ] New urinary urgency<br>
+    [ ] Blood in urine<br>
+    [ ] Flank pain<br>
+    [ ] Fever or chills<br>
+    [ ] None
+  </div>
+</section>
+
+<section>
+  <h2>Blood and Bleeding History</h2>
+
+  <div class="form-box">
+    Have you ever had:<br><br>
+
+    [ ] Anemia<br>
+    [ ] Blood transfusion<br>
+    [ ] Low platelets<br>
+    [ ] Bleeding disorder<br>
+    [ ] Excessive bleeding after surgery<br>
+    [ ] DVT<br>
+    [ ] Pulmonary embolism<br>
+    [ ] Clotting disorder<br>
+    [ ] None
+  </div>
+
+  <div class="form-box">
+    Do you take a blood thinner?<br><br>
+
+    [ ] Eliquis / apixaban<br>
+    [ ] Xarelto / rivaroxaban<br>
+    [ ] Pradaxa / dabigatran<br>
+    [ ] Warfarin / Coumadin<br>
+    [ ] Lovenox / enoxaparin<br>
+    [ ] Other: _______________________________<br>
+    [ ] None<br><br>
+
+    Reason for blood thinner:
+    _______________________________________________
+  </div>
+
+  <div class="form-box">
+    Do you take an antiplatelet medication?<br><br>
+
+    [ ] Aspirin<br>
+    [ ] Plavix / clopidogrel<br>
+    [ ] Brilinta / ticagrelor<br>
+    [ ] Effient / prasugrel<br>
+    [ ] Other: _______________________________<br>
+    [ ] None
+  </div>
+</section>
+
+<section>
+  <h2>Neurologic History</h2>
+
+  <div class="form-box">
+    Have you ever had:<br><br>
+
+    [ ] Stroke<br>
+    [ ] TIA / mini-stroke<br>
+    [ ] Seizures<br>
+    [ ] Parkinson disease<br>
+    [ ] Dementia or memory problems<br>
+    [ ] Neuropathy<br>
+    [ ] Muscle weakness disorder<br>
+    [ ] None
+  </div>
+
+  <div class="form-box">
+    If you had a stroke or TIA, date of most recent event:
+    _______________________________________________<br><br>
+
+    Do you have any remaining weakness, numbness, speech or vision problems?
+    Yes / No<br><br>
+
+    If yes, describe:
+    _______________________________________________
+  </div>
+</section>
+
+<section>
+  <h2>Mobility and Daily Activities</h2>
+
+  <div class="form-box">
+    Do you normally use:<br><br>
+
+    [ ] No assistive device<br>
+    [ ] Cane<br>
+    [ ] Walker<br>
+    [ ] Wheelchair<br>
+    [ ] Other: _______________________________<br><br>
+
+    Have you fallen in the last 6 months? Yes / No<br><br>
+
+    Do you need help with bathing, dressing or toileting?
+    Yes / No<br><br>
+
+    Do you live alone? Yes / No<br><br>
+
+    Will someone be available to help you after surgery?
+    Yes / No
+  </div>
+</section>
+
+<section>
+  <h2>Medication List</h2>
+
+  <p>
+    Please list all prescription medications, over-the-counter medications,
+    vitamins, supplements, inhalers and injections.
+  </p>
+
+  <table>
+    <tr>
+      <th>Medication</th>
+      <th>Dose</th>
+      <th>How Often</th>
+      <th>Reason</th>
+    </tr>
+
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h2>Allergies</h2>
+
+  <table>
+    <tr>
+      <th>Medication / Substance</th>
+      <th>Reaction</th>
+    </tr>
+
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+</section>
+
+<section class="page-break">
+  <h2>Patient Anesthesia Questionnaire</h2>
+
+  <div class="form-box">
+    <strong>Previous Anesthesia</strong><br><br>
+
+    Have you had anesthesia before? Yes / No<br><br>
+
+    Have you ever had:<br><br>
+
+    [ ] Difficult intubation<br>
+    [ ] Difficult airway<br>
+    [ ] Severe nausea or vomiting after anesthesia<br>
+    [ ] Very slow awakening<br>
+    [ ] Severe confusion after surgery<br>
+    [ ] Allergic reaction to anesthesia<br>
+    [ ] Malignant hyperthermia<br>
+    [ ] Unexpected high fever during anesthesia<br>
+    [ ] Other serious anesthesia problem<br>
+    [ ] None
+  </div>
+
+  <div class="form-box">
+    <strong>Family History</strong><br><br>
+
+    Has a blood relative ever had:<br><br>
+
+    [ ] Malignant hyperthermia<br>
+    [ ] Unexpected death during anesthesia<br>
+    [ ] Serious anesthesia reaction<br>
+    [ ] Difficult airway<br>
+    [ ] Unsure<br>
+    [ ] None
+  </div>
+
+  <div class="form-box">
+    <strong>Airway / Neck / Teeth</strong><br><br>
+
+    [ ] Loose tooth<br>
+    [ ] Dentures<br>
+    [ ] Partial dentures<br>
+    [ ] Dental implants<br>
+    [ ] Limited mouth opening<br>
+    [ ] TMJ problems<br>
+    [ ] Limited neck movement<br>
+    [ ] Prior cervical spine surgery<br>
+    [ ] None
+  </div>
+
+  <div class="form-box">
+    <strong>Sleep Apnea</strong><br><br>
+
+    Do you snore loudly? Yes / No<br><br>
+
+    Has anyone seen you stop breathing during sleep?
+    Yes / No<br><br>
+
+    Do you often feel tired during the day?
+    Yes / No<br><br>
+
+    Do you have diagnosed sleep apnea?
+    Yes / No<br><br>
+
+    Do you use CPAP/BiPAP?
+    Yes / No<br><br>
+
+    If you stopped using it, approximately when?
+    _______________________________________________
+  </div>
+
+  <div class="form-box">
+    <strong>Heart / Lung Symptoms Today</strong><br><br>
+
+    [ ] Chest pain<br>
+    [ ] Shortness of breath at rest<br>
+    [ ] New shortness of breath with activity<br>
+    [ ] Wheezing<br>
+    [ ] Productive cough<br>
+    [ ] Fainting<br>
+    [ ] New palpitations<br>
+    [ ] None
+  </div>
+
+  <div class="form-box">
+    <strong>Reflux / Stomach / Aspiration Risk</strong><br><br>
+
+    [ ] Severe reflux<br>
+    [ ] Difficulty swallowing<br>
+    [ ] Gastroparesis<br>
+    [ ] Frequent vomiting<br>
+    [ ] Feeling full for a long time after eating<br>
+    [ ] Prior aspiration<br>
+    [ ] None
+  </div>
+
+  <div class="form-box">
+    <strong>Smoking / Alcohol / Other Substances</strong><br><br>
+
+    Do you currently smoke? Yes / No<br><br>
+
+    Do you vape? Yes / No<br><br>
+
+    Do you drink alcohol? Yes / No<br><br>
+
+    If yes, how often?
+    _______________________________________________<br><br>
+
+    Do you use marijuana or other recreational substances?
+    Yes / No<br><br>
+
+    If yes, describe:
+    _______________________________________________
+  </div>
+
+  <div class="form-box">
+    <strong>Chronic Pain Medications</strong><br><br>
+
+    Do you take opioid pain medication regularly?
+    Yes / No<br><br>
+
+    Medication: ___________________________________<br><br>
+
+    Prescriber: ___________________________________
+  </div>
+
+  <div class="warning-box">
+    Please tell the anesthesia team about all medications, supplements, recent
+    illness, recreational substances and previous anesthesia problems. This
+    information is important for your safety.
+  </div>
+</section>
+
+<section>
+  <h2>Patient Day-Before-Surgery Check</h2>
+
+  <div class="form-box">
+    Since your preoperative visit, have you developed:<br><br>
+
+    [ ] Fever<br>
+    [ ] Cough<br>
+    [ ] Wheezing<br>
+    [ ] Shortness of breath<br>
+    [ ] Chest pain<br>
+    [ ] Vomiting or diarrhea<br>
+    [ ] Urinary infection symptoms<br>
+    [ ] Skin infection or open wound<br>
+    [ ] New weakness, numbness or speech problem<br>
+    [ ] ER visit or hospitalization<br>
+    [ ] None
+  </div>
+
+  <div class="form-box">
+    Have you followed your medication instructions?<br><br>
+
+    Blood thinner instructions completed: Yes / No / N/A<br><br>
+
+    Aspirin/Plavix instructions completed: Yes / No / N/A<br><br>
+
+    SGLT2 medication instructions completed: Yes / No / N/A<br><br>
+
+    GLP-1 instructions completed: Yes / No / N/A<br><br>
+
+    Insulin instructions understood: Yes / No / N/A<br><br>
+
+    CPAP/BiPAP available for surgery: Yes / No / N/A
+  </div>
+</section>
+
+<section>
+  <h2>Patient Signature</h2>
+
+  <div class="form-box">
+    I have answered these questions to the best of my knowledge and understand
+    that I should notify the surgical/preoperative team if my health changes
+    before surgery.<br><br><br>
+
+    Patient signature: _______________________________________<br><br>
+
+    Date: ___________________________________________________<br><br>
+
+    Reviewed by: ____________________________________________
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Preoperative Optimization Handbook · Patient-Facing Preoperative & Anesthesia Forms
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPA Provider & RN Scope, Optimization Authority & Escalation</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      background: #f4f7f9;
+      color: #1f2933;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #17324d;
+      color: white;
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+    }
+
+    header p {
+      margin: 0;
+    }
+
+    nav {
+      background: #ffffff;
+      padding: 12px 20px;
+      border-bottom: 1px solid #d9e2ec;
+      text-align: center;
+    }
+
+    nav a {
+      color: #17324d;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 7px;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 24px auto;
+      padding: 0 18px 40px;
+    }
+
+    section {
+      background: white;
+      margin-bottom: 22px;
+      padding: 24px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    h2 {
+      color: #17324d;
+      border-bottom: 2px solid #d9e2ec;
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      color: #274c6b;
+      margin-top: 22px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+    }
+
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #eaf0f5;
+      color: #17324d;
+    }
+
+    .clinical-box {
+      background: #eef6fb;
+      border-left: 5px solid #3178a8;
+      padding: 15px;
+      margin: 16px 0;
+    }
+
+    .warning-box {
+      background: #fff5f5;
+      border-left: 5px solid #b42318;
+      padding: 15px;
+      margin: 16px 0;
+    }
+
+    .success-box {
+      background: #eef9f0;
+      border-left: 5px solid #2d7a46;
+      padding: 15px;
+      margin: 16px 0;
+    }
+
+    .formula-box {
+      background: #f7f7fb;
+      border: 1px solid #d8d8e5;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 16px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #52606d;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 700px) {
+      table {
+        font-size: 0.84rem;
+      }
+
+      header h1 {
+        font-size: 1.45rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>SPA Provider & RN Scope, Optimization Authority & Escalation</h1>
+  <p>Practical division of responsibilities in the preoperative assessment workflow</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="evaluation.html">Evaluation</a>
+  <a href="testing-windows.html">Testing Windows</a>
+  <a href="surgery-risk.html">Surgical Risk</a>
+  <a href="medications.html">Medications</a>
+</nav>
+
+<main>
+
+<section>
+  <h2>Purpose</h2>
+
+  <p>
+    Efficient preoperative care depends on a clear understanding of what can be
+    evaluated and optimized within the SPA workflow, what can be performed under
+    nursing standing orders, and what requires escalation to anesthesia, the
+    surgeon, primary care or a specialist.
+  </p>
+
+  <div class="clinical-box">
+    The goal is to resolve routine optimization issues before the day of surgery
+    while avoiding unnecessary referrals for conditions that can be safely
+    assessed and managed within the preoperative clinic.
+  </div>
+</section>
+
+<section>
+  <h2>Important Scope Principle</h2>
+
+  <div class="warning-box">
+    Scope of practice is determined by state law, licensure, credentials,
+    privileges, collaborative or supervisory requirements when applicable,
+    facility policy, and approved standing orders. This chapter describes a
+    practical workflow framework and does not override those requirements.
+  </div>
+</section>
+
+<section>
+  <h2>Role of the SPA Provider</h2>
+
+  <p>
+    The SPA provider performs medical evaluation, risk stratification,
+    optimization and perioperative planning for elective noncardiac surgery.
+  </p>
+
+  <h3>Core Responsibilities</h3>
+
+  <ul>
+    <li>Review and interpret the medical history</li>
+    <li>Perform focused history and physical examination</li>
+    <li>Assess current symptoms and disease stability</li>
+    <li>Review medications and perioperative medication issues</li>
+    <li>Interpret relevant preoperative laboratory results</li>
+    <li>Interpret EKG findings within scope and competency</li>
+    <li>Review prior cardiac, pulmonary and specialty testing</li>
+    <li>Calculate and document risk scores</li>
+    <li>Identify conditions that require additional evaluation</li>
+    <li>Initiate routine optimization within scope</li>
+    <li>Determine whether the patient is Optimized, Pending or Not optimized</li>
+  </ul>
+</section>
+
+<section>
+  <h2>What the SPA Provider Can Commonly Optimize Directly</h2>
+
+  <table>
+    <tr>
+      <th>Issue</th>
+      <th>Possible SPA Action</th>
+    </tr>
+
+    <tr>
+      <td>Mild dehydration</td>
+      <td>
+        Address oral hydration when appropriate, review contributing medications
+        and repeat BMP when indicated.
+      </td>
+    </tr>
+
+    <tr>
+      <td>Mild stable electrolyte abnormality</td>
+      <td>
+        Review cause, medication contribution and need for repeat testing or
+        replacement within facility scope.
+      </td>
+    </tr>
+
+    <tr>
+      <td>Stable hypertension</td>
+      <td>
+        Review medication adherence, repeat blood pressure and determine whether
+        severe or symptomatic hypertension requires escalation.
+      </td>
+    </tr>
+
+    <tr>
+      <td>Stable COPD or asthma</td>
+      <td>
+        Confirm inhaler adherence, continue maintenance therapy and establish
+        postoperative pulmonary plan.
+      </td>
+    </tr>
+
+    <tr>
+      <td>OSA</td>
+      <td>
+        Document PAP use or intolerance and establish monitoring plan.
+      </td>
+    </tr>
+
+    <tr>
+      <td>Mild anemia</td>
+      <td>
+        Classify anemia, order targeted studies when appropriate and initiate
+        iron replacement or referral according to severity and cause.
+      </td>
+    </tr>
+
+    <tr>
+      <td>Abnormal UA without symptoms</td>
+      <td>
+        Determine whether findings represent asymptomatic bacteriuria and avoid
+        unnecessary treatment.
+      </td>
+    </tr>
+
+    <tr>
+      <td>Medication reconciliation</td>
+      <td>
+        Clarify routine perioperative medication instructions according to
+        established protocols.
+      </td>
+    </tr>
+
+    <tr>
+      <td>Constipation risk</td>
+      <td>
+        Establish a perioperative bowel regimen when appropriate.
+      </td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h2>Issues That Often Require PCP Coordination</h2>
+
+  <p>
+    Primary-care involvement is useful when a chronic condition requires
+    longitudinal management beyond the immediate perioperative period.
+  </p>
+
+  <h3>Examples</h3>
+
+  <ul>
+    <li>Newly identified chronic hypertension requiring long-term treatment</li>
+    <li>Previously undiagnosed diabetes</li>
+    <li>Persistent unexplained anemia requiring outpatient evaluation</li>
+    <li>New thyroid abnormality without acute instability</li>
+    <li>Persistent microscopic hematuria</li>
+    <li>Chronic renal dysfunction requiring longitudinal follow-up</li>
+    <li>Medication adherence concerns requiring ongoing management</li>
+  </ul>
+
+  <div class="clinical-box">
+    PCP referral does not automatically mean elective surgery must be postponed.
+    Determine whether the abnormality requires resolution before surgery or can
+    safely be followed longitudinally.
+  </div>
+</section>
+
+<section>
+  <h2>When Cardiology Is Needed</h2>
+
+  <div class="warning-box">
+    Consider cardiology evaluation when there is:
+    <ul>
+      <li>Active or suspected myocardial ischemia</li>
+      <li>Decompensated heart failure</li>
+      <li>New significant arrhythmia</li>
+      <li>High-grade conduction disease</li>
+      <li>New or clinically important LBBB</li>
+      <li>Moderate-to-severe symptomatic valvular disease</li>
+      <li>Severe or inadequately characterized structural heart disease</li>
+      <li>Recent PCI or complex antiplatelet issue</li>
+      <li>Uncertain cardiovascular optimization</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>When Electrophysiology Is Needed</h2>
+
+  <div class="warning-box">
+    EP consultation may be appropriate for:
+    <ul>
+      <li>Pacemaker or ICD issue not adequately characterized</li>
+      <li>Device malfunction concern</li>
+      <li>Recent cardiac ablation with anticoagulation question</li>
+      <li>Complex arrhythmia management</li>
+      <li>Perioperative device programming question</li>
+      <li>Unclear pacing dependence</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>When Pulmonology Is Needed</h2>
+
+  <div class="warning-box">
+    Consider pulmonary evaluation for:
+    <ul>
+      <li>Unexplained significant dyspnea</li>
+      <li>FEV1 below facility threshold</li>
+      <li>New or increasing oxygen requirement</li>
+      <li>Chronic hypercapnia</li>
+      <li>Idiopathic pulmonary fibrosis</li>
+      <li>Significant pulmonary hypertension</li>
+      <li>Frequent COPD exacerbations</li>
+      <li>Poorly controlled severe asthma</li>
+      <li>Unclear pulmonary diagnosis</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>When Nephrology Is Needed</h2>
+
+  <div class="warning-box">
+    Consider nephrology for:
+    <ul>
+      <li>Progressive AKI</li>
+      <li>Advanced or unstable CKD</li>
+      <li>Dialysis planning</li>
+      <li>Refractory hyperkalemia</li>
+      <li>Severe acid-base disorder</li>
+      <li>Complex volume-management issues</li>
+      <li>Unexplained rapid renal deterioration</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>When Hematology Is Needed</h2>
+
+  <div class="warning-box">
+    Consider hematology for:
+    <ul>
+      <li>Severe or unexplained anemia</li>
+      <li>Pancytopenia</li>
+      <li>Severe thrombocytopenia</li>
+      <li>Known bleeding disorder</li>
+      <li>Unexplained coagulopathy</li>
+      <li>Complex thrombophilia</li>
+      <li>Recurrent thrombosis</li>
+      <li>Complex bridging or anticoagulation problem</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>When Neurology Is Needed</h2>
+
+  <div class="warning-box">
+    Consider neurology for:
+    <ul>
+      <li>Recent stroke or TIA with unresolved timing questions</li>
+      <li>New focal neurologic symptoms</li>
+      <li>Uncontrolled seizures</li>
+      <li>Progressive neuromuscular weakness</li>
+      <li>Rapid cognitive decline</li>
+      <li>Complex neurologic medication management</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>When Endocrinology Is Needed</h2>
+
+  <div class="warning-box">
+    Consider endocrinology for:
+    <ul>
+      <li>Severely uncontrolled diabetes</li>
+      <li>Recurrent severe hypoglycemia</li>
+      <li>Complex insulin pump management</li>
+      <li>Recent DKA or hyperosmolar hyperglycemic state</li>
+      <li>Adrenal insufficiency</li>
+      <li>Complex chronic steroid management</li>
+      <li>Uncontrolled thyrotoxicosis</li>
+      <li>Severe untreated hypothyroidism</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Role of the Preoperative RN</h2>
+
+  <p>
+    The preoperative RN is essential to efficient data collection, medication
+    reconciliation, record retrieval, protocol-driven screening and escalation
+    of abnormal findings.
+  </p>
+
+  <h3>Common RN Responsibilities</h3>
+
+  <ul>
+    <li>Obtain and verify vital signs</li>
+    <li>Complete structured nursing history</li>
+    <li>Perform medication reconciliation</li>
+    <li>Verify allergies</li>
+    <li>Collect required screening information</li>
+    <li>Obtain records from PCP and specialists</li>
+    <li>Identify missing testing or documentation</li>
+    <li>Perform standing-order tasks when authorized</li>
+    <li>Escalate abnormal findings to the provider</li>
+    <li>Provide approved patient instructions</li>
+  </ul>
+</section>
+
+<section>
+  <h2>RN Medical Record Summarization</h2>
+
+  <p>
+    Nursing staff can play a major role in organizing outside records before the
+    provider review.
+  </p>
+
+  <div class="clinical-box">
+    RN summarization may include extracting dates of visits and testing,
+    identifying diagnoses, listing medication recommendations and organizing
+    records chronologically. Final medical interpretation and perioperative
+    decision-making remain the responsibility of the appropriately credentialed
+    provider.
+  </div>
+</section>
+
+<section>
+  <h2>Suggested RN Record Summary Format</h2>
+
+  <div class="formula-box">
+    <strong>Outside Record Summary</strong><br><br>
+
+    Specialty: ___<br>
+    Provider: ___<br>
+    Visit date: ___<br>
+    Visit type: ___<br>
+    Diagnoses addressed: ___<br>
+    Testing reviewed: ___<br>
+    Test dates: ___<br>
+    Medication changes/recommendations: ___<br>
+    Follow-up interval: ___<br>
+    Perioperative recommendation documented: Yes / No
+  </div>
+</section>
+
+<section>
+  <h2>Standing Orders</h2>
+
+  <p>
+    Standing orders can reduce delays when they clearly define which tests or
+    actions nursing staff may initiate under specified conditions.
+  </p>
+
+  <div class="warning-box">
+    Standing orders must be formally approved by the facility and medical
+    leadership. Nursing staff should not independently create diagnostic or
+    treatment plans outside those protocols.
+  </div>
+
+  <h3>Potential Standing-Order Categories</h3>
+
+  <ul>
+    <li>CBC based on procedure or blood-loss criteria</li>
+    <li>BMP/CMP based on age, medications or renal disease</li>
+    <li>A1c based on diabetes protocol</li>
+    <li>EKG based on age/cardiovascular criteria</li>
+    <li>BNP/NT-proBNP based on approved RCRI/age pathway</li>
+    <li>MRSA or infection screening when required</li>
+    <li>Pregnancy testing when applicable</li>
+    <li>Urine testing only when facility or procedure criteria are met</li>
+  </ul>
+</section>
+
+<section>
+  <h2>RN Red Flags for Immediate Provider Review</h2>
+
+  <div class="warning-box">
+    Escalate promptly for:
+    <ul>
+      <li>Chest pain</li>
+      <li>New or worsening dyspnea</li>
+      <li>Syncope or near-syncope</li>
+      <li>New focal neurologic symptoms</li>
+      <li>Markedly abnormal vital signs</li>
+      <li>New oxygen requirement</li>
+      <li>Active wheezing or respiratory distress</li>
+      <li>Recent hospitalization not previously reviewed</li>
+      <li>Recent PCI, stroke, PE, DVT or major cardiac event</li>
+      <li>Unclear anticoagulation plan</li>
+      <li>Critical laboratory result</li>
+      <li>New fever or suspected infection</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Medication Issues the RN Can Identify but Should Escalate</h2>
+
+  <table>
+    <tr>
+      <th>Medication Issue</th>
+      <th>RN Action</th>
+    </tr>
+
+    <tr>
+      <td>DOAC / warfarin present</td>
+      <td>
+        Identify agent, dose, indication and last dose; escalate for hold plan.
+      </td>
+    </tr>
+
+    <tr>
+      <td>Clopidogrel or other P2Y12 inhibitor</td>
+      <td>
+        Identify indication and possible recent PCI; escalate before instructing
+        interruption unless approved protocol applies.
+      </td>
+    </tr>
+
+    <tr>
+      <td>SGLT2 inhibitor</td>
+      <td>
+        Identify agent and verify approved preoperative hold instructions.
+      </td>
+    </tr>
+
+    <tr>
+      <td>GLP-1 receptor agonist</td>
+      <td>
+        Identify agent, dosing schedule and GI symptoms; escalate according to
+        anesthesia protocol.
+      </td>
+    </tr>
+
+    <tr>
+      <td>Insulin pump</td>
+      <td>
+        Identify device and regimen; ensure provider/anesthesia plan exists.
+      </td>
+    </tr>
+
+    <tr>
+      <td>Chronic steroid therapy</td>
+      <td>
+        Identify medication, dose and duration; escalate for adrenal-risk review.
+      </td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h2>When Anesthesia Should Be Contacted</h2>
+
+  <p>
+    Some concerns are best resolved by anesthesia because they relate directly
+    to airway management, aspiration, neuraxial safety or anesthetic technique.
+  </p>
+
+  <h3>Examples</h3>
+
+  <ul>
+    <li>Complex airway history</li>
+    <li>Prior difficult intubation</li>
+    <li>Severe OSA with PAP intolerance</li>
+    <li>Potential aspiration risk</li>
+    <li>GLP-1 therapy with significant GI symptoms</li>
+    <li>Neuraxial anticoagulation concern</li>
+    <li>Severe pulmonary disease near facility exclusion threshold</li>
+    <li>Recent stroke timing question under anesthesia policy</li>
+    <li>Unusual anesthetic reaction or malignant hyperthermia history</li>
+  </ul>
+</section>
+
+<section>
+  <h2>When the Surgeon Should Be Contacted</h2>
+
+  <p>
+    The surgeon should be included when the issue directly affects surgical
+    timing, bleeding risk, hardware implantation, postoperative medication
+    resumption or whether the expected benefit justifies increased risk.
+  </p>
+
+  <h3>Examples</h3>
+
+  <ul>
+    <li>Need to delay surgery for medical optimization</li>
+    <li>Antiplatelet resumption after spine or joint surgery</li>
+    <li>Significant anemia before high-blood-loss procedure</li>
+    <li>Active infection near surgery date</li>
+    <li>Procedure-specific aspirin hold question</li>
+    <li>Recent stroke or cardiac event affecting timing</li>
+    <li>Need for higher-acuity venue</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Optimization vs “Clearance”</h2>
+
+  <div class="clinical-box">
+    The SPA provider's role is to assess risk, identify modifiable conditions,
+    optimize those conditions when possible and document residual perioperative
+    risk. Avoid reducing this process to a binary “clearance” statement.
+  </div>
+
+  <p>
+    A patient can be medically optimized while still carrying chronic residual
+    risk.
+  </p>
+</section>
+
+<section>
+  <h2>Final Status Categories</h2>
+
+  <table>
+    <tr>
+      <th>Status</th>
+      <th>Meaning</th>
+    </tr>
+
+    <tr>
+      <td><strong>Optimized</strong></td>
+      <td>
+        No unresolved medical issue currently prevents proceeding under the
+        planned perioperative pathway.
+      </td>
+    </tr>
+
+    <tr>
+      <td><strong>Pending</strong></td>
+      <td>
+        Additional information, testing, treatment or specialist input is
+        required before final determination.
+      </td>
+    </tr>
+
+    <tr>
+      <td><strong>Not optimized</strong></td>
+      <td>
+        A clinically significant unresolved condition currently makes proceeding
+        inappropriate or outside facility criteria.
+      </td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h2>Examples of “Pending”</h2>
+
+  <ul>
+    <li>Awaiting BNP result</li>
+    <li>Awaiting repeat potassium</li>
+    <li>Awaiting cardiology review of new LBBB</li>
+    <li>Awaiting anticoagulation hold instructions</li>
+    <li>Awaiting pulmonary assessment</li>
+    <li>Awaiting repeat CBC after anemia treatment</li>
+    <li>Awaiting device interrogation</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Examples of “Not Optimized”</h2>
+
+  <div class="warning-box">
+    Examples include:
+    <ul>
+      <li>Active acute coronary syndrome</li>
+      <li>Decompensated heart failure</li>
+      <li>Severe unresolved hyperkalemia</li>
+      <li>Active pneumonia</li>
+      <li>Acute COPD exacerbation</li>
+      <li>DKA or hyperosmolar hyperglycemic state</li>
+      <li>Acute stroke/TIA symptoms</li>
+      <li>Severe uncontrolled infection</li>
+      <li>Unresolved major anticoagulation issue for neuraxial surgery</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Same-Day Cancellation Prevention</h2>
+
+  <p>
+    Many same-day cancellations occur because an abnormality was identified but
+    not fully resolved before the procedure date.
+  </p>
+
+  <h3>High-Yield Prevention Strategies</h3>
+
+  <ul>
+    <li>Identify anticoagulants early</li>
+    <li>Verify specialist records before finalizing the H&P</li>
+    <li>Resolve abnormal potassium and renal function before surgery day</li>
+    <li>Confirm SGLT2 and GLP-1 instructions</li>
+    <li>Address active respiratory symptoms early</li>
+    <li>Clarify recent cardiac/stroke events</li>
+    <li>Obtain device information before surgery</li>
+    <li>Document all pending items with an owner and deadline</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Pending-Item Ownership</h2>
+
+  <div class="clinical-box">
+    Every pending item should have a clearly identified owner. A test or referral
+    without assigned follow-up is a common source of preoperative failure.
+  </div>
+
+  <div class="formula-box">
+    <strong>Pending Item Tracker</strong><br><br>
+
+    Item: ___<br>
+    Ordered/requested by: ___<br>
+    Responsible person/team: ___<br>
+    Date requested: ___<br>
+    Needed by: ___<br>
+    Result received: Yes / No<br>
+    Provider reviewed: Yes / No<br>
+    Final action: ___
+  </div>
+</section>
+
+<section>
+  <h2>Communication Escalation Pathway</h2>
+
+  <table>
+    <tr>
+      <th>Level</th>
+      <th>Action</th>
+    </tr>
+
+    <tr>
+      <td>1</td>
+      <td>
+        RN identifies missing information or abnormal finding and routes to SPA
+        provider.
+      </td>
+    </tr>
+
+    <tr>
+      <td>2</td>
+      <td>
+        SPA provider determines whether issue can be resolved internally.
+      </td>
+    </tr>
+
+    <tr>
+      <td>3</td>
+      <td>
+        If not, contact anesthesia, surgeon, PCP or appropriate specialist.
+      </td>
+    </tr>
+
+    <tr>
+      <td>4</td>
+      <td>
+        Document recommendation, responsibility and expected completion date.
+      </td>
+    </tr>
+
+    <tr>
+      <td>5</td>
+      <td>
+        Verify completion before final optimization status is assigned.
+      </td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h2>Provider Documentation Template</h2>
+
+  <div class="formula-box">
+    <strong>Optimization / Escalation Assessment</strong><br><br>
+
+    Issue identified: ___<br>
+    SPA optimization performed: ___<br>
+    Additional testing required: Yes / No<br>
+    PCP involvement required: Yes / No<br>
+    Specialist involvement required: Yes / No<br>
+    Specialty: ___<br>
+    Anesthesia contacted: Yes / No<br>
+    Surgeon contacted: Yes / No<br>
+    Pending item owner: ___<br>
+    Deadline: ___<br>
+    Final resolution: ___
+  </div>
+</section>
+
+<section>
+  <h2>RN Documentation Template</h2>
+
+  <div class="formula-box">
+    <strong>Preoperative RN Review</strong><br><br>
+
+    Medication reconciliation complete: Yes / No<br>
+    Allergies verified: Yes / No<br>
+    Vital signs reviewed: Yes / No<br>
+    Required outside records obtained: Yes / No<br>
+    Standing-order testing completed: Yes / No<br>
+    Abnormal findings escalated: Yes / No<br>
+    Provider notified: Yes / No<br>
+    Pending records/tests: ___<br>
+    Patient instructions reviewed: Yes / No
+  </div>
+</section>
+
+<section>
+  <h2>Decision Framework</h2>
+
+  <table>
+    <tr>
+      <th>Question</th>
+      <th>Action</th>
+    </tr>
+
+    <tr>
+      <td>Can the abnormality be safely optimized within SPA scope?</td>
+      <td>
+        Treat or manage according to protocol and provider privileges.
+      </td>
+    </tr>
+
+    <tr>
+      <td>Does it require longitudinal disease management?</td>
+      <td>
+        Coordinate with PCP while determining whether surgery must be delayed.
+      </td>
+    </tr>
+
+    <tr>
+      <td>Does it exceed routine preoperative management?</td>
+      <td>
+        Refer to the appropriate specialist.
+      </td>
+    </tr>
+
+    <tr>
+      <td>Does it affect anesthesia safety?</td>
+      <td>
+        Escalate to anesthesia.
+      </td>
+    </tr>
+
+    <tr>
+      <td>Does it affect procedural timing or bleeding risk?</td>
+      <td>
+        Include the surgeon.
+      </td>
+    </tr>
+
+    <tr>
+      <td>Is anything still unresolved?</td>
+      <td>
+        Assign Pending status until the required item is completed.
+      </td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h2>Key Takeaways</h2>
+
+  <ul>
+    <li>SPA providers should directly optimize routine reversible conditions within scope.</li>
+    <li>Not every abnormality requires PCP or specialist referral.</li>
+    <li>Use PCPs for longitudinal chronic-disease management when appropriate.</li>
+    <li>Use specialists for disease complexity, instability or questions beyond routine SPA management.</li>
+    <li>RNs can organize records, perform approved standing-order tasks and identify red flags.</li>
+    <li>Medical interpretation and final perioperative decisions belong to the appropriately credentialed provider.</li>
+    <li>Every pending item should have an owner and deadline.</li>
+    <li>Communicate anesthesia-specific risks directly with anesthesia.</li>
+    <li>Include surgeons when medical issues affect timing, bleeding risk or procedural venue.</li>
+    <li>Use Optimized, Pending or Not optimized rather than “cleared.”</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Final Preoperative Optimization Status</h2>
+
+  <div class="formula-box">
+    <strong>FINAL PREOPERATIVE OPTIMIZATION STATUS:</strong><br><br>
+
+    Optimized / Pending / Not optimized<br><br>
+
+    Reason: ________________________________________________
+  </div>
+
+  <div class="success-box">
+    Patient meets TSJH perioperative consensus guidelines to proceed with
+    elective surgery on scheduled surgery date at this time.
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Preoperative Optimization Handbook · SPA Provider & RN Scope
+</footer>
+
+</body>
+</html>

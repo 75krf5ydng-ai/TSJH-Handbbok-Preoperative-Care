@@ -1242,7 +1242,768 @@ Patient meets TSJH perioperative consensus guidelines to proceed with elective
 surgery on scheduled surgery date at this time.
 </div>
 </section>
+<!-- =========================================================
+     INTERACTIVE PREOPERATIVE RED FLAG & ESCALATION TOOL
+========================================================= -->
 
+<section id="interactiveRedFlagTool">
+
+<h2>Interactive Preoperative Red Flag & Escalation Tool</h2>
+
+<p>
+Select the patient-specific findings below to identify immediate medical
+instability, unresolved preoperative issues, anesthesia/specialty escalation,
+venue concerns, and conditions that may be monitored while proceeding.
+</p>
+
+<div class="warning-box">
+<strong>Clinical decision support:</strong>
+This tool supports—not replaces—provider, surgeon and anesthesia judgment.
+Any acute change in clinical status should be evaluated independently of the
+generated category.
+</div>
+
+
+<div class="formula-box">
+
+<h3>Patient / Procedure</h3>
+
+<label><strong>Patient</strong></label><br>
+<input type="text" id="rfPatient"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Procedure</strong></label><br>
+<input type="text" id="rfProcedure"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Surgeon</strong></label><br>
+<input type="text" id="rfSurgeon"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Surgery date</strong></label><br>
+<input type="date" id="rfDOS"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Immediate Cardiac Red Flags</h3>
+
+<label><input type="checkbox" class="rf-stop" value="Possible acute coronary syndrome or unstable ischemic symptoms.">
+Possible ACS / unstable ischemic symptoms</label><br><br>
+
+<label><input type="checkbox" class="rf-stop" value="Decompensated heart failure or acute volume-overload syndrome.">
+Decompensated heart failure</label><br><br>
+
+<label><input type="checkbox" class="rf-stop" value="Hemodynamically significant or symptomatic unstable arrhythmia.">
+Unstable or symptomatic arrhythmia</label><br><br>
+
+<label><input type="checkbox" class="rf-stop" value="Severe symptomatic valvular disease or other unstable structural cardiac lesion.">
+Severe symptomatic valvular disease</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="New unexplained chest pain, syncope or significant change in cardiovascular symptoms requires evaluation.">
+New unexplained chest pain or syncope</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="New ischemic or otherwise clinically significant EKG abnormality requires review.">
+New significant EKG abnormality</label>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Pulmonary / Respiratory Red Flags</h3>
+
+<label><input type="checkbox" class="rf-stop" value="Acute respiratory distress, significant hypoxemia or unstable respiratory disease.">
+Acute respiratory distress / significant hypoxemia</label><br><br>
+
+<label><input type="checkbox" class="rf-stop" value="Current COPD or asthma exacerbation requires treatment before routine elective surgery.">
+Active COPD/asthma exacerbation</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Twenty-four-hour oxygen requirement requires pulmonary/anesthesia and surgical venue review.">
+24-hour oxygen requirement</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Chronic hypercapnic respiratory failure requires anesthesia/pulmonary and venue review.">
+Chronic hypercapnic respiratory failure</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Idiopathic pulmonary fibrosis requires pulmonary/anesthesia and venue assessment.">
+Idiopathic pulmonary fibrosis</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Significant pulmonary hypertension or RV dysfunction requires severity and venue assessment.">
+Significant pulmonary hypertension / RV dysfunction</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="OSA with PAP intolerance requires a postoperative respiratory monitoring plan.">
+OSA with PAP intolerance / nonuse</label>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Neurologic Red Flags</h3>
+
+<label><input type="checkbox" class="rf-stop" value="New focal neurologic deficit or suspected acute stroke/TIA requires urgent evaluation.">
+New focal neurologic deficit / suspected acute stroke or TIA</label><br><br>
+
+<label><input type="checkbox" class="rf-stop" value="Uncontrolled or acute seizure disorder requires stabilization before elective surgery.">
+Uncontrolled / acute seizure activity</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Recent stroke or TIA requires interval and perioperative-risk review before final optimization.">
+Recent stroke / TIA requiring interval review</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Progressive neurologic symptoms require evaluation before routine elective progression.">
+Progressive neurologic symptoms</label>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Infection / Wound Red Flags</h3>
+
+<label><input type="checkbox" class="rf-stop" value="Sepsis or systemic infection represents active medical instability.">
+Sepsis / systemic infection</label><br><br>
+
+<label><input type="checkbox" class="rf-stop" value="Active cellulitis, purulent drainage or clinically significant operative-site infection requires treatment and reassessment.">
+Active cellulitis / purulent drainage / operative-site infection</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Symptomatic urinary infection requires evaluation and treatment as clinically indicated.">
+Symptomatic UTI</label><br><br>
+
+<label><input type="checkbox" class="rf-monitor" value="Abnormal urine testing without urinary symptoms may represent asymptomatic bacteriuria and should not automatically trigger treatment for routine nonurologic elective surgery.">
+Positive UA/culture without urinary symptoms</label>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Metabolic / Renal / Hematologic Red Flags</h3>
+
+<label><input type="checkbox" class="rf-stop" value="DKA, HHS or other acute metabolic decompensation requires treatment before elective surgery.">
+DKA / HHS / acute metabolic decompensation</label><br><br>
+
+<label><input type="checkbox" class="rf-stop" value="Severe clinically significant electrolyte abnormality requires correction and reassessment.">
+Severe potassium / electrolyte abnormality</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Significant anemia remains unresolved and requires evaluation or optimization.">
+Significant unresolved anemia</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Acute kidney injury or significant change in renal function requires reassessment.">
+AKI / significant renal-function change</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Dialysis timing or perioperative dialysis plan remains unresolved.">
+Dialysis timing unresolved</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Clinically meaningful abnormal laboratory result remains unresolved.">
+Other significant unresolved laboratory abnormality</label>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Medication / Anticoagulation Red Flags</h3>
+
+<label><input type="checkbox" class="rf-pending" value="Anticoagulant or antiplatelet interruption/resumption plan remains unresolved.">
+Anticoagulant / antiplatelet plan unresolved</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Neuraxial anticoagulation timing has not been verified.">
+Neuraxial anticoagulation timing unresolved</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Recent PCI/stent antiplatelet-management plan requires clarification.">
+Recent PCI / stent antiplatelet plan unresolved</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="GLP-1/GIP aspiration-risk assessment remains unresolved.">
+GLP-1/GIP aspiration question unresolved</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="SGLT2 perioperative medication plan has not been verified.">
+SGLT2 hold plan unresolved</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Type 1 diabetes or insulin-pump perioperative insulin plan has not been established.">
+Type 1 diabetes / insulin pump plan unresolved</label>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Anesthesia / Device / Records</h3>
+
+<label><input type="checkbox" class="rf-pending" value="History of difficult airway or significant anesthesia complication requires anesthesia review.">
+Difficult airway / significant anesthesia history</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Required pacemaker/ICD interrogation or perioperative device plan remains incomplete.">
+CIED interrogation / device plan incomplete</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Required cardiology, pulmonary or other specialist recommendation remains outstanding.">
+Required specialist record/recommendation missing</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Required testing has not been completed or reviewed.">
+Required testing incomplete</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Anesthesia-specific review remains pending.">
+Anesthesia review pending</label>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Frailty / Mobility / Disposition / Venue</h3>
+
+<label><input type="checkbox" class="rf-pending" value="Severe frailty or substantial functional dependence requires postoperative and venue planning.">
+Severe frailty / major functional dependence</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Postoperative caregiver, transportation or safe disposition plan remains unresolved.">
+Disposition / caregiver / transportation unresolved</label><br><br>
+
+<label><input type="checkbox" class="rf-pending" value="Surgical venue or higher-level-of-care determination remains unresolved.">
+Venue / higher-level-of-care determination unresolved</label><br><br>
+
+<label><input type="checkbox" class="rf-monitor" value="Stable chronic medical disease with completed evaluation and an established perioperative plan may generally be monitored while proceeding based on overall risk.">
+Stable chronic disease with completed evaluation</label>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Additional Clinical Concern</h3>
+
+<textarea id="rfComments" rows="5"
+placeholder="Enter additional red flag, pending item, consultant recommendation, or communication issue..."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<div class="formula-box">
+
+<button type="button" id="rfGenerate"
+style="background:#17324d;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Evaluate Red Flags
+</button>
+
+<button type="button" id="rfCopy"
+style="background:#2f6fb0;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Copy Summary
+</button>
+
+<button type="button" id="rfPrint"
+style="background:#356f44;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Print
+</button>
+
+<button type="button" id="rfClear"
+style="background:#8b2f2f;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Clear
+</button>
+
+</div>
+
+
+<div id="rfResult" class="formula-box"
+style="display:none;margin-top:20px;">
+</div>
+
+
+<script>
+
+function rfChecked(selector) {
+
+  return Array.from(
+    document.querySelectorAll(
+      selector + ":checked"
+    )
+  ).map(function(el) {
+    return el.value;
+  });
+
+}
+
+
+function evaluateRedFlags() {
+
+  const immediate =
+    rfChecked(".rf-stop");
+
+  const pending =
+    rfChecked(".rf-pending");
+
+  const monitor =
+    rfChecked(".rf-monitor");
+
+
+  const comments =
+    document.getElementById(
+      "rfComments"
+    ).value.trim();
+
+
+  let status = "";
+
+  let level = "";
+
+  let reason = "";
+
+
+  if (immediate.length > 0) {
+
+    status =
+      "Not optimized";
+
+    level =
+      "IMMEDIATE / STOP ROUTINE ELECTIVE PATHWAY";
+
+    reason =
+      immediate.join(" ");
+
+  }
+
+  else if (pending.length > 0) {
+
+    status =
+      "Pending";
+
+    level =
+      "PENDING / ESCALATE";
+
+    reason =
+      pending.join(" ");
+
+  }
+
+  else {
+
+    status =
+      "Optimized";
+
+    level =
+      "MONITOR / PROCEED";
+
+    reason =
+      "No unresolved immediate or escalation-level red flag was identified from the entered information.";
+
+  }
+
+
+  let html = "";
+
+
+  html +=
+    "<h2>Preoperative Red Flag Assessment</h2>";
+
+
+  const patient =
+    document.getElementById(
+      "rfPatient"
+    ).value.trim();
+
+  const procedure =
+    document.getElementById(
+      "rfProcedure"
+    ).value.trim();
+
+  const surgeon =
+    document.getElementById(
+      "rfSurgeon"
+    ).value.trim();
+
+  const dos =
+    document.getElementById(
+      "rfDOS"
+    ).value;
+
+
+  if (
+    patient ||
+    procedure ||
+    surgeon ||
+    dos
+  ) {
+
+    html += "<p>";
+
+    if (patient) {
+      html +=
+        "<strong>Patient:</strong> " +
+        patient +
+        "<br>";
+    }
+
+    if (procedure) {
+      html +=
+        "<strong>Procedure:</strong> " +
+        procedure +
+        "<br>";
+    }
+
+    if (surgeon) {
+      html +=
+        "<strong>Surgeon:</strong> " +
+        surgeon +
+        "<br>";
+    }
+
+    if (dos) {
+      html +=
+        "<strong>Surgery Date:</strong> " +
+        dos;
+    }
+
+    html += "</p>";
+
+  }
+
+
+  html +=
+    "<h3>Escalation Level</h3>" +
+    "<p><strong>" +
+    level +
+    "</strong></p>";
+
+
+  if (immediate.length) {
+
+    html +=
+      "<h3>Immediate Red Flags</h3><ul>";
+
+    immediate.forEach(
+      function(item) {
+        html +=
+          "<li>" +
+          item +
+          "</li>";
+      }
+    );
+
+    html += "</ul>";
+
+  }
+
+
+  if (pending.length) {
+
+    html +=
+      "<h3>Pending / Escalation Items</h3><ul>";
+
+    pending.forEach(
+      function(item) {
+        html +=
+          "<li>" +
+          item +
+          "</li>";
+      }
+    );
+
+    html += "</ul>";
+
+  }
+
+
+  if (monitor.length) {
+
+    html +=
+      "<h3>Monitor / Proceed Findings</h3><ul>";
+
+    monitor.forEach(
+      function(item) {
+        html +=
+          "<li>" +
+          item +
+          "</li>";
+      }
+    );
+
+    html += "</ul>";
+
+  }
+
+
+  if (comments) {
+
+    html +=
+      "<h3>Additional Clinical Information</h3>" +
+      "<p>" +
+      comments +
+      "</p>";
+
+  }
+
+
+  html += "<hr>";
+
+
+  html +=
+    "<h3>FINAL PREOPERATIVE OPTIMIZATION STATUS</h3>";
+
+
+  html +=
+    "<p><strong>" +
+    status +
+    "</strong></p>";
+
+
+  html +=
+    "<p><strong>Reason:</strong> " +
+    reason +
+    "</p>";
+
+
+  if (
+    status === "Optimized"
+  ) {
+
+    html +=
+      "<div class='success-box'>" +
+      "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time." +
+      "</div>";
+
+  }
+
+
+  html += "<hr>";
+
+
+  html +=
+    "<h3>Copy-Ready Provider Documentation</h3>";
+
+
+  html +=
+    "<p>Preoperative red-flag review completed. ";
+
+
+  if (immediate.length) {
+
+    html +=
+      "Immediate clinical red flag(s) identified requiring evaluation/treatment before routine elective progression. ";
+
+  }
+
+  else if (pending.length) {
+
+    html +=
+      "No immediate medical instability identified; however, one or more clinically meaningful preoperative items remain pending and require closure before final optimization. ";
+
+  }
+
+  else {
+
+    html +=
+      "No immediate or unresolved escalation-level red flag identified from current review. ";
+
+  }
+
+
+  html +=
+    "<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS: " +
+    status +
+    ".</strong> ";
+
+
+  if (
+    status === "Optimized"
+  ) {
+
+    html +=
+      "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time.";
+
+  } else {
+
+    html +=
+      "Reason: " +
+      reason;
+
+  }
+
+
+  html += "</p>";
+
+
+  const result =
+    document.getElementById(
+      "rfResult"
+    );
+
+
+  result.innerHTML =
+    html;
+
+
+  result.style.display =
+    "block";
+
+
+  result.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
+}
+
+
+async function copyRedFlagSummary() {
+
+  evaluateRedFlags();
+
+
+  const text =
+    document.getElementById(
+      "rfResult"
+    ).innerText;
+
+
+  try {
+
+    await navigator
+      .clipboard
+      .writeText(text);
+
+    alert(
+      "Preoperative red-flag summary copied."
+    );
+
+  }
+
+  catch (error) {
+
+    const temp =
+      document.createElement(
+        "textarea"
+      );
+
+    temp.value =
+      text;
+
+    document.body.appendChild(
+      temp
+    );
+
+    temp.select();
+
+    document.execCommand(
+      "copy"
+    );
+
+    document.body.removeChild(
+      temp
+    );
+
+    alert(
+      "Preoperative red-flag summary copied."
+    );
+
+  }
+
+}
+
+
+function printRedFlagSummary() {
+
+  evaluateRedFlags();
+
+  setTimeout(
+    function() {
+      window.print();
+    },
+    150
+  );
+
+}
+
+
+function clearRedFlagTool() {
+
+  if (
+    !confirm(
+      "Clear all patient-specific red-flag selections?"
+    )
+  ) {
+    return;
+  }
+
+
+  document
+    .querySelectorAll(
+      "#interactiveRedFlagTool input[type='checkbox']"
+    )
+    .forEach(
+      function(el) {
+        el.checked = false;
+      }
+    );
+
+
+  document
+    .querySelectorAll(
+      "#interactiveRedFlagTool input[type='text'], #interactiveRedFlagTool input[type='date'], #interactiveRedFlagTool textarea"
+    )
+    .forEach(
+      function(el) {
+        el.value = "";
+      }
+    );
+
+
+  const result =
+    document.getElementById(
+      "rfResult"
+    );
+
+
+  result.innerHTML = "";
+
+  result.style.display =
+    "none";
+
+}
+
+
+document
+  .getElementById(
+    "rfGenerate"
+  )
+  .addEventListener(
+    "click",
+    evaluateRedFlags
+  );
+
+
+document
+  .getElementById(
+    "rfCopy"
+  )
+  .addEventListener(
+    "click",
+    copyRedFlagSummary
+  );
+
+
+document
+  .getElementById(
+    "rfPrint"
+  )
+  .addEventListener(
+    "click",
+    printRedFlagSummary
+  );
+
+
+document
+  .getElementById(
+    "rfClear"
+  )
+  .addEventListener(
+    "click",
+    clearRedFlagTool
+  );
+
+</script>
+
+</section>
 </main>
 
 <footer>

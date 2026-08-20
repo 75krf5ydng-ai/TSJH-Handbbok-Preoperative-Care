@@ -842,7 +842,1167 @@
       patient-specific decisions.
     </div>
   </section>
+<!-- =========================================================
+     INTERACTIVE CARDIAC TESTING INTERPRETER
+========================================================= -->
 
+<section id="interactiveCardiacTesting">
+
+<h2>Interactive Cardiac Testing & Perioperative Recommendation</h2>
+
+<p>
+Enter the available cardiac testing results below. The tool summarizes the
+study, identifies findings that may require additional cardiovascular,
+anesthesia or venue review, and generates copy-ready perioperative documentation.
+</p>
+
+<div class="alert">
+<strong>Clinical decision support only:</strong>
+Interpret testing in the context of symptoms, functional status, surgical risk,
+current cardiovascular status and whether additional evaluation would change
+perioperative management.
+</div>
+
+
+<!-- PATIENT / SURGERY -->
+
+<div class="card">
+
+<h3>Patient / Surgery Information</h3>
+
+<label><strong>Planned Surgery Date</strong></label><br>
+<input type="date" id="ctSurgeryDate"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Surgical Risk</strong></label><br>
+<select id="ctSurgicalRisk"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Select</option>
+<option value="Low">Low</option>
+<option value="Intermediate">Intermediate</option>
+<option value="High">High</option>
+</select>
+
+<label><strong>Current cardiac symptoms</strong></label><br>
+<select id="ctSymptoms"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No active cardiac symptoms</option>
+<option value="Yes">Yes — new/worsening symptoms</option>
+</select>
+
+</div>
+
+
+<!-- ECHOCARDIOGRAM -->
+
+<div class="card">
+
+<h3>Echocardiogram</h3>
+
+<label><strong>Echo available</strong></label><br>
+<select id="ctEchoAvailable"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Echo Date</strong></label><br>
+<input type="date" id="ctEchoDate"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>LVEF (%)</strong></label><br>
+<input type="number" id="ctEF" min="1" max="90"
+placeholder="Example: 55"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>LV systolic function description</strong></label><br>
+<select id="ctLVFunction"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Not entered</option>
+<option value="Normal">Normal</option>
+<option value="Mildly reduced">Mildly reduced</option>
+<option value="Moderately reduced">Moderately reduced</option>
+<option value="Severely reduced">Severely reduced</option>
+</select>
+
+<label><strong>Regional wall-motion abnormality</strong></label><br>
+<select id="ctWMA"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Aortic stenosis</strong></label><br>
+<select id="ctAS"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="None">None / not reported</option>
+<option value="Mild">Mild</option>
+<option value="Moderate">Moderate</option>
+<option value="Severe">Severe</option>
+</select>
+
+<label><strong>Aortic valve area (cm²)</strong></label><br>
+<input type="number" id="ctAVA" step="0.01"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Aortic mean gradient (mmHg)</strong></label><br>
+<input type="number" id="ctASGradient"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Aortic Vmax (m/s)</strong></label><br>
+<input type="number" id="ctVmax" step="0.1"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Mitral stenosis</strong></label><br>
+<select id="ctMS"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="None">None / not reported</option>
+<option value="Mild">Mild</option>
+<option value="Moderate">Moderate</option>
+<option value="Severe">Severe</option>
+</select>
+
+<label><strong>Mitral valve area (cm²)</strong></label><br>
+<input type="number" id="ctMVA" step="0.01"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Mitral mean gradient (mmHg)</strong></label><br>
+<input type="number" id="ctMSGradient"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>PASP (mmHg)</strong></label><br>
+<input type="number" id="ctPASP"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>RVSP (mmHg)</strong></label><br>
+<input type="number" id="ctRVSP"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>RV dysfunction</strong></label><br>
+<select id="ctRVFunction"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="None">None / normal</option>
+<option value="Mild">Mild</option>
+<option value="Moderate">Moderate</option>
+<option value="Severe">Severe</option>
+</select>
+
+<label><strong>Tricuspid regurgitation</strong></label><br>
+<select id="ctTR"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="None">None / trivial</option>
+<option value="Mild">Mild</option>
+<option value="Moderate">Moderate</option>
+<option value="Severe">Severe</option>
+</select>
+
+<label><strong>Other important echo findings</strong></label><br>
+<textarea id="ctEchoOther" rows="4"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<!-- STRESS TEST -->
+
+<div class="card">
+
+<h3>Stress / Ischemic Evaluation</h3>
+
+<label><strong>Stress test available</strong></label><br>
+<select id="ctStressAvailable"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Stress Test Date</strong></label><br>
+<input type="date" id="ctStressDate"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Stress test type</strong></label><br>
+<select id="ctStressType"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Not entered</option>
+<option value="Exercise">Exercise</option>
+<option value="Pharmacologic nuclear">Pharmacologic nuclear</option>
+<option value="Stress echocardiogram">Stress echocardiogram</option>
+<option value="Other">Other</option>
+</select>
+
+<label><strong>Result</strong></label><br>
+<select id="ctStressResult"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Not entered</option>
+<option value="Normal">Normal / negative for ischemia</option>
+<option value="Low-risk abnormality">Low-risk abnormality</option>
+<option value="Ischemia">Inducible ischemia</option>
+<option value="High-risk ischemia">High-risk ischemia</option>
+<option value="Inconclusive">Inconclusive / nondiagnostic</option>
+</select>
+
+<label><strong>Stress LVEF (%) if reported</strong></label><br>
+<input type="number" id="ctStressEF" min="1" max="90"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Additional stress-test interpretation</strong></label><br>
+<textarea id="ctStressOther" rows="4"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<!-- CATHETERIZATION -->
+
+<div class="card">
+
+<h3>Cardiac Catheterization / Coronary Angiography</h3>
+
+<label><strong>Cardiac cath available</strong></label><br>
+<select id="ctCathAvailable"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Cath Date</strong></label><br>
+<input type="date" id="ctCathDate"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Coronary findings</strong></label><br>
+<select id="ctCathResult"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Not entered</option>
+<option value="No obstructive CAD">No significant obstructive CAD</option>
+<option value="Stable CAD medical management">Stable CAD — medical management</option>
+<option value="Obstructive CAD">Significant obstructive CAD</option>
+<option value="Left main / high-risk CAD">Left main / high-risk coronary anatomy</option>
+</select>
+
+<label><strong>Intervention performed</strong></label><br>
+<select id="ctIntervention"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="None">None</option>
+<option value="Balloon">Balloon angioplasty without stent</option>
+<option value="DES-ACS">Drug-eluting stent — ACS</option>
+<option value="DES-CCD">Drug-eluting stent — chronic coronary disease</option>
+<option value="CABG">CABG</option>
+<option value="Other">Other</option>
+</select>
+
+<label><strong>Date of PCI / intervention</strong></label><br>
+<input type="date" id="ctInterventionDate"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Antiplatelet interruption required for planned surgery</strong></label><br>
+<select id="ctAPTInterrupt"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No / N/A</option>
+<option value="Yes">Yes</option>
+<option value="Unknown">Unknown</option>
+</select>
+
+<label><strong>Additional cath / PCI details</strong></label><br>
+<textarea id="ctCathOther" rows="4"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<!-- CLINICAL DECISION -->
+
+<div class="card">
+
+<h3>Clinical Decision Context</h3>
+
+<label><strong>Has the patient had a meaningful change in symptoms since this testing?</strong></label><br>
+<select id="ctIntervalChange"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Would additional cardiac testing change perioperative management?</strong></label><br>
+<select id="ctMoreTestingChanges"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+<option value="Uncertain">Uncertain</option>
+</select>
+
+<label><strong>Cardiology recommendation already available and reviewed</strong></label><br>
+<select id="ctCardiologyReviewed"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="N/A">N/A / not required</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+
+</div>
+
+
+<div class="card">
+
+<button type="button" id="ctGenerate"
+style="
+background:#17324d;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Interpret Cardiac Testing
+</button>
+
+<button type="button" id="ctCopy"
+style="
+background:#274c6b;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Copy Interpretation
+</button>
+
+<button type="button" id="ctPrint"
+style="
+background:#356f44;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Print
+</button>
+
+<button type="button" id="ctClear"
+style="
+background:#8b2f2f;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Clear Patient Data
+</button>
+
+</div>
+
+
+<div id="ctResult"
+style="
+display:none;
+margin-top:22px;
+padding:22px;
+background:white;
+border:1px solid #d8e1ec;
+border-radius:8px;">
+</div>
+
+</section>
+
+
+<style>
+
+@media print {
+
+body * {
+    visibility:hidden !important;
+}
+
+#ctResult,
+#ctResult * {
+    visibility:visible !important;
+}
+
+#ctResult {
+    display:block !important;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    padding:20px;
+    border:none;
+    background:white;
+    color:black;
+}
+
+}
+
+</style>
+
+
+<script>
+
+function ctVal(id) {
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : "";
+}
+
+
+function ctDaysBetween(startText, endText) {
+
+    if (!startText || !endText) return null;
+
+    const start = new Date(startText + "T00:00:00");
+    const end = new Date(endText + "T00:00:00");
+
+    return Math.floor(
+        (end - start) /
+        (1000 * 60 * 60 * 24)
+    );
+}
+
+
+function ctYearsBetween(startText, endText) {
+
+    const days = ctDaysBetween(startText, endText);
+
+    if (days === null) return null;
+
+    return days / 365.25;
+}
+
+
+function interpretCardiacTesting() {
+
+    let findings = [];
+    let pending = [];
+    let stop = [];
+    let recommendations = [];
+
+    const surgeryDate = ctVal("ctSurgeryDate");
+
+    const ef = parseFloat(ctVal("ctEF"));
+    const ava = parseFloat(ctVal("ctAVA"));
+    const asGradient = parseFloat(ctVal("ctASGradient"));
+    const vmax = parseFloat(ctVal("ctVmax"));
+
+    const mva = parseFloat(ctVal("ctMVA"));
+    const msGradient = parseFloat(ctVal("ctMSGradient"));
+    const pasp = parseFloat(ctVal("ctPASP"));
+    const rvsp = parseFloat(ctVal("ctRVSP"));
+
+
+    /* =====================================================
+       CURRENT SYMPTOMS / INTERVAL CHANGE
+    ===================================================== */
+
+    if (ctVal("ctSymptoms") === "Yes") {
+
+        pending.push(
+            "New or worsening cardiac symptoms require clinical evaluation before relying on prior testing."
+        );
+    }
+
+    if (ctVal("ctIntervalChange") === "Yes") {
+
+        pending.push(
+            "Meaningful interval clinical change has occurred since prior cardiac testing; reassess whether existing testing remains clinically adequate."
+        );
+    }
+
+
+    /* =====================================================
+       ECHOCARDIOGRAM
+    ===================================================== */
+
+    if (ctVal("ctEchoAvailable") === "Yes") {
+
+        if (ctVal("ctEchoDate")) {
+
+            findings.push(
+                "Echocardiogram dated " +
+                ctVal("ctEchoDate") +
+                "."
+            );
+        }
+
+
+        if (!isNaN(ef)) {
+
+            findings.push(
+                "LVEF " + ef + "%."
+            );
+
+            if (ef < 35) {
+
+                pending.push(
+                    "LVEF <35% meets the TSJH higher-level-of-care threshold and requires appropriate cardiovascular/anesthesia/venue review."
+                );
+
+            } else if (ef >= 35 && ef < 50) {
+
+                recommendations.push(
+                    "Reduced LVEF noted. Confirm clinical stability, heart-failure optimization and appropriate recent cardiovascular follow-up."
+                );
+            }
+        }
+
+
+        if (ctVal("ctWMA") === "Yes") {
+
+            findings.push(
+                "Regional wall-motion abnormality reported."
+            );
+
+            recommendations.push(
+                "Interpret regional wall-motion abnormality in the context of known CAD, symptoms and prior ischemic evaluation."
+            );
+        }
+
+
+        let severeAS =
+            ctVal("ctAS") === "Severe" ||
+            (!isNaN(ava) && ava < 1.0) ||
+            (!isNaN(asGradient) && asGradient > 40) ||
+            (!isNaN(vmax) && vmax > 4.0);
+
+
+        if (severeAS) {
+
+            stop.push(
+                "Severe aortic stenosis parameters are present. This finding requires cardiovascular/anesthesia review and appropriate surgical venue before elective surgery."
+            );
+
+        } else if (ctVal("ctAS") === "Moderate") {
+
+            pending.push(
+                "Moderate aortic stenosis requires appropriate cardiovascular review before final elective-surgery optimization."
+            );
+        }
+
+
+        let significantMS =
+            ctVal("ctMS") === "Moderate" ||
+            ctVal("ctMS") === "Severe" ||
+            (!isNaN(mva) && mva <= 1.5) ||
+            (!isNaN(msGradient) && msGradient >= 10) ||
+            (!isNaN(pasp) && pasp > 50);
+
+
+        if (significantMS) {
+
+            pending.push(
+                "Moderate/severe mitral stenosis parameters require cardiovascular review."
+            );
+        }
+
+
+        let phRedFlag =
+            (!isNaN(rvsp) && rvsp > 65) ||
+            ctVal("ctRVFunction") === "Moderate" ||
+            ctVal("ctRVFunction") === "Severe" ||
+            ctVal("ctTR") === "Severe";
+
+
+        if (phRedFlag) {
+
+            pending.push(
+                "Pulmonary-hypertension/right-heart red flag is present and requires appropriate cardiovascular/anesthesia/venue review."
+            );
+        }
+
+
+        if (ctVal("ctEchoOther")) {
+
+            findings.push(
+                "Additional echo findings: " +
+                ctVal("ctEchoOther")
+            );
+        }
+    }
+
+
+    /* =====================================================
+       STRESS TEST
+    ===================================================== */
+
+    if (ctVal("ctStressAvailable") === "Yes") {
+
+        const stressResult =
+            ctVal("ctStressResult");
+
+        if (ctVal("ctStressDate")) {
+
+            findings.push(
+                ctVal("ctStressType") +
+                " stress study dated " +
+                ctVal("ctStressDate") +
+                "."
+            );
+        }
+
+
+        if (stressResult === "Normal") {
+
+            findings.push(
+                "Stress study negative for inducible ischemia."
+            );
+
+            if (
+                ctVal("ctSymptoms") === "No" &&
+                ctVal("ctIntervalChange") === "No"
+            ) {
+
+                recommendations.push(
+                    "No additional ischemic testing is generally indicated solely because surgery is planned when the prior stress study remains clinically applicable and there has been no meaningful interval change."
+                );
+            }
+        }
+
+
+        if (stressResult === "Low-risk abnormality") {
+
+            findings.push(
+                "Low-risk abnormality reported on stress testing."
+            );
+
+            recommendations.push(
+                "Review the documented cardiology interpretation and confirm that the abnormality does not require a change in management before surgery."
+            );
+        }
+
+
+        if (stressResult === "Ischemia") {
+
+            pending.push(
+                "Inducible ischemia is reported on stress testing and requires clinical/cardiology review before final elective-surgery optimization."
+            );
+        }
+
+
+        if (stressResult === "High-risk ischemia") {
+
+            stop.push(
+                "High-risk inducible ischemia is present and requires cardiovascular management before routine elective surgery."
+            );
+        }
+
+
+        if (stressResult === "Inconclusive") {
+
+            pending.push(
+                "Stress testing is inconclusive/nondiagnostic. Additional evaluation should be considered only if the result would change perioperative management."
+            );
+        }
+
+
+        if (ctVal("ctStressOther")) {
+
+            findings.push(
+                "Additional stress-test findings: " +
+                ctVal("ctStressOther")
+            );
+        }
+    }
+
+
+    /* =====================================================
+       CARDIAC CATH
+    ===================================================== */
+
+    if (ctVal("ctCathAvailable") === "Yes") {
+
+        if (ctVal("ctCathDate")) {
+
+            findings.push(
+                "Cardiac catheterization dated " +
+                ctVal("ctCathDate") +
+                "."
+            );
+        }
+
+
+        if (ctVal("ctCathResult") === "No obstructive CAD") {
+
+            findings.push(
+                "No significant obstructive coronary disease reported."
+            );
+        }
+
+
+        if (ctVal("ctCathResult") === "Stable CAD medical management") {
+
+            findings.push(
+                "Stable coronary disease managed medically."
+            );
+
+            recommendations.push(
+                "Continue guideline-directed coronary disease therapy as appropriate and assess perioperative medication management."
+            );
+        }
+
+
+        if (ctVal("ctCathResult") === "Obstructive CAD") {
+
+            pending.push(
+                "Significant obstructive CAD is reported; confirm cardiology management and perioperative recommendation."
+            );
+        }
+
+
+        if (ctVal("ctCathResult") === "Left main / high-risk CAD") {
+
+            stop.push(
+                "Left main/high-risk coronary anatomy requires cardiovascular management before routine elective surgery."
+            );
+        }
+
+
+        if (ctVal("ctCathOther")) {
+
+            findings.push(
+                "Additional cath findings: " +
+                ctVal("ctCathOther")
+            );
+        }
+    }
+
+
+    /* =====================================================
+       PCI / INTERVENTION TIMING
+    ===================================================== */
+
+    const intervention =
+        ctVal("ctIntervention");
+
+    const interventionDate =
+        ctVal("ctInterventionDate");
+
+    const daysToSurgery =
+        ctDaysBetween(
+            interventionDate,
+            surgeryDate
+        );
+
+
+    if (
+        intervention !== "None" &&
+        interventionDate &&
+        surgeryDate &&
+        daysToSurgery !== null
+    ) {
+
+        findings.push(
+            "Interval from coronary intervention to planned surgery: " +
+            daysToSurgery +
+            " days."
+        );
+
+
+        if (
+            intervention === "Balloon" &&
+            daysToSurgery < 14
+        ) {
+
+            pending.push(
+                "Planned surgery is less than 14 days after balloon angioplasty without stent; elective surgery timing requires review."
+            );
+        }
+
+
+        if (
+            intervention === "DES-ACS" &&
+            daysToSurgery < 365
+        ) {
+
+            pending.push(
+                "Drug-eluting stent for ACS is within 12 months of planned surgery. Surgery timing and perioperative antiplatelet management require cardiovascular review."
+            );
+        }
+
+
+        if (
+            intervention === "DES-CCD" &&
+            daysToSurgery < 180
+        ) {
+
+            pending.push(
+                "Drug-eluting stent for chronic coronary disease is within 6 months of planned surgery. Review surgery timing and perioperative antiplatelet management."
+            );
+        }
+
+
+        if (
+            ctVal("ctAPTInterrupt") === "Yes" &&
+            daysToSurgery < 30
+        ) {
+
+            stop.push(
+                "Recent coronary intervention with planned interruption of antiplatelet therapy presents high thrombotic risk and requires multidisciplinary cardiovascular review."
+            );
+        }
+    }
+
+
+    /* =====================================================
+       EXISTING TEST USABILITY
+    ===================================================== */
+
+    if (
+        ctVal("ctMoreTestingChanges") === "No" &&
+        ctVal("ctSymptoms") === "No" &&
+        ctVal("ctIntervalChange") === "No"
+    ) {
+
+        recommendations.push(
+            "Do not order additional cardiac testing solely because surgery is planned when existing testing remains clinically applicable and additional results would not change perioperative management."
+        );
+    }
+
+
+    if (
+        pending.length > 0 &&
+        ctVal("ctCardiologyReviewed") === "No"
+    ) {
+
+        pending.push(
+            "Cardiology recommendation remains required/unreviewed for the identified cardiac issue."
+        );
+    }
+
+
+    /* =====================================================
+       REMOVE DUPLICATES
+    ===================================================== */
+
+    findings =
+        [...new Set(findings)];
+
+    recommendations =
+        [...new Set(recommendations)];
+
+    pending =
+        [...new Set(pending)];
+
+    stop =
+        [...new Set(stop)];
+
+
+    /* =====================================================
+       FINAL STATUS
+    ===================================================== */
+
+    let status = "";
+    let reason = "";
+
+    if (stop.length > 0) {
+
+        status = "Not optimized";
+        reason = stop.join(" ");
+
+    } else if (pending.length > 0) {
+
+        status = "Pending";
+        reason = pending.join(" ");
+
+    } else {
+
+        status = "Optimized";
+
+        reason =
+            "Available cardiac testing was reviewed and no unresolved high-risk cardiovascular finding was identified from the entered information.";
+    }
+
+
+    /* =====================================================
+       OUTPUT
+    ===================================================== */
+
+    let html = "";
+
+    html +=
+        "<h2>Cardiac Testing Interpretation</h2>";
+
+
+    if (findings.length > 0) {
+
+        html +=
+            "<h3>Study Summary</h3><ul>";
+
+        findings.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    if (recommendations.length > 0) {
+
+        html +=
+            "<h3>Perioperative Recommendation</h3><ul>";
+
+        recommendations.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    if (pending.length > 0) {
+
+        html +=
+            "<h3>Items Requiring Resolution</h3><ul>";
+
+        pending.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    if (stop.length > 0) {
+
+        html +=
+            "<h3>High-Risk Findings</h3><ul>";
+
+        stop.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    html += "<hr>";
+
+    html +=
+        "<h3>FINAL PREOPERATIVE OPTIMIZATION STATUS</h3>";
+
+    html +=
+        "<p><strong>" +
+        status +
+        "</strong></p>";
+
+    html +=
+        "<p><strong>Reason:</strong> " +
+        reason +
+        "</p>";
+
+
+    if (status === "Optimized") {
+
+        html +=
+            "<div class='success-box'>" +
+            "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time." +
+            "</div>";
+    }
+
+
+    html += "<hr>";
+
+    html +=
+        "<h3>Copy-Ready Physician Summary</h3>";
+
+    html +=
+        "<p>Available cardiac testing reviewed for perioperative risk stratification. ";
+
+
+    if (!isNaN(ef)) {
+
+        html +=
+            "Most recent LVEF " +
+            ef +
+            "%. ";
+    }
+
+
+    if (ctVal("ctStressResult") === "Normal") {
+
+        html +=
+            "Stress testing was negative for inducible ischemia. ";
+    }
+
+
+    if (ctVal("ctCathResult") === "No obstructive CAD") {
+
+        html +=
+            "Cardiac catheterization demonstrated no significant obstructive CAD. ";
+    }
+
+
+    html +=
+        "FINAL PREOPERATIVE OPTIMIZATION STATUS: " +
+        status +
+        ". ";
+
+
+    if (status !== "Optimized") {
+
+        html +=
+            "Reason: " +
+            reason;
+
+    } else {
+
+        html +=
+            "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time.";
+    }
+
+
+    html += "</p>";
+
+
+    const result =
+        document.getElementById("ctResult");
+
+    result.innerHTML = html;
+
+    result.style.display = "block";
+
+    result.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+}
+
+
+async function copyCardiacTesting() {
+
+    interpretCardiacTesting();
+
+    const text =
+        document.getElementById(
+            "ctResult"
+        ).innerText;
+
+    try {
+
+        await navigator.clipboard.writeText(text);
+
+        alert(
+            "Cardiac testing interpretation copied."
+        );
+
+    } catch (error) {
+
+        const temp =
+            document.createElement("textarea");
+
+        temp.value = text;
+
+        temp.style.position = "fixed";
+        temp.style.opacity = "0";
+
+        document.body.appendChild(temp);
+
+        temp.select();
+
+        document.execCommand("copy");
+
+        document.body.removeChild(temp);
+
+        alert(
+            "Cardiac testing interpretation copied."
+        );
+    }
+}
+
+
+function printCardiacTesting() {
+
+    interpretCardiacTesting();
+
+    setTimeout(function() {
+        window.print();
+    }, 150);
+}
+
+
+function clearCardiacTesting() {
+
+    const ok =
+        confirm(
+            "Clear all patient-specific cardiac testing information?"
+        );
+
+    if (!ok) return;
+
+
+    document
+        .querySelectorAll(
+            "#interactiveCardiacTesting input, #interactiveCardiacTesting textarea"
+        )
+        .forEach(function(el) {
+            el.value = "";
+        });
+
+
+    document
+        .querySelectorAll(
+            "#interactiveCardiacTesting select"
+        )
+        .forEach(function(el) {
+            el.selectedIndex = 0;
+        });
+
+
+    const result =
+        document.getElementById(
+            "ctResult"
+        );
+
+    result.innerHTML = "";
+
+    result.style.display = "none";
+
+
+    document
+        .getElementById(
+            "interactiveCardiacTesting"
+        )
+        .scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+}
+
+
+document
+.getElementById("ctGenerate")
+.addEventListener(
+    "click",
+    interpretCardiacTesting
+);
+
+
+document
+.getElementById("ctCopy")
+.addEventListener(
+    "click",
+    copyCardiacTesting
+);
+
+
+document
+.getElementById("ctPrint")
+.addEventListener(
+    "click",
+    printCardiacTesting
+);
+
+
+document
+.getElementById("ctClear")
+.addEventListener(
+    "click",
+    clearCardiacTesting
+);
+
+</script>
 </main>
 
 <footer>

@@ -1111,10 +1111,10 @@ style="width:95%;padding:10px;margin:6px 0 14px;">
 <option value="bifascicular">Bifascicular block</option>
 </select><br>
 
-<label><strong>ST-segment / ischemic changes</strong></label><br>
+<label><strong>ST / T-wave findings</strong></label><br>
 <select id="ekgST"
 style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="none">None</option>
+<option value="none">No significant acute change</option>
 <option value="nonspecific">Nonspecific ST-T changes</option>
 <option value="depression">ST depression</option>
 <option value="elevation">ST elevation</option>
@@ -1146,11 +1146,11 @@ style="width:95%;padding:10px;margin:6px 0 14px;">
 <option value="none">No prior available</option>
 </select><br>
 
-<label><strong>Current concerning symptoms</strong></label><br>
+<label><strong>Current concerning cardiac symptoms</strong></label><br>
 <select id="ekgSymptoms"
 style="width:95%;padding:10px;margin:6px 0 14px;">
 <option value="no">No</option>
-<option value="yes">Yes — chest pain, syncope, new dyspnea, palpitations, etc.</option>
+<option value="yes">Yes — chest pain, syncope, new dyspnea, etc.</option>
 </select><br>
 
 <label><strong>Known significant cardiac disease</strong></label><br>
@@ -1190,11 +1190,17 @@ display:none;
 
 <div class="warning-box">
 <strong>Important:</strong> This tool provides preliminary decision support only.
-Final interpretation should consider tracing quality, comparison with prior studies,
-symptoms, clinical context, medications, electrolytes and formal physician interpretation.
+Interpret the tracing with symptoms, prior EKGs, medications, electrolytes,
+cardiac history and formal physician interpretation.
 </div>
 
 </section>
+
+</main>
+
+<footer>
+Preoperative Optimization Handbook · EKG Interpretation & Preoperative Action Guide
+</footer>
 
 
 <script>
@@ -1221,73 +1227,93 @@ function interpretEKG() {
     let highRisk = false;
     let urgent = false;
 
+
     if (!isNaN(rate)) {
+
         if (rate < 50) {
             interpretation.push("Bradycardia at " + rate + " bpm.");
-        } else if (rate > 100) {
+        }
+
+        else if (rate > 100) {
             interpretation.push("Tachycardia at " + rate + " bpm.");
-        } else {
+        }
+
+        else {
             interpretation.push("Ventricular rate " + rate + " bpm.");
         }
     }
+
 
     if (rhythm === "sinus") {
         interpretation.push("Sinus rhythm.");
     }
 
+
     if (rhythm === "afib") {
+
         interpretation.push("Atrial fibrillation.");
+
+        recommendations.push(
+            "Review ventricular rate control, anticoagulation plan and thromboembolic risk."
+        );
 
         if (!isNaN(rate) && rate > 100) {
             highRisk = true;
+
             recommendations.push(
-                "Assess ventricular rate control and clinical stability before elective surgery."
+                "Assess rate control and clinical stability before elective surgery."
             );
         }
-
-        recommendations.push(
-            "Review anticoagulation management and thromboembolic risk when applicable."
-        );
     }
 
+
     if (rhythm === "flutter") {
+
         interpretation.push("Atrial flutter.");
+
         highRisk = true;
 
         recommendations.push(
-            "Assess rate control, anticoagulation plan and clinical stability."
+            "Assess rate control, anticoagulation and clinical stability."
         );
     }
 
+
     if (rhythm === "paced") {
+
         interpretation.push("Paced rhythm.");
 
         recommendations.push(
-            "Confirm implanted cardiac device status and sufficiently recent interrogation when clinically indicated."
+            "Confirm cardiac device status and sufficiently recent interrogation when indicated."
         );
     }
 
+
     if (rhythm === "junctional") {
+
         interpretation.push("Junctional rhythm.");
 
         recommendations.push(
-            "Correlate with heart rate, symptoms, medications and prior rhythm history."
+            "Correlate with rate, symptoms, medications and prior rhythm history."
         );
     }
+
 
     if (!isNaN(pr)) {
 
         if (pr > 200) {
             interpretation.push(
-                "PR interval is prolonged at " + pr + " ms."
+                "Prolonged PR interval at " + pr + " ms."
             );
-        } else {
+        }
+
+        else {
             interpretation.push(
                 "PR interval " + pr + " ms."
             );
         }
-
     }
+
 
     if (!isNaN(qrs)) {
 
@@ -1295,13 +1321,15 @@ function interpretEKG() {
             interpretation.push(
                 "Wide QRS complex at " + qrs + " ms."
             );
-        } else {
+        }
+
+        else {
             interpretation.push(
                 "QRS duration " + qrs + " ms."
             );
         }
-
     }
+
 
     if (!isNaN(qtc)) {
 
@@ -1316,26 +1344,26 @@ function interpretEKG() {
             recommendations.push(
                 "Review QT-prolonging medications, potassium, magnesium and reversible causes before elective surgery."
             );
+        }
 
-        } else if (qtc >= 470) {
+        else if (qtc >= 470) {
 
             interpretation.push(
                 "Borderline/prolonged QTc at " + qtc + " ms."
             );
 
             recommendations.push(
-                "Review medications, electrolytes and prior QTc when available."
+                "Review medications, electrolytes and prior QTc."
             );
+        }
 
-        } else {
-
+        else {
             interpretation.push(
                 "QTc " + qtc + " ms."
             );
-
         }
-
     }
+
 
     if (axis === "normal") {
         interpretation.push("Normal electrical axis.");
@@ -1350,17 +1378,21 @@ function interpretEKG() {
     }
 
     if (axis === "extreme") {
+
         interpretation.push("Extreme axis deviation.");
+
         highRisk = true;
 
         recommendations.push(
-            "Compare with prior EKG and correlate with structural or conduction disease."
+            "Compare with prior EKG and assess for structural or conduction disease."
         );
     }
+
 
     if (avBlock === "first") {
         interpretation.push("First-degree AV block.");
     }
+
 
     if (avBlock === "mobitz1") {
 
@@ -1369,9 +1401,10 @@ function interpretEKG() {
         );
 
         recommendations.push(
-            "Correlate with symptoms, heart rate, medications and prior EKG."
+            "Correlate with rate, symptoms, medications and prior EKG."
         );
     }
+
 
     if (avBlock === "mobitz2") {
 
@@ -1386,6 +1419,7 @@ function interpretEKG() {
         );
     }
 
+
     if (avBlock === "third") {
 
         interpretation.push(
@@ -1399,6 +1433,7 @@ function interpretEKG() {
         );
     }
 
+
     if (bbb === "rbbb") {
 
         interpretation.push(
@@ -1406,9 +1441,10 @@ function interpretEKG() {
         );
 
         recommendations.push(
-            "Compare with prior EKG and clinical history when available."
+            "Compare with prior EKG and clinical history."
         );
     }
+
 
     if (bbb === "lbbb") {
 
@@ -1419,13 +1455,14 @@ function interpretEKG() {
         highRisk = true;
 
         recommendations.push(
-            "Compare with prior EKG. New or unexplained LBBB requires additional evaluation before elective surgery."
+            "Compare with prior EKG. New or unexplained LBBB requires further cardiovascular evaluation before elective surgery."
         );
 
         recommendations.push(
-            "If ischemia evaluation is indicated, use an appropriate modality such as pharmacologic nuclear stress testing rather than relying on exercise ECG interpretation alone."
+            "If ischemia evaluation is indicated, pharmacologic nuclear stress testing is an appropriate strategy rather than relying on exercise ECG interpretation alone."
         );
     }
+
 
     if (bbb === "bifascicular") {
 
@@ -1436,23 +1473,19 @@ function interpretEKG() {
         highRisk = true;
 
         recommendations.push(
-            "Review symptoms, prior EKG and cardiac history. Cardiology review may be appropriate if new or symptomatic."
+            "Review symptoms, prior EKG and cardiac history; cardiology review may be appropriate when new or symptomatic."
         );
     }
+
 
     if (st === "nonspecific") {
-
-        interpretation.push(
-            "Nonspecific ST-T wave abnormality."
-        );
-
+        interpretation.push("Nonspecific ST-T wave abnormality.");
     }
+
 
     if (st === "depression") {
 
-        interpretation.push(
-            "ST-segment depression."
-        );
+        interpretation.push("ST-segment depression.");
 
         highRisk = true;
 
@@ -1461,11 +1494,10 @@ function interpretEKG() {
         );
     }
 
+
     if (st === "elevation") {
 
-        interpretation.push(
-            "ST-segment elevation."
-        );
+        interpretation.push("ST-segment elevation.");
 
         urgent = true;
 
@@ -1473,6 +1505,7 @@ function interpretEKG() {
             "Evaluate urgently for acute ischemia or another cause of ST elevation. Routine elective surgery should not proceed until clarified."
         );
     }
+
 
     if (st === "newT") {
 
@@ -1487,26 +1520,27 @@ function interpretEKG() {
         );
     }
 
+
     if (qWaves === "yes") {
 
         interpretation.push(
-            "Pathologic Q waves present."
+            "Pathologic Q waves are present."
         );
 
         recommendations.push(
-            "Review for prior myocardial infarction and compare with prior cardiac studies."
+            "Review for prior myocardial infarction and compare with prior studies."
         );
     }
+
 
     if (pvc === "occasional") {
         interpretation.push("Occasional PVCs.");
     }
 
+
     if (pvc === "frequent") {
 
-        interpretation.push(
-            "Frequent PVCs."
-        );
+        interpretation.push("Frequent PVCs.");
 
         highRisk = true;
 
@@ -1514,6 +1548,7 @@ function interpretEKG() {
             "Review electrolytes, symptoms, structural heart disease and prior rhythm history."
         );
     }
+
 
     if (pvc === "runs") {
 
@@ -1528,6 +1563,7 @@ function interpretEKG() {
         );
     }
 
+
     if (prior === "same") {
 
         interpretation.push(
@@ -1535,18 +1571,20 @@ function interpretEKG() {
         );
     }
 
+
     if (prior === "new") {
 
         interpretation.push(
-            "EKG abnormality is new compared with the prior tracing."
+            "EKG abnormality is new compared with prior tracing."
         );
 
         highRisk = true;
 
         recommendations.push(
-            "New EKG changes should be evaluated in the context of symptoms and cardiovascular risk before final optimization."
+            "New EKG changes require clinical correlation before final optimization."
         );
     }
+
 
     if (prior === "none") {
 
@@ -1554,6 +1592,7 @@ function interpretEKG() {
             "No prior EKG is available for comparison."
         );
     }
+
 
     if (symptoms === "yes") {
 
@@ -1564,19 +1603,22 @@ function interpretEKG() {
         );
     }
 
+
     if (cardiacDisease === "yes") {
 
         recommendations.push(
-            "Interpret these findings in the context of known cardiac disease and recent cardiology evaluation or cardiac testing."
+            "Interpret these findings in the context of known cardiac disease and recent cardiology evaluation/testing."
         );
     }
+
 
     if (interpretation.length === 0) {
 
         interpretation.push(
-            "Insufficient EKG findings were entered for a meaningful interpretation."
+            "Insufficient EKG information entered for a meaningful interpretation."
         );
     }
+
 
     if (recommendations.length === 0) {
 
@@ -1585,35 +1627,42 @@ function interpretEKG() {
         );
     }
 
+
     let status = "";
+
 
     if (urgent) {
 
         status =
             "NOT OPTIMIZED / FURTHER CARDIAC EVALUATION REQUIRED";
+    }
 
-    } else if (highRisk) {
+    else if (highRisk) {
 
         status =
             "PENDING / ADDITIONAL CARDIAC REVIEW MAY BE REQUIRED";
+    }
 
-    } else {
+    else {
 
         status =
             "NO HIGH-RISK EKG FINDING IDENTIFIED";
-
     }
+
 
     let html =
         "<h3>Preliminary EKG Interpretation</h3>";
+
 
     html +=
         "<p><strong>Status:</strong> " +
         status +
         "</p>";
 
+
     html +=
         "<p><strong>Interpretation:</strong></p><ul>";
+
 
     interpretation.forEach(function(item) {
 
@@ -1621,13 +1670,15 @@ function interpretEKG() {
             "<li>" +
             item +
             "</li>";
-
     });
+
 
     html += "</ul>";
 
+
     html +=
         "<p><strong>Preoperative Recommendation:</strong></p><ul>";
+
 
     recommendations.forEach(function(item) {
 
@@ -1635,10 +1686,11 @@ function interpretEKG() {
             "<li>" +
             item +
             "</li>";
-
     });
 
+
     html += "</ul>";
+
 
     if (!urgent && !highRisk) {
 
@@ -1647,11 +1699,12 @@ function interpretEKG() {
             "<p><strong>Suggested physician summary:</strong> " +
             "EKG reviewed. No high-risk or acute ischemic/conduction abnormality identified from the entered findings. " +
             "No additional cardiac evaluation is indicated based solely on this EKG if the patient remains asymptomatic and otherwise medically optimized.</p>";
-
     }
+
 
     const box =
         document.getElementById("ekgResult");
+
 
     box.innerHTML = html;
 
@@ -1659,14 +1712,6 @@ function interpretEKG() {
 }
 
 </script>
-
-
-</main>
-
-
-<footer>
-Preoperative Optimization Handbook · EKG Interpretation
-</footer>
 
 
 </body>

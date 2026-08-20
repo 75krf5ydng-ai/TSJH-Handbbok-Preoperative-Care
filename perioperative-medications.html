@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Perioperative Medication Management & Hold Guide</title>
+
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: #f4f7f9;
+  color: #1f2933;
+  line-height: 1.6;
+}
+
+header {
+  background: #17324d;
+  color: white;
+  padding: 28px 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+}
+
+header p { margin: 0; }
+
+nav {
+  background: white;
+  padding: 12px 20px;
+  border-bottom: 1px solid #d9e2ec;
+  text-align: center;
+}
+
+nav a {
+  color: #17324d;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 7px;
+}
+
+main {
+  max-width: 1180px;
+  margin: 24px auto;
+  padding: 0 18px 40px;
+}
+
+section {
+  background: white;
+  margin-bottom: 22px;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+h2 {
+  color: #17324d;
+  border-bottom: 2px solid #d9e2ec;
+  padding-bottom: 8px;
+}
+
+h3 {
+  color: #274c6b;
+  margin-top: 22px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+}
+
+th, td {
+  border: 1px solid #cbd5e1;
+  padding: 10px;
+  vertical-align: top;
+  text-align: left;
+}
+
+th {
+  background: #eaf0f5;
+  color: #17324d;
+}
+
+.clinical-box {
+  background: #eef6fb;
+  border-left: 5px solid #3178a8;
+  padding: 15px;
+  margin: 16px 0;
+}
+
+.warning-box {
+  background: #fff5f5;
+  border-left: 5px solid #b42318;
+  padding: 15px;
+  margin: 16px 0;
+}
+
+.success-box {
+  background: #eef9f0;
+  border-left: 5px solid #2d7a46;
+  padding: 15px;
+  margin: 16px 0;
+}
+
+.formula-box {
+  background: #f7f7fb;
+  border: 1px solid #d8d8e5;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 16px 0;
+}
+
+.search-box {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #aab7c4;
+  border-radius: 7px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  margin-bottom: 14px;
+}
+
+.med-card {
+  border: 1px solid #d9e2ec;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 12px 0;
+  background: #fbfcfd;
+}
+
+.med-card h3 {
+  margin-top: 0;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  background: #eaf0f5;
+  margin-right: 6px;
+  font-size: .85rem;
+}
+
+.button {
+  display: inline-block;
+  background: #17324d;
+  color: white !important;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 14px 22px;
+  border-radius: 8px;
+  margin: 6px;
+}
+
+.button-secondary {
+  background: #3178a8;
+}
+
+footer {
+  text-align: center;
+  padding: 24px;
+  color: #52606d;
+  font-size: .9rem;
+}
+
+@media(max-width:700px) {
+  table { font-size: .78rem; }
+  header h1 { font-size: 1.4rem; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Perioperative Medication Management & Hold Guide</h1>
+<p>Anticoagulants, antiplatelets, diabetes medications, GLP-1, SGLT2, cardiovascular drugs, biologics, steroids, pain medications and more</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="evaluation.html">Evaluation</a>
+<a href="cardiac.html">Cardiac</a>
+<a href="diabetes-medications.html">Diabetes</a>
+<a href="rheumatology-immunosuppression.html">Rheumatology</a>
+<a href="provider-resources.html">Resources</a>
+</nav>
+
+<main>
+
+<section>
+<h2>Purpose</h2>
+
+<p>
+Perioperative medication management should balance bleeding, thrombosis,
+withdrawal, hemodynamic instability, aspiration, metabolic complications,
+infection risk and control of chronic disease.
+</p>
+
+<div class="warning-box">
+This is a clinical quick-reference guide. Final medication instructions should
+follow the current surgeon, anesthesia, institutional and specialist pathway.
+Renal function, drug indication, procedural bleeding consequence and neuraxial
+requirements may change the plan.
+</div>
+</section>
+
+
+<section>
+<h2>Search Medication Guide</h2>
+
+<input
+  type="text"
+  id="medSearch"
+  class="search-box"
+  placeholder="Type medication or class: Eliquis, Plavix, Ozempic, Jardiance, metoprolol, prednisone..."
+  onkeyup="filterMeds()"
+>
+
+<div id="medicationList"></div>
+</section>
+
+
+<section>
+<h2>Anticoagulants — TSJH Quick Reference</h2>
+
+<table>
+
+<tr>
+<th>Medication</th>
+<th>Usual Quick Reference</th>
+<th>Important Considerations</th>
+</tr>
+
+<tr>
+<td>Apixaban / Eliquis</td>
+<td>Hold approximately 72 hours</td>
+<td>Renal function, bleeding consequence and neuraxial timing.</td>
+</tr>
+
+<tr>
+<td>Rivaroxaban / Xarelto</td>
+<td>Hold approximately 72 hours</td>
+<td>Renal function, indication and procedural bleeding risk.</td>
+</tr>
+
+<tr>
+<td>Edoxaban / Savaysa</td>
+<td>Hold approximately 72 hours</td>
+<td>Renal function and procedural bleeding risk.</td>
+</tr>
+
+<tr>
+<td>Dabigatran / Pradaxa</td>
+<td>Hold approximately 3–5 days</td>
+<td>Renal function is especially important.</td>
+</tr>
+
+<tr>
+<td>Warfarin</td>
+<td>Hold approximately 5 days</td>
+<td>Check INR and determine whether bridging is actually necessary.</td>
+</tr>
+
+<tr>
+<td>Enoxaparin / Lovenox</td>
+<td>Hold approximately 24 hours</td>
+<td>Therapeutic vs prophylactic dosing, renal function and neuraxial timing.</td>
+</tr>
+
+</table>
+
+<div class="warning-box">
+Do not bridge anticoagulation routinely. Bridging is reserved for selected
+patients with sufficiently high thromboembolic risk and should follow an
+approved anticoagulation algorithm or specialist plan.
+</div>
+</section>
+
+
+<section>
+
+<h2>MDCalc Perioperative Anticoagulation Management Algorithm</h2>
+
+<p>
+Use the MDCalc Perioperative Anticoagulation Management Algorithm as an
+additional patient-specific reference when determining anticoagulant
+interruption and postoperative resumption.
+</p>
+
+<div class="clinical-box">
+
+<strong>Useful information to have available:</strong><br><br>
+
+Anticoagulant name<br>
+Indication for anticoagulation<br>
+Planned procedure<br>
+Surgical date<br>
+Procedure bleeding risk<br>
+Renal function / CrCl<br>
+History and timing of prior thromboembolism<br>
+Mechanical heart valve status<br>
+Neuraxial / spine / SCS / intrathecal procedure status
+
+</div>
+
+<p style="text-align:center;">
+
+<a
+class="button"
+href="https://www.mdcalc.com/calc/10586/perioperative-anticoagulation-management-algorithm"
+target="_blank"
+rel="noopener noreferrer">
+Open MDCalc Perioperative Anticoagulation Calculator
+</a>
+
+</p>
+
+<div class="warning-box">
+
+<strong>Important:</strong> Do not use calculator output without considering
+renal function, neuraxial requirements, spine/SCS/intrathecal bleeding
+consequence, recent thrombosis, mechanical valve status, recent PCI and the
+specific indication for anticoagulation.
+
+</div>
+
+<div class="clinical-box">
+
+<strong>Bridging reminder:</strong><br><br>
+
+DOAC interruption generally does not require heparin bridging.<br><br>
+
+Warfarin bridging should be reserved for selected patients with high
+thromboembolic risk and should not be ordered automatically.
+
+</div>
+
+</section>
+
+
+<section>
+<h2>Anticoagulation Plan Documentation</h2>
+
+<div class="formula-box">
+
+<strong>PERIOPERATIVE ANTICOAGULATION PLAN</strong><br><br>
+
+Medication: ___<br><br>
+
+Indication:<br>
+AF / VTE / Mechanical valve / Other: ___<br><br>
+
+Dose: ___<br><br>
+
+Creatinine: ___ mg/dL<br>
+eGFR: ___ mL/min/1.73m²<br>
+CrCl when applicable: ___ mL/min<br><br>
+
+Procedure: ___<br><br>
+
+Bleeding risk:<br>
+Low-to-moderate / High<br><br>
+
+Spine / neuraxial / SCS / intrathecal procedure:<br>
+Yes / No<br><br>
+
+Last dose: ___<br><br>
+
+Recommended hold interval: ___<br><br>
+
+Bridging:<br>
+Not indicated / Indicated / Specialist review required<br><br>
+
+Postoperative resumption plan: ___<br><br>
+
+MDCalc Perioperative Anticoagulation Algorithm reviewed:<br>
+Yes / No<br><br>
+
+Surgeon/anesthesia/specialist plan confirmed:<br>
+Yes / No
+
+</div>
+</section>
+
+
+<section>
+<h2>Antiplatelet Therapy</h2>
+
+<table>
+
+<tr>
+<th>Medication</th>
+<th>Usual Quick Reference</th>
+<th>Important Considerations</th>
+</tr>
+
+<tr>
+<td>Clopidogrel / Plavix</td>
+<td>Hold approximately 7 days when appropriate</td>
+<td>Review indication, recent PCI/stent and cerebrovascular history.</td>
+</tr>
+
+<tr>
+<td>Ticagrelor / Brilinta</td>
+<td>Hold approximately 7 days when appropriate</td>
+<td>Recent PCI may make interruption unsafe.</td>
+</tr>
+
+<tr>
+<td>Prasugrel / Effient</td>
+<td>Hold approximately 7 days when appropriate</td>
+<td>Confirm coronary intervention history.</td>
+</tr>
+
+<tr>
+<td>Aspirin — joints</td>
+<td>Commonly hold approximately 5 days</td>
+<td>Follow surgeon pathway and cardiovascular indication.</td>
+</tr>
+
+<tr>
+<td>Aspirin — spine</td>
+<td>Commonly hold approximately 7 days</td>
+<td>High bleeding-consequence procedure.</td>
+</tr>
+
+</table>
+
+<div class="clinical-box">
+For dual or triple antithrombotic therapy, aspirin may need to remain continued
+depending on cardiovascular indication, except when procedure-specific bleeding
+risk requires an alternative plan.
+</div>
+</section>
+
+
+<section>
+<h2>Recent PCI / Coronary Stent</h2>
+
+<div class="warning-box">
+Do not stop antiplatelet therapy after recent PCI simply because surgery is
+scheduled. Review the PCI date, indication, stent history and current cardiology
+recommendations before interrupting therapy.
+</div>
+</section>
+
+
+<section>
+<h2>Watchman / Recent Ablation</h2>
+
+<div class="warning-box">
+Recent Watchman placement or atrial ablation may require uninterrupted
+anticoagulation during a defined early treatment interval. Review the current
+cardiology/EP plan before elective interruption.
+</div>
+</section>
+
+
+<section>
+<h2>Beta Blockers</h2>
+
+<p>
+Examples include metoprolol, carvedilol, atenolol and propranolol.
+</p>
+
+<div class="success-box">
+Chronic beta-blocker therapy should generally be continued perioperatively unless
+significant bradycardia, hypotension or another contraindication is present.
+</div>
+
+<div class="warning-box">
+Avoid abrupt withdrawal of chronic beta-blocker therapy.
+</div>
+</section>
+
+
+<section>
+<h2>ACE Inhibitors / ARBs</h2>
+
+<p>
+Examples include lisinopril, losartan, valsartan and olmesartan.
+</p>
+
+<div class="clinical-box">
+Day-of-surgery management depends on facility/anesthesia guidance and may differ
+when these agents are prescribed for uncomplicated hypertension versus
+heart-failure GDMT.
+</div>
+
+<p>
+Review blood pressure, potassium, renal function, volume status and indication.
+</p>
+</section>
+
+
+<section>
+<h2>ARNI</h2>
+
+<p>
+Sacubitril/valsartan is a component of guideline-directed therapy for HFrEF.
+</p>
+
+<div class="clinical-box">
+Review anesthesia and heart-failure guidance rather than treating ARNI simply as
+another antihypertensive medication.
+</div>
+</section>
+
+
+<section>
+<h2>Calcium Channel Blockers</h2>
+
+<p>
+Amlodipine is commonly continued. Diltiazem and verapamil are also often
+continued but require review of heart rate, hypotension and conduction disease.
+</p>
+</section>
+
+
+<section>
+<h2>Diuretics</h2>
+
+<p>
+Examples include furosemide, torsemide, hydrochlorothiazide and spironolactone.
+</p>
+
+<div class="clinical-box">
+Management should be individualized according to indication, potassium, renal
+function and volume status.
+</div>
+
+<div class="warning-box">
+Avoid excessive fasting-related volume depletion, but do not reflexively
+withhold necessary diuresis in a patient with active congestion.
+</div>
+</section>
+
+
+<section>
+<h2>Statins</h2>
+
+<div class="success-box">
+Continue chronic statin therapy perioperatively unless a specific
+contraindication exists.
+</div>
+</section>
+
+
+<section>
+<h2>Antiarrhythmics</h2>
+
+<p>
+Examples include amiodarone, sotalol, flecainide and dofetilide.
+</p>
+
+<div class="warning-box">
+Do not independently discontinue chronic antiarrhythmic therapy. Review QTc,
+renal function and interacting medications when relevant.
+</div>
+</section>
+
+
+<section>
+<h2>SGLT2 Inhibitors</h2>
+
+<h3>Examples</h3>
+
+<ul>
+<li>Empagliflozin / Jardiance</li>
+<li>Dapagliflozin / Farxiga</li>
+<li>Canagliflozin / Invokana</li>
+<li>Ertugliflozin / Steglatro</li>
+</ul>
+
+<div class="warning-box">
+SGLT2 inhibitors require multi-day interruption before elective surgery because
+of euglycemic DKA risk. Follow the current medication-specific anesthesia/
+facility interval.
+</div>
+
+<div class="clinical-box">
+This applies whether the medication is prescribed for diabetes, heart failure
+or chronic kidney disease.
+</div>
+</section>
+
+
+<section>
+<h2>SGLT2 Red Flag</h2>
+
+<div class="warning-box">
+Recent SGLT2 use plus nausea, vomiting, abdominal pain, tachypnea, malaise or
+otherwise unexplained metabolic acidosis should prompt evaluation for
+euglycemic DKA even when serum glucose is not markedly elevated.
+</div>
+</section>
+
+
+<section>
+<h2>GLP-1 Receptor Agonists</h2>
+
+<h3>Examples</h3>
+
+<ul>
+<li>Semaglutide / Ozempic / Wegovy</li>
+<li>Tirzepatide / Mounjaro / Zepbound</li>
+<li>Dulaglutide / Trulicity</li>
+<li>Liraglutide / Victoza / Saxenda</li>
+</ul>
+
+<div class="clinical-box">
+Current management should use individualized aspiration-risk assessment rather
+than assuming that every GLP-1 medication requires the same fixed hold.
+</div>
+
+<h3>Review</h3>
+
+<ul>
+<li>Daily vs weekly formulation</li>
+<li>Last dose</li>
+<li>Recent dose escalation</li>
+<li>Nausea</li>
+<li>Vomiting</li>
+<li>Bloating</li>
+<li>Early satiety</li>
+<li>Known gastroparesis</li>
+</ul>
+
+<div class="warning-box">
+Significant GI symptoms or concern for delayed gastric emptying requires
+anesthesia review before elective sedation or general anesthesia.
+</div>
+</section>
+
+
+<section>
+<h2>Metformin</h2>
+
+<div class="clinical-box">
+Follow current facility instructions for day-of-surgery management and review
+renal function, AKI and acute illness.
+</div>
+</section>
+
+
+<section>
+<h2>Sulfonylureas</h2>
+
+<p>
+Glipizide, glimepiride and glyburide may cause fasting hypoglycemia.
+</p>
+
+<div class="warning-box">
+These are generally withheld on the day of surgery according to standard
+perioperative diabetes protocols.
+</div>
+</section>
+
+
+<section>
+<h2>DPP-4 Inhibitors</h2>
+
+<p>
+Examples include sitagliptin, linagliptin and saxagliptin.
+</p>
+
+<div class="clinical-box">
+These have relatively low hypoglycemia risk when used alone. Follow current
+facility diabetes instructions.
+</div>
+</section>
+
+
+<section>
+<h2>Insulin</h2>
+
+<div class="warning-box">
+Do not instruct every diabetic patient to “hold all insulin.”
+</div>
+
+<div class="clinical-box">
+Type 1 diabetes requires basal insulin even during fasting. Basal insulin is
+usually dose-adjusted rather than completely omitted. Prandial insulin is
+typically held while fasting unless being used as correction insulin under a
+defined plan.
+</div>
+</section>
+
+
+<section>
+<h2>Insulin Pump</h2>
+
+<div class="warning-box">
+If an insulin pump is removed in a patient dependent on continuous basal insulin,
+an alternative basal insulin plan must be established.
+</div>
+
+<div class="clinical-box">
+Coordinate pump continuation, basal rate and intraoperative glucose management
+with anesthesia and the diabetes pathway.
+</div>
+</section>
+
+
+<section>
+<h2>Thyroid Medications</h2>
+
+<div class="success-box">
+Levothyroxine is generally continued perioperatively.
+</div>
+
+<div class="clinical-box">
+Methimazole and PTU are generally continued for treated hyperthyroidism unless
+the treating clinician provides a different plan.
+</div>
+</section>
+
+
+<section>
+<h2>Chronic Glucocorticoids</h2>
+
+<div class="warning-box">
+Do not abruptly discontinue chronic systemic glucocorticoids.
+</div>
+
+<div class="clinical-box">
+Continue baseline therapy and assess HPA-axis suppression and whether
+supplemental perioperative steroid coverage is needed.
+</div>
+</section>
+
+
+<section>
+<h2>Conventional DMARDs</h2>
+
+<table>
+
+<tr>
+<th>Medication</th>
+<th>General Approach</th>
+</tr>
+
+<tr>
+<td>Methotrexate</td>
+<td>Often continued in stable patients; review renal function, CBC and liver tests.</td>
+</tr>
+
+<tr>
+<td>Hydroxychloroquine</td>
+<td>Often continued.</td>
+</tr>
+
+<tr>
+<td>Sulfasalazine</td>
+<td>Often continued under current pathways.</td>
+</tr>
+
+<tr>
+<td>Leflunomide</td>
+<td>May be continued under selected guidance; individualize.</td>
+</tr>
+
+</table>
+</section>
+
+
+<section>
+<h2>Biologic DMARDs</h2>
+
+<div class="warning-box">
+Do not use one fixed hold interval for every biologic.
+</div>
+
+<div class="clinical-box">
+Many biologics are managed according to the dosing cycle. Document exact drug,
+frequency, last dose, next dose and rheumatology/surgeon plan.
+</div>
+</section>
+
+
+<section>
+<h2>JAK Inhibitors</h2>
+
+<p>
+Examples include tofacitinib, upadacitinib and baricitinib.
+</p>
+
+<div class="warning-box">
+JAK inhibitors commonly require temporary perioperative interruption. Confirm
+the current drug-specific recommendation.
+</div>
+</section>
+
+
+<section>
+<h2>Antiseizure Medications</h2>
+
+<div class="success-box">
+Continue chronic antiseizure medications whenever possible to prevent missed
+doses and breakthrough seizures.
+</div>
+</section>
+
+
+<section>
+<h2>Parkinson Medications</h2>
+
+<div class="warning-box">
+Avoid unnecessary interruption of dopaminergic therapy because prolonged missed
+doses can cause severe rigidity, immobility and other complications.
+</div>
+</section>
+
+
+<section>
+<h2>SSRIs / SNRIs</h2>
+
+<p>
+These are commonly continued perioperatively.
+</p>
+
+<div class="clinical-box">
+Consider withdrawal risk, bleeding tendency and serotonergic drug interactions
+when making changes.
+</div>
+</section>
+
+
+<section>
+<h2>Benzodiazepines</h2>
+
+<div class="warning-box">
+Do not abruptly stop chronic benzodiazepines in a dependent patient. Withdrawal
+can cause severe anxiety, delirium, autonomic instability and seizures.
+</div>
+
+<div class="clinical-box">
+Minimize additional sedative burden when combined with opioids, OSA, COPD or frailty.
+</div>
+</section>
+
+
+<section>
+<h2>Chronic Opioids</h2>
+
+<div class="warning-box">
+Do not abruptly discontinue chronic opioid therapy without a plan.
+</div>
+
+<div class="clinical-box">
+Document baseline opioid exposure, anticipate tolerance and use multimodal
+postoperative analgesia with respiratory and bowel monitoring.
+</div>
+</section>
+
+
+<section>
+<h2>Buprenorphine</h2>
+
+<div class="warning-box">
+Do not automatically discontinue buprenorphine before surgery.
+</div>
+
+<div class="clinical-box">
+Continuation with an individualized multimodal analgesic strategy is often
+appropriate. Major painful procedures may warrant anesthesia or pain-management review.
+</div>
+</section>
+
+
+<section>
+<h2>Methadone</h2>
+
+<div class="success-box">
+Maintenance methadone is generally continued to prevent withdrawal.
+</div>
+
+<div class="warning-box">
+Review QTc and drug interactions when clinically relevant.
+</div>
+</section>
+
+
+<section>
+<h2>Gabapentin / Pregabalin</h2>
+
+<div class="clinical-box">
+Review renal dosing, dizziness, sedation, fall risk and respiratory effects,
+particularly when combined with opioids or benzodiazepines.
+</div>
+</section>
+
+
+<section>
+<h2>Muscle Relaxants</h2>
+
+<p>
+Cyclobenzaprine and methocarbamol can increase sedation.
+</p>
+
+<div class="clinical-box">
+Cyclobenzaprine has greater anticholinergic burden. Methocarbamol may be
+preferable in selected older or delirium-prone patients when a muscle relaxant
+is clinically necessary.
+</div>
+</section>
+
+
+<section>
+<h2>NSAIDs</h2>
+
+<p>
+Examples include ibuprofen, naproxen, meloxicam, diclofenac and celecoxib.
+</p>
+
+<div class="warning-box">
+Hold timing varies by medication, surgeon and procedure. Review renal function,
+GI bleeding risk, concurrent anticoagulation and spine-fusion restrictions.
+</div>
+</section>
+
+
+<section>
+<h2>Acetaminophen</h2>
+
+<div class="success-box">
+Acetaminophen is commonly continued and may be used as part of multimodal analgesia.
+</div>
+
+<div class="warning-box">
+Avoid duplicate total daily acetaminophen exposure from combination opioid products.
+</div>
+</section>
+
+
+<section>
+<h2>Herbal Supplements</h2>
+
+<p>
+Examples include ginkgo, ginseng, garlic, St. John's wort, valerian and kava.
+</p>
+
+<div class="warning-box">
+Herbal supplements may affect bleeding, sedation, cardiovascular function or
+drug metabolism. Follow the facility/anesthesia preoperative supplement policy.
+</div>
+</section>
+
+
+<section>
+<h2>Procedure-Specific Considerations</h2>
+
+<table>
+
+<tr>
+<th>Procedure</th>
+<th>Medication Issues</th>
+</tr>
+
+<tr>
+<td>Total joint arthroplasty</td>
+<td>
+Anticoagulants, antiplatelets, diabetes drugs, GLP-1/SGLT2 medications,
+biologics and postoperative VTE prophylaxis.
+</td>
+</tr>
+
+<tr>
+<td>Spine surgery</td>
+<td>
+Anticoagulants, antiplatelets, NSAIDs, biologics, chronic pain medications and
+high bleeding consequence.
+</td>
+</tr>
+
+<tr>
+<td>SCS / intrathecal procedures</td>
+<td>
+Neuraxial anticoagulant/antiplatelet timing is particularly important.
+</td>
+</tr>
+
+<tr>
+<td>Major revision spine surgery</td>
+<td>
+Antithrombotics, anemia, chronic opioids, diabetes medications, biologics and
+cardiopulmonary GDMT.
+</td>
+</tr>
+
+<tr>
+<td>Minor hand / superficial procedure</td>
+<td>
+Avoid unnecessarily interrupting important chronic medications when bleeding
+and physiologic stress are minimal.
+</td>
+</tr>
+
+</table>
+</section>
+
+
+<section>
+<h2>Medication Reconciliation Checklist</h2>
+
+<div class="formula-box">
+
+[ ] Exact medication verified<br><br>
+
+[ ] Dose verified<br><br>
+
+[ ] Frequency verified<br><br>
+
+[ ] Indication understood<br><br>
+
+[ ] Last dose documented when relevant<br><br>
+
+[ ] Renal function considered<br><br>
+
+[ ] Hepatic function considered when relevant<br><br>
+
+[ ] Procedural bleeding consequence considered<br><br>
+
+[ ] Withdrawal risk considered<br><br>
+
+[ ] Specialist plan reviewed when appropriate<br><br>
+
+[ ] Written patient instructions provided<br><br>
+
+[ ] Postoperative restart responsibility identified
+
+</div>
+</section>
+
+
+<section>
+<h2>Complete Medication Documentation Template</h2>
+
+<div class="formula-box">
+
+<strong>PERIOPERATIVE MEDICATION REVIEW</strong><br><br>
+
+Anticoagulant: ___<br>
+Indication: ___<br>
+Last dose: ___<br>
+Hold interval: ___<br>
+Bridging required: Yes / No<br>
+Restart plan: ___<br><br>
+
+Antiplatelet: ___<br>
+Indication: ___<br>
+Last dose: ___<br>
+Hold plan: ___<br>
+Restart plan: ___<br><br>
+
+SGLT2 inhibitor: ___<br>
+Last dose: ___<br>
+Hold completed: Yes / No / N/A<br><br>
+
+GLP-1 medication: ___<br>
+Last dose: ___<br>
+Dose escalation: Yes / No<br>
+GI symptoms: Yes / No<br>
+Anesthesia review required: Yes / No<br><br>
+
+Insulin / pump plan: ___<br><br>
+
+Beta blocker: Continue / Hold / N/A<br><br>
+
+ACE / ARB / ARNI plan: ___<br><br>
+
+Diuretic plan: ___<br><br>
+
+Chronic steroid: ___<br>
+Stress-dose review required: Yes / No<br><br>
+
+Biologic / JAK agent: ___<br>
+Last dose: ___<br>
+Hold plan: ___<br><br>
+
+Chronic opioid / buprenorphine / methadone: ___<br>
+Perioperative plan: ___<br><br>
+
+Other medication concern: ___
+
+</div>
+</section>
+
+
+<section>
+<h2>When Medication Issues Should Make Status Pending</h2>
+
+<div class="warning-box">
+
+FINAL PREOPERATIVE OPTIMIZATION STATUS may remain Pending when:<br><br>
+
+Anticoagulant interruption is unresolved<br>
+Warfarin bridging decision is unresolved<br>
+Recent PCI antiplatelet plan is unresolved<br>
+Required SGLT2 interruption was not completed<br>
+GLP-1 aspiration risk requires anesthesia determination<br>
+Insulin pump plan is unresolved<br>
+Biologic/JAK hold plan is unresolved before major implant surgery<br>
+Stress-dose steroid plan is unresolved in adrenal insufficiency<br>
+Complex buprenorphine/methadone plan is unresolved<br>
+Transplant medication management is unclear<br>
+Other medication issue materially affects perioperative safety
+
+</div>
+</section>
+
+
+<section>
+<h2>Key Takeaways</h2>
+
+<ul>
+<li>Always identify the medication indication before deciding to hold it.</li>
+<li>Renal function may materially change anticoagulant interruption timing.</li>
+<li>Dabigatran is particularly dependent on renal clearance.</li>
+<li>Use the MDCalc perioperative anticoagulation algorithm as an additional decision-support tool.</li>
+<li>Do not bridge anticoagulation automatically.</li>
+<li>Recent PCI can make antiplatelet interruption unsafe.</li>
+<li>SGLT2 inhibitors require multi-day interruption because of euglycemic DKA risk.</li>
+<li>GLP-1 management should include GI symptoms and aspiration-risk assessment.</li>
+<li>Type 1 diabetes requires basal insulin during fasting.</li>
+<li>Continue chronic beta blockers and statins unless contraindicated.</li>
+<li>Do not abruptly stop steroids, benzodiazepines, opioids, antiseizure medications or Parkinson medications.</li>
+<li>Biologics and JAK inhibitors require drug-specific perioperative planning.</li>
+<li>Spine, SCS and intrathecal procedures carry particularly important bleeding consequences.</li>
+<li>Document exact last dose whenever medication interruption matters.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Final Preoperative Optimization Status</h2>
+
+<div class="formula-box">
+
+<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS:</strong><br><br>
+
+Optimized / Pending / Not optimized<br><br>
+
+Reason: ________________________________________________
+
+</div>
+
+<div class="success-box">
+Patient meets TSJH perioperative consensus guidelines to proceed with elective
+surgery on scheduled surgery date at this time.
+</div>
+</section>
+
+</main>
+
+<footer>
+Preoperative Optimization Handbook · Perioperative Medication Management & Hold Guide
+</footer>
+
+
+<script>
+
+const meds = [
+
+{
+name:"Eliquis / Apixaban",
+class:"DOAC Anticoagulant",
+action:"Common TSJH quick reference: hold approximately 72 hours.",
+notes:"Review renal function, indication, procedure bleeding consequence and neuraxial timing.",
+restart:"Restart after adequate surgical hemostasis according to surgeon/procedural plan."
+},
+
+{
+name:"Xarelto / Rivaroxaban",
+class:"DOAC Anticoagulant",
+action:"Common TSJH quick reference: hold approximately 72 hours.",
+notes:"Review renal function, indication and procedural bleeding risk.",
+restart:"Restart after adequate hemostasis."
+},
+
+{
+name:"Savaysa / Edoxaban",
+class:"DOAC Anticoagulant",
+action:"Common TSJH quick reference: hold approximately 72 hours.",
+notes:"Review renal function and bleeding risk.",
+restart:"Resume after adequate hemostasis according to procedural plan."
+},
+
+{
+name:"Pradaxa / Dabigatran",
+class:"DOAC Anticoagulant",
+action:"Common TSJH quick reference: hold approximately 3–5 days.",
+notes:"Renal clearance is especially important. Consider CrCl rather than relying only on serum creatinine.",
+restart:"Restart according to hemostasis, renal function and procedural plan."
+},
+
+{
+name:"Warfarin",
+class:"Vitamin K Antagonist",
+action:"Common quick reference: hold approximately 5 days.",
+notes:"Check INR and determine whether bridging is actually indicated. Use MDCalc anticoagulation algorithm or approved protocol.",
+restart:"Restart according to bleeding and thromboembolic risk."
+},
+
+{
+name:"Lovenox / Enoxaparin",
+class:"Low Molecular Weight Heparin",
+action:"Common quick reference: hold approximately 24 hours.",
+notes:"Therapeutic vs prophylactic dose, renal function and neuraxial timing matter.",
+restart:"Use surgeon/anesthesia plan."
+},
+
+{
+name:"Plavix / Clopidogrel",
+class:"Antiplatelet",
+action:"Common quick reference: hold approximately 7 days when interruption is appropriate.",
+notes:"Confirm recent PCI/stent and cerebrovascular indication.",
+restart:"Surgeon-directed with cardiology/medical input when needed."
+},
+
+{
+name:"Brilinta / Ticagrelor",
+class:"Antiplatelet",
+action:"Common quick reference: hold approximately 7 days when interruption is appropriate.",
+notes:"Recent PCI may make interruption unsafe.",
+restart:"Coordinate with surgeon/cardiology."
+},
+
+{
+name:"Effient / Prasugrel",
+class:"Antiplatelet",
+action:"Common quick reference: hold approximately 7 days when interruption is appropriate.",
+notes:"Review PCI history.",
+restart:"Coordinate with surgeon/cardiology."
+},
+
+{
+name:"Aspirin",
+class:"Antiplatelet",
+action:"Joint pathway commonly about 5 days and spine about 7 days when hold is appropriate.",
+notes:"Do not apply the same rule to every patient. Recent PCI and dual therapy require additional review.",
+restart:"Surgeon-directed."
+},
+
+{
+name:"Jardiance / Empagliflozin",
+class:"SGLT2 Inhibitor",
+action:"Requires multi-day preoperative interruption.",
+notes:"Risk of euglycemic DKA. Follow current anesthesia/facility interval.",
+restart:"Resume after adequate oral intake and metabolic stability."
+},
+
+{
+name:"Farxiga / Dapagliflozin",
+class:"SGLT2 Inhibitor",
+action:"Requires multi-day preoperative interruption.",
+notes:"Applies even when prescribed for heart failure or CKD.",
+restart:"Resume after oral intake and metabolic stability."
+},
+
+{
+name:"Ozempic / Wegovy / Semaglutide",
+class:"GLP-1 Receptor Agonist",
+action:"Use current individualized anesthesia aspiration-risk pathway.",
+notes:"Review dose escalation, nausea, vomiting, bloating, early satiety and gastroparesis.",
+restart:"Resume when clinically appropriate."
+},
+
+{
+name:"Mounjaro / Zepbound / Tirzepatide",
+class:"GLP-1 / GIP Agent",
+action:"Use individualized anesthesia aspiration-risk pathway.",
+notes:"Review GI symptoms and recent dose escalation.",
+restart:"Resume when clinically appropriate."
+},
+
+{
+name:"Metformin",
+class:"Biguanide",
+action:"Follow facility day-of-surgery protocol.",
+notes:"Review renal function, AKI and acute illness.",
+restart:"Resume when oral intake and renal status are appropriate."
+},
+
+{
+name:"Glipizide / Glimepiride / Glyburide",
+class:"Sulfonylurea",
+action:"Generally hold on the day of surgery.",
+notes:"Fasting hypoglycemia risk.",
+restart:"Resume with reliable oral intake as clinically appropriate."
+},
+
+{
+name:"Metoprolol / Carvedilol / Atenolol",
+class:"Beta Blocker",
+action:"Generally continue.",
+notes:"Review significant bradycardia or hypotension.",
+restart:"Avoid unnecessary interruption."
+},
+
+{
+name:"Lisinopril / Losartan / Valsartan",
+class:"ACE Inhibitor / ARB",
+action:"Follow current anesthesia/facility protocol.",
+notes:"Management may differ when used for hypertension versus heart-failure GDMT.",
+restart:"Resume when BP, renal function and volume status allow."
+},
+
+{
+name:"Amlodipine",
+class:"Calcium Channel Blocker",
+action:"Often continued.",
+notes:"Review hypotension.",
+restart:"Continue when appropriate."
+},
+
+{
+name:"Diltiazem / Verapamil",
+class:"Rate-Control Calcium Channel Blocker",
+action:"Often continued.",
+notes:"Review bradycardia, hypotension and conduction disease.",
+restart:"Continue when appropriate."
+},
+
+{
+name:"Furosemide / Torsemide / HCTZ",
+class:"Diuretic",
+action:"Individualize based on indication and volume status.",
+notes:"Avoid dehydration but account for active heart-failure congestion.",
+restart:"Resume according to volume and renal status."
+},
+
+{
+name:"Spironolactone",
+class:"Mineralocorticoid Antagonist",
+action:"Individualize.",
+notes:"Review potassium, renal function and heart-failure indication.",
+restart:"Resume when renal function and potassium allow."
+},
+
+{
+name:"Atorvastatin / Rosuvastatin / Simvastatin",
+class:"Statin",
+action:"Generally continue.",
+notes:"Avoid unnecessary interruption.",
+restart:"Continue."
+},
+
+{
+name:"Levothyroxine",
+class:"Thyroid Replacement",
+action:"Generally continue.",
+notes:"Long half-life makes an isolated missed dose less clinically important, but routine continuation is preferred.",
+restart:"Continue."
+},
+
+{
+name:"Prednisone / Methylprednisolone",
+class:"Systemic Glucocorticoid",
+action:"Do not abruptly stop chronic therapy.",
+notes:"Assess HPA-axis suppression and stress-dose requirement.",
+restart:"Continue baseline therapy."
+},
+
+{
+name:"Methotrexate",
+class:"Conventional DMARD",
+action:"Often continued in stable patients.",
+notes:"Review renal function, CBC, liver tests and infection.",
+restart:"Use rheumatology/surgeon guidance."
+},
+
+{
+name:"Hydroxychloroquine",
+class:"Conventional DMARD",
+action:"Often continued.",
+notes:"Review QT issues only when clinically relevant.",
+restart:"Continue."
+},
+
+{
+name:"Humira / Adalimumab",
+class:"Biologic DMARD",
+action:"Usually managed according to dosing cycle rather than one fixed interval.",
+notes:"Document last dose and rheumatology/surgeon plan.",
+restart:"Resume after adequate wound healing and absence of active infection according to plan."
+},
+
+{
+name:"Rinvoq / Upadacitinib",
+class:"JAK Inhibitor",
+action:"Commonly requires temporary perioperative interruption.",
+notes:"Confirm current medication-specific guidance.",
+restart:"Resume according to specialist/surgical plan."
+},
+
+{
+name:"Gabapentin",
+class:"Gabapentinoid",
+action:"Often continued or used selectively.",
+notes:"Review renal dosing, sedation, falls and respiratory risk.",
+restart:"Continue when appropriate."
+},
+
+{
+name:"Pregabalin / Lyrica",
+class:"Gabapentinoid",
+action:"Often continued or used selectively.",
+notes:"Review renal function and cumulative sedation.",
+restart:"Continue when appropriate."
+},
+
+{
+name:"Cyclobenzaprine / Flexeril",
+class:"Muscle Relaxant",
+action:"Individualize.",
+notes:"Anticholinergic and sedating, particularly in older adults.",
+restart:"Use only when clinically appropriate."
+},
+
+{
+name:"Methocarbamol / Robaxin",
+class:"Muscle Relaxant",
+action:"Individualize.",
+notes:"Still sedating but generally less anticholinergic than cyclobenzaprine.",
+restart:"Use as clinically appropriate."
+},
+
+{
+name:"Alprazolam / Lorazepam / Clonazepam",
+class:"Benzodiazepine",
+action:"Do not abruptly stop chronic dependent use.",
+notes:"Withdrawal may cause delirium or seizures. Minimize added sedative burden with opioids and OSA.",
+restart:"Maintain safe continuation plan."
+},
+
+{
+name:"Buprenorphine",
+class:"OUD / Chronic Pain Medication",
+action:"Do not automatically discontinue.",
+notes:"Often continued with individualized multimodal analgesia.",
+restart:"Maintain treatment continuity whenever possible."
+},
+
+{
+name:"Methadone",
+class:"OUD / Chronic Pain Medication",
+action:"Generally continue maintenance therapy.",
+notes:"Review QTc and interacting medications when relevant.",
+restart:"Continue maintenance treatment."
+},
+
+{
+name:"Hydrocodone / Oxycodone / Morphine",
+class:"Chronic Opioid",
+action:"Do not abruptly discontinue chronic therapy without a plan.",
+notes:"Anticipate tolerance, sedation, respiratory risk and constipation.",
+restart:"Continue baseline regimen with acute postoperative plan."
+},
+
+{
+name:"Keppra / Levetiracetam",
+class:"Antiseizure Medication",
+action:"Generally continue.",
+notes:"Avoid missed doses and breakthrough seizures.",
+restart:"Continue."
+},
+
+{
+name:"Carbidopa-Levodopa",
+class:"Parkinson Medication",
+action:"Avoid unnecessary interruption.",
+notes:"Missed doses can cause severe rigidity and immobility.",
+restart:"Resume on schedule as soon as feasible."
+},
+
+{
+name:"Sertraline / Escitalopram / Fluoxetine",
+class:"SSRI",
+action:"Commonly continue.",
+notes:"Consider bleeding and serotonergic interactions.",
+restart:"Continue."
+},
+
+{
+name:"Venlafaxine / Duloxetine",
+class:"SNRI",
+action:"Commonly continue.",
+notes:"Avoid abrupt withdrawal and review serotonergic interactions.",
+restart:"Continue."
+},
+
+{
+name:"Ibuprofen / Naproxen / Meloxicam / Diclofenac",
+class:"NSAID",
+action:"Hold interval varies by drug, procedure and surgeon.",
+notes:"Review bleeding, renal, GI and spine-fusion considerations.",
+restart:"Surgeon-directed."
+},
+
+{
+name:"Celecoxib / Celebrex",
+class:"COX-2 NSAID",
+action:"Follow surgeon/anesthesia protocol.",
+notes:"Renal and fusion considerations remain relevant.",
+restart:"Surgeon-directed."
+},
+
+{
+name:"Fish Oil / Omega-3",
+class:"Supplement",
+action:"Follow surgeon/anesthesia protocol.",
+notes:"Bleeding significance depends on dose and procedure.",
+restart:"Resume when appropriate."
+},
+
+{
+name:"Ginkgo / Garlic / Ginseng / Vitamin E",
+class:"Herbal Supplement",
+action:"Many facilities recommend preoperative discontinuation.",
+notes:"May affect bleeding, sedation or drug metabolism.",
+restart:"Resume only when appropriate."
+}
+
+];
+
+
+function renderMeds(list) {
+
+  const container = document.getElementById("medicationList");
+
+  container.innerHTML = "";
+
+  if (list.length === 0) {
+
+    container.innerHTML =
+      '<div class="warning-box">No matching medication found. Review the medication class sections below and verify current facility guidance.</div>';
+
+    return;
+  }
+
+  list.forEach(function(med) {
+
+    const div = document.createElement("div");
+
+    div.className = "med-card";
+
+    div.innerHTML = `
+      <h3>${med.name}</h3>
+      <span class="badge">${med.class}</span>
+      <p><strong>Usual preoperative action:</strong> ${med.action}</p>
+      <p><strong>Important considerations:</strong> ${med.notes}</p>
+      <p><strong>Restart:</strong> ${med.restart}</p>
+    `;
+
+    container.appendChild(div);
+  });
+}
+
+
+function filterMeds() {
+
+  const query =
+    document.getElementById("medSearch").value.toLowerCase().trim();
+
+  if (!query) {
+    renderMeds(meds.slice(0, 12));
+    return;
+  }
+
+  const filtered = meds.filter(function(med) {
+
+    return (
+      med.name.toLowerCase().includes(query) ||
+      med.class.toLowerCase().includes(query) ||
+      med.action.toLowerCase().includes(query) ||
+      med.notes.toLowerCase().includes(query)
+    );
+
+  });
+
+  renderMeds(filtered);
+}
+
+
+renderMeds(meds.slice(0, 12));
+
+</script>
+
+</body>
+</html>

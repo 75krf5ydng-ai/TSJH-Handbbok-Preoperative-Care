@@ -144,3 +144,369 @@ Maintain current links here for ACC/AHA perioperative cardiovascular guidance, M
 Before broad clinical deployment, each linked guideline and institutional threshold should be reviewed against the latest approved policy version.
 TSJH Preoperative Care Handbook • Clinical decision-support reference
 Last site framework update: August 2026
+:root {
+  --navy: #17324d;
+  --blue: #245f89;
+  --light-blue: #eaf3f8;
+  --ink: #1d2730;
+  --muted: #61707d;
+  --line: #d8e0e6;
+  --paper: #ffffff;
+  --bg: #f4f7f9;
+  --success: #e9f5ed;
+  --warning: #fff6df;
+  --danger: #fdecec;
+  --shadow: 0 4px 18px rgba(23, 50, 77, 0.08);
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.58;
+}
+
+.site-header {
+  background: linear-gradient(135deg, var(--navy), var(--blue));
+  color: white;
+  padding: 34px 24px 30px;
+}
+
+.header-inner {
+  max-width: 1220px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: .78rem;
+  font-weight: 700;
+  opacity: .85;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1.08;
+}
+
+.subtitle {
+  margin: 12px 0 0;
+  max-width: 790px;
+  opacity: .92;
+}
+
+.notice {
+  background: #fff8da;
+  border-bottom: 1px solid #eadb92;
+  padding: 11px 24px;
+  text-align: center;
+  font-size: .9rem;
+}
+
+.app-shell {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 28px;
+  padding: 28px 24px 60px;
+}
+
+.sidebar {
+  align-self: start;
+  position: sticky;
+  top: 16px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+}
+
+.search-wrap label {
+  display: block;
+  font-weight: 700;
+  font-size: .9rem;
+  margin-bottom: 7px;
+}
+
+.search-wrap input {
+  width: 100%;
+  border: 1px solid #bcc8d2;
+  border-radius: 9px;
+  padding: 10px 11px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.search-wrap input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(36, 95, 137, .12);
+}
+
+.search-count {
+  min-height: 22px;
+  color: var(--muted);
+  font-size: .78rem;
+  margin-top: 5px;
+}
+
+.sidebar nav {
+  display: grid;
+  gap: 3px;
+  margin-top: 10px;
+}
+
+.sidebar nav a {
+  color: #334756;
+  text-decoration: none;
+  padding: 7px 9px;
+  border-radius: 7px;
+  font-size: .92rem;
+}
+
+.sidebar nav a:hover {
+  color: var(--navy);
+  background: var(--light-blue);
+}
+
+.content { min-width: 0; }
+
+.handbook-section {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(22px, 4vw, 36px);
+  margin-bottom: 22px;
+  box-shadow: var(--shadow);
+  scroll-margin-top: 20px;
+}
+
+.handbook-section h2 {
+  color: var(--navy);
+  margin: 0 0 18px;
+  font-size: 1.65rem;
+}
+
+.handbook-section h3 { color: #29475e; }
+
+.section-tag {
+  display: inline-block;
+  background: var(--light-blue);
+  color: var(--blue);
+  border-radius: 99px;
+  padding: 4px 9px;
+  font-weight: 700;
+  font-size: .75rem;
+  margin-bottom: 9px;
+}
+
+.status-grid, .score-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.score-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.status-card, .score-grid article {
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  padding: 16px;
+}
+
+.status-card h3, .score-grid h3 { margin-top: 0; }
+
+.optimized { background: var(--success); }
+.pending { background: var(--warning); }
+.not-optimized { background: var(--danger); }
+
+.step-grid {
+  display: grid;
+  gap: 13px;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 13px;
+  align-items: start;
+}
+
+.step > span {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: white;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+}
+
+.step h3 { margin: 0 0 3px; }
+.step p { margin: 0; }
+
+.callout, .protocol-box, .template-box {
+  border-left: 5px solid var(--blue);
+  background: var(--light-blue);
+  padding: 16px 18px;
+  border-radius: 9px;
+  margin: 16px 0;
+}
+
+.callout.warning { background: var(--warning); border-left-color: #c88c00; }
+.callout.danger { background: var(--danger); border-left-color: #b83b3b; }
+
+details {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  margin: 11px 0;
+  background: #fff;
+}
+
+summary {
+  cursor: pointer;
+  padding: 14px 16px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.details-body { padding: 0 16px 14px; }
+
+.thresholds, .risk-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 14px 0;
+}
+
+.thresholds > div, .risk-row > div {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 13px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.risk-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.two-col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.two-col > div {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.two-col h3 { margin-top: 0; }
+
+.clinical-table-wrap {
+  overflow-x: auto;
+  margin-top: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 650px;
+}
+
+th, td {
+  padding: 12px 13px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  color: var(--navy);
+  background: #f0f5f8;
+  font-size: .9rem;
+}
+
+code {
+  white-space: normal;
+  background: #f4f6f8;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 2px 5px;
+}
+
+.small-note { font-size: .88rem; color: var(--muted); }
+
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--muted);
+}
+
+footer {
+  background: var(--navy);
+  color: rgba(255,255,255,.88);
+  text-align: center;
+  padding: 24px;
+  font-size: .85rem;
+}
+
+footer p { margin: 3px 0; }
+
+.menu-toggle {
+  display: none;
+  background: rgba(255,255,255,.12);
+  color: white;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 8px;
+  font-size: 1.4rem;
+  padding: 7px 11px;
+}
+
+mark {
+  background: #fff1a8;
+  padding: 0 1px;
+}
+
+@media (max-width: 900px) {
+  .app-shell { grid-template-columns: 1fr; padding: 18px 14px 45px; }
+  .menu-toggle { display: block; }
+  .sidebar {
+    display: none;
+    position: static;
+    max-height: none;
+  }
+  .sidebar.open { display: block; }
+  .status-grid, .score-grid, .two-col, .risk-row { grid-template-columns: 1fr; }
+  .site-header { padding-inline: 18px; }
+}
+
+@media print {
+  body { background: #fff; font-size: 10.5pt; }
+  .site-header { color: #000; background: #fff; border-bottom: 2px solid #000; }
+  .notice, .sidebar, .menu-toggle, footer { display: none !important; }
+  .app-shell { display: block; max-width: none; padding: 0; }
+  .handbook-section { box-shadow: none; border: 0; border-bottom: 1px solid #aaa; break-inside: avoid; }
+  details { break-inside: avoid; }
+  details > * { display: block !important; }
+}

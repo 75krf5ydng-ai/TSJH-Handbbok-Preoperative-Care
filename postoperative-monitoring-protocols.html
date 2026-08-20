@@ -1117,11 +1117,516 @@ ___
 </div>
 </section>
 
+<!-- =========================================================
+     INTERACTIVE POSTOPERATIVE MONITORING PLANNER
+========================================================= -->
+
+<section>
+
+<h2>Interactive Postoperative Monitoring Planner</h2>
+
+<p>
+Select the patient's perioperative risk factors to generate a suggested
+postoperative monitoring plan and copy-ready provider documentation.
+</p>
+
+<div class="clinical-box">
+
+<h3>Cardiac Surveillance</h3>
+
+<label><strong>Age</strong></label><br>
+<input type="number" id="pmAge"
+placeholder="Example: 72"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>RCRI score</strong></label><br>
+<input type="number" id="pmRcri" min="0" max="6"
+placeholder="Example: 1"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>BNP (pg/mL), if available</strong></label><br>
+<input type="number" id="pmBnp"
+placeholder="Example: 65"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>NT-proBNP (ng/L), if available</strong></label><br>
+<input type="number" id="pmNtpro"
+placeholder="Example: 220"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<hr>
+
+<h3>Respiratory Monitoring</h3>
+
+<label><strong>OSA / PAP status</strong></label><br>
+<select id="pmOSA"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="none">No known OSA</option>
+<option value="pap">OSA — compliant with PAP</option>
+<option value="intolerant">OSA — PAP intolerant / not using</option>
+<option value="highrisk">High STOP-BANG / suspected OSA</option>
+</select>
+
+<label><strong>Supplemental oxygen requirement</strong></label><br>
+<select id="pmOxygen"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="none">None</option>
+<option value="prn">Intermittent / PRN</option>
+<option value="night">Nocturnal oxygen</option>
+<option value="continuous">24-hour oxygen</option>
+</select>
+
+<label><strong>Significant COPD / asthma / pulmonary disease</strong></label><br>
+<select id="pmLung"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="stable">Yes — stable</option>
+<option value="highrisk">Yes — higher risk / severe</option>
+</select>
+
+<label><strong>Chronic hypercapnic respiratory failure</strong></label><br>
+<select id="pmHypercapnia"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<hr>
+
+<h3>Diabetes / Glucose Monitoring</h3>
+
+<label><strong>Diabetes status</strong></label><br>
+<select id="pmDiabetes"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="none">No diabetes</option>
+<option value="type2">Type 2 diabetes</option>
+<option value="type1">Type 1 diabetes</option>
+</select>
+
+<label><strong>Uses insulin</strong></label><br>
+<select id="pmInsulin"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>Insulin pump</strong></label><br>
+<select id="pmPump"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>Recent SGLT2 inhibitor use</strong></label><br>
+<select id="pmSglt2"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<hr>
+
+<h3>Neurologic / Procedure-Specific Monitoring</h3>
+
+<label><strong>Spine surgery with neurologic monitoring concern</strong></label><br>
+<select id="pmSpine"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>History of stroke/TIA or significant neurologic disease</strong></label><br>
+<select id="pmNeuro"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<hr>
+
+<h3>General Higher-Risk Features</h3>
+
+<label><strong>Moderate/severe frailty</strong></label><br>
+<select id="pmFrailty"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>Significant renal dysfunction</strong></label><br>
+<select id="pmRenal"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>Expected major blood loss / physiologic stress</strong></label><br>
+<select id="pmStress"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<button onclick="generateMonitoringPlan()"
+style="
+background:#17324d;
+color:white;
+border:none;
+padding:14px 22px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin-top:12px;
+width:100%;">
+Generate Postoperative Monitoring Plan
+</button>
+
+</div>
+
+<div id="pmResult"
+style="
+margin-top:20px;
+padding:18px;
+background:#eef4f8;
+border-left:5px solid #2f6fa3;
+border-radius:6px;
+display:none;">
+</div>
+
+<div class="warning-box">
+
+<strong>Clinical reminder:</strong>
+This tool provides decision support only. Final monitoring requirements should
+incorporate procedure type, anesthesia plan, institutional policy, surgeon and
+anesthesia recommendations, current clinical status and the capabilities of the
+planned postoperative setting.
+
+</div>
+
+</section>
+
 </main>
 
 <footer>
-Preoperative Optimization Handbook · Postoperative Monitoring & Surveillance Protocols
+Preoperative Optimization Handbook · Postoperative Monitoring Protocols
 </footer>
+
+<script>
+
+function generateMonitoringPlan() {
+
+    const age = parseFloat(document.getElementById("pmAge").value);
+    const rcri = parseFloat(document.getElementById("pmRcri").value);
+    const bnp = parseFloat(document.getElementById("pmBnp").value);
+    const ntpro = parseFloat(document.getElementById("pmNtpro").value);
+
+    const osa = document.getElementById("pmOSA").value;
+    const oxygen = document.getElementById("pmOxygen").value;
+    const lung = document.getElementById("pmLung").value;
+    const hypercapnia = document.getElementById("pmHypercapnia").value;
+
+    const diabetes = document.getElementById("pmDiabetes").value;
+    const insulin = document.getElementById("pmInsulin").value;
+    const pump = document.getElementById("pmPump").value;
+    const sglt2 = document.getElementById("pmSglt2").value;
+
+    const spine = document.getElementById("pmSpine").value;
+    const neuro = document.getElementById("pmNeuro").value;
+
+    const frailty = document.getElementById("pmFrailty").value;
+    const renal = document.getElementById("pmRenal").value;
+    const stress = document.getElementById("pmStress").value;
+
+    let plan = [];
+    let flags = [];
+    let higherLevel = false;
+
+    /* CARDIAC */
+
+    let bnpPositive = false;
+
+    if (!isNaN(bnp) && bnp >= 92) {
+        bnpPositive = true;
+    }
+
+    if (!isNaN(ntpro) && ntpro >= 300) {
+        bnpPositive = true;
+    }
+
+    if (bnpPositive) {
+
+        flags.push(
+            "Elevated BNP/NT-proBNP surveillance threshold."
+        );
+
+        plan.push(
+            "Obtain postoperative EKG in PACU and daily troponin surveillance for 48–72 hours per applicable TSJH cardiac-surveillance protocol."
+        );
+
+    } else {
+
+        if (
+            (!isNaN(age) && age >= 65) ||
+            (!isNaN(rcri) && rcri >= 1)
+        ) {
+
+            if (isNaN(bnp) && isNaN(ntpro)) {
+
+                plan.push(
+                    "Review whether BNP/NT-proBNP screening is indicated before finalizing postoperative cardiac-surveillance requirements."
+                );
+
+            } else {
+
+                plan.push(
+                    "BNP/NT-proBNP does not meet the entered postoperative surveillance threshold; routine postoperative troponin surveillance is not indicated solely on this basis."
+                );
+
+            }
+        }
+    }
+
+    /* RESPIRATORY */
+
+    if (osa === "pap") {
+
+        plan.push(
+            "Use PAP whenever asleep postoperatively; respiratory therapy may assist with setup."
+        );
+
+        plan.push(
+            "Consider continuous pulse oximetry according to overall respiratory and opioid risk."
+        );
+    }
+
+    if (osa === "intolerant") {
+
+        flags.push(
+            "OSA with PAP intolerance."
+        );
+
+        plan.push(
+            "Continuous pulse oximetry postoperatively."
+        );
+
+        plan.push(
+            "NIPPV and/or supplemental oxygen should be available if clinically warranted."
+        );
+    }
+
+    if (osa === "highrisk") {
+
+        plan.push(
+            "High-risk suspected OSA: consider continuous pulse oximetry and opioid-sparing respiratory precautions."
+        );
+    }
+
+    if (
+        oxygen === "continuous" ||
+        lung === "highrisk" ||
+        hypercapnia === "yes"
+    ) {
+
+        higherLevel = true;
+
+        flags.push(
+            "Higher-risk pulmonary disease."
+        );
+
+        plan.push(
+            "Anesthesia/pulmonary review and higher-level postoperative respiratory monitoring should be considered."
+        );
+    }
+
+    if (
+        lung === "stable" ||
+        lung === "highrisk"
+    ) {
+
+        plan.push(
+            "Continue baseline inhaled respiratory therapy as appropriate."
+        );
+
+        plan.push(
+            "Use incentive spirometry/pulmonary-expansion measures and early mobilization."
+        );
+    }
+
+    /* DIABETES */
+
+    if (
+        diabetes !== "none" ||
+        insulin === "yes"
+    ) {
+
+        plan.push(
+            "Perform perioperative point-of-care glucose monitoring according to diabetes treatment and institutional protocol."
+        );
+    }
+
+    if (diabetes === "type1") {
+
+        flags.push(
+            "Type 1 diabetes."
+        );
+
+        plan.push(
+            "Maintain basal insulin to prevent metabolic decompensation; avoid complete insulin interruption."
+        );
+    }
+
+    if (pump === "yes") {
+
+        flags.push(
+            "Insulin pump."
+        );
+
+        plan.push(
+            "Confirm perioperative insulin-pump management plan with anesthesia and the treating diabetes team/policy."
+        );
+    }
+
+    if (sglt2 === "yes") {
+
+        flags.push(
+            "Recent SGLT2 inhibitor exposure."
+        );
+
+        plan.push(
+            "Do not routinely restart SGLT2 inhibitor therapy until the patient is clinically stable, eating adequately and without concern for ketoacidosis."
+        );
+    }
+
+    /* NEUROLOGIC */
+
+    if (spine === "yes") {
+
+        plan.push(
+            "Perform and document postoperative neurologic assessment after spine surgery; promptly escalate new weakness, sensory loss or bowel/bladder neurologic change."
+        );
+    }
+
+    if (neuro === "yes") {
+
+        plan.push(
+            "Maintain heightened postoperative neurologic surveillance and promptly evaluate new focal neurologic symptoms."
+        );
+    }
+
+    /* GENERAL */
+
+    if (renal === "yes") {
+
+        plan.push(
+            "Monitor renal function, volume status and electrolytes when clinically indicated; avoid unnecessary nephrotoxins."
+        );
+    }
+
+    if (frailty === "yes") {
+
+        flags.push(
+            "Frailty / increased postoperative vulnerability."
+        );
+
+        plan.push(
+            "Use fall precautions, early mobilization, delirium-prevention strategies and careful medication review."
+        );
+    }
+
+    if (stress === "yes") {
+
+        plan.push(
+            "Consider targeted postoperative CBC/BMP and other laboratory surveillance according to blood loss and physiologic stress."
+        );
+    }
+
+    if (plan.length === 0) {
+
+        plan.push(
+            "No additional postoperative medical-surveillance requirement was identified from the entered risk factors. Routine postoperative monitoring may be appropriate."
+        );
+    }
+
+    let disposition = "";
+
+    if (higherLevel) {
+
+        disposition =
+            "Higher-level postoperative monitoring or venue review may be appropriate.";
+
+    } else {
+
+        disposition =
+            "No automatic higher-level-of-care trigger identified from the entered information.";
+    }
+
+    let html = "";
+
+    html +=
+        "<h3>Postoperative Monitoring Recommendation</h3>";
+
+    html +=
+        "<p><strong>Disposition / monitoring summary:</strong> " +
+        disposition +
+        "</p>";
+
+    if (flags.length > 0) {
+
+        html +=
+            "<p><strong>Important risk findings:</strong></p><ul>";
+
+        flags.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+    html +=
+        "<p><strong>Recommended postoperative plan:</strong></p><ul>";
+
+    plan.forEach(function(item) {
+        html += "<li>" + item + "</li>";
+    });
+
+    html += "</ul>";
+
+    html += "<hr>";
+
+    html +=
+        "<p><strong>Suggested provider documentation:</strong><br>" +
+        "Postoperative medical monitoring requirements reviewed based on cardiac, pulmonary, metabolic, neurologic and procedure-specific risk. ";
+
+    if (bnpPositive) {
+        html +=
+            "BNP/NT-proBNP meets the TSJH postoperative cardiac-surveillance threshold; postoperative EKG and daily troponins for 48–72 hours are indicated. ";
+    }
+
+    if (osa === "pap") {
+        html +=
+            "OSA: PAP whenever asleep postoperatively. ";
+    }
+
+    if (osa === "intolerant") {
+        html +=
+            "OSA with PAP intolerance: continuous pulse oximetry; NIPPV and/or supplemental oxygen if warranted. ";
+    }
+
+    if (diabetes !== "none") {
+        html +=
+            "Perioperative glucose monitoring indicated. ";
+    }
+
+    html += disposition + "</p>";
+
+    const result =
+        document.getElementById("pmResult");
+
+    result.innerHTML = html;
+    result.style.display = "block";
+}
+
+</script>
 
 </body>
 </html>

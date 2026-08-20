@@ -965,7 +965,1557 @@ Patient meets TSJH perioperative consensus guidelines to proceed with elective
 surgery on scheduled surgery date at this time.
 </div>
 </section>
+<!-- =========================================================
+     INTERACTIVE SURVEILLANCE IMAGING & FOLLOW-UP CHECKER
+     Paste immediately BEFORE </main>
+========================================================= -->
 
+<section id="surveillanceReadinessTool">
+
+<h2>Interactive Surveillance Imaging & Follow-Up Checker</h2>
+
+<p>
+Use this tool to determine whether chronic disease surveillance or device
+follow-up appears current for the planned elective surgery and whether
+additional testing, specialty review, or venue assessment is needed.
+</p>
+
+<div class="warning-box">
+<strong>Clinical decision support:</strong>
+Surveillance intervals are disease- and severity-specific. A study should not
+be repeated solely because it is old if the patient is clinically stable and
+the result remains adequate for the current perioperative question. New
+symptoms, disease progression, overdue surveillance, or unresolved abnormal
+findings may change the recommendation.
+</div>
+
+
+<div class="formula-box">
+
+<h3>Patient / Procedure</h3>
+
+<label><strong>Patient</strong></label><br>
+<input type="text" id="survPatient"
+placeholder="Patient name or identifier"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Planned procedure</strong></label><br>
+<input type="text" id="survProcedure"
+placeholder="Planned surgery"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Surgery date</strong></label><br>
+<input type="date" id="survSurgeryDate"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Surveillance Type</h3>
+
+<label><strong>Condition / surveillance category</strong></label><br>
+
+<select id="survType"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+<option value="">Select</option>
+
+<option value="echo">
+Echocardiogram / structural heart disease
+</option>
+
+<option value="valve">
+Valvular heart disease surveillance
+</option>
+
+<option value="hf">
+Heart failure / cardiomyopathy
+</option>
+
+<option value="ph">
+Pulmonary hypertension / RV function
+</option>
+
+<option value="cied">
+Pacemaker / ICD / CIED follow-up
+</option>
+
+<option value="aneurysm">
+Aortic aneurysm surveillance
+</option>
+
+<option value="carotid">
+Carotid stenosis surveillance
+</option>
+
+<option value="pulmonary-nodule">
+Pulmonary nodule / chest imaging surveillance
+</option>
+
+<option value="lung-disease">
+Chronic lung disease / pulmonary imaging
+</option>
+
+<option value="renal">
+Renal lesion / renal imaging surveillance
+</option>
+
+<option value="vascular">
+Peripheral vascular surveillance
+</option>
+
+<option value="other">
+Other disease-specific surveillance
+</option>
+
+</select>
+
+
+<label><strong>Date of most recent study / device evaluation</strong></label><br>
+
+<input type="date" id="survLastStudy"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+
+<label><strong>Is surveillance currently due or overdue according to the applicable disease-specific guideline or specialist plan?</strong></label><br>
+
+<select id="survDue"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+<option value="no">
+No
+</option>
+
+<option value="yes">
+Yes
+</option>
+
+<option value="unknown">
+Unknown
+</option>
+
+</select>
+
+
+<label><strong>Was the most recent study significantly abnormal?</strong></label><br>
+
+<select id="survAbnormal"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+<option value="no">
+No / stable known finding
+</option>
+
+<option value="yes">
+Yes
+</option>
+
+<option value="unknown">
+Unknown / report not available
+</option>
+
+</select>
+
+
+<label><strong>Was repeat imaging or specialty follow-up specifically recommended?</strong></label><br>
+
+<select id="survFollowupRecommended"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+<option value="no">
+No
+</option>
+
+<option value="yes-complete">
+Yes — completed
+</option>
+
+<option value="yes-pending">
+Yes — still pending
+</option>
+
+<option value="unknown">
+Unknown
+</option>
+
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Interval Clinical Change</h3>
+
+<label><strong>New or worsening cardiopulmonary symptoms?</strong></label><br>
+
+<select id="survSymptoms"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+<option value="no">
+No
+</option>
+
+<option value="yes">
+Yes
+</option>
+
+</select>
+
+
+<label><strong>Recent hospitalization related to the condition?</strong></label><br>
+
+<select id="survHospitalization"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+<option value="no">
+No
+</option>
+
+<option value="yes">
+Yes
+</option>
+
+</select>
+
+
+<label><strong>Known disease progression since the last study?</strong></label><br>
+
+<select id="survProgression"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+<option value="no">
+No
+</option>
+
+<option value="yes">
+Yes
+</option>
+
+<option value="unknown">
+Unknown
+</option>
+
+</select>
+
+
+<label><strong>Current specialist evaluation available and reviewed?</strong></label><br>
+
+<select id="survSpecialist"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+<option value="na">
+N/A
+</option>
+
+<option value="yes">
+Yes
+</option>
+
+<option value="no">
+No
+</option>
+
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>CIED-Specific Questions</h3>
+
+<p>
+Complete these only for pacemaker, ICD, CRT, or other implanted cardiac device.
+</p>
+
+
+<label><strong>Device type</strong></label><br>
+
+<select id="survDeviceType"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+<option value="na">N/A</option>
+<option value="pacemaker">Pacemaker</option>
+<option value="icd">ICD</option>
+<option value="crt">CRT</option>
+<option value="other">Other CIED</option>
+
+</select>
+
+
+<label><strong>Current device interrogation / follow-up available?</strong></label><br>
+
+<select id="survInterrogation"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="unknown">Unknown</option>
+
+</select>
+
+
+<label><strong>Pacemaker dependence known?</strong></label><br>
+
+<select id="survDependent"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+<option value="na">N/A</option>
+<option value="no">No</option>
+<option value="yes">Yes</option>
+<option value="unknown">Unknown</option>
+
+</select>
+
+
+<label><strong>Perioperative device plan established when required?</strong></label><br>
+
+<select id="survDevicePlan"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>High-Risk Structural / Pulmonary Findings</h3>
+
+<label><strong>Severe valvular disease or other high-risk structural lesion?</strong></label><br>
+
+<select id="survSevereValve"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+<option value="no">No</option>
+<option value="yes">Yes</option>
+<option value="unknown">Unknown</option>
+
+</select>
+
+
+<label><strong>Significant pulmonary hypertension / RV dysfunction?</strong></label><br>
+
+<select id="survPH"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+<option value="no">No</option>
+<option value="yes">Yes</option>
+<option value="unknown">Unknown</option>
+
+</select>
+
+
+<label><strong>Aneurysm or vascular lesion with unresolved size/progression concern?</strong></label><br>
+
+<select id="survAneurysmConcern"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+<option value="no">No</option>
+<option value="yes">Yes</option>
+<option value="unknown">Unknown</option>
+
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Additional Information</h3>
+
+<label><strong>Most recent study result / impression</strong></label><br>
+
+<textarea id="survStudyResult"
+rows="5"
+placeholder="Example: EF 55%, moderate AS, stable 4.1 cm ascending aorta, device interrogation normal..."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+
+<label><strong>Additional comments</strong></label><br>
+
+<textarea id="survComments"
+rows="4"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<div class="formula-box">
+
+<button type="button"
+id="survGenerate"
+style="
+background:#17324d;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Evaluate Surveillance Readiness
+</button>
+
+
+<button type="button"
+id="survCopy"
+style="
+background:#2f6fb0;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Copy Summary
+</button>
+
+
+<button type="button"
+id="survPrint"
+style="
+background:#356f44;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Print
+</button>
+
+
+<button type="button"
+id="survClear"
+style="
+background:#8b2f2f;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Clear
+</button>
+
+</div>
+
+
+<div id="survResult"
+class="formula-box"
+style="display:none;margin-top:20px;">
+</div>
+
+
+<script>
+
+function survVal(id) {
+
+  const el =
+    document.getElementById(id);
+
+  return el
+    ? el.value.trim()
+    : "";
+
+}
+
+
+function survUnique(array) {
+
+  return [
+    ...new Set(array)
+  ];
+
+}
+
+
+function surveillanceTypeName(type) {
+
+  const names = {
+
+    "echo":
+      "Echocardiogram / structural heart disease",
+
+    "valve":
+      "Valvular heart disease",
+
+    "hf":
+      "Heart failure / cardiomyopathy",
+
+    "ph":
+      "Pulmonary hypertension / RV function",
+
+    "cied":
+      "Pacemaker / ICD / CIED",
+
+    "aneurysm":
+      "Aortic aneurysm",
+
+    "carotid":
+      "Carotid stenosis",
+
+    "pulmonary-nodule":
+      "Pulmonary nodule / chest imaging",
+
+    "lung-disease":
+      "Chronic pulmonary disease",
+
+    "renal":
+      "Renal imaging surveillance",
+
+    "vascular":
+      "Peripheral vascular surveillance",
+
+    "other":
+      "Other disease-specific surveillance"
+
+  };
+
+  return names[type] || "Selected surveillance condition";
+
+}
+
+
+function surveillanceDaysBetween(
+  first,
+  second
+) {
+
+  if (!first || !second) {
+    return null;
+  }
+
+
+  const d1 =
+    new Date(
+      first + "T00:00:00"
+    );
+
+
+  const d2 =
+    new Date(
+      second + "T00:00:00"
+    );
+
+
+  return Math.round(
+    (
+      d2 - d1
+    ) /
+    86400000
+  );
+
+}
+
+
+function evaluateSurveillanceReadiness() {
+
+  let findings = [];
+
+  let actions = [];
+
+  let pending = [];
+
+  let stop = [];
+
+
+  const type =
+    survVal("survType");
+
+
+  const lastStudy =
+    survVal("survLastStudy");
+
+
+  const surgeryDate =
+    survVal("survSurgeryDate");
+
+
+  const studyAge =
+    surveillanceDaysBetween(
+      lastStudy,
+      surgeryDate
+    );
+
+
+  if (!type) {
+
+    alert(
+      "Select a surveillance category first."
+    );
+
+    return;
+
+  }
+
+
+  const typeName =
+    surveillanceTypeName(type);
+
+
+  findings.push(
+    "Surveillance category: " +
+    typeName +
+    "."
+  );
+
+
+  if (
+    studyAge !== null &&
+    studyAge >= 0
+  ) {
+
+    findings.push(
+      "Most recent study will be approximately " +
+      studyAge +
+      " days old on the scheduled surgery date."
+    );
+
+  }
+
+
+  /* =====================================================
+     NEW OR WORSENING SYMPTOMS
+  ===================================================== */
+
+  if (
+    survVal("survSymptoms") === "yes"
+  ) {
+
+    pending.push(
+      "New or worsening cardiopulmonary symptoms are reported. Reassess the underlying condition and determine whether updated testing or specialty evaluation is required before relying on prior surveillance."
+    );
+
+  }
+
+
+  /* =====================================================
+     RECENT HOSPITALIZATION
+  ===================================================== */
+
+  if (
+    survVal("survHospitalization") ===
+    "yes"
+  ) {
+
+    pending.push(
+      "Recent hospitalization related to the monitored condition requires review of interval records, treatment response and current clinical stability."
+    );
+
+  }
+
+
+  /* =====================================================
+     SURVEILLANCE DUE
+  ===================================================== */
+
+  if (
+    survVal("survDue") === "yes"
+  ) {
+
+    pending.push(
+      "Disease-specific surveillance is currently due or overdue. Determine whether the updated study is required before elective surgery and whether the result could change perioperative management."
+    );
+
+  }
+
+
+  if (
+    survVal("survDue") === "unknown"
+  ) {
+
+    actions.push(
+      "The current surveillance interval is uncertain. Verify the applicable disease-specific guideline or specialist follow-up plan."
+    );
+
+  }
+
+
+  /* =====================================================
+     PRIOR ABNORMAL STUDY
+  ===================================================== */
+
+  if (
+    survVal("survAbnormal") === "yes"
+  ) {
+
+    pending.push(
+      "The most recent surveillance study contained a significant abnormality. Confirm that the finding has been appropriately evaluated and remains clinically stable."
+    );
+
+  }
+
+
+  if (
+    survVal("survAbnormal") ===
+    "unknown"
+  ) {
+
+    pending.push(
+      "The prior surveillance report is unavailable or its significance is uncertain. Obtain and review the actual report when it is needed for perioperative decision-making."
+    );
+
+  }
+
+
+  /* =====================================================
+     DISEASE PROGRESSION
+  ===================================================== */
+
+  if (
+    survVal("survProgression") ===
+    "yes"
+  ) {
+
+    pending.push(
+      "Known disease progression since the last study warrants reassessment before relying on prior surveillance."
+    );
+
+  }
+
+
+  if (
+    survVal("survProgression") ===
+    "unknown"
+  ) {
+
+    actions.push(
+      "Disease stability is uncertain. Review interval symptoms, specialty records and prior testing."
+    );
+
+  }
+
+
+  /* =====================================================
+     SPECIALTY FOLLOW-UP
+  ===================================================== */
+
+  if (
+    survVal(
+      "survFollowupRecommended"
+    ) === "yes-pending"
+  ) {
+
+    pending.push(
+      "Previously recommended repeat testing or specialty follow-up remains incomplete."
+    );
+
+  }
+
+
+  if (
+    survVal("survSpecialist") ===
+    "no"
+  ) {
+
+    pending.push(
+      "Required specialist evaluation or interpretation has not yet been reviewed."
+    );
+
+  }
+
+
+  /* =====================================================
+     CIED
+  ===================================================== */
+
+  if (
+    type === "cied"
+  ) {
+
+    const deviceType =
+      survVal("survDeviceType");
+
+
+    if (
+      deviceType !== "na"
+    ) {
+
+      findings.push(
+        "Device type: " +
+        deviceType +
+        "."
+      );
+
+    }
+
+
+    if (
+      survVal("survInterrogation") ===
+      "no" ||
+      survVal("survInterrogation") ===
+      "unknown"
+    ) {
+
+      pending.push(
+        "Current CIED interrogation/device status is not adequately documented."
+      );
+
+    }
+
+
+    if (
+      survVal("survDependent") ===
+      "yes"
+    ) {
+
+      actions.push(
+        "Pacemaker dependence is reported. Ensure anesthesia and the procedural team have the required perioperative CIED management plan."
+      );
+
+    }
+
+
+    if (
+      survVal("survDependent") ===
+      "unknown"
+    ) {
+
+      actions.push(
+        "Pacemaker dependence is unknown and should be clarified when relevant to procedural electrocautery/device management."
+      );
+
+    }
+
+
+    if (
+      survVal("survDevicePlan") ===
+      "no"
+    ) {
+
+      pending.push(
+        "Required perioperative CIED management plan has not been established."
+      );
+
+    }
+
+  }
+
+
+  /* =====================================================
+     VALVE / STRUCTURAL HEART DISEASE
+  ===================================================== */
+
+  if (
+    type === "valve" ||
+    type === "echo"
+  ) {
+
+    if (
+      survVal("survSevereValve") ===
+      "yes"
+    ) {
+
+      pending.push(
+        "Severe or potentially high-risk valvular/structural heart disease is reported. Confirm current severity, symptoms and cardiovascular/anesthesia recommendations before elective surgery."
+      );
+
+    }
+
+
+    if (
+      survVal("survSevereValve") ===
+      "unknown"
+    ) {
+
+      actions.push(
+        "Severity of structural/valvular disease is uncertain. Review the actual echocardiographic report."
+      );
+
+    }
+
+  }
+
+
+  /* =====================================================
+     HEART FAILURE
+  ===================================================== */
+
+  if (
+    type === "hf"
+  ) {
+
+    if (
+      survVal("survSymptoms") === "yes" ||
+      survVal("survHospitalization") ===
+      "yes"
+    ) {
+
+      pending.push(
+        "Heart-failure status has changed since prior surveillance. Confirm current volume status, symptoms, ventricular function when indicated, and optimized medical therapy."
+      );
+
+    } else {
+
+      actions.push(
+        "Stable heart failure/cardiomyopathy generally does not require repeat imaging solely because a prior study is older; repeat when symptoms or clinical status have changed or when surveillance is otherwise due."
+      );
+
+    }
+
+  }
+
+
+  /* =====================================================
+     PULMONARY HYPERTENSION
+  ===================================================== */
+
+  if (
+    type === "ph" ||
+    survVal("survPH") === "yes"
+  ) {
+
+    if (
+      survVal("survPH") === "yes"
+    ) {
+
+      pending.push(
+        "Significant pulmonary hypertension and/or RV dysfunction is reported. Confirm severity, RV function, therapy, specialist recommendations and appropriate surgical venue."
+      );
+
+    } else {
+
+      actions.push(
+        "For pulmonary hypertension, surveillance should focus on current symptoms, RV function, severity, therapy and perioperative venue requirements rather than study age alone."
+      );
+
+    }
+
+  }
+
+
+  /* =====================================================
+     AORTIC / VASCULAR SURVEILLANCE
+  ===================================================== */
+
+  if (
+    type === "aneurysm"
+  ) {
+
+    if (
+      survVal(
+        "survAneurysmConcern"
+      ) === "yes"
+    ) {
+
+      pending.push(
+        "Aneurysm size or interval progression is unresolved. Review current measurements, growth trend and specialist recommendations before elective surgery."
+      );
+
+    } else {
+
+      actions.push(
+        "Stable aneurysm surveillance should follow the disease-specific imaging interval. Repeat imaging when currently due, when growth is suspected, or when the result could change perioperative management."
+      );
+
+    }
+
+  }
+
+
+  if (
+    type === "carotid"
+  ) {
+
+    actions.push(
+      "Do not order routine repeat carotid imaging solely because the patient has a remote history of carotid disease or stroke. Update imaging when clinically indicated by symptoms, known progression, or an established surveillance plan."
+    );
+
+  }
+
+
+  /* =====================================================
+     PULMONARY NODULE / CHEST IMAGING
+  ===================================================== */
+
+  if (
+    type === "pulmonary-nodule"
+  ) {
+
+    if (
+      survVal("survDue") === "yes"
+    ) {
+
+      pending.push(
+        "Pulmonary nodule/chest imaging surveillance is due or overdue. Review whether the updated study is required before elective surgery or can safely continue through the established outpatient surveillance pathway."
+      );
+
+    } else {
+
+      actions.push(
+        "Stable pulmonary nodule surveillance generally follows the established radiology/pulmonary interval and does not automatically delay unrelated elective surgery."
+      );
+
+    }
+
+  }
+
+
+  /* =====================================================
+     CHRONIC PULMONARY DISEASE
+  ===================================================== */
+
+  if (
+    type === "lung-disease"
+  ) {
+
+    if (
+      survVal("survSymptoms") === "yes"
+    ) {
+
+      pending.push(
+        "Respiratory symptoms have changed. Evaluate pulmonary stability rather than relying solely on prior imaging."
+      );
+
+    } else {
+
+      actions.push(
+        "Stable chronic pulmonary disease does not require routine repeat chest imaging solely because prior imaging is old."
+      );
+
+    }
+
+  }
+
+
+  /* =====================================================
+     STUDY RESULT
+  ===================================================== */
+
+  if (
+    survVal("survStudyResult")
+  ) {
+
+    findings.push(
+      "Most recent study: " +
+      survVal(
+        "survStudyResult"
+      )
+    );
+
+  }
+
+
+  if (
+    survVal("survComments")
+  ) {
+
+    findings.push(
+      "Additional comments: " +
+      survVal(
+        "survComments"
+      )
+    );
+
+  }
+
+
+  findings =
+    survUnique(findings);
+
+  actions =
+    survUnique(actions);
+
+  pending =
+    survUnique(pending);
+
+  stop =
+    survUnique(stop);
+
+
+  /* =====================================================
+     FINAL STATUS
+  ===================================================== */
+
+  let status = "";
+
+  let reason = "";
+
+
+  if (
+    stop.length > 0
+  ) {
+
+    status =
+      "Not optimized";
+
+    reason =
+      stop.join(" ");
+
+  } else if (
+    pending.length > 0
+  ) {
+
+    status =
+      "Pending";
+
+    reason =
+      pending.join(" ");
+
+  } else {
+
+    status =
+      "Optimized";
+
+    reason =
+      "No unresolved disease-surveillance, imaging, device follow-up, or specialty-review issue was identified from the entered information.";
+
+  }
+
+
+  /* =====================================================
+     BUILD OUTPUT
+  ===================================================== */
+
+  let html = "";
+
+
+  html +=
+    "<h2>Surveillance Readiness Assessment</h2>";
+
+
+  const patient =
+    survVal("survPatient");
+
+
+  const procedure =
+    survVal("survProcedure");
+
+
+  const surgery =
+    survVal("survSurgeryDate");
+
+
+  if (
+    patient ||
+    procedure ||
+    surgery
+  ) {
+
+    html += "<p>";
+
+
+    if (patient) {
+
+      html +=
+        "<strong>Patient:</strong> " +
+        patient +
+        "<br>";
+
+    }
+
+
+    if (procedure) {
+
+      html +=
+        "<strong>Procedure:</strong> " +
+        procedure +
+        "<br>";
+
+    }
+
+
+    if (surgery) {
+
+      html +=
+        "<strong>Surgery Date:</strong> " +
+        surgery;
+
+    }
+
+
+    html += "</p>";
+
+  }
+
+
+  if (
+    findings.length
+  ) {
+
+    html +=
+      "<h3>Findings</h3><ul>";
+
+
+    findings.forEach(
+      function(item) {
+
+        html +=
+          "<li>" +
+          item +
+          "</li>";
+
+      }
+    );
+
+
+    html += "</ul>";
+
+  }
+
+
+  if (
+    actions.length
+  ) {
+
+    html +=
+      "<h3>Clinical Guidance</h3><ul>";
+
+
+    actions.forEach(
+      function(item) {
+
+        html +=
+          "<li>" +
+          item +
+          "</li>";
+
+      }
+    );
+
+
+    html += "</ul>";
+
+  }
+
+
+  if (
+    pending.length
+  ) {
+
+    html +=
+      "<h3>Items Requiring Resolution</h3><ul>";
+
+
+    pending.forEach(
+      function(item) {
+
+        html +=
+          "<li>" +
+          item +
+          "</li>";
+
+      }
+    );
+
+
+    html += "</ul>";
+
+  }
+
+
+  html += "<hr>";
+
+
+  html +=
+    "<h3>FINAL PREOPERATIVE OPTIMIZATION STATUS</h3>";
+
+
+  html +=
+    "<p><strong>" +
+    status +
+    "</strong></p>";
+
+
+  html +=
+    "<p><strong>Reason:</strong> " +
+    reason +
+    "</p>";
+
+
+  if (
+    status === "Optimized"
+  ) {
+
+    html +=
+      "<div class='success-box'>" +
+      "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time." +
+      "</div>";
+
+  }
+
+
+  html += "<hr>";
+
+
+  html +=
+    "<h3>Copy-Ready Provider Documentation</h3>";
+
+
+  html += "<p>";
+
+
+  html +=
+    "Disease-specific surveillance reviewed for " +
+    typeName +
+    ". ";
+
+
+  if (
+    studyAge !== null &&
+    studyAge >= 0
+  ) {
+
+    html +=
+      "Most recent study will be approximately " +
+      studyAge +
+      " days old on the scheduled surgery date. ";
+
+  }
+
+
+  if (
+    survVal("survSymptoms") ===
+    "no"
+  ) {
+
+    html +=
+      "No new or worsening symptoms reported since the prior study. ";
+
+  }
+
+
+  html +=
+    "<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS: " +
+    status +
+    ".</strong> ";
+
+
+  if (
+    status === "Optimized"
+  ) {
+
+    html +=
+      "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time.";
+
+  } else {
+
+    html +=
+      "Reason: " +
+      reason;
+
+  }
+
+
+  html += "</p>";
+
+
+  const result =
+    document.getElementById(
+      "survResult"
+    );
+
+
+  result.innerHTML =
+    html;
+
+
+  result.style.display =
+    "block";
+
+
+  result.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
+}
+
+
+async function copySurveillanceSummary() {
+
+  evaluateSurveillanceReadiness();
+
+
+  const text =
+    document
+      .getElementById(
+        "survResult"
+      )
+      .innerText;
+
+
+  try {
+
+    await navigator
+      .clipboard
+      .writeText(text);
+
+
+    alert(
+      "Surveillance assessment copied."
+    );
+
+  } catch (error) {
+
+    const temp =
+      document.createElement(
+        "textarea"
+      );
+
+
+    temp.value =
+      text;
+
+
+    temp.style.position =
+      "fixed";
+
+
+    temp.style.opacity =
+      "0";
+
+
+    document.body.appendChild(
+      temp
+    );
+
+
+    temp.select();
+
+
+    document.execCommand(
+      "copy"
+    );
+
+
+    document.body.removeChild(
+      temp
+    );
+
+
+    alert(
+      "Surveillance assessment copied."
+    );
+
+  }
+
+}
+
+
+function printSurveillanceSummary() {
+
+  evaluateSurveillanceReadiness();
+
+
+  setTimeout(
+    function() {
+
+      window.print();
+
+    },
+    150
+  );
+
+}
+
+
+function clearSurveillanceSummary() {
+
+  const ok =
+    confirm(
+      "Clear all patient-specific surveillance information?"
+    );
+
+
+  if (!ok) return;
+
+
+  document
+    .querySelectorAll(
+      "#surveillanceReadinessTool input, #surveillanceReadinessTool textarea"
+    )
+    .forEach(
+      function(el) {
+
+        el.value = "";
+
+      }
+    );
+
+
+  document
+    .querySelectorAll(
+      "#surveillanceReadinessTool select"
+    )
+    .forEach(
+      function(el) {
+
+        el.selectedIndex = 0;
+
+      }
+    );
+
+
+  const result =
+    document.getElementById(
+      "survResult"
+    );
+
+
+  result.innerHTML = "";
+
+  result.style.display =
+    "none";
+
+}
+
+
+document
+  .getElementById(
+    "survGenerate"
+  )
+  .addEventListener(
+    "click",
+    evaluateSurveillanceReadiness
+  );
+
+
+document
+  .getElementById(
+    "survCopy"
+  )
+  .addEventListener(
+    "click",
+    copySurveillanceSummary
+  );
+
+
+document
+  .getElementById(
+    "survPrint"
+  )
+  .addEventListener(
+    "click",
+    printSurveillanceSummary
+  );
+
+
+document
+  .getElementById(
+    "survClear"
+  )
+  .addEventListener(
+    "click",
+    clearSurveillanceSummary
+  );
+
+</script>
+
+</section>
 </main>
 
 <footer>

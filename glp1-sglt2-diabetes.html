@@ -974,6 +974,1207 @@ surgery on scheduled surgery date at this time.
 </div>
 </section>
 
+<!-- =========================================================
+     INTERACTIVE DIABETES / GLP-1 / SGLT2 / INSULIN PLANNER
+========================================================= -->
+
+<section id="interactiveDiabetesPlanner">
+
+<h2>Interactive Diabetes, GLP-1, SGLT2 & Insulin Planner</h2>
+
+<p>
+Enter patient-specific diabetes and medication information to generate
+perioperative medication recommendations, aspiration-risk guidance,
+euglycemic DKA precautions, glucose-monitoring recommendations and
+copy-ready documentation.
+</p>
+
+<div class="warning-box">
+<strong>Clinical decision support only:</strong>
+Final medication instructions should follow current anesthesia, surgeon,
+prescribing-clinician and institutional policy. Insulin adjustments must be
+individualized, particularly in type 1 diabetes.
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Patient / Procedure Information</h3>
+
+<label><strong>Diabetes status</strong></label><br>
+<select id="dmType"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="None">No diabetes</option>
+<option value="Type 1">Type 1 diabetes</option>
+<option value="Type 2">Type 2 diabetes</option>
+<option value="Other">Other / secondary diabetes</option>
+</select>
+
+<label><strong>Surgery date</strong></label><br>
+<input type="date" id="dmSurgeryDate"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Procedure time</strong></label><br>
+<select id="dmProcedureTime"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Not entered</option>
+<option value="Morning">Morning</option>
+<option value="Afternoon">Afternoon</option>
+<option value="Evening">Evening</option>
+</select>
+
+<label><strong>General anesthesia or deep sedation expected</strong></label><br>
+<select id="dmDeepSedation"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+<option value="Unknown">Unknown</option>
+</select>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Current Diabetes Control</h3>
+
+<label><strong>Most recent A1c (%)</strong></label><br>
+<input type="number" step="0.1" id="dmA1c"
+placeholder="Example: 7.2"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Date of A1c</strong></label><br>
+<input type="date" id="dmA1cDate"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Most recent glucose (mg/dL)</strong></label><br>
+<input type="number" id="dmGlucose"
+placeholder="Example: 142"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Usual home glucose range</strong></label><br>
+<input type="text" id="dmHomeRange"
+placeholder="Example: 90–160"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Recurrent or significant hypoglycemia</strong></label><br>
+<select id="dmHypoglycemia"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>History of DKA</strong></label><br>
+<select id="dmDKAHistory"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>History of HHS</strong></label><br>
+<select id="dmHHSHistory"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Current symptoms concerning for metabolic decompensation</strong></label><br>
+<select id="dmMetabolicSymptoms"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Renal Function</h3>
+
+<label><strong>Creatinine (mg/dL)</strong></label><br>
+<input type="number" step="0.01" id="dmCreatinine"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>eGFR (mL/min/1.73m²)</strong></label><br>
+<input type="number" id="dmEGFR"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Dialysis</strong></label><br>
+<select id="dmDialysis"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>GLP-1 / Dual GIP-GLP-1 Medication</h3>
+
+<label><strong>Currently taking GLP-1/GIP therapy</strong></label><br>
+<select id="dmGLP1Use"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Medication</strong></label><br>
+<select id="dmGLP1Drug"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Select / not taking</option>
+<option value="Semaglutide">Semaglutide</option>
+<option value="Tirzepatide">Tirzepatide</option>
+<option value="Dulaglutide">Dulaglutide</option>
+<option value="Liraglutide">Liraglutide</option>
+<option value="Exenatide">Exenatide</option>
+<option value="Lixisenatide">Lixisenatide</option>
+<option value="Other">Other</option>
+</select>
+
+<label><strong>Dosing frequency</strong></label><br>
+<select id="dmGLP1Frequency"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Not entered</option>
+<option value="Daily">Daily</option>
+<option value="Weekly">Weekly</option>
+</select>
+
+<label><strong>Last dose date</strong></label><br>
+<input type="date" id="dmGLP1LastDose"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Currently in dose-escalation phase</strong></label><br>
+<select id="dmEscalation"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+<option value="Unknown">Unknown</option>
+</select>
+
+<label><strong>Current significant GI symptoms</strong></label><br>
+<select id="dmGISymptoms"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes — nausea/vomiting/abdominal pain/marked bloating/constipation</option>
+</select>
+
+<label><strong>High dose or significant prior GI intolerance</strong></label><br>
+<select id="dmHighDose"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Other condition associated with delayed gastric emptying</strong></label><br>
+<select id="dmGastroparesisRisk"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>SGLT2 Inhibitor</h3>
+
+<label><strong>Currently taking an SGLT2 inhibitor</strong></label><br>
+<select id="dmSGLT2Use"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>SGLT2 medication</strong></label><br>
+<select id="dmSGLT2Drug"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Select / not taking</option>
+<option value="Empagliflozin">Empagliflozin</option>
+<option value="Dapagliflozin">Dapagliflozin</option>
+<option value="Canagliflozin">Canagliflozin</option>
+<option value="Ertugliflozin">Ertugliflozin</option>
+<option value="Other">Other</option>
+</select>
+
+<label><strong>Last dose date</strong></label><br>
+<input type="date" id="dmSGLT2LastDose"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Current ketonemia / ketonuria / anion-gap acidosis concern</strong></label><br>
+<select id="dmKetoneConcern"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Insulin / Pump / CGM</h3>
+
+<label><strong>Uses insulin</strong></label><br>
+<select id="dmInsulinUse"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Basal insulin name</strong></label><br>
+<input type="text" id="dmBasalName"
+placeholder="Example: glargine"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Usual basal dose</strong></label><br>
+<input type="text" id="dmBasalDose"
+placeholder="Example: 30 units nightly"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Uses prandial/rapid-acting insulin</strong></label><br>
+<select id="dmPrandial"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Insulin pump</strong></label><br>
+<select id="dmPump"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Continuous glucose monitor</strong></label><br>
+<select id="dmCGM"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Pump / insulin management plan already confirmed</strong></label><br>
+<select id="dmInsulinPlan"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="N/A">N/A</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+
+</div>
+
+
+<div class="clinical-box">
+
+<h3>Other Diabetes Medications</h3>
+
+<label><strong>Metformin</strong></label><br>
+<select id="dmMetformin"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">Not taking</option>
+<option value="Yes">Taking</option>
+</select>
+
+<label><strong>Other oral/non-insulin diabetes medication</strong></label><br>
+<input type="text" id="dmOtherMed"
+placeholder="Example: glipizide"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+</div>
+
+
+<div class="clinical-box">
+
+<button type="button" id="dmGenerate"
+style="
+background:#17324d;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Generate Diabetes Plan
+</button>
+
+<button type="button" id="dmCopy"
+style="
+background:#274c6b;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Copy Plan
+</button>
+
+<button type="button" id="dmPrint"
+style="
+background:#356f44;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Print
+</button>
+
+<button type="button" id="dmClear"
+style="
+background:#8b2f2f;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Clear Patient Data
+</button>
+
+</div>
+
+
+<div id="dmResult"
+style="
+display:none;
+margin-top:22px;
+padding:22px;
+background:white;
+border:1px solid #d8e1ec;
+border-radius:8px;">
+</div>
+
+</section>
+
+
+<style>
+
+@media print {
+
+body * {
+    visibility:hidden !important;
+}
+
+#dmResult,
+#dmResult * {
+    visibility:visible !important;
+}
+
+#dmResult {
+    display:block !important;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    padding:20px;
+    border:none;
+    background:white;
+    color:black;
+}
+
+}
+
+</style>
+
+
+<script>
+
+function dmVal(id) {
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : "";
+}
+
+
+function dmDaysBetween(startText, endText) {
+
+    if (!startText || !endText) return null;
+
+    const start =
+        new Date(startText + "T00:00:00");
+
+    const end =
+        new Date(endText + "T00:00:00");
+
+    return Math.floor(
+        (end - start) /
+        (1000 * 60 * 60 * 24)
+    );
+}
+
+
+function generateDiabetesPlan() {
+
+    let findings = [];
+    let recommendations = [];
+    let pending = [];
+    let stop = [];
+
+    const type = dmVal("dmType");
+    const surgeryDate = dmVal("dmSurgeryDate");
+
+    const a1c =
+        parseFloat(dmVal("dmA1c"));
+
+    const glucose =
+        parseFloat(dmVal("dmGlucose"));
+
+    const egfr =
+        parseFloat(dmVal("dmEGFR"));
+
+
+    /* ==============================
+       GLYCEMIC CONTROL
+    ============================== */
+
+    if (!isNaN(a1c)) {
+
+        findings.push(
+            "A1c " + a1c + "%."
+        );
+
+        if (a1c >= 8) {
+
+            recommendations.push(
+                "A1c is above the commonly recommended elective-surgery target of <8% when achievable; assess degree of hyperglycemia, procedure risk and whether additional optimization would meaningfully improve perioperative safety."
+            );
+        }
+    }
+
+
+    if (!isNaN(glucose)) {
+
+        findings.push(
+            "Most recent glucose " +
+            glucose +
+            " mg/dL."
+        );
+
+        if (glucose < 70) {
+
+            pending.push(
+                "Current/recent hypoglycemia requires correction and medication-plan review."
+            );
+        }
+
+        if (glucose >= 300) {
+
+            pending.push(
+                "Marked hyperglycemia requires clinical assessment for dehydration, ketosis or metabolic decompensation before final elective-surgery optimization."
+            );
+        }
+    }
+
+
+    if (dmVal("dmMetabolicSymptoms") === "Yes") {
+
+        stop.push(
+            "Symptoms concerning for acute metabolic decompensation require evaluation and treatment before routine elective surgery."
+        );
+    }
+
+
+    if (dmVal("dmKetoneConcern") === "Yes") {
+
+        stop.push(
+            "Ketonemia, ketonuria or anion-gap acidosis concern requires evaluation for ketoacidosis before elective surgery."
+        );
+    }
+
+
+    /* ==============================
+       TYPE 1 DIABETES
+    ============================== */
+
+    if (type === "Type 1") {
+
+        findings.push(
+            "Type 1 diabetes."
+        );
+
+        recommendations.push(
+            "Basal insulin must not be completely interrupted in type 1 diabetes; establish a perioperative basal-insulin or IV insulin plan."
+        );
+
+        if (
+            dmVal("dmInsulinPlan") !== "Yes"
+        ) {
+
+            pending.push(
+                "Type 1 diabetes requires a confirmed perioperative insulin plan."
+            );
+        }
+    }
+
+
+    /* ==============================
+       GLP-1 / GIP
+    ============================== */
+
+    if (dmVal("dmGLP1Use") === "Yes") {
+
+        const glpDrug =
+            dmVal("dmGLP1Drug") ||
+            "GLP-1/GIP medication";
+
+        findings.push(
+            "Uses " + glpDrug + "."
+        );
+
+
+        const glpHighRisk =
+            dmVal("dmEscalation") === "Yes" ||
+            dmVal("dmGISymptoms") === "Yes" ||
+            dmVal("dmHighDose") === "Yes" ||
+            dmVal("dmGastroparesisRisk") === "Yes";
+
+
+        if (dmVal("dmGISymptoms") === "Yes") {
+
+            pending.push(
+                "Significant GI symptoms while taking GLP-1/GIP therapy increase concern for delayed gastric emptying and aspiration; anesthesia/surgical review is required before routine elective anesthesia."
+            );
+        }
+
+
+        if (dmVal("dmEscalation") === "Yes") {
+
+            pending.push(
+                "Patient is in the GLP-1/GIP dose-escalation phase. Elective surgery should be reviewed with anesthesia/prescriber because delayed gastric emptying risk may be increased."
+            );
+        }
+
+
+        if (glpHighRisk) {
+
+            recommendations.push(
+                "Higher-risk GLP-1/GIP features are present. Consider a liquid-only diet for 24 hours before surgery and individualized anesthesia precautions according to current institutional/anesthesia guidance."
+            );
+
+        } else {
+
+            recommendations.push(
+                "No high-risk GLP-1/GIP feature was identified from the entered information. Current multi-society guidance allows many low-risk patients to continue GLP-1/GIP therapy before elective surgery, subject to anesthesia and institutional policy."
+            );
+        }
+    }
+
+
+    /* ==============================
+       SGLT2
+    ============================== */
+
+    if (dmVal("dmSGLT2Use") === "Yes") {
+
+        const sgltDrug =
+            dmVal("dmSGLT2Drug");
+
+        const lastDose =
+            dmVal("dmSGLT2LastDose");
+
+        const daysHeld =
+            dmDaysBetween(
+                lastDose,
+                surgeryDate
+            );
+
+        const requiredDays =
+            sgltDrug === "Ertugliflozin"
+            ? 4
+            : 3;
+
+
+        findings.push(
+            "Uses " +
+            (sgltDrug || "SGLT2 inhibitor") +
+            "."
+        );
+
+
+        recommendations.push(
+            (sgltDrug || "SGLT2 inhibitor") +
+            " should be stopped at least " +
+            requiredDays +
+            " days before scheduled surgery to reduce perioperative ketoacidosis risk."
+        );
+
+
+        if (
+            lastDose &&
+            surgeryDate &&
+            daysHeld !== null &&
+            daysHeld < requiredDays
+        ) {
+
+            pending.push(
+                "SGLT2 inhibitor hold interval is shorter than the recommended " +
+                requiredDays +
+                " days before scheduled surgery."
+            );
+        }
+
+
+        recommendations.push(
+            "Do not routinely restart SGLT2 therapy until the patient is clinically stable, adequate oral intake has resumed and there is no concern for ketoacidosis."
+        );
+    }
+
+
+    /* ==============================
+       INSULIN
+    ============================== */
+
+    if (dmVal("dmInsulinUse") === "Yes") {
+
+        findings.push(
+            "Patient uses insulin."
+        );
+
+
+        recommendations.push(
+            "Perioperative insulin doses should be individualized to diabetes type, usual regimen, fasting duration, procedure timing, glucose trend and institutional protocol."
+        );
+
+
+        if (dmVal("dmBasalName")) {
+
+            recommendations.push(
+                "Usual basal insulin: " +
+                dmVal("dmBasalName") +
+                (
+                    dmVal("dmBasalDose")
+                    ? " " + dmVal("dmBasalDose")
+                    : ""
+                ) +
+                "."
+            );
+        }
+
+
+        if (
+            dmVal("dmInsulinPlan") === "No"
+        ) {
+
+            pending.push(
+                "Perioperative insulin-management instructions remain unresolved."
+            );
+        }
+    }
+
+
+    /* ==============================
+       INSULIN PUMP
+    ============================== */
+
+    if (dmVal("dmPump") === "Yes") {
+
+        findings.push(
+            "Insulin pump in use."
+        );
+
+
+        recommendations.push(
+            "Insulin pump may be continued during surgery only when consistent with institutional policy, procedure characteristics and adequate perioperative support. If the pump cannot be continued, an alternative basal/IV insulin plan should begin before pump interruption."
+        );
+
+
+        if (
+            dmVal("dmInsulinPlan") !== "Yes"
+        ) {
+
+            pending.push(
+                "Insulin pump requires a confirmed perioperative management plan."
+            );
+        }
+    }
+
+
+    /* ==============================
+       CGM
+    ============================== */
+
+    if (dmVal("dmCGM") === "Yes") {
+
+        findings.push(
+            "Continuous glucose monitor in use."
+        );
+
+        recommendations.push(
+            "CGM data may supplement care, but point-of-care glucose testing should be used for perioperative treatment decisions according to institutional protocol."
+        );
+    }
+
+
+    /* ==============================
+       METFORMIN / OTHER ORALS
+    ============================== */
+
+    if (dmVal("dmMetformin") === "Yes") {
+
+        recommendations.push(
+            "Hold metformin on the day of surgery/procedure unless a specific institutional protocol directs otherwise."
+        );
+    }
+
+
+    if (dmVal("dmOtherMed")) {
+
+        recommendations.push(
+            "Other diabetes medication entered: " +
+            dmVal("dmOtherMed") +
+            ". Confirm medication-specific morning-of-surgery instructions."
+        );
+    }
+
+
+    /* ==============================
+       RENAL
+    ============================== */
+
+    if (!isNaN(egfr)) {
+
+        findings.push(
+            "eGFR " +
+            egfr +
+            " mL/min/1.73m²."
+        );
+
+
+        if (egfr < 30) {
+
+            recommendations.push(
+                "Advanced renal dysfunction may alter insulin clearance, hypoglycemia risk and medication management; use individualized perioperative dosing."
+            );
+        }
+    }
+
+
+    if (dmVal("dmDialysis") === "Yes") {
+
+        pending.push(
+            "Dialysis timing and perioperative metabolic plan should be confirmed before final optimization."
+        );
+    }
+
+
+    /* ==============================
+       GLUCOSE MONITORING
+    ============================== */
+
+    if (type !== "None") {
+
+        recommendations.push(
+            "Target perioperative glucose approximately 100–180 mg/dL unless individualized circumstances require a different goal."
+        );
+
+
+        recommendations.push(
+            "Check point-of-care glucose perioperatively and approximately every 2–4 hours while NPO when ongoing diabetes treatment or clinical circumstances warrant."
+        );
+    }
+
+
+    /* ==============================
+       HYPOGLYCEMIA
+    ============================== */
+
+    if (dmVal("dmHypoglycemia") === "Yes") {
+
+        recommendations.push(
+            "History of significant hypoglycemia increases risk from fasting and insulin therapy; consider a more conservative insulin adjustment and closer perioperative glucose monitoring."
+        );
+    }
+
+
+    /* ==============================
+       DKA/HHS HISTORY
+    ============================== */
+
+    if (
+        dmVal("dmDKAHistory") === "Yes" ||
+        dmVal("dmHHSHistory") === "Yes"
+    ) {
+
+        recommendations.push(
+            "Prior DKA/HHS history warrants attention to hydration, insulin continuity, glucose trends and symptoms of metabolic decompensation."
+        );
+    }
+
+
+    findings =
+        [...new Set(findings)];
+
+    recommendations =
+        [...new Set(recommendations)];
+
+    pending =
+        [...new Set(pending)];
+
+    stop =
+        [...new Set(stop)];
+
+
+    /* ==============================
+       FINAL STATUS
+    ============================== */
+
+    let status = "";
+    let reason = "";
+
+
+    if (stop.length > 0) {
+
+        status = "Not optimized";
+
+        reason =
+            stop.join(" ");
+
+    } else if (pending.length > 0) {
+
+        status = "Pending";
+
+        reason =
+            pending.join(" ");
+
+    } else {
+
+        status = "Optimized";
+
+        reason =
+            "No unresolved diabetes-related or perioperative medication issue was identified from the entered information.";
+    }
+
+
+    /* ==============================
+       BUILD RESULT
+    ============================== */
+
+    let html = "";
+
+    html +=
+        "<h2>Diabetes / Medication Perioperative Plan</h2>";
+
+
+    if (findings.length > 0) {
+
+        html +=
+            "<h3>Patient-Specific Findings</h3><ul>";
+
+        findings.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    if (recommendations.length > 0) {
+
+        html +=
+            "<h3>Recommended Perioperative Plan</h3><ul>";
+
+        recommendations.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    if (pending.length > 0) {
+
+        html +=
+            "<h3>Items Requiring Resolution</h3><ul>";
+
+        pending.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    if (stop.length > 0) {
+
+        html +=
+            "<h3>Current Metabolic Contraindication / Instability</h3><ul>";
+
+        stop.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    html += "<hr>";
+
+
+    html +=
+        "<h3>FINAL PREOPERATIVE OPTIMIZATION STATUS</h3>";
+
+
+    html +=
+        "<p><strong>" +
+        status +
+        "</strong></p>";
+
+
+    html +=
+        "<p><strong>Reason:</strong> " +
+        reason +
+        "</p>";
+
+
+    if (status === "Optimized") {
+
+        html +=
+            "<div class='success-box'>" +
+            "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time." +
+            "</div>";
+    }
+
+
+    html += "<hr>";
+
+
+    html +=
+        "<h3>Copy-Ready Provider Documentation</h3>";
+
+
+    html +=
+        "<p>Perioperative diabetes and medication management reviewed. ";
+
+
+    if (type !== "None") {
+
+        html +=
+            "Diabetes type: " +
+            type +
+            ". ";
+    }
+
+
+    if (!isNaN(a1c)) {
+
+        html +=
+            "Most recent A1c " +
+            a1c +
+            "%. ";
+    }
+
+
+    if (dmVal("dmGLP1Use") === "Yes") {
+
+        html +=
+            "GLP-1/GIP therapy and aspiration-risk factors reviewed. ";
+    }
+
+
+    if (dmVal("dmSGLT2Use") === "Yes") {
+
+        html +=
+            "SGLT2 inhibitor perioperative hold and euglycemic DKA risk reviewed. ";
+    }
+
+
+    if (dmVal("dmInsulinUse") === "Yes") {
+
+        html +=
+            "Perioperative insulin and glucose-monitoring requirements reviewed. ";
+    }
+
+
+    html +=
+        "<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS: " +
+        status +
+        ".</strong> ";
+
+
+    if (status !== "Optimized") {
+
+        html +=
+            "Reason: " +
+            reason;
+
+    } else {
+
+        html +=
+            "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time.";
+    }
+
+
+    html += "</p>";
+
+
+    const result =
+        document.getElementById(
+            "dmResult"
+        );
+
+
+    result.innerHTML =
+        html;
+
+
+    result.style.display =
+        "block";
+
+
+    result.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+}
+
+
+async function copyDiabetesPlan() {
+
+    generateDiabetesPlan();
+
+    const text =
+        document.getElementById(
+            "dmResult"
+        ).innerText;
+
+
+    try {
+
+        await navigator.clipboard.writeText(text);
+
+        alert(
+            "Diabetes perioperative plan copied."
+        );
+
+    } catch (error) {
+
+        const temp =
+            document.createElement("textarea");
+
+        temp.value = text;
+
+        temp.style.position = "fixed";
+        temp.style.opacity = "0";
+
+        document.body.appendChild(temp);
+
+        temp.select();
+
+        document.execCommand("copy");
+
+        document.body.removeChild(temp);
+
+        alert(
+            "Diabetes perioperative plan copied."
+        );
+    }
+}
+
+
+function printDiabetesPlan() {
+
+    generateDiabetesPlan();
+
+    setTimeout(function() {
+        window.print();
+    }, 150);
+}
+
+
+function clearDiabetesPlan() {
+
+    const ok =
+        confirm(
+            "Clear all patient-specific diabetes information?"
+        );
+
+
+    if (!ok) return;
+
+
+    document
+        .querySelectorAll(
+            "#interactiveDiabetesPlanner input, #interactiveDiabetesPlanner textarea"
+        )
+        .forEach(function(el) {
+            el.value = "";
+        });
+
+
+    document
+        .querySelectorAll(
+            "#interactiveDiabetesPlanner select"
+        )
+        .forEach(function(el) {
+            el.selectedIndex = 0;
+        });
+
+
+    const result =
+        document.getElementById(
+            "dmResult"
+        );
+
+
+    result.innerHTML =
+        "";
+
+
+    result.style.display =
+        "none";
+
+
+    document
+        .getElementById(
+            "interactiveDiabetesPlanner"
+        )
+        .scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+}
+
+
+document
+.getElementById("dmGenerate")
+.addEventListener(
+    "click",
+    generateDiabetesPlan
+);
+
+
+document
+.getElementById("dmCopy")
+.addEventListener(
+    "click",
+    copyDiabetesPlan
+);
+
+
+document
+.getElementById("dmPrint")
+.addEventListener(
+    "click",
+    printDiabetesPlan
+);
+
+
+document
+.getElementById("dmClear")
+.addEventListener(
+    "click",
+    clearDiabetesPlan
+);
+
+</script>
 </main>
 
 <footer>

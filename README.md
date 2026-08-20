@@ -1,4 +1,4 @@
-#TSJH Preoperative Care Handbook
+# TSJH Preoperative Care Handbook
 
 Preoperative Medical Evaluation & Optimization
 
@@ -381,4 +381,4 @@ Content should be reviewed and updated as:
 
 TSJH Preoperative Care Handbook
 
-Preoperative Medical Evaluation • Risk Stratification • Medical Optimization • Perioperative Care
+    Preoperative Medical Evaluation • Risk Str • Medical Optimization • Perioperative Care

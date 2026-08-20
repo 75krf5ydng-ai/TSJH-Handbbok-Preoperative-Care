@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Functional Capacity, DASI & Frailty | Preoperative Optimization Handbook
+</title>
+
+<style>
+
+:root {
+  --navy:#17324d;
+  --blue:#274c6b;
+  --light:#eef4f8;
+  --border:#d8e1ec;
+  --green:#356f44;
+  --red:#8b2f2f;
+  --gold:#8a6500;
+}
+
+* {
+  box-sizing:border-box;
+}
+
+body {
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#f6f8fb;
+  color:#1d2939;
+  line-height:1.55;
+}
+
+header {
+  background:var(--navy);
+  color:white;
+  padding:24px 18px;
+}
+
+header h1 {
+  margin:0 0 8px 0;
+  font-size:28px;
+}
+
+header p {
+  margin:0;
+}
+
+nav {
+  background:white;
+  border-bottom:1px solid var(--border);
+  padding:12px 18px;
+}
+
+nav a {
+  color:var(--navy);
+  text-decoration:none;
+  font-weight:bold;
+  margin-right:18px;
+}
+
+main {
+  max-width:1000px;
+  margin:auto;
+  padding:24px 16px 50px;
+}
+
+section {
+  background:white;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:22px;
+  margin-bottom:22px;
+}
+
+h2 {
+  color:var(--navy);
+  margin-top:0;
+}
+
+h3 {
+  color:var(--blue);
+}
+
+.clinical-box {
+  background:#f8fafc;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:18px;
+  margin:18px 0;
+}
+
+.warning-box {
+  background:#fff8e6;
+  border-left:5px solid #b78103;
+  padding:16px;
+  margin:18px 0;
+}
+
+.success-box {
+  background:#eef8f0;
+  border-left:5px solid var(--green);
+  padding:16px;
+  margin:18px 0;
+}
+
+label {
+  font-weight:bold;
+}
+
+input,
+select,
+textarea {
+  width:95%;
+  padding:11px;
+  margin:6px 0 14px;
+  border:1px solid #cbd5e1;
+  border-radius:8px;
+  background:white;
+  font-size:16px;
+}
+
+.dasi-row {
+  padding:14px 0;
+  border-bottom:1px solid #e7ecf2;
+}
+
+.dasi-row:last-child {
+  border-bottom:none;
+}
+
+.dasi-row label {
+  display:block;
+  margin-bottom:8px;
+}
+
+.dasi-choice {
+  width:auto;
+  margin-right:8px;
+}
+
+button {
+  color:white;
+  border:none;
+  padding:14px 18px;
+  font-weight:bold;
+  font-size:16px;
+  border-radius:8px;
+  margin:6px;
+  cursor:pointer;
+}
+
+.primary {
+  background:var(--navy);
+}
+
+.copy {
+  background:var(--blue);
+}
+
+.print {
+  background:var(--green);
+}
+
+.clear {
+  background:var(--red);
+}
+
+#fcResult {
+  display:none;
+  margin-top:22px;
+  padding:22px;
+  background:white;
+  border:2px solid var(--border);
+  border-radius:10px;
+}
+
+.status-good {
+  border-left:6px solid var(--green) !important;
+}
+
+.status-warn {
+  border-left:6px solid var(--gold) !important;
+}
+
+.status-bad {
+  border-left:6px solid var(--red) !important;
+}
+
+footer {
+  text-align:center;
+  padding:24px;
+  color:#667085;
+  border-top:1px solid var(--border);
+  background:white;
+}
+
+@media print {
+
+  body * {
+    visibility:hidden !important;
+  }
+
+  #fcResult,
+  #fcResult * {
+    visibility:visible !important;
+  }
+
+  #fcResult {
+    display:block !important;
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    border:none;
+    padding:20px;
+    color:black;
+    background:white;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<header>
+
+<h1>Functional Capacity, DASI & Frailty</h1>
+
+<p>
+Interactive preoperative functional-capacity, mobility and frailty assessment.
+</p>
+
+</header>
+
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="cardiac.html">Cardiac</a>
+
+<a href="pulmonary.html">Pulmonary</a>
+
+<a href="master-preop-hp.html">Master H&amp;P</a>
+
+</nav>
+
+
+<main>
+
+
+<section>
+
+<h2>How to Use This Tool</h2>
+
+<p>
+Complete the self-reported DASI activities and enter the patient's Clinical
+Frailty Scale score and mobility information. The tool calculates the DASI,
+estimated peak oxygen consumption and estimated METs, identifies functional
+or frailty concerns, and generates a patient-specific perioperative summary.
+</p>
+
+<div class="warning-box">
+
+<strong>Important:</strong>
+DASI is a self-reported functional-capacity measure. The Clinical Frailty Scale
+requires clinical judgment and should be based on the patient's usual baseline
+function rather than temporary disability from an acute illness or isolated
+orthopedic limitation.
+
+</div>
+
+</section>
+
+
+
+<section id="functionalCapacityTool">
+
+<h2>Interactive Functional Capacity & Frailty Assessment</h2>
+
+
+<div class="clinical-box">
+
+<h3>Patient / Surgery Information</h3>
+
+<label>Patient</label><br>
+<input type="text"
+id="fcPatient"
+placeholder="Patient name or identifier"><br>
+
+<label>Date of Birth</label><br>
+<input type="date"
+id="fcDOB"><br>
+
+<label>Planned Procedure</label><br>
+<input type="text"
+id="fcProcedure"><br>
+
+<label>Surgeon</label><br>
+<input type="text"
+id="fcSurgeon"><br>
+
+<label>Surgery Date / DOS</label><br>
+<input type="date"
+id="fcDOS"><br>
+
+</div>
+
+
+
+<div class="clinical-box">
+
+<h3>Duke Activity Status Index (DASI)</h3>
+
+<p>
+Select <strong>Yes</strong> only if the patient can normally perform the
+activity without assistance because of cardiopulmonary limitation.
+Orthopedic restriction should be documented separately when it prevents
+performance despite otherwise adequate cardiopulmonary capacity.
+</p>
+
+
+<div class="dasi-row">
+
+<label>
+1. Able to manage basic personal care such as dressing, bathing and toileting?
+</label>
+
+<select id="dasi1">
+<option value="0">No</option>
+<option value="2.75">Yes</option>
+</select>
+
+</div>
+
+
+<div class="dasi-row">
+
+<label>
+2. Able to walk indoors around the home?
+</label>
+
+<select id="dasi2">
+<option value="0">No</option>
+<option value="1.75">Yes</option>
+</select>
+
+</div>
+
+
+<div class="dasi-row">
+
+<label>
+3. Able to walk one to two blocks on level ground?
+</label>
+
+<select id="dasi3">
+<option value="0">No</option>
+<option value="2.75">Yes</option>
+</select>
+
+</div>
+
+
+<div class="dasi-row">
+
+<label>
+4. Able to climb a flight of stairs or walk uphill?
+</label>
+
+<select id="dasi4">
+<option value="0">No</option>
+<option value="5.50">Yes</option>
+</select>
+
+</div>
+
+
+<div class="dasi-row">
+
+<label>
+5. Able to run a short distance?
+</label>
+
+<select id="dasi5">
+<option value="0">No</option>
+<option value="8.00">Yes</option>
+</select>
+
+</div>
+
+
+<div class="dasi-row">
+
+<label>
+6. Able to perform light household work such as dusting or washing dishes?
+</label>
+
+<select id="dasi6">
+<option value="0">No</option>
+<option value="2.70">Yes</option>
+</select>
+
+</div>
+
+
+<div class="dasi-row">
+
+<label>
+7. Able to perform moderate household work such as vacuuming, sweeping or carrying groceries?
+</label>
+
+<select id="dasi7">
+<option value="0">No</option>
+<option value="3.50">Yes</option>
+</select>
+
+</div>
+
+
+<div class="dasi-row">
+
+<label>
+8. Able to perform heavy household work such as scrubbing floors or moving heavy furniture?
+</label>
+
+<select id="dasi8">
+<option value="0">No</option>
+<option value="8.00">Yes</option>
+</select>
+
+</div>
+
+
+<div class="dasi-row">
+
+<label>
+9. Able to perform yard work such as raking, weeding or pushing a mower?
+</label>
+
+<select id="dasi9">
+<option value="0">No</option>
+<option value="4.50">Yes</option>
+</select>
+
+</div>
+
+
+<div class="dasi-row">
+
+<label>
+10. Able to participate in sexual activity?
+</label>
+
+<select id="dasi10">
+<option value="0">No</option>
+<option value="5.25">Yes</option>
+</select>
+
+</div>
+
+
+<div class="dasi-row">
+
+<label>
+11. Able to participate in moderate recreation such as golf, bowling,
+dancing or doubles tennis?
+</label>
+
+<select id="dasi11">
+<option value="0">No</option>
+<option value="6.00">Yes</option>
+</select>
+
+</div>
+
+
+<div class="dasi-row">
+
+<label>
+12. Able to participate in strenuous recreation or sports such as swimming,
+singles tennis or basketball?
+</label>
+
+<select id="dasi12">
+<option value="0">No</option>
+<option value="7.50">Yes</option>
+</select>
+
+</div>
+
+
+<label>
+Primary reason for inability to perform activities
+</label><br>
+
+<select id="fcLimitation">
+
+<option value="None">
+No major limitation
+</option>
+
+<option value="Orthopedic">
+Primarily orthopedic / pain / joint or spine limitation
+</option>
+
+<option value="Cardiopulmonary">
+Primarily dyspnea / chest symptoms / cardiopulmonary limitation
+</option>
+
+<option value="Neurologic">
+Primarily neurologic limitation
+</option>
+
+<option value="General debility">
+General weakness / debility
+</option>
+
+<option value="Mixed">
+Mixed causes
+</option>
+
+</select>
+
+</div>
+
+
+
+<div class="clinical-box">
+
+<h3>Clinical Frailty Scale</h3>
+
+<label>CFS Score</label><br>
+
+<select id="fcCFS">
+
+<option value="">Select</option>
+
+<option value="1">
+1 — Very robust / highly active
+</option>
+
+<option value="2">
+2 — Well with no meaningful functional limitation
+</option>
+
+<option value="3">
+3 — Managing well; chronic disease controlled
+</option>
+
+<option value="4">
+4 — Vulnerable / slowing but generally independent
+</option>
+
+<option value="5">
+5 — Mild frailty; assistance needed with some higher-level activities
+</option>
+
+<option value="6">
+6 — Moderate frailty; assistance needed with outside and household activities
+</option>
+
+<option value="7">
+7 — Severe frailty with substantial dependence
+</option>
+
+<option value="8">
+8 — Very severe frailty / near-complete dependence
+</option>
+
+<option value="9">
+9 — Terminally ill independent of frailty level
+</option>
+
+</select>
+
+
+<label>
+Is the entered CFS representative of the patient's usual baseline?
+</label><br>
+
+<select id="fcCFSBaseline">
+
+<option value="Yes">
+Yes
+</option>
+
+<option value="No">
+No / uncertain
+</option>
+
+</select>
+
+</div>
+
+
+
+<div class="clinical-box">
+
+<h3>Mobility / Falls / Disposition</h3>
+
+<label>Baseline mobility</label><br>
+
+<select id="fcMobility">
+
+<option value="Independent">
+Independent
+</option>
+
+<option value="Cane">
+Uses cane
+</option>
+
+<option value="Walker">
+Uses walker
+</option>
+
+<option value="Wheelchair">
+Wheelchair dependent
+</option>
+
+<option value="Assistance">
+Requires person assistance
+</option>
+
+</select>
+
+
+<label>Recent fall history</label><br>
+
+<select id="fcFalls">
+
+<option value="No">
+No
+</option>
+
+<option value="Yes">
+Yes
+</option>
+
+</select>
+
+
+<label>Lives alone</label><br>
+
+<select id="fcLivesAlone">
+
+<option value="No">
+No
+</option>
+
+<option value="Yes">
+Yes
+</option>
+
+</select>
+
+
+<label>Caregiver/support available after surgery</label><br>
+
+<select id="fcSupport">
+
+<option value="Yes">
+Yes
+</option>
+
+<option value="No">
+No
+</option>
+
+<option value="Unknown">
+Unknown
+</option>
+
+</select>
+
+
+<label>Transportation confirmed</label><br>
+
+<select id="fcTransport">
+
+<option value="Yes">
+Yes
+</option>
+
+<option value="No">
+No
+</option>
+
+<option value="N/A">
+N/A
+</option>
+
+</select>
+
+
+<label>Likely postoperative disposition</label><br>
+
+<select id="fcDisposition">
+
+<option value="">
+Not selected
+</option>
+
+<option value="Home">
+Home
+</option>
+
+<option value="Home with support">
+Home with support
+</option>
+
+<option value="Rehabilitation">
+Rehabilitation
+</option>
+
+<option value="SNF">
+Skilled nursing facility
+</option>
+
+<option value="Other">
+Other
+</option>
+
+</select>
+
+
+<label>Additional functional / mobility comments</label><br>
+
+<textarea
+id="fcComments"
+rows="5"
+placeholder="Orthopedic limitation, baseline ADLs, falls, caregiver concerns, PT needs, etc.">
+</textarea>
+
+</div>
+
+
+
+<div class="clinical-box">
+
+<button
+type="button"
+class="primary"
+id="fcGenerate">
+
+Generate Functional Assessment
+
+</button>
+
+
+<button
+type="button"
+class="copy"
+id="fcCopy">
+
+Copy Summary
+
+</button>
+
+
+<button
+type="button"
+class="print"
+id="fcPrint">
+
+Print
+
+</button>
+
+
+<button
+type="button"
+class="clear"
+id="fcClear">
+
+Clear Patient Data
+
+</button>
+
+</div>
+
+
+
+<div id="fcResult">
+
+Patient-specific functional-capacity assessment will appear here.
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+Preoperative Optimization Handbook · Functional Capacity, DASI & Frailty
+
+</footer>
+
+
+
+<script>
+
+function fcValue(id) {
+
+  const element =
+    document.getElementById(id);
+
+  return element
+    ? element.value
+    : "";
+
+}
+
+
+function calculateDASI() {
+
+  let score = 0;
+
+  for (let i = 1; i <= 12; i++) {
+
+    const value =
+      parseFloat(
+        fcValue("dasi" + i)
+      );
+
+    if (!isNaN(value)) {
+      score += value;
+    }
+
+  }
+
+  return score;
+
+}
+
+
+function generateFunctionalAssessment() {
+
+  const findings = [];
+  const recommendations = [];
+  const pending = [];
+  const stop = [];
+
+  const patient =
+    fcValue("fcPatient");
+
+  const procedure =
+    fcValue("fcProcedure");
+
+  const surgeon =
+    fcValue("fcSurgeon");
+
+  const dos =
+    fcValue("fcDOS");
+
+
+  const dasi =
+    calculateDASI();
+
+
+  const vo2 =
+    (0.43 * dasi) + 9.6;
+
+
+  const mets =
+    vo2 / 3.5;
+
+
+  const limitation =
+    fcValue("fcLimitation");
+
+
+  const cfsText =
+    fcValue("fcCFS");
+
+
+  const cfs =
+    parseInt(cfsText);
+
+
+  findings.push(
+    "DASI score: " +
+    dasi.toFixed(2) +
+    "."
+  );
+
+
+  findings.push(
+    "Estimated peak VO₂: " +
+    vo2.toFixed(1) +
+    " mL/kg/min."
+  );
+
+
+  findings.push(
+    "Estimated functional capacity: " +
+    mets.toFixed(1) +
+    " METs."
+  );
+
+
+  if (dasi <= 34) {
+
+    findings.push(
+      "DASI ≤34 meets the ACC/AHA definition of poor or reduced functional capacity for the stepwise perioperative cardiovascular assessment."
+    );
+
+
+    if (limitation === "Orthopedic") {
+
+      recommendations.push(
+        "Low self-reported DASI appears substantially influenced by orthopedic/pain limitation. Interpret the score together with cardiopulmonary symptoms, baseline activity and the overall cardiovascular risk assessment."
+      );
+
+    } else if (
+      limitation === "Cardiopulmonary"
+    ) {
+
+      pending.push(
+        "Poor functional capacity appears cardiopulmonary in origin. Review symptoms and overall perioperative cardiovascular risk to determine whether further evaluation is indicated."
+      );
+
+    } else {
+
+      recommendations.push(
+        "Poor functional capacity should be incorporated into the overall perioperative risk assessment. Additional cardiac testing should not be ordered solely because DASI is low unless the patient is otherwise at elevated risk and the result would change management."
+      );
+
+    }
+
+  } else {
+
+    findings.push(
+      "DASI >34 supports adequate functional capacity."
+    );
+
+  }
+
+
+  if (!isNaN(cfs)) {
+
+    findings.push(
+      "Clinical Frailty Scale: " +
+      cfs +
+      "."
+    );
+
+
+    if (cfs === 4) {
+
+      recommendations.push(
+        "CFS 4 suggests increased vulnerability despite relative independence. Review postoperative mobility, fall and support needs."
+      );
+
+    }
+
+
+    if (cfs === 5) {
+
+      recommendations.push(
+        "CFS 5 indicates clinically meaningful frailty. Consider postoperative mobility assistance, delirium prevention, medication review and disposition planning."
+      );
+
+    }
+
+
+    if (cfs === 6) {
+
+      recommendations.push(
+        "Moderately frail on CFS scale score 6. Increased postoperative mobility, respiratory, delirium and disposition risk should be incorporated into the perioperative plan."
+      );
+
+    }
+
+
+    if (cfs >= 7 && cfs <= 8) {
+
+      pending.push(
+        "Severe frailty is present. Confirm that the planned surgical setting, postoperative monitoring, mobility assistance and disposition are appropriate."
+      );
+
+    }
+
+
+    if (cfs === 9) {
+
+      pending.push(
+        "CFS 9 entered. Confirm goals of care, indication for elective surgery and appropriate multidisciplinary review."
+      );
+
+    }
+
+  }
+
+
+  if (
+    fcValue("fcCFSBaseline") === "No"
+  ) {
+
+    pending.push(
+      "Entered CFS may not represent the patient's usual baseline and should be reassessed before relying on the score."
+    );
+
+  }
+
+
+  if (
+    fcValue("fcFalls") === "Yes"
+  ) {
+
+    recommendations.push(
+      "Recent fall history identified. Use fall precautions and incorporate mobility assistance into postoperative planning."
+    );
+
+  }
+
+
+  if (
+    fcValue("fcLivesAlone") === "Yes" &&
+    fcValue("fcSupport") !== "Yes"
+  ) {
+
+    pending.push(
+      "Patient lives alone without confirmed postoperative support."
+    );
+
+  }
+
+
+  if (
+    fcValue("fcTransport") === "No"
+  ) {
+
+    pending.push(
+      "Required postoperative transportation is not confirmed."
+    );
+
+  }
+
+
+  if (
+    fcValue("fcMobility") === "Wheelchair" ||
+    fcValue("fcMobility") === "Assistance"
+  ) {
+
+    recommendations.push(
+      "Baseline mobility dependence identified. Confirm safe postoperative transfer, therapy and disposition plan."
+    );
+
+  }
+
+
+  if (
+    fcValue("fcComments")
+  ) {
+
+    findings.push(
+      "Additional functional information: " +
+      fcValue("fcComments")
+    );
+
+  }
+
+
+  let status = "";
+  let reason = "";
+
+
+  if (stop.length > 0) {
+
+    status =
+      "Not optimized";
+
+    reason =
+      stop.join(" ");
+
+  } else if (
+    pending.length > 0
+  ) {
+
+    status =
+      "Pending";
+
+    reason =
+      pending.join(" ");
+
+  } else {
+
+    status =
+      "Optimized";
+
+    reason =
+      "No unresolved functional-capacity, frailty, mobility or disposition issue was identified from the entered information.";
+
+  }
+
+
+  let html = "";
+
+
+  html +=
+    "<h2>Functional Capacity & Frailty Assessment</h2>";
+
+
+  if (
+    patient ||
+    procedure ||
+    surgeon ||
+    dos
+  ) {
+
+    html += "<p>";
+
+    if (patient) {
+      html +=
+        "<strong>Patient:</strong> " +
+        patient +
+        "<br>";
+    }
+
+    if (procedure) {
+      html +=
+        "<strong>Procedure:</strong> " +
+        procedure +
+        "<br>";
+    }
+
+    if (surgeon) {
+      html +=
+        "<strong>Surgeon:</strong> " +
+        surgeon +
+        "<br>";
+    }
+
+    if (dos) {
+      html +=
+        "<strong>Date of Service / Surgery Date:</strong> " +
+        dos;
+    }
+
+    html += "</p>";
+
+  }
+
+
+  html +=
+    "<h3>Functional & Risk Screening</h3>";
+
+
+  html +=
+    "<p>" +
+    "<strong>DASI:</strong> " +
+    dasi.toFixed(2) +
+    "<br>" +
+    "<strong>Estimated METs:</strong> " +
+    mets.toFixed(1) +
+    "<br>" +
+    "<strong>CFS:</strong> " +
+    (
+      !isNaN(cfs)
+        ? cfs
+        : "Not entered"
+    ) +
+    "</p>";
+
+
+  if (findings.length > 0) {
+
+    html +=
+      "<h3>Findings</h3><ul>";
+
+    findings.forEach(
+      function(item) {
+
+        html +=
+          "<li>" +
+          item +
+          "</li>";
+
+      }
+    );
+
+    html += "</ul>";
+
+  }
+
+
+  if (
+    recommendations.length > 0
+  ) {
+
+    html +=
+      "<h3>Perioperative Recommendations</h3><ul>";
+
+    recommendations.forEach(
+      function(item) {
+
+        html +=
+          "<li>" +
+          item +
+          "</li>";
+
+      }
+    );
+
+    html += "</ul>";
+
+  }
+
+
+  if (
+    pending.length > 0
+  ) {
+
+    html +=
+      "<h3>Items Requiring Resolution</h3><ul>";
+
+    pending.forEach(
+      function(item) {
+
+        html +=
+          "<li>" +
+          item +
+          "</li>";
+
+      }
+    );
+
+    html += "</ul>";
+
+  }
+
+
+  html += "<hr>";
+
+
+  html +=
+    "<h3>FINAL PREOPERATIVE OPTIMIZATION STATUS</h3>";
+
+
+  html +=
+    "<p><strong>" +
+    status +
+    "</strong></p>";
+
+
+  html +=
+    "<p><strong>Reason:</strong> " +
+    reason +
+    "</p>";
+
+
+  if (
+    status === "Optimized"
+  ) {
+
+    html +=
+      "<div class='success-box'>" +
+      "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time." +
+      "</div>";
+
+  }
+
+
+  html += "<hr>";
+
+
+  html +=
+    "<h3>Copy-Ready Provider Documentation</h3>";
+
+
+  html +=
+    "<p>" +
+    "Functional capacity and frailty reviewed. " +
+    "DASI " +
+    dasi.toFixed(2) +
+    "; estimated functional capacity " +
+    mets.toFixed(1) +
+    " METs; CFS " +
+    (
+      !isNaN(cfs)
+        ? cfs
+        : "not entered"
+    ) +
+    ". ";
+
+
+  if (
+    limitation === "Orthopedic"
+  ) {
+
+    html +=
+      "Self-reported activity is limited primarily by orthopedic/pain-related impairment. ";
+
+  }
+
+
+  html +=
+    "<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS: " +
+    status +
+    ".</strong> ";
+
+
+  if (
+    status === "Optimized"
+  ) {
+
+    html +=
+      "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time.";
+
+  } else {
+
+    html +=
+      "Reason: " +
+      reason;
+
+  }
+
+
+  html += "</p>";
+
+
+  const result =
+    document.getElementById(
+      "fcResult"
+    );
+
+
+  result.innerHTML =
+    html;
+
+
+  result.style.display =
+    "block";
+
+
+  result.classList.remove(
+    "status-good",
+    "status-warn",
+    "status-bad"
+  );
+
+
+  if (
+    status === "Optimized"
+  ) {
+
+    result.classList.add(
+      "status-good"
+    );
+
+  }
+
+
+  if (
+    status === "Pending"
+  ) {
+
+    result.classList.add(
+      "status-warn"
+    );
+
+  }
+
+
+  if (
+    status === "Not optimized"
+  ) {
+
+    result.classList.add(
+      "status-bad"
+    );
+
+  }
+
+
+  result.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
+}
+
+
+async function copyFunctionalAssessment() {
+
+  generateFunctionalAssessment();
+
+
+  const text =
+    document.getElementById(
+      "fcResult"
+    ).innerText;
+
+
+  try {
+
+    await navigator.clipboard.writeText(
+      text
+    );
+
+    alert(
+      "Functional-capacity summary copied."
+    );
+
+  } catch (error) {
+
+    const temp =
+      document.createElement(
+        "textarea"
+      );
+
+
+    temp.value =
+      text;
+
+
+    temp.style.position =
+      "fixed";
+
+
+    temp.style.opacity =
+      "0";
+
+
+    document.body.appendChild(
+      temp
+    );
+
+
+    temp.select();
+
+
+    document.execCommand(
+      "copy"
+    );
+
+
+    document.body.removeChild(
+      temp
+    );
+
+
+    alert(
+      "Functional-capacity summary copied."
+    );
+
+  }
+
+}
+
+
+function printFunctionalAssessment() {
+
+  generateFunctionalAssessment();
+
+
+  setTimeout(
+    function() {
+
+      window.print();
+
+    },
+    150
+  );
+
+}
+
+
+function clearFunctionalAssessment() {
+
+  const ok =
+    confirm(
+      "Clear all patient-specific functional and frailty information?"
+    );
+
+
+  if (!ok) return;
+
+
+  document
+    .querySelectorAll(
+      "#functionalCapacityTool input, #functionalCapacityTool textarea"
+    )
+    .forEach(
+      function(el) {
+
+        el.value = "";
+
+      }
+    );
+
+
+  document
+    .querySelectorAll(
+      "#functionalCapacityTool select"
+    )
+    .forEach(
+      function(el) {
+
+        el.selectedIndex = 0;
+
+      }
+    );
+
+
+  const result =
+    document.getElementById(
+      "fcResult"
+    );
+
+
+  result.innerHTML =
+    "Patient-specific functional-capacity assessment will appear here.";
+
+
+  result.style.display =
+    "none";
+
+
+  document
+    .getElementById(
+      "functionalCapacityTool"
+    )
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+
+}
+
+
+document
+  .getElementById(
+    "fcGenerate"
+  )
+  .addEventListener(
+    "click",
+    generateFunctionalAssessment
+  );
+
+
+document
+  .getElementById(
+    "fcCopy"
+  )
+  .addEventListener(
+    "click",
+    copyFunctionalAssessment
+  );
+
+
+document
+  .getElementById(
+    "fcPrint"
+  )
+  .addEventListener(
+    "click",
+    printFunctionalAssessment
+  );
+
+
+document
+  .getElementById(
+    "fcClear"
+  )
+  .addEventListener(
+    "click",
+    clearFunctionalAssessment
+  );
+
+</script>
+
+
+</body>
+</html>

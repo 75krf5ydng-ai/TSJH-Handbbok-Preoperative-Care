@@ -1,0 +1,1936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Preoperative Anemia Evaluation, Calculator & Optimization</title>
+
+<style>
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: #f4f7f9;
+  color: #1f2933;
+  line-height: 1.6;
+}
+
+header {
+  background: #17324d;
+  color: white;
+  padding: 28px 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+}
+
+header p {
+  margin: 0;
+}
+
+nav {
+  background: white;
+  padding: 12px 20px;
+  border-bottom: 1px solid #d9e2ec;
+  text-align: center;
+}
+
+nav a {
+  color: #17324d;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 7px;
+}
+
+main {
+  max-width: 1180px;
+  margin: 24px auto;
+  padding: 0 18px 40px;
+}
+
+section {
+  background: white;
+  margin-bottom: 22px;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+h2 {
+  color: #17324d;
+  border-bottom: 2px solid #d9e2ec;
+  padding-bottom: 8px;
+}
+
+h3 {
+  color: #274c6b;
+  margin-top: 22px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+}
+
+th, td {
+  border: 1px solid #cbd5e1;
+  padding: 10px;
+  vertical-align: top;
+  text-align: left;
+}
+
+th {
+  background: #eaf0f5;
+  color: #17324d;
+}
+
+.clinical-box {
+  background: #eef6fb;
+  border-left: 5px solid #3178a8;
+  padding: 15px;
+  margin: 16px 0;
+}
+
+.warning-box {
+  background: #fff5f5;
+  border-left: 5px solid #b42318;
+  padding: 15px;
+  margin: 16px 0;
+}
+
+.success-box {
+  background: #eef9f0;
+  border-left: 5px solid #2d7a46;
+  padding: 15px;
+  margin: 16px 0;
+}
+
+.formula-box {
+  background: #f7f7fb;
+  border: 1px solid #d8d8e5;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 16px 0;
+}
+
+.calculator {
+  background: #f8fafc;
+  border: 2px solid #d9e2ec;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  color: #17324d;
+  margin-bottom: 5px;
+}
+
+input, select {
+  padding: 10px;
+  border: 1px solid #aab7c4;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: white;
+}
+
+button {
+  background: #17324d;
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 7px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 15px 8px 5px 0;
+}
+
+button:hover {
+  opacity: .92;
+}
+
+.secondary-button {
+  background: #52606d;
+}
+
+.result-box {
+  display: none;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  background: white;
+  border: 2px solid #3178a8;
+}
+
+.result-box h3 {
+  margin-top: 0;
+}
+
+.result-line {
+  margin: 8px 0;
+}
+
+.result-title {
+  font-weight: bold;
+  color: #17324d;
+}
+
+.copy-box {
+  width: 100%;
+  min-height: 160px;
+  padding: 12px;
+  border: 1px solid #aab7c4;
+  border-radius: 6px;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+.button-link {
+  display: inline-block;
+  background: #17324d;
+  color: white !important;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 13px 20px;
+  border-radius: 8px;
+  margin: 6px 6px 6px 0;
+}
+
+footer {
+  text-align: center;
+  padding: 24px;
+  color: #52606d;
+  font-size: .9rem;
+}
+
+@media(max-width:850px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(max-width:600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  table {
+    font-size: .78rem;
+  }
+
+  header h1 {
+    font-size: 1.4rem;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Preoperative Anemia Evaluation, Calculator & Optimization</h1>
+<p>Differentiate common anemia patterns, identify needed workup and generate a perioperative recommendation</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="evaluation.html">Evaluation</a>
+<a href="laboratory-interpretation.html">Labs</a>
+<a href="hematology-bleeding.html">Hematology</a>
+<a href="renal-dialysis.html">Renal</a>
+<a href="provider-resources.html">Resources</a>
+</nav>
+
+<main>
+
+<section>
+
+<h2>Purpose</h2>
+
+<p>
+Preoperative anemia should be evaluated according to severity, laboratory
+pattern, chronicity, symptoms and anticipated surgical blood loss. The purpose
+of the evaluation is to identify potentially treatable causes and reduce the
+risk of perioperative transfusion and complications without unnecessarily
+delaying low-blood-loss procedures.
+</p>
+
+<div class="clinical-box">
+For major joint replacement, multilevel spine fusion, revision surgery and other
+procedures with meaningful expected blood loss, identifying and treating anemia
+before surgery may be particularly valuable.
+</div>
+
+<div class="warning-box">
+The calculator below is clinical decision support, not a definitive diagnosis.
+Mixed anemia is common. Ferritin can be falsely normal or elevated during
+inflammation, infection, liver disease and other inflammatory states.
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Interactive Anemia Pattern Calculator</h2>
+
+<p>
+Enter as many available laboratory results as possible. Blank fields are
+allowed. The calculator will interpret only the data provided.
+</p>
+
+<div class="calculator">
+
+<div class="grid">
+
+<div class="field">
+<label for="sex">Sex for Hgb context</label>
+<select id="sex">
+<option value="">Select</option>
+<option value="female">Female</option>
+<option value="male">Male</option>
+</select>
+</div>
+
+<div class="field">
+<label for="hgb">Hemoglobin (g/dL)</label>
+<input id="hgb" type="number" step="0.1" placeholder="Example: 10.8">
+</div>
+
+<div class="field">
+<label for="hct">Hematocrit (%)</label>
+<input id="hct" type="number" step="0.1" placeholder="Example: 33">
+</div>
+
+<div class="field">
+<label for="mcv">MCV (fL)</label>
+<input id="mcv" type="number" step="0.1" placeholder="Example: 76">
+</div>
+
+<div class="field">
+<label for="rdw">RDW (%)</label>
+<input id="rdw" type="number" step="0.1" placeholder="Example: 17">
+</div>
+
+<div class="field">
+<label for="rbc">RBC count (million/µL)</label>
+<input id="rbc" type="number" step="0.01" placeholder="Example: 4.2">
+</div>
+
+<div class="field">
+<label for="ferritin">Ferritin (ng/mL)</label>
+<input id="ferritin" type="number" step="0.1" placeholder="Example: 12">
+</div>
+
+<div class="field">
+<label for="iron">Serum iron (µg/dL)</label>
+<input id="iron" type="number" step="0.1" placeholder="Example: 32">
+</div>
+
+<div class="field">
+<label for="tibc">TIBC (µg/dL)</label>
+<input id="tibc" type="number" step="0.1" placeholder="Example: 410">
+</div>
+
+<div class="field">
+<label for="tsat">TSAT (%) if already known</label>
+<input id="tsat" type="number" step="0.1" placeholder="Leave blank to calculate">
+</div>
+
+<div class="field">
+<label for="retic">Reticulocyte (%)</label>
+<input id="retic" type="number" step="0.1" placeholder="Example: 1.2">
+</div>
+
+<div class="field">
+<label for="b12">Vitamin B12 (pg/mL)</label>
+<input id="b12" type="number" step="1" placeholder="Example: 180">
+</div>
+
+<div class="field">
+<label for="folate">Folate (ng/mL)</label>
+<input id="folate" type="number" step="0.1" placeholder="Example: 4.5">
+</div>
+
+<div class="field">
+<label for="creatinine">Creatinine (mg/dL)</label>
+<input id="creatinine" type="number" step="0.01" placeholder="Example: 1.6">
+</div>
+
+<div class="field">
+<label for="egfr">eGFR (mL/min/1.73m²)</label>
+<input id="egfr" type="number" step="1" placeholder="Example: 38">
+</div>
+
+<div class="field">
+<label for="ldh">LDH</label>
+<input id="ldh" type="number" step="1" placeholder="Lab value">
+</div>
+
+<div class="field">
+<label for="haptoglobin">Haptoglobin (mg/dL)</label>
+<input id="haptoglobin" type="number" step="1" placeholder="Lab value">
+</div>
+
+<div class="field">
+<label for="bilirubin">Indirect bilirubin (mg/dL)</label>
+<input id="bilirubin" type="number" step="0.1" placeholder="Example: 1.8">
+</div>
+
+<div class="field">
+<label for="bleeding">Evidence of active/recent blood loss?</label>
+<select id="bleeding">
+<option value="">Unknown</option>
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<div class="field">
+<label for="inflammation">Inflammation/chronic disease present?</label>
+<select id="inflammation">
+<option value="">Unknown</option>
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<div class="field">
+<label for="surgeryRisk">Expected surgical blood loss</label>
+<select id="surgeryRisk">
+<option value="">Select</option>
+<option value="minimal">Minimal</option>
+<option value="moderate">Moderate</option>
+<option value="significant">Significant</option>
+</select>
+</div>
+
+</div>
+
+<button onclick="interpretAnemia()">Interpret Anemia Pattern</button>
+<button class="secondary-button" onclick="clearCalculator()">Clear</button>
+
+<div id="results" class="result-box">
+
+<h3>Calculator Interpretation</h3>
+
+<div class="result-line">
+<span class="result-title">Anemia status:</span>
+<span id="anemiaStatus"></span>
+</div>
+
+<div class="result-line">
+<span class="result-title">MCV classification:</span>
+<span id="mcvResult"></span>
+</div>
+
+<div class="result-line">
+<span class="result-title">Calculated TSAT:</span>
+<span id="tsatResult"></span>
+</div>
+
+<div class="result-line">
+<span class="result-title">Likely pattern(s):</span>
+<span id="patternResult"></span>
+</div>
+
+<div class="result-line">
+<span class="result-title">Additional workup:</span>
+<span id="workupResult"></span>
+</div>
+
+<div class="result-line">
+<span class="result-title">Preoperative recommendation:</span>
+<span id="recommendationResult"></span>
+</div>
+
+<div class="result-line">
+<span class="result-title">Suggested optimization status:</span>
+<span id="optimizationResult"></span>
+</div>
+
+<h3>Copyable Provider Summary</h3>
+
+<textarea id="providerSummary" class="copy-box"></textarea>
+
+<button onclick="copySummary()">Copy Summary</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2>How the Calculator Thinks About the Pattern</h2>
+
+<table>
+
+<tr>
+<th>Pattern</th>
+<th>Common Considerations</th>
+</tr>
+
+<tr>
+<td>Microcytic</td>
+<td>Iron deficiency, chronic blood loss, thalassemia, selected chronic inflammatory states.</td>
+</tr>
+
+<tr>
+<td>Normocytic</td>
+<td>CKD, chronic inflammation, acute blood loss, early iron deficiency, hemolysis, marrow disease.</td>
+</tr>
+
+<tr>
+<td>Macrocytic</td>
+<td>B12 deficiency, folate deficiency, liver disease, alcohol exposure, hypothyroidism, medications, marrow disease.</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<section>
+
+<h2>Iron Deficiency Pattern</h2>
+
+<p>
+Iron deficiency is particularly important before operations with expected blood
+loss because it is often treatable.
+</p>
+
+<h3>Findings Supporting Iron Deficiency</h3>
+
+<ul>
+<li>Low ferritin</li>
+<li>Low serum iron</li>
+<li>Low transferrin saturation</li>
+<li>Often elevated TIBC</li>
+<li>Increasing RDW</li>
+<li>Microcytosis as deficiency progresses</li>
+</ul>
+
+<div class="clinical-box">
+A ferritin below approximately 30 ng/mL strongly supports depleted iron stores
+in many clinical situations.
+</div>
+
+<div class="warning-box">
+Inflammation can elevate ferritin. Iron deficiency may still be present with a
+higher ferritin when TSAT is reduced and the clinical context supports
+functional or mixed iron deficiency.
+</div>
+
+</section>
+
+
+<section>
+
+<h2>TSAT Calculation</h2>
+
+<div class="formula-box">
+
+<strong>Transferrin Saturation</strong><br><br>
+
+TSAT (%) = Serum Iron ÷ TIBC × 100
+
+</div>
+
+<p>
+The calculator automatically computes this when serum iron and TIBC are entered.
+</p>
+
+<div class="clinical-box">
+A reduced TSAT, commonly below approximately 20%, supports insufficient
+circulating iron availability when interpreted with ferritin and clinical context.
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Anemia of Chronic Disease / Inflammation</h2>
+
+<p>
+Inflammatory disease can restrict iron availability even when total body iron
+stores are not profoundly depleted.
+</p>
+
+<table>
+
+<tr>
+<th>Test</th>
+<th>Common Pattern</th>
+</tr>
+
+<tr>
+<td>Serum iron</td>
+<td>Low</td>
+</tr>
+
+<tr>
+<td>TIBC</td>
+<td>Low or normal</td>
+</tr>
+
+<tr>
+<td>Ferritin</td>
+<td>Normal or elevated</td>
+</tr>
+
+<tr>
+<td>TSAT</td>
+<td>May be low</td>
+</tr>
+
+<tr>
+<td>MCV</td>
+<td>Often normocytic; may become mildly microcytic</td>
+</tr>
+
+</table>
+
+<div class="clinical-box">
+Iron deficiency and inflammatory anemia can coexist. Do not force a patient into
+one category when laboratory findings suggest a mixed pattern.
+</div>
+
+</section>
+
+
+<section>
+
+<h2>CKD-Associated Anemia</h2>
+
+<p>
+CKD commonly causes a normocytic hypoproliferative anemia due in part to
+inadequate erythropoietin activity and altered iron metabolism.
+</p>
+
+<div class="clinical-box">
+When eGFR is reduced, consider CKD as a contributor—but still assess iron status
+because iron deficiency frequently coexists.
+</div>
+
+<h3>Review</h3>
+
+<ul>
+<li>Creatinine/eGFR trend</li>
+<li>Ferritin</li>
+<li>TSAT</li>
+<li>Reticulocyte response</li>
+<li>Prior hemoglobin values</li>
+<li>Nephrology history when advanced CKD is present</li>
+</ul>
+
+</section>
+
+
+<section>
+
+<h2>Vitamin B12 Deficiency</h2>
+
+<p>
+B12 deficiency classically produces macrocytic anemia but may present without
+marked macrocytosis, especially in mixed anemia.
+</p>
+
+<h3>Possible Findings</h3>
+
+<ul>
+<li>High MCV</li>
+<li>Low B12</li>
+<li>Neuropathy</li>
+<li>Paresthesias</li>
+<li>Gait abnormality</li>
+<li>Glossitis</li>
+</ul>
+
+<div class="warning-box">
+Neurologic B12 deficiency should be recognized even when anemia is mild.
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Folate Deficiency</h2>
+
+<p>
+Folate deficiency may cause macrocytosis and megaloblastic anemia.
+</p>
+
+<h3>Risk Factors</h3>
+
+<ul>
+<li>Poor nutritional intake</li>
+<li>Alcohol exposure</li>
+<li>Malabsorption</li>
+<li>Selected medications</li>
+<li>Increased physiologic requirement</li>
+</ul>
+
+</section>
+
+
+<section>
+
+<h2>Reticulocyte Count</h2>
+
+<p>
+The reticulocyte count helps determine whether bone marrow is responding
+appropriately to anemia.
+</p>
+
+<div class="formula-box">
+
+<strong>Low/inappropriately normal reticulocyte response</strong><br>
+Consider reduced production.<br><br>
+
+Examples:<br>
+Iron deficiency<br>
+CKD<br>
+Chronic inflammatory disease<br>
+B12/folate deficiency<br>
+Bone-marrow disease<br><br>
+
+<strong>Elevated reticulocyte response</strong><br>
+Consider increased RBC loss or destruction.<br><br>
+
+Examples:<br>
+Acute blood loss<br>
+Hemolysis<br>
+Recovery after effective treatment
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Possible Hemolysis</h2>
+
+<h3>Laboratory Clues</h3>
+
+<ul>
+<li>Elevated reticulocyte count</li>
+<li>Elevated LDH</li>
+<li>Low haptoglobin</li>
+<li>Elevated indirect bilirubin</li>
+<li>Peripheral smear abnormalities</li>
+</ul>
+
+<div class="warning-box">
+Active or unexplained hemolysis warrants further evaluation and may require
+hematology consultation before elective surgery.
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Blood Loss</h2>
+
+<p>
+Blood loss may be acute, chronic or occult.
+</p>
+
+<h3>Potential Sources</h3>
+
+<ul>
+<li>Heavy menstrual bleeding</li>
+<li>GI blood loss</li>
+<li>Recent surgery</li>
+<li>Trauma</li>
+<li>Anticoagulant-associated bleeding</li>
+<li>Hematuria</li>
+<li>Other clinically significant bleeding</li>
+</ul>
+
+<div class="warning-box">
+Iron-deficiency anemia in an adult without an obvious explanation should prompt
+consideration of the source rather than treatment with iron alone.
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Microcytic Anemia Decision Path</h2>
+
+<div class="formula-box">
+
+MCV low<br>
+↓<br>
+Check ferritin + iron + TIBC + TSAT<br>
+↓<br>
+
+Low ferritin / low TSAT<br>
+→ Iron deficiency likely<br><br>
+
+Normal/high ferritin + low iron + low/normal TIBC<br>
+→ Chronic inflammation more likely<br><br>
+
+Marked microcytosis + relatively preserved/high RBC count + normal iron stores<br>
+→ Consider thalassemia trait<br><br>
+
+Mixed findings<br>
+→ Consider combined iron deficiency + inflammatory anemia
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Normocytic Anemia Decision Path</h2>
+
+<div class="formula-box">
+
+MCV normal<br>
+↓<br>
+Check renal function + iron studies + reticulocytes<br>
+↓<br>
+
+Low eGFR + low/normal retic<br>
+→ CKD contribution possible<br><br>
+
+Low iron availability<br>
+→ Early iron deficiency or inflammatory anemia possible<br><br>
+
+High retic<br>
+→ Blood loss or hemolysis possible<br><br>
+
+Persistent unexplained anemia<br>
+→ Consider additional evaluation / hematology when appropriate
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Macrocytic Anemia Decision Path</h2>
+
+<div class="formula-box">
+
+MCV elevated<br>
+↓<br>
+Check B12 + folate<br>
+↓<br>
+Review alcohol, liver disease, thyroid disease and medications<br>
+↓<br>
+
+Low B12<br>
+→ B12 deficiency likely<br><br>
+
+Low folate<br>
+→ Folate deficiency likely<br><br>
+
+Normal B12/folate + persistent macrocytosis<br>
+→ Review liver disease, alcohol, hypothyroidism, medications or marrow disorder
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Mentzer Index — Selected Microcytic Cases</h2>
+
+<p>
+When microcytosis is present and thalassemia trait is being considered, the
+Mentzer index can provide supportive—not diagnostic—information.
+</p>
+
+<div class="formula-box">
+
+<strong>Mentzer Index</strong><br><br>
+
+MCV ÷ RBC count<br><br>
+
+Lower values may support thalassemia trait.<br>
+Higher values may support iron deficiency.<br><br>
+
+This index should never replace ferritin/iron studies or hemoglobinopathy
+evaluation when clinically indicated.
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Oral Iron</h2>
+
+<p>
+Oral iron may be appropriate when deficiency is present, surgery is not
+imminent and the patient can tolerate and absorb oral therapy.
+</p>
+
+<h3>Consider</h3>
+
+<ul>
+<li>Time before surgery</li>
+<li>Severity of anemia</li>
+<li>GI tolerance</li>
+<li>Prior response</li>
+<li>Malabsorption history</li>
+<li>Expected surgical blood loss</li>
+</ul>
+
+</section>
+
+
+<section>
+
+<h2>IV Iron</h2>
+
+<p>
+IV iron may be useful when iron deficiency is clinically important and oral
+therapy is inadequate, poorly tolerated, poorly absorbed or unlikely to provide
+adequate repletion in the available preoperative interval.
+</p>
+
+<div class="clinical-box">
+For major joint or spine surgery with significant iron-deficiency anemia and a
+short interval before surgery, IV iron may be considered when clinically
+appropriate.
+</div>
+
+<div class="warning-box">
+IV iron is treatment for iron deficiency—not a substitute for evaluating
+unexplained blood loss.
+</div>
+
+</section>
+
+
+<section>
+
+<h2>When GI Evaluation May Be Appropriate</h2>
+
+<ul>
+<li>Unexplained iron-deficiency anemia</li>
+<li>Evidence of GI bleeding</li>
+<li>Melena or hematochezia</li>
+<li>Unexplained progressive hemoglobin decline</li>
+<li>Appropriate age/risk context for occult GI blood loss</li>
+<li>Other concerning GI symptoms</li>
+</ul>
+
+</section>
+
+
+<section>
+
+<h2>When Hematology Is Appropriate</h2>
+
+<div class="warning-box">
+
+Consider hematology for:<br><br>
+
+Severe unexplained anemia<br>
+Progressive anemia despite appropriate treatment<br>
+Possible hemolysis<br>
+Pancytopenia<br>
+Multiple unexplained cytopenias<br>
+Possible marrow disorder<br>
+Hemoglobinopathy<br>
+Complex transfusion history<br>
+Anemia pattern that remains unclear after reasonable initial evaluation
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2>When Nephrology Is Appropriate</h2>
+
+<p>
+Stable mild CKD does not require nephrology solely because anemia is present.
+</p>
+
+<div class="clinical-box">
+Consider nephrology for advanced CKD with clinically important anemia,
+erythropoiesis-stimulating therapy questions, dialysis patients or progressive
+renal dysfunction.
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Anemia & Expected Surgical Blood Loss</h2>
+
+<table>
+
+<tr>
+<th>Procedure</th>
+<th>General Concern</th>
+</tr>
+
+<tr>
+<td>Minor hand / superficial procedure</td>
+<td>Low expected blood loss; mild stable anemia often has limited procedural impact.</td>
+</tr>
+
+<tr>
+<td>Arthroscopy</td>
+<td>Usually low blood loss.</td>
+</tr>
+
+<tr>
+<td>TKA / THA</td>
+<td>Meaningful blood-loss/transfusion consideration.</td>
+</tr>
+
+<tr>
+<td>Single-level fusion</td>
+<td>Moderate concern depending on technique and patient factors.</td>
+</tr>
+
+<tr>
+<td>Multilevel spine fusion</td>
+<td>Greater concern; anemia optimization increasingly important.</td>
+</tr>
+
+<tr>
+<td>Revision spine / deformity surgery</td>
+<td>Potentially substantial blood loss; optimize anemia early.</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<section>
+
+<h2>Do Not Use One Universal Cancellation Hemoglobin</h2>
+
+<div class="warning-box">
+There is no single hemoglobin value that automatically determines suitability
+for every elective procedure.
+</div>
+
+<p>
+Interpret hemoglobin with symptoms, cardiovascular reserve, chronicity,
+etiology, expected surgical blood loss and the ability to safely manage
+perioperative bleeding.
+</p>
+
+</section>
+
+
+<section>
+
+<h2>Anemia More Likely to Require Further Optimization</h2>
+
+<div class="warning-box">
+
+Additional optimization should be considered when there is:<br><br>
+
+Severe symptomatic anemia<br>
+Rapidly falling hemoglobin<br>
+Active bleeding<br>
+Unexplained significant anemia<br>
+Iron deficiency that has not been addressed before major blood-loss surgery<br>
+Evidence of hemolysis<br>
+Significant anemia plus poor cardiovascular reserve<br>
+Blood-refusal patient undergoing high-blood-loss surgery<br>
+Other hematologic instability
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Findings That Do Not Automatically Require Delay</h2>
+
+<div class="success-box">
+
+Depending on the patient and procedure:<br><br>
+
+Mild stable chronic anemia<br>
+Known CKD-associated anemia with stable renal function<br>
+Mild iron deficiency already under appropriate treatment<br>
+Stable anemia before a minimal-blood-loss procedure<br>
+Stable B12/folate deficiency under treatment
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Blood Refusal</h2>
+
+<p>
+When the patient will not accept allogeneic transfusion, the threshold for
+aggressive preoperative anemia optimization may be different because rescue
+options for perioperative blood loss are limited.
+</p>
+
+<div class="warning-box">
+For major spine or joint surgery, identify acceptable blood products,
+blood-conservation techniques and hemoglobin optimization strategy before the
+day of surgery.
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Preoperative Anemia Assessment Template</h2>
+
+<div class="formula-box">
+
+<strong>ANEMIA ASSESSMENT</strong><br><br>
+
+Hgb: ___<br>
+Hct: ___<br>
+MCV: ___<br>
+RDW: ___<br>
+RBC: ___<br>
+Reticulocyte: ___<br><br>
+
+Ferritin: ___<br>
+Iron: ___<br>
+TIBC: ___<br>
+TSAT: ___%<br><br>
+
+B12: ___<br>
+Folate: ___<br><br>
+
+Creatinine: ___<br>
+eGFR: ___<br><br>
+
+LDH: ___<br>
+Haptoglobin: ___<br>
+Indirect bilirubin: ___<br><br>
+
+Pattern:<br>
+Microcytic / Normocytic / Macrocytic<br><br>
+
+Most likely etiology: ___<br>
+Expected surgical blood loss: Minimal / Moderate / Significant<br>
+Treatment initiated: ___<br>
+Repeat CBC required: Yes / No<br>
+Additional workup required: Yes / No<br>
+Hematology required: Yes / No<br>
+GI evaluation required: Yes / No<br>
+Nephrology required: Yes / No
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Documentation — Iron Deficiency</h2>
+
+<div class="formula-box">
+Anemia with Hgb ___ and MCV ___ reviewed. Iron studies demonstrate ferritin ___,
+serum iron ___, TIBC ___ and TSAT ___%, consistent with iron deficiency /
+iron-restricted erythropoiesis. Expected surgical blood loss is ___. Iron
+replacement ___ recommended/initiated. Underlying source of iron deficiency
+reviewed and additional evaluation ___ indicated. Repeat CBC/iron studies planned
+as clinically appropriate.
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Documentation — CKD Pattern</h2>
+
+<div class="formula-box">
+Normocytic anemia with Hgb ___, MCV ___ and eGFR ___ reviewed. Renal function is
+___ compared with baseline. Iron studies demonstrate ___. Findings are
+consistent with CKD-associated anemia / mixed CKD and iron deficiency. No
+evidence of active blood loss identified. Further renal/hematologic evaluation
+___ required based on current severity and planned procedure.
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Documentation — Macrocytic Pattern</h2>
+
+<div class="formula-box">
+Macrocytic anemia with Hgb ___ and MCV ___ reviewed. B12 ___ and folate ___.
+Additional contributors including liver disease, alcohol exposure,
+hypothyroidism and medication effects reviewed. Etiology is most consistent with
+___. Treatment/additional evaluation ___ recommended before the planned
+procedure.
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Documentation — Anemia Pending Optimization</h2>
+
+<div class="formula-box">
+Preoperative hemoglobin is ___ with ___ anemia pattern. Because the patient is
+scheduled for ___ with anticipated ___ blood loss and the anemia is currently
+___, additional evaluation/optimization is required before final perioperative
+determination. FINAL PREOPERATIVE OPTIMIZATION STATUS: Pending.
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Documentation — Significant Unstable Anemia</h2>
+
+<div class="formula-box">
+Patient demonstrates clinically significant anemia with hemoglobin ___ and
+evidence of ___. Findings are concerning for active blood loss / hemolysis /
+other acute hematologic instability. Elective surgery should not proceed until
+the underlying process is evaluated and stabilized. FINAL PREOPERATIVE
+OPTIMIZATION STATUS: Not optimized.
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Quick Decision Framework</h2>
+
+<div class="formula-box">
+
+Low hemoglobin<br>
+↓<br>
+Compare prior values<br>
+↓<br>
+Determine MCV pattern<br>
+↓<br>
+
+Microcytic → iron studies<br>
+Normocytic → renal + iron + retic<br>
+Macrocytic → B12 + folate + liver/thyroid/medications<br><br>
+
+Then ask:<br><br>
+
+Is anemia stable?<br>
+Is the patient symptomatic?<br>
+Is there active blood loss?<br>
+Is the cause treatable?<br>
+How much blood loss is expected from surgery?<br>
+Will additional optimization meaningfully reduce perioperative risk?<br><br>
+
+Then determine:<br><br>
+
+Optimized / Pending / Not optimized
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Key Takeaways</h2>
+
+<ul>
+<li>Always classify anemia by MCV before building the differential.</li>
+<li>Compare hemoglobin with prior results to determine chronicity.</li>
+<li>Low ferritin strongly supports iron deficiency.</li>
+<li>Low TSAT suggests reduced circulating iron availability.</li>
+<li>Ferritin may be misleadingly normal or elevated with inflammation.</li>
+<li>Iron deficiency and anemia of inflammation frequently coexist.</li>
+<li>CKD commonly causes normocytic anemia but does not exclude iron deficiency.</li>
+<li>High reticulocytes suggest blood loss, hemolysis or recovery from treatment.</li>
+<li>Low B12 or folate can cause macrocytic anemia.</li>
+<li>Evaluate unexplained iron deficiency for the underlying source.</li>
+<li>IV iron may be useful when rapid repletion is needed or oral iron is unsuitable.</li>
+<li>Expected surgical blood loss changes the significance of a given hemoglobin.</li>
+<li>Major multilevel/revision spine surgery deserves earlier anemia optimization.</li>
+<li>Do not use one universal hemoglobin cancellation threshold for every operation.</li>
+<li>Blood-refusal patients require particularly deliberate blood-conservation planning.</li>
+<li>The calculator is an aid; mixed or unclear patterns still require clinical judgment.</li>
+</ul>
+
+</section>
+
+
+<section>
+
+<h2>Final Preoperative Optimization Status</h2>
+
+<div class="formula-box">
+
+<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS:</strong><br><br>
+
+Optimized / Pending / Not optimized<br><br>
+
+Reason: ________________________________________________
+
+</div>
+
+<div class="success-box">
+Patient meets TSJH perioperative consensus guidelines to proceed with elective
+surgery on scheduled surgery date at this time.
+</div>
+
+</section>
+
+</main>
+
+<footer>
+Preoperative Optimization Handbook · Anemia Evaluation, Calculator & Optimization
+</footer>
+
+
+<script>
+
+function val(id) {
+  const x = document.getElementById(id).value;
+  if (x === "") return null;
+  const n = Number(x);
+  return Number.isFinite(n) ? n : null;
+}
+
+function textVal(id) {
+  return document.getElementById(id).value;
+}
+
+function interpretAnemia() {
+
+  const sex = textVal("sex");
+  const hgb = val("hgb");
+  const hct = val("hct");
+  const mcv = val("mcv");
+  const rdw = val("rdw");
+  const rbc = val("rbc");
+
+  const ferritin = val("ferritin");
+  const iron = val("iron");
+  const tibc = val("tibc");
+  let tsat = val("tsat");
+
+  const retic = val("retic");
+  const b12 = val("b12");
+  const folate = val("folate");
+
+  const creatinine = val("creatinine");
+  const egfr = val("egfr");
+
+  const ldh = val("ldh");
+  const haptoglobin = val("haptoglobin");
+  const bilirubin = val("bilirubin");
+
+  const bleeding = textVal("bleeding");
+  const inflammation = textVal("inflammation");
+  const surgeryRisk = textVal("surgeryRisk");
+
+  if (hgb === null && mcv === null && ferritin === null &&
+      iron === null && tibc === null && b12 === null &&
+      folate === null && egfr === null) {
+
+    alert("Enter at least some anemia laboratory results.");
+    return;
+  }
+
+  if (tsat === null && iron !== null && tibc !== null && tibc > 0) {
+    tsat = (iron / tibc) * 100;
+  }
+
+  let anemiaStatus = "Cannot determine from hemoglobin because no Hgb was entered.";
+
+  if (hgb !== null) {
+    if (sex === "male") {
+      anemiaStatus = hgb < 13
+        ? "Hemoglobin is below the usual adult male reference threshold."
+        : "Hemoglobin is not below the usual adult male reference threshold.";
+    } else if (sex === "female") {
+      anemiaStatus = hgb < 12
+        ? "Hemoglobin is below the usual adult female reference threshold."
+        : "Hemoglobin is not below the usual adult female reference threshold.";
+    } else {
+      anemiaStatus = "Hemoglobin entered: " + hgb.toFixed(1) +
+        " g/dL. Select sex if you want general adult reference context.";
+    }
+  }
+
+  let mcvClass = "MCV not entered.";
+
+  if (mcv !== null) {
+    if (mcv < 80) {
+      mcvClass = "Microcytic";
+    } else if (mcv > 100) {
+      mcvClass = "Macrocytic";
+    } else {
+      mcvClass = "Normocytic";
+    }
+  }
+
+  let patterns = [];
+  let workup = [];
+  let recommendations = [];
+
+  /*
+    IRON DEFICIENCY
+  */
+
+  let ironDeficiencyScore = 0;
+
+  if (ferritin !== null && ferritin < 30) {
+    ironDeficiencyScore += 3;
+  }
+
+  if (tsat !== null && tsat < 20) {
+    ironDeficiencyScore += 2;
+  }
+
+  if (iron !== null && iron < 50) {
+    ironDeficiencyScore += 1;
+  }
+
+  if (tibc !== null && tibc > 360) {
+    ironDeficiencyScore += 1;
+  }
+
+  if (mcv !== null && mcv < 80) {
+    ironDeficiencyScore += 1;
+  }
+
+  if (rdw !== null && rdw > 15) {
+    ironDeficiencyScore += 1;
+  }
+
+  if (ironDeficiencyScore >= 4) {
+    patterns.push("Iron deficiency is likely.");
+    recommendations.push(
+      "Address iron deficiency and identify the likely source of iron loss."
+    );
+  } else if (ironDeficiencyScore >= 2) {
+    patterns.push(
+      "Possible early, functional or mixed iron deficiency; correlate ferritin, TSAT and inflammatory state."
+    );
+  }
+
+
+  /*
+    CHRONIC DISEASE / INFLAMMATION
+  */
+
+  if (
+    inflammation === "yes" &&
+    iron !== null && iron < 60 &&
+    ferritin !== null && ferritin >= 30 &&
+    (
+      tibc === null ||
+      tibc < 300 ||
+      (tsat !== null && tsat < 20)
+    )
+  ) {
+
+    patterns.push(
+      "Pattern may be compatible with anemia of chronic disease/inflammation."
+    );
+
+    if (ironDeficiencyScore >= 2) {
+      patterns.push(
+        "Mixed inflammatory anemia plus iron deficiency is possible."
+      );
+    }
+  }
+
+
+  /*
+    CKD
+  */
+
+  if (egfr !== null && egfr < 60) {
+    if (mcv === null || (mcv >= 80 && mcv <= 100)) {
+      patterns.push(
+        "CKD may be contributing to a normocytic/hypoproliferative anemia."
+      );
+    } else {
+      patterns.push(
+        "CKD is present and may contribute to anemia, although another pattern is also present."
+      );
+    }
+
+    if (ferritin === null || tsat === null) {
+      workup.push(
+        "Consider ferritin and TSAT because iron deficiency frequently coexists with CKD."
+      );
+    }
+  }
+
+
+  /*
+    B12
+  */
+
+  if (b12 !== null) {
+    if (b12 < 200) {
+      patterns.push("Vitamin B12 deficiency is likely.");
+      recommendations.push("Treat B12 deficiency and assess the cause.");
+    } else if (b12 >= 200 && b12 < 300) {
+      patterns.push(
+        "Vitamin B12 is borderline; consider confirmatory evaluation when clinically appropriate."
+      );
+    }
+  }
+
+
+  /*
+    FOLATE
+  */
+
+  if (folate !== null && folate < 4) {
+    patterns.push("Folate deficiency is possible/likely.");
+    recommendations.push("Treat folate deficiency and assess nutritional or medication contributors.");
+  }
+
+
+  /*
+    MACROCYTOSIS
+  */
+
+  if (mcv !== null && mcv > 100) {
+    if (
+      !(b12 !== null && b12 < 200) &&
+      !(folate !== null && folate < 4)
+    ) {
+      patterns.push(
+        "Macrocytosis remains unexplained by the entered B12/folate values."
+      );
+
+      workup.push(
+        "Review alcohol exposure, liver disease, thyroid status, medications and possible marrow disease."
+      );
+    }
+  }
+
+
+  /*
+    HEMOLYSIS
+  */
+
+  let hemolysisClues = 0;
+
+  if (retic !== null && retic > 2.5) {
+    hemolysisClues++;
+  }
+
+  if (ldh !== null && ldh > 280) {
+    hemolysisClues++;
+  }
+
+  if (haptoglobin !== null && haptoglobin < 30) {
+    hemolysisClues += 2;
+  }
+
+  if (bilirubin !== null && bilirubin > 1.2) {
+    hemolysisClues++;
+  }
+
+  if (hemolysisClues >= 3) {
+    patterns.push(
+      "Entered results raise concern for possible hemolysis."
+    );
+
+    workup.push(
+      "Consider peripheral smear, repeat reticulocyte count, LDH, haptoglobin, indirect bilirubin and hematology evaluation as appropriate."
+    );
+  }
+
+
+  /*
+    BLOOD LOSS
+  */
+
+  if (bleeding === "yes") {
+    patterns.push(
+      "Active or recent blood loss may be contributing to the anemia."
+    );
+
+    recommendations.push(
+      "Identify and control the source of bleeding before major elective surgery."
+    );
+  }
+
+
+  /*
+    THALASSEMIA SUPPORTIVE PATTERN
+  */
+
+  let mentzer = null;
+
+  if (
+    mcv !== null &&
+    rbc !== null &&
+    rbc > 0 &&
+    mcv < 80
+  ) {
+
+    mentzer = mcv / rbc;
+
+    if (
+      mentzer < 13 &&
+      ferritin !== null &&
+      ferritin >= 30 &&
+      (tsat === null || tsat >= 20)
+    ) {
+
+      patterns.push(
+        "Microcytosis with relatively preserved RBC count and iron stores may suggest thalassemia trait; confirm clinically if relevant."
+      );
+    }
+  }
+
+
+  /*
+    RETIC RESPONSE
+  */
+
+  if (retic !== null) {
+
+    if (retic < 1) {
+      patterns.push(
+        "Reticulocyte response is low, supporting reduced RBC production."
+      );
+    }
+
+    if (retic > 2.5) {
+      patterns.push(
+        "Reticulocyte response is increased; consider blood loss, hemolysis or marrow recovery."
+      );
+    }
+  }
+
+
+  /*
+    INCOMPLETE DATA
+  */
+
+  if (patterns.length === 0) {
+
+    patterns.push(
+      "The entered data do not establish a specific anemia pattern."
+    );
+
+    workup.push(
+      "Correlate CBC indices with ferritin, iron/TIBC/TSAT, reticulocyte count, renal function, B12/folate and clinical history as indicated."
+    );
+  }
+
+
+  /*
+    WORKUP SUGGESTIONS BY MCV
+  */
+
+  if (mcv !== null && mcv < 80) {
+
+    if (
+      ferritin === null ||
+      iron === null ||
+      (tibc === null && tsat === null)
+    ) {
+
+      workup.push(
+        "Complete iron studies including ferritin and TSAT."
+      );
+    }
+  }
+
+  if (mcv !== null && mcv >= 80 && mcv <= 100) {
+
+    if (egfr === null) {
+      workup.push("Review renal function.");
+    }
+
+    if (retic === null) {
+      workup.push("Consider reticulocyte count.");
+    }
+
+    if (ferritin === null || tsat === null) {
+      workup.push(
+        "Consider iron studies because early iron deficiency can be normocytic."
+      );
+    }
+  }
+
+  if (mcv !== null && mcv > 100) {
+
+    if (b12 === null) {
+      workup.push("Obtain vitamin B12 when clinically indicated.");
+    }
+
+    if (folate === null) {
+      workup.push("Obtain folate when clinically indicated.");
+    }
+  }
+
+
+  /*
+    SURGERY-SPECIFIC RECOMMENDATIONS
+  */
+
+  if (surgeryRisk === "significant") {
+
+    recommendations.push(
+      "Because significant surgical blood loss is expected, optimize potentially correctable anemia before surgery when feasible."
+    );
+
+  } else if (surgeryRisk === "moderate") {
+
+    recommendations.push(
+      "Consider the anemia trend and treat correctable deficiency before surgery, particularly for arthroplasty or fusion procedures."
+    );
+
+  } else if (surgeryRisk === "minimal") {
+
+    recommendations.push(
+      "For minimal-blood-loss surgery, mild stable anemia may have limited impact if the patient is otherwise clinically stable."
+    );
+  }
+
+
+  /*
+    ORAL VS IV IRON
+  */
+
+  if (ironDeficiencyScore >= 4) {
+
+    recommendations.push(
+      "Oral iron may be reasonable when surgery is not imminent and absorption/tolerance are adequate."
+    );
+
+    recommendations.push(
+      "Consider IV iron when deficiency is clinically important and rapid repletion is needed, oral therapy is poorly tolerated/absorbed, or the available preoperative interval is short."
+    );
+  }
+
+
+  /*
+    OPTIMIZATION STATUS
+  */
+
+  let optimization = "Requires clinical determination.";
+
+  let highConcern = false;
+  let pendingConcern = false;
+
+  if (bleeding === "yes") {
+    highConcern = true;
+  }
+
+  if (hemolysisClues >= 3) {
+    pendingConcern = true;
+  }
+
+  if (hgb !== null) {
+
+    if (hgb < 8) {
+      highConcern = true;
+    } else if (hgb < 10 && surgeryRisk === "significant") {
+      pendingConcern = true;
+    } else if (
+      hgb < 11 &&
+      surgeryRisk === "significant" &&
+      ironDeficiencyScore >= 4
+    ) {
+      pendingConcern = true;
+    }
+  }
+
+  if (highConcern) {
+
+    optimization =
+      "Not optimized or urgent Pending review depending on the clinical cause, symptoms and stability. Active bleeding or severe/unstable anemia should be addressed before elective surgery.";
+
+  } else if (pendingConcern) {
+
+    optimization =
+      "Pending is reasonable until the anemia pattern and optimization plan are reviewed, particularly for significant expected blood loss.";
+
+  } else {
+
+    optimization =
+      "Potentially Optimized if anemia is stable, the cause is understood/addressed, there is no active bleeding or instability, and the hemoglobin is acceptable for the planned procedure.";
+  }
+
+
+  /*
+    OUTPUT
+  */
+
+  document.getElementById("anemiaStatus").textContent = anemiaStatus;
+  document.getElementById("mcvResult").textContent = mcvClass;
+
+  document.getElementById("tsatResult").textContent =
+    tsat !== null
+      ? tsat.toFixed(1) + "%"
+      : "Not available.";
+
+  document.getElementById("patternResult").innerHTML =
+    patterns.join("<br>• ").replace(/^/, "• ");
+
+  document.getElementById("workupResult").innerHTML =
+    workup.length
+      ? workup.join("<br>• ").replace(/^/, "• ")
+      : "No additional pattern-specific workup generated from the entered values.";
+
+  document.getElementById("recommendationResult").innerHTML =
+    recommendations.length
+      ? recommendations.join("<br>• ").replace(/^/, "• ")
+      : "Interpret according to clinical stability and expected surgical blood loss.";
+
+  document.getElementById("optimizationResult").textContent =
+    optimization;
+
+  let summary = "";
+
+  summary += "Preoperative anemia evaluation reviewed. ";
+
+  if (hgb !== null) {
+    summary += "Hemoglobin " + hgb.toFixed(1) + " g/dL";
+  }
+
+  if (mcv !== null) {
+    summary += ", MCV " + mcv.toFixed(1) + " fL";
+  }
+
+  if (ferritin !== null) {
+    summary += ", ferritin " + ferritin;
+  }
+
+  if (tsat !== null) {
+    summary += ", TSAT " + tsat.toFixed(1) + "%";
+  }
+
+  if (egfr !== null) {
+    summary += ", eGFR " + egfr;
+  }
+
+  summary += ". ";
+
+  summary +=
+    "Pattern interpretation: " +
+    patterns.join(" ");
+
+  summary += " ";
+
+  if (recommendations.length) {
+    summary +=
+      "Recommendation: " +
+      recommendations.join(" ");
+  }
+
+  summary += " ";
+
+  summary +=
+    "Final optimization status should be determined from anemia severity, symptoms, stability, underlying etiology, anticipated surgical blood loss and response to any required treatment.";
+
+  if (mentzer !== null) {
+    summary +=
+      " Mentzer index " +
+      mentzer.toFixed(1) +
+      "; this is supportive only and is not diagnostic of thalassemia versus iron deficiency.";
+  }
+
+  document.getElementById("providerSummary").value = summary;
+
+  document.getElementById("results").style.display = "block";
+
+  document.getElementById("results").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+
+function clearCalculator() {
+
+  const inputs = document.querySelectorAll(
+    ".calculator input, .calculator select"
+  );
+
+  inputs.forEach(function(element) {
+    element.value = "";
+  });
+
+  document.getElementById("results").style.display = "none";
+}
+
+
+function copySummary() {
+
+  const box = document.getElementById("providerSummary");
+
+  box.select();
+  box.setSelectionRange(0, 99999);
+
+  if (navigator.clipboard && window.isSecureContext) {
+
+    navigator.clipboard.writeText(box.value)
+      .then(function() {
+        alert("Provider summary copied.");
+      })
+      .catch(function() {
+        document.execCommand("copy");
+        alert("Provider summary copied.");
+      });
+
+  } else {
+
+    document.execCommand("copy");
+    alert("Provider summary copied.");
+  }
+}
+
+</script>
+
+</body>
+</html>

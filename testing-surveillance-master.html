@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Testing & Surveillance Master</title>
+
+<style>
+:root {
+  --navy: #1f3a5f;
+  --blue: #2f6fb0;
+  --light: #f4f7fb;
+  --card: #ffffff;
+  --text: #1b2433;
+  --muted: #667085;
+  --border: #d8e1ec;
+  --good: #157347;
+  --warn: #9a6700;
+  --bad: #b42318;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--light);
+  color: var(--text);
+  line-height: 1.55;
+}
+
+header {
+  background: linear-gradient(135deg, var(--navy), var(--blue));
+  color: white;
+  padding: 30px 18px;
+}
+
+.header-wrap {
+  max-width: 1100px;
+  margin: auto;
+}
+
+header h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+}
+
+header p {
+  margin: 0;
+  opacity: .95;
+}
+
+.home-link {
+  display: inline-block;
+  margin-top: 16px;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px 14px 60px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+}
+
+h2 {
+  margin-top: 0;
+  color: var(--navy);
+  font-size: 22px;
+}
+
+h3 {
+  color: var(--navy);
+  margin-top: 24px;
+}
+
+.notice {
+  background: #eef4ff;
+  border-left: 5px solid var(--blue);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+.warning {
+  background: #fff8e6;
+  border-left: 5px solid #d79b00;
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+.danger {
+  background: #fff0ee;
+  border-left: 5px solid var(--bad);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+.goodbox {
+  background: #edf9f1;
+  border-left: 5px solid var(--good);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+th, td {
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+  padding: 11px 9px;
+}
+
+th {
+  background: #f7f9fc;
+  color: var(--navy);
+}
+
+.small {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.tag {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 4px 9px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tag-good {
+  background: #def7e6;
+  color: var(--good);
+}
+
+.tag-warn {
+  background: #fff1c7;
+  color: var(--warn);
+}
+
+.tag-bad {
+  background: #fee4e2;
+  color: var(--bad);
+}
+
+details {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin: 10px 0;
+  background: #fbfcfe;
+}
+
+summary {
+  font-weight: 700;
+  color: var(--navy);
+  cursor: pointer;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-top: 5px;
+  font-size: 15px;
+}
+
+button {
+  background: var(--navy);
+  color: white;
+  border: 0;
+  border-radius: 9px;
+  padding: 11px 14px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.result {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 10px;
+  background: #f7f9fc;
+  border: 1px solid var(--border);
+}
+
+ul {
+  padding-left: 22px;
+}
+
+@media (max-width: 760px) {
+  header h1 {
+    font-size: 26px;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  th, td {
+    padding: 8px 5px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-wrap">
+    <h1>Testing & Surveillance Master</h1>
+    <p>
+      Preoperative diagnostic testing, surveillance intervals, repeat-testing triggers,
+      specialty review thresholds and perioperative monitoring guidance.
+    </p>
+    <a class="home-link" href="index.html">← Return to Handbook</a>
+  </div>
+</header>
+
+<main>
+
+<section class="card">
+  <h2>Purpose</h2>
+
+  <div class="notice">
+    Use this page to decide whether existing testing remains clinically usable,
+    whether repeat testing is indicated, and when abnormal findings require
+    additional evaluation before elective noncardiac surgery.
+  </div>
+
+  <p>
+    Testing should be driven by the patient's medical condition, planned procedure,
+    interval change in symptoms, medication changes and likelihood that the result
+    will change perioperative management.
+  </p>
+
+  <p class="small">
+    This handbook is a clinical decision-support resource and does not replace
+    institutional policy, surgeon/anesthesia requirements, specialty recommendations
+    or individualized clinical judgment.
+  </p>
+</section>
+
+
+<section class="card">
+  <h2>Core Rule: When Can Prior Testing Be Used?</h2>
+
+  <div class="goodbox">
+    Prior testing is generally most useful when the patient's clinical condition is
+    stable, no new symptoms have developed, no significant intervention has occurred
+    since the study, and the test remains within an acceptable surveillance interval.
+  </div>
+
+  <h3>Repeat testing should be considered when:</h3>
+
+  <ul>
+    <li>New or worsening cardiopulmonary symptoms are present.</li>
+    <li>There has been a significant change in functional status.</li>
+    <li>A major medication or treatment change may affect the result.</li>
+    <li>A prior study was abnormal and the abnormality requires surveillance.</li>
+    <li>The prior study is outside the accepted institutional or specialty interval.</li>
+    <li>The planned surgical risk or anesthetic plan has materially changed.</li>
+    <li>A new diagnosis has been made since the prior study.</li>
+  </ul>
+</section>
+
+
+<section class="card">
+  <h2>Preoperative Testing Reference</h2>
+
+  <div style="overflow-x:auto">
+    <table>
+      <thead>
+        <tr>
+          <th>Test</th>
+          <th>Typical Use</th>
+          <th>Common Acceptable Window</th>
+          <th>Repeat Earlier If</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td><strong>CBC</strong></td>
+          <td>
+            Anemia, infection, thrombocytopenia, expected blood loss,
+            anticoagulant-related concerns.
+          </td>
+          <td>
+            Often accepted within approximately 30 days when clinically stable,
+            subject to facility policy.
+          </td>
+          <td>
+            Bleeding, infection, transfusion, major illness, chemotherapy,
+            renal deterioration or change in anemia status.
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>BMP / CMP</strong></td>
+          <td>
+            Renal function, electrolytes, glucose, hepatic abnormalities and
+            medication-related risk.
+          </td>
+          <td>
+            Often accepted within approximately 30 days when stable.
+          </td>
+          <td>
+            AKI, CKD progression, diuretic change, dehydration, vomiting,
+            medication change or electrolyte abnormality.
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>Hemoglobin A1c</strong></td>
+          <td>
+            Long-term glycemic control and perioperative diabetes optimization.
+          </td>
+          <td>
+            Commonly reflects the preceding 2–3 months and is frequently used
+            if obtained within approximately 90 days.
+          </td>
+          <td>
+            Major treatment change, marked glucose deterioration or
+            institutional requirement.
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>PT / INR / PTT</strong></td>
+          <td>
+            Anticoagulation, bleeding disorders, liver disease or procedure-specific need.
+          </td>
+          <td>
+            Depends on indication and anticoagulant therapy.
+          </td>
+          <td>
+            Anticoagulant dose change, liver failure, active bleeding,
+            coagulopathy or new interacting medication.
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>Urinalysis / Urine Culture</strong></td>
+          <td>
+            Symptoms of UTI, selected urologic procedures or institution-specific indications.
+          </td>
+          <td>
+            No routine surveillance interval for asymptomatic patients.
+          </td>
+          <td>
+            New urinary symptoms, fever, urologic instrumentation or treatment follow-up when indicated.
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>12-Lead ECG</strong></td>
+          <td>
+            Known cardiovascular disease, arrhythmia, significant risk factors,
+            age/risk-based institutional protocols.
+          </td>
+          <td>
+            Frequently accepted for several months when unchanged; institutional
+            policy may define a specific window.
+          </td>
+          <td>
+            Chest pain, dyspnea, syncope, palpitations, new murmur,
+            cardiovascular hospitalization or new cardiac diagnosis.
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>Echocardiogram</strong></td>
+          <td>
+            Valvular disease, ventricular function, heart failure,
+            pulmonary hypertension or unexplained symptoms.
+          </td>
+          <td>
+            Stable valvular disease often does not require repeat imaging solely
+            for surgery if recent surveillance remains clinically appropriate.
+          </td>
+          <td>
+            New dyspnea, edema, syncope, murmur change, HF exacerbation or
+            suspected progression of valvular disease.
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>Stress Test</strong></td>
+          <td>
+            Selected patients in whom ischemia assessment will change management.
+          </td>
+          <td>
+            Do not repeat solely because surgery is planned if prior testing remains
+            clinically valid and symptoms are unchanged.
+          </td>
+          <td>
+            New ischemic symptoms, substantial clinical change or new high-risk findings.
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>Cardiac Catheterization</strong></td>
+          <td>
+            Known or suspected coronary disease when clinically indicated independent of surgery.
+          </td>
+          <td>
+            No routine "expiration date." Interpretation depends on findings,
+            intervention performed and interval symptoms.
+          </td>
+          <td>
+            New ACS symptoms, recurrent ischemia, stent-related concern or significant clinical change.
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>BNP / NT-proBNP</strong></td>
+          <td>
+            Perioperative cardiac-risk refinement in selected elevated-risk patients.
+          </td>
+          <td>
+            Obtain when required by perioperative protocol rather than as routine surveillance.
+          </td>
+          <td>
+            New heart failure symptoms or significant interval clinical change.
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>Pulmonary Function Testing</strong></td>
+          <td>
+            Known lung disease when severity is unclear or results will affect management.
+          </td>
+          <td>
+            No routine repeat interval in stable patients.
+          </td>
+          <td>
+            Worsening dyspnea, exacerbation, new oxygen requirement,
+            change in pulmonary treatment or progression of lung disease.
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>Chest X-Ray</strong></td>
+          <td>
+            New or unstable cardiopulmonary symptoms or specific clinical indication.
+          </td>
+          <td>
+            Not routinely repeated solely because of age or surgery.
+          </td>
+          <td>
+            New respiratory symptoms, CHF concern, pneumonia, trauma or new clinical indication.
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>Sleep Study</strong></td>
+          <td>
+            Diagnostic evaluation of suspected OSA when results will affect management.
+          </td>
+          <td>
+            Prior diagnosis generally remains valid unless clinical circumstances change.
+          </td>
+          <td>
+            Significant weight change, new symptoms, PAP reassessment or specialist recommendation.
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<section class="card">
+  <h2>Cardiac Surveillance</h2>
+
+  <details open>
+    <summary>Heart Failure / Cardiomyopathy</summary>
+    <p>
+      Repeat assessment is driven by new or worsening dyspnea, orthopnea,
+      edema, exercise intolerance, hospitalization or other evidence of
+      clinical decompensation.
+    </p>
+
+    <div class="danger">
+      Elective surgery should not proceed through unresolved acute
+      decompensated heart failure.
+    </div>
+  </details>
+
+
+  <details>
+    <summary>Aortic Stenosis</summary>
+    <p>
+      Moderate-to-severe or symptomatic aortic stenosis warrants cardiovascular
+      review and assessment of severity before elective surgery when current
+      information is inadequate or symptoms have changed.
+    </p>
+
+    <p>
+      Severe disease includes findings such as valve area below approximately
+      1.0 cm², mean gradient above approximately 40 mmHg or peak velocity above
+      approximately 4.0 m/s.
+    </p>
+  </details>
+
+
+  <details>
+    <summary>Mitral Stenosis</summary>
+    <p>
+      Moderate-to-severe mitral stenosis generally warrants cardiovascular
+      evaluation with sufficiently current echocardiographic information.
+    </p>
+
+    <p>
+      Findings suggesting severe disease include mitral valve area at or below
+      approximately 1.5 cm², significant mean gradient elevation or pulmonary
+      hypertension.
+    </p>
+  </details>
+
+
+  <details>
+    <summary>Pulmonary Hypertension</summary>
+    <p>
+      Review right-sided function, pulmonary pressures, tricuspid regurgitation,
+      WHO group and pulmonary vasodilator therapy.
+    </p>
+
+    <div class="danger">
+      Higher-level-care consideration is appropriate for severe pulmonary
+      hypertension, marked RV dysfunction, severe TR, advanced pulmonary
+      vasodilator therapy or very high RVSP.
+    </div>
+  </details>
+
+
+  <details>
+    <summary>Left Bundle Branch Block</summary>
+    <p>
+      New or clinically unexplained LBBB should be evaluated in the context of
+      symptoms and cardiac history. When ischemia evaluation is required,
+      pharmacologic nuclear stress testing may be preferred over exercise ECG
+      interpretation alone.
+    </p>
+  </details>
+</section>
+
+
+<section class="card">
+  <h2>TSJH / TSJR BNP Screening Protocol</h2>
+
+  <div class="notice">
+    Consider BNP or NT-proBNP when the patient meets institutional cardiac-risk
+    screening criteria, including selected patients with elevated RCRI,
+    older age or significant cardiovascular disease.
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Marker</th>
+        <th>Threshold</th>
+        <th>Postoperative Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>BNP</td>
+        <td><strong>≥ 92 pg/mL</strong></td>
+        <td>
+          Postoperative ECG plus daily troponin surveillance for approximately
+          48–72 hours per protocol.
+        </td>
+      </tr>
+
+      <tr>
+        <td>NT-proBNP</td>
+        <td><strong>≥ 300 ng/L</strong></td>
+        <td>
+          Postoperative ECG plus daily troponin surveillance for approximately
+          48–72 hours per protocol.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+<section class="card">
+  <h2>Quick BNP Screening Tool</h2>
+
+  <label>
+    Patient age
+    <input type="number" id="age" min="18" max="120" placeholder="Enter age">
+  </label>
+
+  <label>
+    RCRI score
+    <select id="rcri">
+      <option value="">Select RCRI</option>
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+    </select>
+  </label>
+
+  <label>
+    Significant cardiovascular disease present?
+    <select id="cvDisease">
+      <option value="">Select</option>
+      <option value="no">No</option>
+      <option value="yes">Yes</option>
+    </select>
+  </label>
+
+  <button onclick="screenBNP()">Determine BNP Screening</button>
+
+  <div class="result" id="bnpResult">
+    Enter patient information to determine whether BNP screening should be considered.
+  </div>
+</section>
+
+
+<section class="card">
+  <h2>Common Reasons to Obtain Specialty Review</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Finding</th>
+        <th>Recommended Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>New chest pain or suspected acute coronary syndrome</td>
+        <td>
+          Defer elective procedure and obtain urgent cardiovascular evaluation.
+        </td>
+      </tr>
+
+      <tr>
+        <td>Acute decompensated heart failure</td>
+        <td>
+          Optimize and obtain cardiovascular evaluation before elective surgery.
+        </td>
+      </tr>
+
+      <tr>
+        <td>Symptomatic severe valvular disease</td>
+        <td>
+          Cardiovascular evaluation before elective surgery.
+        </td>
+      </tr>
+
+      <tr>
+        <td>New significant arrhythmia</td>
+        <td>
+          Evaluate underlying cause and determine stability before elective surgery.
+        </td>
+      </tr>
+
+      <tr>
+        <td>Severe pulmonary hypertension / RV dysfunction</td>
+        <td>
+          Consider specialty evaluation and appropriate higher-acuity surgical setting.
+        </td>
+      </tr>
+
+      <tr>
+        <td>Unexplained hypoxemia or new oxygen requirement</td>
+        <td>
+          Pulmonary or medical evaluation and optimization before elective surgery.
+        </td>
+      </tr>
+
+      <tr>
+        <td>Active infection or unstable systemic illness</td>
+        <td>
+          Treat and reassess appropriateness of elective surgery.
+        </td>
+      </tr>
+
+      <tr>
+        <td>Severe uncontrolled anemia</td>
+        <td>
+          Define cause and optimize before elective surgery when clinically appropriate.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+<section class="card">
+  <h2>When a Normal Stress Test or Heart Catheterization Is Recent</h2>
+
+  <div class="goodbox">
+    There is generally no mandatory waiting period solely because a diagnostic
+    stress test or diagnostic cardiac catheterization was performed, provided
+    the patient is clinically stable, the study does not reveal a condition
+    requiring treatment, no procedural complication occurred and the
+    cardiology/anesthesia plan does not require delay.
+  </div>
+
+  <div class="warning">
+    A waiting period may be required after PCI, stent placement, myocardial
+    infarction, vascular complication, initiation of dual-antiplatelet therapy
+    or other therapeutic intervention. Follow current cardiology and perioperative
+    guidance for the specific intervention.
+  </div>
+</section>
+
+
+<section class="card">
+  <h2>Do Not Order Routine Testing Without an Indication</h2>
+
+  <p>
+    Routine testing may lead to incidental abnormalities, delays, cost and
+    additional workup without improving perioperative outcomes.
+  </p>
+
+  <ul>
+    <li>Do not order routine stress testing in low-risk patients.</li>
+    <li>Do not order routine echocardiography in stable asymptomatic patients without a clinical indication.</li>
+    <li>Do not obtain routine chest radiography solely because of age.</li>
+    <li>Do not routinely screen asymptomatic patients for bacteriuria unless there is a procedure-specific indication.</li>
+    <li>Do not repeat stable testing solely because an arbitrary amount of time has passed unless policy or disease surveillance requires it.</li>
+  </ul>
+</section>
+
+
+<section class="card">
+  <h2>Preoperative Testing Decision Checklist</h2>
+
+  <ul>
+    <li>Does the patient have new or worsening symptoms?</li>
+    <li>Has functional status changed?</li>
+    <li>Has there been a recent hospitalization?</li>
+    <li>Has treatment changed significantly?</li>
+    <li>Is an existing abnormality due for surveillance?</li>
+    <li>Will the result change perioperative management?</li>
+    <li>Is the test required by TSJH/TSJR policy or surgeon/anesthesia protocol?</li>
+    <li>Would a normal result allow surgery to proceed?</li>
+    <li>Would an abnormal result cause delay, treatment or higher-level-care planning?</li>
+  </ul>
+</section>
+
+
+<section class="card">
+  <h2>Final Testing Status</h2>
+
+  <p>
+    <span class="tag tag-good">Proceed</span>
+    Existing testing is adequate, condition is stable and no additional testing is clinically indicated.
+  </p>
+
+  <p>
+    <span class="tag tag-warn">Pending</span>
+    Additional testing, records or specialty interpretation is required before final optimization.
+  </p>
+
+  <p>
+    <span class="tag tag-bad">Not Optimized</span>
+    Active or unstable disease requires evaluation or treatment before elective surgery.
+  </p>
+</section>
+
+</main>
+
+
+<script>
+function screenBNP() {
+  const age = parseInt(document.getElementById("age").value);
+  const rcri = parseInt(document.getElementById("rcri").value);
+  const cvDisease = document.getElementById("cvDisease").value;
+  const result = document.getElementById("bnpResult");
+
+  if (
+    isNaN(age) ||
+    isNaN(rcri) ||
+    !cvDisease
+  ) {
+    result.innerHTML =
+      "<strong>Please complete all fields.</strong>";
+    return;
+  }
+
+  let recommended = false;
+  let reasons = [];
+
+  if (rcri >= 1) {
+    recommended = true;
+    reasons.push("RCRI ≥ 1");
+  }
+
+  if (age >= 65) {
+    recommended = true;
+    reasons.push("age ≥ 65");
+  }
+
+  if (
+    age >= 45 &&
+    age <= 64 &&
+    cvDisease === "yes"
+  ) {
+    recommended = true;
+    reasons.push("age 45–64 with significant cardiovascular disease");
+  }
+
+  if (recommended) {
+    result.innerHTML =
+      "<strong>BNP / NT-proBNP screening is indicated or should be considered under the institutional perioperative protocol.</strong><br><br>" +
+      "Trigger(s): " + reasons.join(", ") +
+      ".<br><br>" +
+      "If BNP is ≥ 92 pg/mL or NT-proBNP is ≥ 300 ng/L, implement postoperative cardiac surveillance with ECG and daily troponins for approximately 48–72 hours per protocol.";
+  } else {
+    result.innerHTML =
+      "<strong>Routine BNP screening is not triggered by the criteria entered.</strong><br><br>" +
+      "Use clinical judgment and institutional policy if other significant cardiovascular concerns are present.";
+  }
+}
+</script>
+
+</body>
+</html>

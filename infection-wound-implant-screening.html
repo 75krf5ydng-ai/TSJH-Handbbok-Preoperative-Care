@@ -946,6 +946,1242 @@ Patient meets TSJH perioperative consensus guidelines to proceed with elective
 surgery on scheduled surgery date at this time.
 </div>
 </section>
+<!-- =========================================================
+     INTERACTIVE INFECTION / WOUND / URINARY SCREENING TOOL
+========================================================= -->
+
+<section id="interactiveInfectionTool">
+
+<h2>Interactive Infection, Wound & Urinary Screening Tool</h2>
+
+<p>
+Enter the patient's current urinary, skin/wound, infection and colonization
+findings to generate a focused preoperative interpretation, identify unresolved
+issues and create copy-ready documentation.
+</p>
+
+<div class="warning-box">
+<strong>Clinical decision support only:</strong>
+A positive urinalysis or urine culture does not by itself establish symptomatic
+UTI. Interpret results with symptoms, specimen quality and the complete clinical
+picture. Active systemic infection, cellulitis, draining wounds or suspected
+implant infection require individualized surgical and medical review.
+</div>
+
+
+<!-- =========================================================
+     SURGERY / PATIENT CONTEXT
+========================================================= -->
+
+<div class="clinical-box">
+
+<h3>Procedure Context</h3>
+
+<label><strong>Planned procedure category</strong></label><br>
+<select id="infProcedure"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="">Select</option>
+<option value="Joint implant">Total joint / implant surgery</option>
+<option value="Spine implant">Spine surgery with instrumentation</option>
+<option value="Spine nonimplant">Spine surgery without implant</option>
+<option value="Other implant">Other implanted hardware/device</option>
+<option value="Nonimplant">Other nonimplant surgery</option>
+</select>
+
+<label><strong>Surgery date</strong></label><br>
+<input type="date" id="infSurgeryDate"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+</div>
+
+
+<!-- =========================================================
+     URINARY SCREENING
+========================================================= -->
+
+<div class="clinical-box">
+
+<h3>Urinary Symptoms</h3>
+
+<label><strong>Dysuria</strong></label><br>
+<select id="infDysuria"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>New urinary frequency/urgency</strong></label><br>
+<select id="infFrequency"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Suprapubic pain</strong></label><br>
+<select id="infSuprapubic"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Flank pain / CVA tenderness</strong></label><br>
+<select id="infFlank"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Gross hematuria associated with symptoms</strong></label><br>
+<select id="infHematuria"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Chronic urinary catheter / instrumentation</strong></label><br>
+<select id="infCatheter"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+</div>
+
+
+<!-- =========================================================
+     URINALYSIS
+========================================================= -->
+
+<div class="clinical-box">
+
+<h3>Urinalysis</h3>
+
+<label><strong>Leukocyte esterase</strong></label><br>
+<select id="infLE"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="Negative">Negative</option>
+<option value="Trace">Trace</option>
+<option value="Positive">Positive</option>
+</select>
+
+<label><strong>Nitrite</strong></label><br>
+<select id="infNitrite"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="Negative">Negative</option>
+<option value="Positive">Positive</option>
+</select>
+
+<label><strong>Pyuria / urine WBC</strong></label><br>
+<select id="infPyuria"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No / insignificant</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Bacteria reported</strong></label><br>
+<select id="infBacteria"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Squamous epithelial cells / contamination concern</strong></label><br>
+<select id="infSquamous"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes / poor specimen quality</option>
+</select>
+
+</div>
+
+
+<!-- =========================================================
+     URINE CULTURE
+========================================================= -->
+
+<div class="clinical-box">
+
+<h3>Urine Culture</h3>
+
+<label><strong>Culture result</strong></label><br>
+<select id="infCulture"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="Not obtained">Not obtained</option>
+<option value="Negative">Negative</option>
+<option value="Positive single organism">Positive — single organism</option>
+<option value="Mixed flora">Mixed flora</option>
+<option value="Contaminated">Contaminated specimen</option>
+</select>
+
+<label><strong>Organism</strong></label><br>
+<input type="text" id="infOrganism"
+placeholder="Example: E. coli"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Colony count / culture details</strong></label><br>
+<input type="text" id="infCultureDetails"
+placeholder="Optional"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Antibiotic treatment already started</strong></label><br>
+<select id="infAntibiotic"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Clinical response to treatment</strong></label><br>
+<select id="infResponse"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="N/A">N/A</option>
+<option value="Resolved">Symptoms resolved/improving</option>
+<option value="Ongoing">Symptoms ongoing</option>
+<option value="Unknown">Unknown</option>
+</select>
+
+</div>
+
+
+<!-- =========================================================
+     SYSTEMIC INFECTION
+========================================================= -->
+
+<div class="clinical-box">
+
+<h3>Systemic Infection Screening</h3>
+
+<label><strong>Fever or chills</strong></label><br>
+<select id="infFever"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Hemodynamic instability / concern for sepsis</strong></label><br>
+<select id="infSepsis"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Recent bacteremia or sepsis</strong></label><br>
+<select id="infRecentSepsis"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Recent hospitalization for infection</strong></label><br>
+<select id="infHospitalInfection"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Infection treatment completed</strong></label><br>
+<select id="infTreatmentComplete"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="N/A">N/A</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+
+</div>
+
+
+<!-- =========================================================
+     SKIN / WOUND
+========================================================= -->
+
+<div class="clinical-box">
+
+<h3>Skin / Wound Screening</h3>
+
+<label><strong>Active cellulitis</strong></label><br>
+<select id="infCellulitis"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Open wound / ulcer</strong></label><br>
+<select id="infOpenWound"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Drainage / purulence</strong></label><br>
+<select id="infDrainage"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Wound located near planned operative site</strong></label><br>
+<select id="infNearSite"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+<option value="N/A">N/A</option>
+</select>
+
+<label><strong>Recent skin infection / abscess</strong></label><br>
+<select id="infSkinHistory"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Wound / skin comments</strong></label><br>
+<textarea id="infWoundComments" rows="4"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<!-- =========================================================
+     IMPLANT / PROSTHESIS
+========================================================= -->
+
+<div class="clinical-box">
+
+<h3>Existing Implant / Prosthetic Infection Concern</h3>
+
+<label><strong>Existing prosthetic joint or implanted hardware</strong></label><br>
+<select id="infExistingImplant"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Concern for active prosthetic joint / hardware infection</strong></label><br>
+<select id="infImplantConcern"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Unexplained drainage, erythema, warmth or pain at implant site</strong></label><br>
+<select id="infImplantSymptoms"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+</div>
+
+
+<!-- =========================================================
+     MRSA / MSSA
+========================================================= -->
+
+<div class="clinical-box">
+
+<h3>MRSA / MSSA Screening</h3>
+
+<label><strong>Screening performed when required</strong></label><br>
+<select id="infMRSAComplete"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="N/A">N/A / not required</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+
+<label><strong>Result</strong></label><br>
+<select id="infMRSAResult"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="Not tested">Not tested</option>
+<option value="Negative">Negative</option>
+<option value="MSSA positive">MSSA positive</option>
+<option value="MRSA positive">MRSA positive</option>
+</select>
+
+<label><strong>Required decolonization completed</strong></label><br>
+<select id="infDecolonization"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="N/A">N/A</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+<option value="In progress">In progress</option>
+</select>
+
+</div>
+
+
+<!-- =========================================================
+     ADDITIONAL CONTEXT
+========================================================= -->
+
+<div class="clinical-box">
+
+<h3>Additional Clinical Information</h3>
+
+<label><strong>WBC (K/µL)</strong></label><br>
+<input type="number" step="0.1" id="infWBC"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Additional infection / culture / wound comments</strong></label><br>
+<textarea id="infComments" rows="5"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<!-- =========================================================
+     BUTTONS
+========================================================= -->
+
+<div class="clinical-box">
+
+<button type="button" id="infGenerate"
+style="
+background:#17324d;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Generate Infection Recommendation
+</button>
+
+<button type="button" id="infCopy"
+style="
+background:#274c6b;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Copy Recommendation
+</button>
+
+<button type="button" id="infPrint"
+style="
+background:#356f44;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Print
+</button>
+
+<button type="button" id="infClear"
+style="
+background:#8b2f2f;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Clear Patient Data
+</button>
+
+</div>
+
+
+<div id="infResult"
+style="
+display:none;
+margin-top:22px;
+padding:22px;
+background:white;
+border:1px solid #d8e1ec;
+border-radius:8px;">
+</div>
+
+</section>
+
+
+<style>
+
+@media print {
+
+body * {
+    visibility:hidden !important;
+}
+
+#infResult,
+#infResult * {
+    visibility:visible !important;
+}
+
+#infResult {
+    display:block !important;
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    padding:20px;
+    border:none;
+    background:white;
+    color:black;
+}
+
+}
+
+</style>
+
+
+<script>
+
+function infVal(id) {
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : "";
+}
+
+
+function generateInfectionRecommendation() {
+
+    let findings = [];
+    let actions = [];
+    let pending = [];
+    let stop = [];
+
+    const wbc =
+        parseFloat(infVal("infWBC"));
+
+
+    /* =====================================================
+       URINARY SYMPTOMS
+    ===================================================== */
+
+    const urinarySymptoms =
+        infVal("infDysuria") === "Yes" ||
+        infVal("infFrequency") === "Yes" ||
+        infVal("infSuprapubic") === "Yes" ||
+        infVal("infFlank") === "Yes" ||
+        infVal("infHematuria") === "Yes";
+
+
+    const abnormalUA =
+        infVal("infLE") === "Positive" ||
+        infVal("infNitrite") === "Positive" ||
+        infVal("infPyuria") === "Yes" ||
+        infVal("infBacteria") === "Yes";
+
+
+    const positiveCulture =
+        infVal("infCulture") ===
+        "Positive single organism";
+
+
+    const contaminated =
+        infVal("infCulture") === "Mixed flora" ||
+        infVal("infCulture") === "Contaminated" ||
+        infVal("infSquamous") === "Yes";
+
+
+    if (urinarySymptoms) {
+
+        findings.push(
+            "Urinary symptoms concerning for symptomatic UTI are present."
+        );
+
+
+        if (abnormalUA || positiveCulture) {
+
+            pending.push(
+                "Symptomatic urinary infection is possible/probable. Confirm culture when appropriate, treat according to clinical findings and susceptibilities, and document clinical improvement before final elective-surgery optimization."
+            );
+
+        } else {
+
+            actions.push(
+                "Urinary symptoms are present despite limited objective UA/culture evidence. Evaluate other causes and obtain additional testing when clinically indicated."
+            );
+        }
+
+    } else {
+
+        if (positiveCulture || abnormalUA) {
+
+            findings.push(
+                "Abnormal urinary screening result without urinary symptoms."
+            );
+
+
+            actions.push(
+                "Findings may represent asymptomatic bacteriuria rather than symptomatic UTI. Do not automatically prescribe antibiotics or delay nonurologic elective surgery solely because of an abnormal UA/culture; correlate with institutional and procedure-specific policy."
+            );
+        }
+    }
+
+
+    if (contaminated) {
+
+        findings.push(
+            "Urine specimen has features suggesting contamination."
+        );
+
+        actions.push(
+            "Mixed flora, contamination or excessive squamous epithelial cells favor a poor-quality specimen. Repeat a properly collected specimen only when the result is clinically necessary."
+        );
+    }
+
+
+    if (
+        infVal("infAntibiotic") === "Yes" &&
+        infVal("infResponse") === "Ongoing"
+    ) {
+
+        pending.push(
+            "Urinary symptoms remain active despite treatment and require reassessment before final optimization."
+        );
+    }
+
+
+    if (
+        infVal("infAntibiotic") === "Yes" &&
+        infVal("infResponse") === "Resolved"
+    ) {
+
+        actions.push(
+            "Urinary symptoms are reported as resolved/improving after treatment; document clinical response and determine whether further testing is actually indicated."
+        );
+    }
+
+
+    /* =====================================================
+       SYSTEMIC INFECTION
+    ===================================================== */
+
+    if (infVal("infSepsis") === "Yes") {
+
+        stop.push(
+            "Hemodynamic instability or concern for sepsis represents active medical instability requiring treatment before elective surgery."
+        );
+    }
+
+
+    if (infVal("infFever") === "Yes") {
+
+        pending.push(
+            "Fever/chills require evaluation for active infection or other acute illness before final elective-surgery optimization."
+        );
+    }
+
+
+    if (infVal("infRecentSepsis") === "Yes") {
+
+        findings.push(
+            "Recent bacteremia/sepsis history."
+        );
+
+
+        if (
+            infVal("infTreatmentComplete") !== "Yes"
+        ) {
+
+            pending.push(
+                "Recent bacteremia/sepsis has not been documented as fully treated/resolved."
+            );
+
+        } else {
+
+            actions.push(
+                "Recent bacteremia/sepsis treatment is reported complete. Confirm clinical resolution and any specialty/infectious-disease recommendations when applicable."
+            );
+        }
+    }
+
+
+    if (
+        infVal("infHospitalInfection") === "Yes" &&
+        infVal("infTreatmentComplete") !== "Yes"
+    ) {
+
+        pending.push(
+            "Recent hospitalization for infection requires confirmation of treatment completion and clinical resolution."
+        );
+    }
+
+
+    /* =====================================================
+       WOUNDS / SKIN
+    ===================================================== */
+
+    if (infVal("infCellulitis") === "Yes") {
+
+        stop.push(
+            "Active cellulitis requires treatment and clinical resolution before routine elective implant surgery."
+        );
+    }
+
+
+    if (infVal("infDrainage") === "Yes") {
+
+        stop.push(
+            "Active wound drainage or purulence requires surgical/medical evaluation before elective surgery."
+        );
+    }
+
+
+    if (infVal("infOpenWound") === "Yes") {
+
+        findings.push(
+            "Open wound or ulcer is present."
+        );
+
+
+        if (infVal("infNearSite") === "Yes") {
+
+            stop.push(
+                "Open wound near the planned operative site presents significant infection risk and requires surgical evaluation before elective surgery."
+            );
+
+        } else {
+
+            pending.push(
+                "Open wound/ulcer requires assessment of location, depth, infection status and healing before final optimization."
+            );
+        }
+    }
+
+
+    if (infVal("infSkinHistory") === "Yes") {
+
+        actions.push(
+            "Recent skin infection/abscess identified. Confirm treatment completion and absence of active cellulitis, drainage or systemic infection."
+        );
+    }
+
+
+    /* =====================================================
+       EXISTING IMPLANT
+    ===================================================== */
+
+    if (
+        infVal("infImplantConcern") === "Yes" ||
+        infVal("infImplantSymptoms") === "Yes"
+    ) {
+
+        stop.push(
+            "Possible active prosthetic joint or implanted-hardware infection requires orthopedic/spine evaluation and appropriate infection workup before elective surgery."
+        );
+    }
+
+
+    /* =====================================================
+       MRSA / MSSA
+    ===================================================== */
+
+    if (
+        infVal("infMRSAComplete") === "No"
+    ) {
+
+        pending.push(
+            "Required MRSA/MSSA screening has not been completed."
+        );
+    }
+
+
+    if (
+        infVal("infMRSAResult") === "MRSA positive" ||
+        infVal("infMRSAResult") === "MSSA positive"
+    ) {
+
+        findings.push(
+            infVal("infMRSAResult") +
+            " screening result."
+        );
+
+
+        if (
+            infVal("infDecolonization") === "No"
+        ) {
+
+            pending.push(
+                "Required decolonization has not been completed."
+            );
+
+        } else if (
+            infVal("infDecolonization") === "In progress"
+        ) {
+
+            pending.push(
+                "Required decolonization remains in progress."
+            );
+
+        } else if (
+            infVal("infDecolonization") === "Yes"
+        ) {
+
+            actions.push(
+                "Required MRSA/MSSA decolonization is documented as completed."
+            );
+        }
+    }
+
+
+    /* =====================================================
+       WBC
+    ===================================================== */
+
+    if (!isNaN(wbc)) {
+
+        findings.push(
+            "WBC " + wbc + " K/µL."
+        );
+
+
+        if (wbc >= 15) {
+
+            actions.push(
+                "Leukocytosis requires correlation with symptoms, baseline, steroids, inflammation and possible infection."
+            );
+        }
+    }
+
+
+    /* =====================================================
+       COMMENTS
+    ===================================================== */
+
+    if (infVal("infComments")) {
+
+        findings.push(
+            "Additional comments: " +
+            infVal("infComments")
+        );
+    }
+
+
+    if (infVal("infWoundComments")) {
+
+        findings.push(
+            "Wound/skin comments: " +
+            infVal("infWoundComments")
+        );
+    }
+
+
+    /* =====================================================
+       REMOVE DUPLICATES
+    ===================================================== */
+
+    findings =
+        [...new Set(findings)];
+
+    actions =
+        [...new Set(actions)];
+
+    pending =
+        [...new Set(pending)];
+
+    stop =
+        [...new Set(stop)];
+
+
+    /* =====================================================
+       DETERMINE STATUS
+    ===================================================== */
+
+    let status = "";
+    let reason = "";
+
+
+    if (stop.length > 0) {
+
+        status = "Not optimized";
+
+        reason =
+            stop.join(" ");
+
+    } else if (pending.length > 0) {
+
+        status = "Pending";
+
+        reason =
+            pending.join(" ");
+
+    } else {
+
+        status = "Optimized";
+
+        reason =
+            "No unresolved clinically significant infection, wound or urinary issue was identified from the entered information.";
+    }
+
+
+    /* =====================================================
+       PRIMARY RECOMMENDATION
+    ===================================================== */
+
+    let recommendation = "";
+
+
+    if (stop.length > 0) {
+
+        recommendation =
+            "Further evaluation/treatment required before elective surgery.";
+
+    } else if (pending.length > 0) {
+
+        recommendation =
+            "Additional review or completion of treatment/testing is required.";
+
+    } else if (
+        !urinarySymptoms &&
+        (positiveCulture || abnormalUA)
+    ) {
+
+        recommendation =
+            "No treatment indicated solely for asymptomatic abnormal urinary screening; correlate with institutional policy.";
+
+    } else if (contaminated) {
+
+        recommendation =
+            "Repeat urine specimen only if clinically necessary.";
+
+    } else {
+
+        recommendation =
+            "No active infection-related barrier identified from the entered information.";
+    }
+
+
+    /* =====================================================
+       BUILD OUTPUT
+    ===================================================== */
+
+    let html = "";
+
+    html +=
+        "<h2>Preoperative Infection / Wound / Urinary Assessment</h2>";
+
+
+    html +=
+        "<p><strong>Primary Recommendation:</strong> " +
+        recommendation +
+        "</p>";
+
+
+    if (findings.length > 0) {
+
+        html +=
+            "<h3>Patient-Specific Findings</h3><ul>";
+
+        findings.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    if (actions.length > 0) {
+
+        html +=
+            "<h3>Suggested Clinical Actions</h3><ul>";
+
+        actions.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    if (pending.length > 0) {
+
+        html +=
+            "<h3>Items Requiring Resolution</h3><ul>";
+
+        pending.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    if (stop.length > 0) {
+
+        html +=
+            "<h3>Active Infection / Surgical Risk Findings</h3><ul>";
+
+        stop.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    html += "<hr>";
+
+
+    html +=
+        "<h3>FINAL PREOPERATIVE OPTIMIZATION STATUS</h3>";
+
+
+    html +=
+        "<p><strong>" +
+        status +
+        "</strong></p>";
+
+
+    html +=
+        "<p><strong>Reason:</strong> " +
+        reason +
+        "</p>";
+
+
+    if (status === "Optimized") {
+
+        html +=
+            "<div class='success-box'>" +
+            "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time." +
+            "</div>";
+    }
+
+
+    /* =====================================================
+       COPY READY DOCUMENTATION
+    ===================================================== */
+
+    html += "<hr>";
+
+    html +=
+        "<h3>Copy-Ready Provider Documentation</h3>";
+
+
+    html +=
+        "<p>Preoperative infection, wound and urinary screening reviewed. ";
+
+
+    if (urinarySymptoms) {
+
+        html +=
+            "Urinary symptoms are present and were assessed in conjunction with available urinalysis/culture findings. ";
+
+    } else {
+
+        html +=
+            "No urinary symptoms reported. ";
+    }
+
+
+    if (
+        !urinarySymptoms &&
+        (positiveCulture || abnormalUA)
+    ) {
+
+        html +=
+            "Abnormal urinary screening without symptoms is most consistent with asymptomatic bacteriuria/colonization unless other clinical findings indicate infection; antibiotics are not indicated solely on this basis for routine nonurologic elective surgery. ";
+    }
+
+
+    if (contaminated) {
+
+        html +=
+            "Urine specimen has features suggesting contamination/mixed flora. ";
+    }
+
+
+    if (
+        infVal("infCellulitis") === "No" &&
+        infVal("infOpenWound") === "No" &&
+        infVal("infDrainage") === "No"
+    ) {
+
+        html +=
+            "No active cellulitis, open wound or drainage identified. ";
+    }
+
+
+    html +=
+        "<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS: " +
+        status +
+        ".</strong> ";
+
+
+    if (status === "Optimized") {
+
+        html +=
+            "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time.";
+
+    } else {
+
+        html +=
+            "Reason: " +
+            reason;
+    }
+
+
+    html += "</p>";
+
+
+    const result =
+        document.getElementById(
+            "infResult"
+        );
+
+
+    result.innerHTML =
+        html;
+
+
+    result.style.display =
+        "block";
+
+
+    result.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+}
+
+
+async function copyInfectionRecommendation() {
+
+    generateInfectionRecommendation();
+
+    const text =
+        document.getElementById(
+            "infResult"
+        ).innerText;
+
+
+    try {
+
+        await navigator.clipboard.writeText(text);
+
+        alert(
+            "Infection/wound/urinary recommendation copied."
+        );
+
+    } catch (error) {
+
+        const temp =
+            document.createElement("textarea");
+
+        temp.value = text;
+
+        temp.style.position = "fixed";
+        temp.style.opacity = "0";
+
+        document.body.appendChild(temp);
+
+        temp.select();
+
+        document.execCommand("copy");
+
+        document.body.removeChild(temp);
+
+        alert(
+            "Infection/wound/urinary recommendation copied."
+        );
+    }
+}
+
+
+function printInfectionRecommendation() {
+
+    generateInfectionRecommendation();
+
+    setTimeout(function() {
+        window.print();
+    }, 150);
+}
+
+
+function clearInfectionTool() {
+
+    const ok =
+        confirm(
+            "Clear all patient-specific infection and wound information?"
+        );
+
+
+    if (!ok) return;
+
+
+    document
+        .querySelectorAll(
+            "#interactiveInfectionTool input, #interactiveInfectionTool textarea"
+        )
+        .forEach(function(el) {
+            el.value = "";
+        });
+
+
+    document
+        .querySelectorAll(
+            "#interactiveInfectionTool select"
+        )
+        .forEach(function(el) {
+            el.selectedIndex = 0;
+        });
+
+
+    const result =
+        document.getElementById(
+            "infResult"
+        );
+
+
+    result.innerHTML =
+        "";
+
+
+    result.style.display =
+        "none";
+
+
+    document
+        .getElementById(
+            "interactiveInfectionTool"
+        )
+        .scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+}
+
+
+document
+.getElementById("infGenerate")
+.addEventListener(
+    "click",
+    generateInfectionRecommendation
+);
+
+
+document
+.getElementById("infCopy")
+.addEventListener(
+    "click",
+    copyInfectionRecommendation
+);
+
+
+document
+.getElementById("infPrint")
+.addEventListener(
+    "click",
+    printInfectionRecommendation
+);
+
+
+document
+.getElementById("infClear")
+.addEventListener(
+    "click",
+    clearInfectionTool
+);
+
+</script>
 
 </main>
 

@@ -1,204 +1,1820 @@
-<section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
-<h2>PFT Results Interpreter</h2>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PFT Interpretation & Preoperative Recommendation</title>
+
+<style>
+
+:root {
+  --navy: #1f3a5f;
+  --blue: #3e78b2;
+  --light: #f4f7fb;
+  --card: #ffffff;
+  --text: #1b2433;
+  --muted: #667085;
+  --border: #d8e1ec;
+  --good: #157347;
+  --warn: #9a6700;
+  --bad: #b42318;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--light);
+  color: var(--text);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+  line-height: 1.55;
+}
+
+header {
+  background: var(--navy);
+  color: white;
+  padding: 34px 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0 0 10px;
+  font-size: 30px;
+}
+
+header p {
+  margin: 0 auto;
+  max-width: 850px;
+  font-size: 17px;
+}
+
+nav {
+  background: white;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  padding: 16px 10px;
+}
+
+nav a {
+  display: inline-block;
+  color: var(--navy);
+  text-decoration: none;
+  font-weight: 700;
+  margin: 7px 12px;
+}
+
+main {
+  max-width: 1050px;
+  margin: auto;
+  padding: 22px 14px 60px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+}
+
+h2 {
+  color: var(--navy);
+  margin-top: 0;
+  font-size: 24px;
+}
+
+h3 {
+  color: var(--navy);
+}
+
+.notice {
+  background: #edf4fb;
+  border-left: 5px solid var(--blue);
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin: 14px 0;
+}
+
+.warning {
+  background: #fff8e6;
+  border-left: 5px solid #d79b00;
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin: 14px 0;
+}
+
+.danger {
+  background: #fff0ee;
+  border-left: 5px solid var(--bad);
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin: 14px 0;
+}
+
+.goodbox {
+  background: #edf9f1;
+  border-left: 5px solid var(--good);
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin: 14px 0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+label {
+  display: block;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+input,
+select {
+  width: 100%;
+  margin-top: 6px;
+  padding: 11px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 16px;
+  background: white;
+}
+
+button {
+  border: 0;
+  border-radius: 9px;
+  padding: 12px 16px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  margin: 6px 6px 6px 0;
+}
+
+.primary {
+  background: var(--navy);
+  color: white;
+}
+
+.secondary {
+  background: #e8eef6;
+  color: var(--navy);
+}
+
+.result {
+  margin-top: 18px;
+  padding: 17px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.result h3 {
+  margin-top: 0;
+}
+
+.status {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.status-good {
+  background: #dcfae6;
+  color: var(--good);
+}
+
+.status-warn {
+  background: #fff1c7;
+  color: var(--warn);
+}
+
+.status-bad {
+  background: #fee4e2;
+  color: var(--bad);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 14px;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--border);
+  padding: 11px 8px;
+  vertical-align: top;
+  text-align: left;
+}
+
+th {
+  background: #f7f9fc;
+  color: var(--navy);
+}
+
+.small {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 220px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 12px;
+  resize: vertical;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.reference-link {
+  display: inline-block;
+  background: var(--blue);
+  color: white;
+  text-decoration: none;
+  padding: 11px 15px;
+  border-radius: 8px;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+@media (max-width: 700px) {
+
+  header h1 {
+    font-size: 27px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  table {
+    font-size: 13px;
+  }
+
+  th,
+  td {
+    padding: 8px 5px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>PFT Interpretation & Preoperative Recommendation</h1>
 
 <p>
-Use the external PFT interpretation tool below to enter pulmonary function test
-results and obtain a preliminary interpretation of airflow obstruction, FEV1
-severity and bronchodilator response.
+Enter pulmonary function testing results to generate a preliminary physiologic
+interpretation and a practical perioperative recommendation.
 </p>
 
-<div class="clinical-box">
+</header>
 
-<strong>Enter PFT Results for Interpretation</strong><br><br>
 
-Useful values to have available:<br><br>
+<nav>
 
-FEV1<br>
-FEV1 % predicted<br>
-FVC<br>
-FEV1/FVC ratio<br>
-Pre- and post-bronchodilator FEV1 when available<br>
-TLC<br>
-DLCO % predicted
+<a href="index.html">Home</a>
+
+<a href="testing-windows.html">
+Testing Windows
+</a>
+
+<a href="pulmonary.html">
+Pulmonary
+</a>
+
+<a href="provider-resources.html">
+Resources
+</a>
+
+</nav>
+
+
+<main>
+
+
+<section class="card">
+
+<h2>How to Use This Tool</h2>
+
+<div class="notice">
+
+Enter the available PFT values below. The tool will evaluate for evidence of
+obstruction, restriction, impaired diffusion and bronchodilator response and
+then place the findings into a perioperative context.
 
 </div>
 
-<p style="text-align:center; margin-top:20px;">
-
-<a href="https://calculator.academy/pft-interpretation-calculator/"
-   target="_blank"
-   rel="noopener noreferrer"
-   style="
-   display:inline-block;
-   background:#17324d;
-   color:white;
-   text-decoration:none;
-   font-weight:bold;
-   padding:14px 22px;
-   border-radius:8px;
-   margin:6px;">
-   Open PFT Results Interpreter
-</a>
-
-<a href="https://doi.org/10.1183/13993003.01499-2021"
-   target="_blank"
-   rel="noopener noreferrer"
-   style="
-   display:inline-block;
-   background:#274c6b;
-   color:white;
-   text-decoration:none;
-   font-weight:bold;
-   padding:14px 22px;
-   border-radius:8px;
-   margin:6px;">
-   ATS/ERS PFT Interpretation Standard
-</a>
-
+<p>
+Whenever the pulmonary laboratory reports a formal
+<strong>lower limit of normal (LLN)</strong>, z-score or interpretation,
+that laboratory-specific information should take priority over a fixed
+percentage cutoff.
 </p>
 
-<div class="warning-box">
+<p class="small">
 
-<strong>Important:</strong> Calculator output should be used as a reference and
-not as the sole basis for perioperative decision-making. Review test quality,
-lower limits of normal, lung volumes, DLCO, symptoms, oxygen requirement,
-exacerbation history and the patient's underlying pulmonary diagnosis.
+This tool is intended for clinical decision support. It does not replace the
+formal interpretation of a pulmonary function laboratory, pulmonologist,
+anesthesiologist or institutional perioperative policy.
 
-</div>
+</p>
 
 </section>
 
 
-<section>
+<section class="card">
 
-<h2>Convert PFT Results Into a Preoperative Recommendation</h2>
+<h2>Enter PFT Results</h2>
+
+
+<div class="form-grid">
+
+
+<label>
+
+FEV1 (L)
+
+<input
+type="number"
+id="fev1"
+step="0.01"
+placeholder="Example: 1.85">
+
+</label>
+
+
+<label>
+
+FEV1 % predicted
+
+<input
+type="number"
+id="fev1Percent"
+step="0.1"
+placeholder="Example: 62">
+
+</label>
+
+
+<label>
+
+FVC (L)
+
+<input
+type="number"
+id="fvc"
+step="0.01"
+placeholder="Example: 2.70">
+
+</label>
+
+
+<label>
+
+FVC % predicted
+
+<input
+type="number"
+id="fvcPercent"
+step="0.1"
+placeholder="Optional">
+
+</label>
+
+
+<label>
+
+FEV1/FVC ratio
+
+<input
+type="number"
+id="ratio"
+step="0.01"
+placeholder="Example: 0.64">
+
+</label>
+
+
+<label>
+
+FEV1/FVC LLN
+
+<input
+type="number"
+id="ratioLLN"
+step="0.01"
+placeholder="Optional">
+
+</label>
+
+
+<label>
+
+TLC % predicted
+
+<input
+type="number"
+id="tlc"
+step="0.1"
+placeholder="Example: 72">
+
+</label>
+
+
+<label>
+
+TLC LLN (% predicted)
+
+<input
+type="number"
+id="tlcLLN"
+step="0.1"
+placeholder="Optional">
+
+</label>
+
+
+<label>
+
+DLCO % predicted
+
+<input
+type="number"
+id="dlco"
+step="0.1"
+placeholder="Example: 58">
+
+</label>
+
+
+<label>
+
+DLCO LLN (% predicted)
+
+<input
+type="number"
+id="dlcoLLN"
+step="0.1"
+placeholder="Optional">
+
+</label>
+
+
+<label>
+
+Pre-bronchodilator FEV1 (L)
+
+<input
+type="number"
+id="preFEV1"
+step="0.01"
+placeholder="Optional">
+
+</label>
+
+
+<label>
+
+Post-bronchodilator FEV1 (L)
+
+<input
+type="number"
+id="postFEV1"
+step="0.01"
+placeholder="Optional">
+
+</label>
+
+
+<label>
+
+Predicted FEV1 (L)
+
+<input
+type="number"
+id="predictedFEV1"
+step="0.01"
+placeholder="Optional">
+
+</label>
+
+
+<label>
+
+Supplemental oxygen
+
+<select id="oxygen">
+
+<option value="none">
+None
+</option>
+
+<option value="intermittent">
+Intermittent / nocturnal
+</option>
+
+<option value="continuous">
+24-hour supplemental oxygen
+</option>
+
+</select>
+
+</label>
+
+
+<label>
+
+Active COPD / asthma exacerbation?
+
+<select id="exacerbation">
+
+<option value="no">
+No
+</option>
+
+<option value="yes">
+Yes
+</option>
+
+</select>
+
+</label>
+
+
+<label>
+
+Chronic hypercapnic respiratory failure?
+
+<select id="hypercapnia">
+
+<option value="no">
+No
+</option>
+
+<option value="yes">
+Yes
+</option>
+
+</select>
+
+</label>
+
+
+<label>
+
+Known idiopathic pulmonary fibrosis?
+
+<select id="ipf">
+
+<option value="no">
+No
+</option>
+
+<option value="yes">
+Yes
+</option>
+
+</select>
+
+</label>
+
+
+<label>
+
+New or worsening respiratory symptoms?
+
+<select id="symptoms">
+
+<option value="no">
+No
+</option>
+
+<option value="yes">
+Yes
+</option>
+
+</select>
+
+</label>
+
+
+</div>
+
+
+<br>
+
+
+<button
+class="primary"
+onclick="interpretPFT()">
+
+Interpret PFT & Generate Recommendation
+
+</button>
+
+
+<button
+class="secondary"
+onclick="resetForm()">
+
+Reset
+
+</button>
+
+
+<div
+class="result"
+id="result">
+
+Enter the available PFT values and select
+<strong>Interpret PFT & Generate Recommendation</strong>.
+
+</div>
+
+
+</section>
+
+
+<section class="card">
+
+<h2>Provider Summary</h2>
+
+<p class="small">
+
+After interpretation, this box generates a concise summary that can be copied
+for use during record review or preoperative documentation.
+
+</p>
+
+<textarea
+id="summaryBox"
+readonly>
+
+Interpret the PFT above to generate a provider summary.
+
+</textarea>
+
+<br>
+
+<button
+class="primary"
+onclick="copySummary()">
+
+Copy Provider Summary
+
+</button>
+
+</section>
+
+
+<section class="card">
+
+<h2>Interpretation Reference</h2>
+
+<div style="overflow-x:auto">
 
 <table>
 
-<tr>
-<th>PFT / Clinical Finding</th>
-<th>Suggested Preoperative Recommendation</th>
-</tr>
+<thead>
 
 <tr>
-<td>
-Normal PFT or mild stable abnormality with no respiratory symptoms
-</td>
-<td>
-No additional pulmonary testing is generally required solely because of the
-PFT. Continue baseline respiratory therapy and routine postoperative pulmonary
-expansion measures.
-</td>
+
+<th>Finding</th>
+
+<th>Interpretation</th>
+
+<th>Preoperative Significance</th>
+
 </tr>
 
-<tr>
-<td>
-Stable obstructive disease with FEV1 ≥50% predicted
-</td>
-<td>
-Assess symptoms, CAT/BODE/Arozullah, oxygen use and recent exacerbations.
-If otherwise clinically stable, proceed using appropriate pulmonary
-optimization and postoperative monitoring.
-</td>
-</tr>
+</thead>
+
+
+<tbody>
+
 
 <tr>
+
 <td>
-FEV1 &lt;50% predicted
+FEV1/FVC below LLN
 </td>
+
 <td>
-Higher-risk pulmonary finding under the TSJH pathway. Review CAT, BODE,
-Arozullah, oxygen requirements and recent exacerbations. Pulmonary and/or
-anesthesia review may be required to determine surgical venue and postoperative
-monitoring.
+Supports airflow obstruction.
 </td>
+
+<td>
+Interpret with symptoms, FEV1 severity, exacerbation history and oxygen need.
+</td>
+
 </tr>
 
-<tr>
-<td>
-Restrictive pattern with reduced TLC
-</td>
-<td>
-Identify the cause. Review DLCO, imaging, oxygen requirement and symptoms.
-Pulmonary review is appropriate when restriction is significant, unexplained or
-associated with impaired gas exchange.
-</td>
-</tr>
 
 <tr>
+
 <td>
-Restriction + markedly reduced DLCO
+Reduced FVC with normal/high FEV1/FVC
 </td>
+
 <td>
-Consider interstitial/parenchymal lung disease. Review pulmonary records,
-imaging, oxygen requirement and pulmonary hypertension risk before elective
-surgery.
+May suggest restriction but does not confirm it.
 </td>
+
+<td>
+Review TLC. Spirometry alone cannot confirm restrictive lung disease.
+</td>
+
 </tr>
 
+
 <tr>
+
+<td>
+TLC below LLN
+</td>
+
+<td>
+Supports a restrictive ventilatory defect.
+</td>
+
+<td>
+Identify cause and review DLCO, imaging, symptoms and gas exchange.
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Reduced DLCO
+</td>
+
+<td>
+Indicates impaired diffusing capacity.
+</td>
+
+<td>
+Consider emphysema, interstitial lung disease, pulmonary vascular disease,
+anemia and other causes.
+</td>
+
+</tr>
+
+
+<tr>
+
 <td>
 Obstruction + reduced DLCO
 </td>
+
 <td>
-Consider emphysema or pulmonary vascular disease. Assess oxygenation,
-functional status and clinical severity.
+May be compatible with emphysema or combined pulmonary disease.
 </td>
+
+<td>
+Assess oxygenation, symptoms and clinical severity.
+</td>
+
 </tr>
 
+
 <tr>
+
+<td>
+Restriction + reduced DLCO
+</td>
+
+<td>
+Raises concern for parenchymal/interstitial disease.
+</td>
+
+<td>
+Review imaging, oxygen requirement and pulmonary hypertension risk.
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+FEV1 &lt;50% predicted
+</td>
+
+<td>
+More severe airflow limitation.
+</td>
+
+<td>
+Higher-risk pulmonary finding in the TSJH outpatient pathway.
+</td>
+
+</tr>
+
+
+<tr>
+
 <td>
 24-hour supplemental oxygen
 </td>
+
 <td>
-Higher-risk finding under the TSJH outpatient pathway. Anesthesia/pulmonary and
-higher-level-of-care review are appropriate.
+Advanced respiratory disease marker.
 </td>
+
+<td>
+Requires anesthesia/pulmonary and higher-level-of-care consideration.
+</td>
+
 </tr>
 
+
 <tr>
+
 <td>
 Chronic hypercapnic respiratory failure
 </td>
+
 <td>
-Not a routine outpatient-risk condition. Pulmonary/anesthesia review and
-higher-level-of-care planning are appropriate.
+Advanced ventilatory impairment.
 </td>
+
+<td>
+Not a routine outpatient-risk condition; consider higher-acuity surgical setting.
+</td>
+
 </tr>
 
-<tr>
-<td>
-Idiopathic pulmonary fibrosis
-</td>
-<td>
-Higher-risk pulmonary condition. Review current pulmonary status, oxygen use,
-DLCO, pulmonary hypertension and appropriate surgical venue.
-</td>
-</tr>
 
 <tr>
+
 <td>
-Active COPD or asthma exacerbation
+Active COPD / asthma exacerbation
 </td>
+
 <td>
-Treat the acute exacerbation before routine elective surgery. Final
-preoperative optimization status should remain Pending or Not optimized
-depending on severity.
+Acute pulmonary instability.
 </td>
+
+<td>
+Treat before routine elective surgery.
+</td>
+
 </tr>
 
-<tr>
-<td>
-Poor-quality or technically unreliable PFT
-</td>
-<td>
-Do not base major perioperative decisions on unreliable values. Repeat the
-study or obtain pulmonary review only when the result is necessary to answer a
-current clinical question.
-</td>
-</tr>
+
+</tbody>
 
 </table>
 
+</div>
+
 </section>
+
+
+<section class="card">
+
+<h2>Important Interpretation Principles</h2>
+
+
+<div class="warning">
+
+<strong>Do not diagnose restriction from a low FVC alone.</strong>
+A reduced TLC is required to confirm a restrictive ventilatory defect.
+
+</div>
+
+
+<div class="warning">
+
+<strong>Do not rely solely on a fixed FEV1/FVC ratio of 0.70.</strong>
+Use the pulmonary laboratory's lower limit of normal or z-score whenever
+available.
+
+</div>
+
+
+<div class="warning">
+
+Bronchodilator response should be interpreted using the testing laboratory's
+current ATS/ERS methodology and reference equations. This calculator provides
+a preliminary estimate only.
+
+</div>
+
+
+</section>
+
+
+<section class="card">
+
+<h2>TSJH Higher-Risk Pulmonary Findings</h2>
+
+<div class="danger">
+
+The following findings warrant additional attention when determining whether
+the planned outpatient surgical setting is appropriate.
+
+</div>
+
+<ul>
+
+<li>
+FEV1 &lt;50% predicted
+</li>
+
+<li>
+24-hour supplemental oxygen
+</li>
+
+<li>
+Chronic hypercapnic respiratory failure
+</li>
+
+<li>
+Idiopathic pulmonary fibrosis
+</li>
+
+<li>
+Clinically significant unresolved pulmonary exacerbation
+</li>
+
+<li>
+Severe functional limitation or other concerning pulmonary risk scores
+</li>
+
+</ul>
+
+</section>
+
+
+<section class="card">
+
+<h2>ATS / ERS Reference</h2>
+
+<p>
+
+Formal PFT interpretation should use contemporary pulmonary laboratory
+reference equations, lower limits of normal and ATS/ERS interpretive standards.
+
+</p>
+
+<a
+class="reference-link"
+href="https://doi.org/10.1183/13993003.01499-2021"
+target="_blank"
+rel="noopener noreferrer">
+
+ATS/ERS Interpretive Strategies Standard
+
+</a>
+
+</section>
+
+
+</main>
+
+
+<script>
+
+
+function num(id) {
+
+  const value =
+    parseFloat(
+      document.getElementById(id).value
+    );
+
+  return Number.isFinite(value)
+    ? value
+    : null;
+
+}
+
+
+function interpretPFT() {
+
+  const fev1 =
+    num("fev1");
+
+  const fev1Percent =
+    num("fev1Percent");
+
+  const fvc =
+    num("fvc");
+
+  const fvcPercent =
+    num("fvcPercent");
+
+  const ratio =
+    num("ratio");
+
+  const ratioLLN =
+    num("ratioLLN");
+
+  const tlc =
+    num("tlc");
+
+  const tlcLLN =
+    num("tlcLLN");
+
+  const dlco =
+    num("dlco");
+
+  const dlcoLLN =
+    num("dlcoLLN");
+
+  const preFEV1 =
+    num("preFEV1");
+
+  const postFEV1 =
+    num("postFEV1");
+
+  const predictedFEV1 =
+    num("predictedFEV1");
+
+  const oxygen =
+    document.getElementById("oxygen").value;
+
+  const exacerbation =
+    document.getElementById("exacerbation").value;
+
+  const hypercapnia =
+    document.getElementById("hypercapnia").value;
+
+  const ipf =
+    document.getElementById("ipf").value;
+
+  const symptoms =
+    document.getElementById("symptoms").value;
+
+
+  let findings = [];
+
+  let recommendations = [];
+
+  let highRisk = false;
+
+  let unstable = false;
+
+
+  /*
+  ===========================================
+  AIRFLOW OBSTRUCTION
+  ===========================================
+  */
+
+
+  let obstruction = false;
+
+
+  if (
+    ratio !== null &&
+    ratioLLN !== null
+  ) {
+
+    if (ratio < ratioLLN) {
+
+      obstruction = true;
+
+      findings.push(
+        "FEV1/FVC is below the reported lower limit of normal, supporting airflow obstruction."
+      );
+
+    }
+
+    else {
+
+      findings.push(
+        "FEV1/FVC is not below the reported lower limit of normal."
+      );
+
+    }
+
+  }
+
+  else if (ratio !== null) {
+
+    if (ratio < 0.70) {
+
+      obstruction = true;
+
+      findings.push(
+        "FEV1/FVC is below 0.70, which may support airflow obstruction; confirm against the laboratory lower limit of normal."
+      );
+
+    }
+
+    else {
+
+      findings.push(
+        "FEV1/FVC is not below 0.70. Confirm the formal interpretation using the laboratory lower limit of normal."
+      );
+
+    }
+
+  }
+
+
+  /*
+  ===========================================
+  FEV1 SEVERITY
+  ===========================================
+  */
+
+
+  if (fev1Percent !== null) {
+
+    if (fev1Percent >= 80) {
+
+      findings.push(
+        "FEV1 is preserved at " +
+        fev1Percent +
+        "% predicted."
+      );
+
+    }
+
+    else if (fev1Percent >= 50) {
+
+      findings.push(
+        "FEV1 is reduced to " +
+        fev1Percent +
+        "% predicted."
+      );
+
+    }
+
+    else {
+
+      findings.push(
+        "FEV1 is significantly reduced at " +
+        fev1Percent +
+        "% predicted."
+      );
+
+      highRisk = true;
+
+      recommendations.push(
+        "FEV1 is below 50% predicted. Review pulmonary symptoms, oxygen requirement, recent exacerbations, CAT/BODE/Arozullah risk and whether anesthesia or pulmonary evaluation is needed for surgical-venue planning."
+      );
+
+    }
+
+  }
+
+
+  /*
+  ===========================================
+  RESTRICTION
+  ===========================================
+  */
+
+
+  let restriction = false;
+
+
+  if (
+    tlc !== null &&
+    tlcLLN !== null
+  ) {
+
+    if (tlc < tlcLLN) {
+
+      restriction = true;
+
+      findings.push(
+        "TLC is below the reported lower limit of normal, supporting a restrictive ventilatory defect."
+      );
+
+    }
+
+    else {
+
+      findings.push(
+        "TLC is not below the reported lower limit of normal."
+      );
+
+    }
+
+  }
+
+  else if (tlc !== null) {
+
+    if (tlc < 80) {
+
+      restriction = true;
+
+      findings.push(
+        "TLC is reduced at " +
+        tlc +
+        "% predicted, which may support restriction; confirm against the laboratory lower limit of normal."
+      );
+
+    }
+
+    else {
+
+      findings.push(
+        "TLC is " +
+        tlc +
+        "% predicted and does not appear substantially reduced."
+      );
+
+    }
+
+  }
+
+  else if (
+    fvcPercent !== null &&
+    fvcPercent < 80 &&
+    !obstruction
+  ) {
+
+    findings.push(
+      "FVC is reduced with no definite obstruction entered. This may suggest restriction, but TLC is required to confirm a restrictive ventilatory defect."
+    );
+
+  }
+
+
+  /*
+  ===========================================
+  DLCO
+  ===========================================
+  */
+
+
+  let reducedDLCO = false;
+
+
+  if (
+    dlco !== null &&
+    dlcoLLN !== null
+  ) {
+
+    if (dlco < dlcoLLN) {
+
+      reducedDLCO = true;
+
+      findings.push(
+        "DLCO is below the reported lower limit of normal."
+      );
+
+    }
+
+  }
+
+  else if (dlco !== null) {
+
+    if (dlco < 75) {
+
+      reducedDLCO = true;
+
+      findings.push(
+        "DLCO is reduced at " +
+        dlco +
+        "% predicted. Confirm severity using laboratory reference ranges or z-score."
+      );
+
+    }
+
+    else {
+
+      findings.push(
+        "DLCO is " +
+        dlco +
+        "% predicted and does not appear substantially reduced."
+      );
+
+    }
+
+  }
+
+
+  /*
+  ===========================================
+  PATTERN COMBINATIONS
+  ===========================================
+  */
+
+
+  if (
+    obstruction &&
+    reducedDLCO
+  ) {
+
+    findings.push(
+      "The combination of obstruction and reduced DLCO may be compatible with emphysema or another process affecting gas transfer."
+    );
+
+    recommendations.push(
+      "Review oxygenation, functional status, smoking history and pulmonary diagnosis."
+    );
+
+  }
+
+
+  if (
+    restriction &&
+    reducedDLCO
+  ) {
+
+    findings.push(
+      "Restriction with reduced DLCO raises concern for parenchymal/interstitial lung disease or another gas-exchange abnormality."
+    );
+
+    recommendations.push(
+      "Review pulmonary imaging, oxygen requirement, symptoms and pulmonary hypertension risk. Consider pulmonary review when the abnormality is clinically significant or unexplained."
+    );
+
+  }
+
+
+  /*
+  ===========================================
+  BRONCHODILATOR RESPONSE
+  ===========================================
+  */
+
+
+  if (
+    preFEV1 !== null &&
+    postFEV1 !== null &&
+    predictedFEV1 !== null &&
+    predictedFEV1 > 0
+  ) {
+
+    const change =
+      postFEV1 - preFEV1;
+
+    const percentPredictedChange =
+      (change / predictedFEV1) * 100;
+
+
+    findings.push(
+      "Post-bronchodilator FEV1 changed by " +
+      change.toFixed(2) +
+      " L, equivalent to " +
+      percentPredictedChange.toFixed(1) +
+      "% of predicted FEV1."
+    );
+
+
+    if (
+      percentPredictedChange > 10
+    ) {
+
+      findings.push(
+        "This magnitude of change may meet contemporary criteria for a significant bronchodilator response; confirm using the formal pulmonary laboratory interpretation."
+      );
+
+    }
+
+  }
+
+
+  /*
+  ===========================================
+  CLINICAL HIGH-RISK CONDITIONS
+  ===========================================
+  */
+
+
+  if (oxygen === "continuous") {
+
+    highRisk = true;
+
+    findings.push(
+      "Patient uses 24-hour supplemental oxygen."
+    );
+
+    recommendations.push(
+      "24-hour oxygen use is a higher-risk finding under the outpatient pathway. Obtain anesthesia/pulmonary review and consider higher-level-of-care planning."
+    );
+
+  }
+
+
+  if (hypercapnia === "yes") {
+
+    highRisk = true;
+
+    findings.push(
+      "History of chronic hypercapnic respiratory failure."
+    );
+
+    recommendations.push(
+      "Chronic hypercapnic respiratory failure is not a routine outpatient-risk condition. Pulmonary/anesthesia review and higher-level-of-care planning are appropriate."
+    );
+
+  }
+
+
+  if (ipf === "yes") {
+
+    highRisk = true;
+
+    findings.push(
+      "Known idiopathic pulmonary fibrosis."
+    );
+
+    recommendations.push(
+      "Review oxygen requirement, DLCO, current pulmonary status, imaging, pulmonary hypertension risk and appropriate surgical venue."
+    );
+
+  }
+
+
+  if (exacerbation === "yes") {
+
+    unstable = true;
+
+    findings.push(
+      "Active COPD or asthma exacerbation is present."
+    );
+
+    recommendations.push(
+      "Treat and stabilize the acute pulmonary exacerbation before routine elective surgery."
+    );
+
+  }
+
+
+  if (symptoms === "yes") {
+
+    findings.push(
+      "New or worsening respiratory symptoms are present."
+    );
+
+    recommendations.push(
+      "Evaluate the change in respiratory status before relying on prior testing or considering the patient fully optimized."
+    );
+
+  }
+
+
+  /*
+  ===========================================
+  BASELINE RECOMMENDATIONS
+  ===========================================
+  */
+
+
+  if (
+    !unstable &&
+    !highRisk
+  ) {
+
+    if (
+      findings.length === 0
+    ) {
+
+      recommendations.push(
+        "Insufficient PFT data were entered for physiologic interpretation. Review the formal pulmonary laboratory report and clinical status."
+      );
+
+    }
+
+    else {
+
+      recommendations.push(
+        "If respiratory symptoms are stable, there is no active exacerbation, oxygenation is acceptable and no additional pulmonary red flags are present, no additional pulmonary testing is generally required solely because of these PFT findings."
+      );
+
+      recommendations.push(
+        "Continue baseline respiratory therapy and routine postoperative pulmonary expansion measures as clinically appropriate."
+      );
+
+    }
+
+  }
+
+
+  /*
+  ===========================================
+  FINAL STATUS
+  ===========================================
+  */
+
+
+  let statusHTML = "";
+
+  let statusText = "";
+
+
+  if (unstable) {
+
+    statusHTML =
+      '<span class="status status-bad">NOT OPTIMIZED / PENDING STABILIZATION</span>';
+
+    statusText =
+      "Not optimized / pending pulmonary stabilization.";
+
+  }
+
+  else if (highRisk) {
+
+    statusHTML =
+      '<span class="status status-warn">HIGHER-RISK — REVIEW REQUIRED</span>';
+
+    statusText =
+      "Higher-risk pulmonary findings requiring additional review.";
+
+  }
+
+  else {
+
+    statusHTML =
+      '<span class="status status-good">NO AUTOMATIC PULMONARY BARRIER IDENTIFIED</span>';
+
+    statusText =
+      "No automatic pulmonary barrier identified from the information entered.";
+
+  }
+
+
+  /*
+  ===========================================
+  DISPLAY RESULT
+  ===========================================
+  */
+
+
+  const result =
+    document.getElementById("result");
+
+
+  let html =
+    "<h3>Preliminary Interpretation</h3>" +
+    statusHTML +
+    "<br><br>";
+
+
+  if (findings.length) {
+
+    html +=
+      "<strong>Findings:</strong><ul>";
+
+    findings.forEach(
+      item => {
+
+        html +=
+          "<li>" +
+          escapeHTML(item) +
+          "</li>";
+
+      }
+    );
+
+    html += "</ul>";
+
+  }
+
+
+  html +=
+    "<strong>Preoperative Recommendation:</strong><ul>";
+
+
+  recommendations.forEach(
+    item => {
+
+      html +=
+        "<li>" +
+        escapeHTML(item) +
+        "</li>";
+
+    }
+  );
+
+
+  html +=
+    "</ul>";
+
+
+  result.innerHTML = html;
+
+
+  /*
+  ===========================================
+  PROVIDER SUMMARY
+  ===========================================
+  */
+
+
+  let summary =
+`PFT INTERPRETATION / PREOPERATIVE PULMONARY SUMMARY
+
+Status:
+${statusText}
+
+Findings:
+`;
+
+
+  if (findings.length) {
+
+    findings.forEach(
+      item => {
+
+        summary +=
+          "- " +
+          item +
+          "\n";
+
+      }
+    );
+
+  }
+
+  else {
+
+    summary +=
+      "- Insufficient PFT values entered for physiologic interpretation.\n";
+
+  }
+
+
+  summary +=
+`
+Preoperative recommendation:
+`;
+
+
+  recommendations.forEach(
+    item => {
+
+      summary +=
+        "- " +
+        item +
+        "\n";
+
+    }
+  );
+
+
+  summary +=
+`
+Clinical correlation is required. Review formal pulmonary laboratory interpretation, test quality, symptoms, oxygen requirement, exacerbation history and underlying pulmonary diagnosis.
+`;
+
+
+  document.getElementById(
+    "summaryBox"
+  ).value = summary;
+
+}
+
+
+function resetForm() {
+
+  const inputs =
+    document.querySelectorAll(
+      "input"
+    );
+
+  inputs.forEach(
+    input => {
+
+      input.value = "";
+
+    }
+  );
+
+
+  document.getElementById(
+    "oxygen"
+  ).value = "none";
+
+
+  document.getElementById(
+    "exacerbation"
+  ).value = "no";
+
+
+  document.getElementById(
+    "hypercapnia"
+  ).value = "no";
+
+
+  document.getElementById(
+    "ipf"
+  ).value = "no";
+
+
+  document.getElementById(
+    "symptoms"
+  ).value = "no";
+
+
+  document.getElementById(
+    "result"
+  ).innerHTML =
+    'Enter the available PFT values and select <strong>Interpret PFT & Generate Recommendation</strong>.';
+
+
+  document.getElementById(
+    "summaryBox"
+  ).value =
+    "Interpret the PFT above to generate a provider summary.";
+
+}
+
+
+async function copySummary() {
+
+  const box =
+    document.getElementById(
+      "summaryBox"
+    );
+
+
+  try {
+
+    await navigator.clipboard.writeText(
+      box.value
+    );
+
+    alert(
+      "PFT provider summary copied."
+    );
+
+  }
+
+  catch (error) {
+
+    box.select();
+
+    document.execCommand(
+      "copy"
+    );
+
+    alert(
+      "PFT provider summary copied."
+    );
+
+  }
+
+}
+
+
+function escapeHTML(value) {
+
+  return String(value)
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+</script>
+
+
+</body>
+</html>

@@ -876,14 +876,660 @@ Optimization reflects the patient's status at the time it is documented.
 <li>Optimized means the necessary medical evaluation and perioperative plan are complete.</li>
 </ul>
 </section>
-</main>
+<!-- =========================================================
+     INTERACTIVE FINAL 24–48 HOUR READINESS TOOL
+========================================================= -->
 
-<footer>
-...
-</footer>
+<section id="finalReadinessInteractive">
 
-</body>
-</html>
+<h2>Interactive Final 24–48 Hour Readiness Tool</h2>
+
+<p>
+Complete this patient-specific final review to identify interval changes,
+unresolved testing, medication issues, specialist recommendations,
+anesthesia concerns, postoperative monitoring needs and remaining
+preoperative barriers.
+</p>
+
+<div class="warning-box">
+<strong>Purpose:</strong>
+The final review confirms that known clinically meaningful issues have
+actually been closed before the scheduled surgery date. It does not replace
+provider or anesthesia judgment.
+</div>
+
+
+<div class="formula-box">
+
+<h3>Patient / Procedure</h3>
+
+<label><strong>Patient</strong></label><br>
+<input type="text" id="frPatient"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Procedure</strong></label><br>
+<input type="text" id="frProcedure"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Surgeon</strong></label><br>
+<input type="text" id="frSurgeon"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Surgery Date / Date of Service</strong></label><br>
+<input type="date" id="frDOS"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Interval Health Change</h3>
+
+<label><strong>Any meaningful clinical change since the original H&amp;P?</strong></label><br>
+
+<select id="frIntervalChange"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>ER visit or hospitalization since H&amp;P?</strong></label><br>
+
+<select id="frHospital"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>New diagnosis or new medication?</strong></label><br>
+
+<select id="frNewDx"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>Interval change details</strong></label><br>
+
+<textarea id="frIntervalDetails"
+rows="4"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Medication Hold Verification</h3>
+
+<label><strong>Required anticoagulant / antiplatelet plan verified?</strong></label><br>
+
+<select id="frAnticoag"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>GLP-1 / GIP aspiration-risk plan resolved?</strong></label><br>
+
+<select id="frGLP1"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>SGLT2 plan verified?</strong></label><br>
+
+<select id="frSGLT2"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>Insulin / pump plan verified when applicable?</strong></label><br>
+
+<select id="frInsulin"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Testing & Specialist Closure</h3>
+
+<label><strong>Required laboratory testing complete and reviewed?</strong></label><br>
+
+<select id="frLabs"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+<label><strong>Required EKG / cardiac testing complete and reviewed?</strong></label><br>
+
+<select id="frCardiacTesting"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+<label><strong>Required pulmonary testing complete and reviewed?</strong></label><br>
+
+<select id="frPulmonaryTesting"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+<label><strong>Required specialist recommendations received and reviewed?</strong></label><br>
+
+<select id="frSpecialist"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+<label><strong>CIED/device interrogation and perioperative plan complete?</strong></label><br>
+
+<select id="frDevice"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Anesthesia & Postoperative Planning</h3>
+
+<label><strong>Anesthesia-specific review completed when required?</strong></label><br>
+
+<select id="frAnesthesia"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>Postoperative cardiac surveillance plan established when indicated?</strong></label><br>
+
+<select id="frCardiacMonitor"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>Postoperative respiratory / OSA monitoring plan established?</strong></label><br>
+
+<select id="frRespMonitor"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>Venue / higher-level-of-care determination finalized?</strong></label><br>
+
+<select id="frVenue"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Disposition / Operational Readiness</h3>
+
+<label><strong>Transportation confirmed?</strong></label><br>
+
+<select id="frTransport"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+<label><strong>Postoperative support / caregiver confirmed when required?</strong></label><br>
+
+<select id="frSupport"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+<option value="na">N/A</option>
+</select>
+
+<label><strong>OP PT / mobility plan arranged when applicable?</strong></label><br>
+
+<select id="frPT"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+<label><strong>Rolling walker / assistive device available when applicable?</strong></label><br>
+
+<select id="frWalker"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="na">N/A</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
+</div>
+
+
+<div class="formula-box">
+
+<h3>Current Medical Stability</h3>
+
+<label><strong>Any active medical instability requiring postponement?</strong></label><br>
+
+<select id="frUnstable"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>Any clinically meaningful unresolved pending item?</strong></label><br>
+
+<select id="frPending"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<label><strong>Pending item / owner / expected closure</strong></label><br>
+
+<textarea id="frPendingDetails"
+rows="5"
+placeholder="Example: repeat potassium ordered; cardiology note pending; owner = SPA; expected completion 8/21..."
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<div class="formula-box">
+
+<button type="button" id="frGenerate"
+style="background:#17324d;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Generate Final Readiness Review
+</button>
+
+<button type="button" id="frCopy"
+style="background:#2f6fb0;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Copy Summary
+</button>
+
+<button type="button" id="frPrint"
+style="background:#356f44;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Print
+</button>
+
+<button type="button" id="frClear"
+style="background:#8b2f2f;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Clear
+</button>
+
+</div>
+
+
+<div id="frResult"
+class="formula-box"
+style="display:none;margin-top:20px;">
+</div>
+
+
+<script>
+
+function frVal(id) {
+  const el = document.getElementById(id);
+  return el ? el.value : "";
+}
+
+function generateFinalReadinessReview() {
+
+  const pending = [];
+  const warnings = [];
+  let status = "Optimized";
+
+  if (frVal("frUnstable") === "yes") {
+    status = "Not optimized";
+    warnings.push(
+      "Active medical instability is present and requires evaluation/treatment before elective surgery."
+    );
+  }
+
+  if (frVal("frIntervalChange") === "yes") {
+    pending.push(
+      "Meaningful interval clinical change since the original H&P requires review."
+    );
+  }
+
+  if (frVal("frHospital") === "yes") {
+    pending.push(
+      "Interval ER visit or hospitalization requires record review and reassessment."
+    );
+  }
+
+  if (frVal("frNewDx") === "yes") {
+    pending.push(
+      "New diagnosis or medication change requires final clinical review."
+    );
+  }
+
+  const requiredItems = [
+    ["frAnticoag","Anticoagulant/antiplatelet plan remains unresolved."],
+    ["frGLP1","GLP-1/GIP aspiration-risk plan remains unresolved."],
+    ["frSGLT2","SGLT2 perioperative plan remains unresolved."],
+    ["frInsulin","Insulin/pump perioperative plan remains unresolved."],
+    ["frLabs","Required laboratory testing remains incomplete or unreviewed."],
+    ["frCardiacTesting","Required cardiac testing remains incomplete or unreviewed."],
+    ["frPulmonaryTesting","Required pulmonary testing remains incomplete or unreviewed."],
+    ["frSpecialist","Required specialist recommendation remains outstanding."],
+    ["frDevice","Required device interrogation/perioperative plan remains incomplete."],
+    ["frAnesthesia","Required anesthesia review remains incomplete."],
+    ["frCardiacMonitor","Required postoperative cardiac-surveillance plan remains incomplete."],
+    ["frRespMonitor","Required postoperative respiratory-monitoring plan remains incomplete."],
+    ["frVenue","Required surgical venue/HLOC determination remains unresolved."],
+    ["frTransport","Transportation remains unresolved."],
+    ["frSupport","Required caregiver/support plan remains unresolved."],
+    ["frPT","Required postoperative PT/mobility plan remains unresolved."],
+    ["frWalker","Required assistive-device plan remains unresolved."]
+  ];
+
+  requiredItems.forEach(function(item) {
+    if (frVal(item[0]) === "no") {
+      pending.push(item[1]);
+    }
+  });
+
+  if (frVal("frPending") === "yes") {
+    pending.push(
+      "One or more clinically meaningful pending items remain unresolved."
+    );
+  }
+
+  if (
+    status !== "Not optimized" &&
+    pending.length > 0
+  ) {
+    status = "Pending";
+  }
+
+  let html = "";
+
+  html += "<h2>Final 24–48 Hour Preoperative Review</h2>";
+
+  if (frVal("frPatient")) {
+    html += "<strong>Patient:</strong> " + frVal("frPatient") + "<br>";
+  }
+
+  if (frVal("frProcedure")) {
+    html += "<strong>Procedure:</strong> " + frVal("frProcedure") + "<br>";
+  }
+
+  if (frVal("frSurgeon")) {
+    html += "<strong>Surgeon:</strong> " + frVal("frSurgeon") + "<br>";
+  }
+
+  if (frVal("frDOS")) {
+    html += "<strong>Surgery Date / DOS:</strong> " + frVal("frDOS") + "<br>";
+  }
+
+  if (warnings.length > 0) {
+    html += "<h3>Immediate Concern</h3><ul>";
+
+    warnings.forEach(function(item) {
+      html += "<li>" + item + "</li>";
+    });
+
+    html += "</ul>";
+  }
+
+  if (pending.length > 0) {
+    html += "<h3>Items Requiring Closure</h3><ul>";
+
+    pending.forEach(function(item) {
+      html += "<li>" + item + "</li>";
+    });
+
+    html += "</ul>";
+  }
+
+  if (frVal("frIntervalDetails")) {
+    html +=
+      "<h3>Interval Clinical Details</h3><p>" +
+      frVal("frIntervalDetails") +
+      "</p>";
+  }
+
+  if (frVal("frPendingDetails")) {
+    html +=
+      "<h3>Pending Item / Owner / Closure Plan</h3><p>" +
+      frVal("frPendingDetails") +
+      "</p>";
+  }
+
+  html += "<hr>";
+
+  html +=
+    "<h3>FINAL PREOPERATIVE OPTIMIZATION STATUS</h3>";
+
+  html +=
+    "<p><strong>" +
+    status +
+    "</strong></p>";
+
+  if (status === "Optimized") {
+
+    html +=
+      "<p>No clinically meaningful unresolved item was identified during the final 24–48 hour readiness review.</p>";
+
+    html +=
+      "<div class='success-box'>" +
+      "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time." +
+      "</div>";
+
+  }
+
+  if (status === "Pending") {
+
+    html +=
+      "<p><strong>Reason:</strong> One or more required preoperative items remain unresolved and require closure before final optimization.</p>";
+
+  }
+
+  if (status === "Not optimized") {
+
+    html +=
+      "<p><strong>Reason:</strong> Active medical instability requires evaluation and/or treatment before elective surgery.</p>";
+
+  }
+
+  html += "<hr>";
+
+  html +=
+    "<h3>Copy-Ready Provider Documentation</h3>";
+
+  html +=
+    "<p>Final 24–48 hour preoperative review completed. ";
+
+  if (
+    frVal("frIntervalChange") === "no" &&
+    frVal("frHospital") === "no" &&
+    frVal("frNewDx") === "no"
+  ) {
+    html +=
+      "No meaningful interval clinical change identified since the original preoperative H&P. ";
+  }
+
+  html +=
+    "<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS: " +
+    status +
+    ".</strong> ";
+
+  if (status === "Optimized") {
+
+    html +=
+      "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time.";
+
+  } else if (status === "Pending") {
+
+    html +=
+      "Final determination remains pending completion and review of the identified required item(s).";
+
+  } else {
+
+    html +=
+      "Elective surgery should not proceed until the active clinical issue has been appropriately evaluated and treated.";
+
+  }
+
+  html += "</p>";
+
+  const result =
+    document.getElementById("frResult");
+
+  result.innerHTML = html;
+  result.style.display = "block";
+
+  result.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+}
+
+
+async function copyFinalReadiness() {
+
+  generateFinalReadinessReview();
+
+  const text =
+    document.getElementById("frResult").innerText;
+
+  try {
+
+    await navigator.clipboard.writeText(text);
+
+    alert("Final readiness summary copied.");
+
+  } catch (error) {
+
+    const temp =
+      document.createElement("textarea");
+
+    temp.value = text;
+
+    document.body.appendChild(temp);
+
+    temp.select();
+
+    document.execCommand("copy");
+
+    document.body.removeChild(temp);
+
+    alert("Final readiness summary copied.");
+  }
+}
+
+
+function printFinalReadiness() {
+
+  generateFinalReadinessReview();
+
+  setTimeout(function() {
+    window.print();
+  },150);
+}
+
+
+function clearFinalReadiness() {
+
+  if (
+    !confirm(
+      "Clear all patient-specific final readiness information?"
+    )
+  ) {
+    return;
+  }
+
+  document
+    .querySelectorAll(
+      "#finalReadinessInteractive input, #finalReadinessInteractive textarea"
+    )
+    .forEach(function(el) {
+      el.value = "";
+    });
+
+  document
+    .querySelectorAll(
+      "#finalReadinessInteractive select"
+    )
+    .forEach(function(el) {
+      el.selectedIndex = 0;
+    });
+
+  const result =
+    document.getElementById("frResult");
+
+  result.innerHTML = "";
+  result.style.display = "none";
+}
+
+
+document
+  .getElementById("frGenerate")
+  .addEventListener(
+    "click",
+    generateFinalReadinessReview
+  );
+
+document
+  .getElementById("frCopy")
+  .addEventListener(
+    "click",
+    copyFinalReadiness
+  );
+
+document
+  .getElementById("frPrint")
+  .addEventListener(
+    "click",
+    printFinalReadiness
+  );
+
+document
+  .getElementById("frClear")
+  .addEventListener(
+    "click",
+    clearFinalReadiness
+  );
+
+</script>
+
+</section>
 </main>
 
 <footer>

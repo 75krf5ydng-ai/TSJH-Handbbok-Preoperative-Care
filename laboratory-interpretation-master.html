@@ -1172,6 +1172,1159 @@ Patient meets TSJH perioperative consensus guidelines to proceed with elective
 surgery on scheduled surgery date at this time.
 </div>
 </section>
+<!-- =========================================================
+     INTERACTIVE PREOPERATIVE LABORATORY INTERPRETER
+========================================================= -->
+
+<section id="interactiveLabInterpreter">
+
+<h2>Interactive Preoperative Laboratory Interpreter</h2>
+
+<p>
+Enter available preoperative laboratory values to identify abnormalities,
+generate a focused perioperative interpretation, suggest next steps and create
+copy-ready provider documentation.
+</p>
+
+<div class="warning-box">
+<strong>Clinical decision support only:</strong>
+Laboratory reference ranges vary by facility. Interpret values with the
+patient's baseline, symptoms, medications, volume status, procedure, expected
+blood loss and institutional policy. A single abnormal value should not
+automatically determine surgical readiness.
+</div>
+
+
+<!-- CBC -->
+
+<div class="clinical-box">
+
+<h3>CBC</h3>
+
+<label><strong>WBC (K/µL)</strong></label><br>
+<input type="number" step="0.1" id="labWBC"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Hemoglobin (g/dL)</strong></label><br>
+<input type="number" step="0.1" id="labHgb"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Hematocrit (%)</strong></label><br>
+<input type="number" step="0.1" id="labHct"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>MCV (fL)</strong></label><br>
+<input type="number" step="0.1" id="labMCV"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Platelets (K/µL)</strong></label><br>
+<input type="number" id="labPlatelets"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+</div>
+
+
+<!-- IRON / ANEMIA -->
+
+<div class="clinical-box">
+
+<h3>Anemia / Iron Studies</h3>
+
+<label><strong>Ferritin (ng/mL)</strong></label><br>
+<input type="number" step="0.1" id="labFerritin"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Iron (µg/dL)</strong></label><br>
+<input type="number" step="0.1" id="labIron"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>TIBC (µg/dL)</strong></label><br>
+<input type="number" step="0.1" id="labTIBC"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Transferrin saturation (%)</strong></label><br>
+<input type="number" step="0.1" id="labTSAT"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Vitamin B12 (pg/mL)</strong></label><br>
+<input type="number" id="labB12"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Folate</strong></label><br>
+<input type="text" id="labFolate"
+placeholder="Enter result if available"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+</div>
+
+
+<!-- BMP / CMP -->
+
+<div class="clinical-box">
+
+<h3>BMP / CMP</h3>
+
+<label><strong>Sodium (mmol/L)</strong></label><br>
+<input type="number" step="0.1" id="labNa"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Potassium (mmol/L)</strong></label><br>
+<input type="number" step="0.1" id="labK"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Chloride (mmol/L)</strong></label><br>
+<input type="number" step="0.1" id="labCl"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>CO₂ / bicarbonate (mmol/L)</strong></label><br>
+<input type="number" step="0.1" id="labCO2"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>BUN (mg/dL)</strong></label><br>
+<input type="number" step="0.1" id="labBUN"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Creatinine (mg/dL)</strong></label><br>
+<input type="number" step="0.01" id="labCr"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>eGFR (mL/min/1.73m²)</strong></label><br>
+<input type="number" id="labEGFR"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Calcium (mg/dL)</strong></label><br>
+<input type="number" step="0.1" id="labCa"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Magnesium (mg/dL)</strong></label><br>
+<input type="number" step="0.1" id="labMg"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>AST (U/L)</strong></label><br>
+<input type="number" id="labAST"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>ALT (U/L)</strong></label><br>
+<input type="number" id="labALT"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Albumin (g/dL)</strong></label><br>
+<input type="number" step="0.1" id="labAlbumin"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+</div>
+
+
+<!-- GLUCOSE -->
+
+<div class="clinical-box">
+
+<h3>Glucose / Diabetes</h3>
+
+<label><strong>Glucose (mg/dL)</strong></label><br>
+<input type="number" id="labGlucose"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>A1c (%)</strong></label><br>
+<input type="number" step="0.1" id="labA1c"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Known diabetes</strong></label><br>
+<select id="labDiabetes"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Ketones / anion-gap acidosis concern</strong></label><br>
+<select id="labKetones"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+</div>
+
+
+<!-- COAGS -->
+
+<div class="clinical-box">
+
+<h3>Coagulation</h3>
+
+<label><strong>PT (seconds)</strong></label><br>
+<input type="number" step="0.1" id="labPT"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>INR</strong></label><br>
+<input type="number" step="0.01" id="labINR"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>PTT (seconds)</strong></label><br>
+<input type="number" step="0.1" id="labPTT"
+style="width:95%;padding:10px;margin:6px 0 14px;"><br>
+
+<label><strong>Currently anticoagulated</strong></label><br>
+<select id="labAnticoag"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Anticoagulation plan confirmed</strong></label><br>
+<select id="labAnticoagPlan"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="N/A">N/A</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+
+</div>
+
+
+<!-- UA -->
+
+<div class="clinical-box">
+
+<h3>Urinalysis / Infection Context</h3>
+
+<label><strong>Urinary symptoms</strong></label><br>
+<select id="labUrinarySymptoms"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Leukocyte esterase</strong></label><br>
+<select id="labLE"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="Negative">Negative</option>
+<option value="Trace">Trace</option>
+<option value="Positive">Positive</option>
+</select>
+
+<label><strong>Nitrite</strong></label><br>
+<select id="labNitrite"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="Negative">Negative</option>
+<option value="Positive">Positive</option>
+</select>
+
+<label><strong>Urine WBC / pyuria</strong></label><br>
+<select id="labPyuria"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No / insignificant</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Urine culture</strong></label><br>
+<select id="labCulture"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="Not obtained">Not obtained</option>
+<option value="Negative">Negative</option>
+<option value="Positive">Positive</option>
+<option value="Mixed flora">Mixed flora / contamination suspected</option>
+</select>
+
+<label><strong>Systemic infection concern / fever</strong></label><br>
+<select id="labSystemicInfection"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+</div>
+
+
+<!-- CONTEXT -->
+
+<div class="clinical-box">
+
+<h3>Clinical Context</h3>
+
+<label><strong>Known chronic kidney disease</strong></label><br>
+<select id="labCKD"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Acute change from baseline creatinine / suspected AKI</strong></label><br>
+<select id="labAKI"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Dialysis</strong></label><br>
+<select id="labDialysis"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Expected moderate/major surgical blood loss</strong></label><br>
+<select id="labBloodLoss"
+style="width:95%;padding:10px;margin:6px 0 14px;">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+
+<label><strong>Additional lab comments</strong></label><br>
+<textarea id="labComments" rows="5"
+style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
+
+</div>
+
+
+<!-- BUTTONS -->
+
+<div class="clinical-box">
+
+<button type="button" id="labGenerate"
+style="
+background:#17324d;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Interpret Labs
+</button>
+
+<button type="button" id="labCopy"
+style="
+background:#274c6b;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Copy Interpretation
+</button>
+
+<button type="button" id="labPrint"
+style="
+background:#356f44;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Print
+</button>
+
+<button type="button" id="labClear"
+style="
+background:#8b2f2f;
+color:white;
+border:none;
+padding:14px 18px;
+font-weight:bold;
+font-size:16px;
+border-radius:8px;
+margin:6px;">
+Clear Patient Data
+</button>
+
+</div>
+
+
+<div id="labResult"
+style="
+display:none;
+margin-top:22px;
+padding:22px;
+background:white;
+border:1px solid #d8e1ec;
+border-radius:8px;">
+</div>
+
+</section>
+
+
+<style>
+
+@media print {
+
+body * {
+    visibility:hidden !important;
+}
+
+#labResult,
+#labResult * {
+    visibility:visible !important;
+}
+
+#labResult {
+    display:block !important;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    padding:20px;
+    border:none;
+    background:white;
+    color:black;
+}
+
+}
+
+</style>
+
+
+<script>
+
+function labVal(id) {
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : "";
+}
+
+
+function interpretPreopLabs() {
+
+    let findings = [];
+    let actions = [];
+    let pending = [];
+    let stop = [];
+
+    const wbc = parseFloat(labVal("labWBC"));
+    const hgb = parseFloat(labVal("labHgb"));
+    const mcv = parseFloat(labVal("labMCV"));
+    const platelets = parseFloat(labVal("labPlatelets"));
+
+    const ferritin = parseFloat(labVal("labFerritin"));
+    const tsat = parseFloat(labVal("labTSAT"));
+
+    const na = parseFloat(labVal("labNa"));
+    const k = parseFloat(labVal("labK"));
+    const co2 = parseFloat(labVal("labCO2"));
+    const bun = parseFloat(labVal("labBUN"));
+    const cr = parseFloat(labVal("labCr"));
+    const egfr = parseFloat(labVal("labEGFR"));
+    const ca = parseFloat(labVal("labCa"));
+    const mg = parseFloat(labVal("labMg"));
+    const albumin = parseFloat(labVal("labAlbumin"));
+
+    const glucose = parseFloat(labVal("labGlucose"));
+    const a1c = parseFloat(labVal("labA1c"));
+
+    const inr = parseFloat(labVal("labINR"));
+
+
+    /* =========================
+       CBC
+    ========================= */
+
+    if (!isNaN(wbc)) {
+
+        findings.push("WBC " + wbc + " K/µL.");
+
+        if (wbc >= 15) {
+            pending.push(
+                "Leukocytosis is present. Correlate with symptoms, infection, steroid use, inflammatory disease and baseline trend before elective surgery."
+            );
+        }
+
+        if (wbc < 3) {
+            pending.push(
+                "Leukopenia is present and requires review of severity, baseline, medications and infection risk."
+            );
+        }
+    }
+
+
+    if (!isNaN(hgb)) {
+
+        findings.push("Hemoglobin " + hgb + " g/dL.");
+
+        if (hgb < 12) {
+
+            let anemiaType = "";
+
+            if (!isNaN(mcv)) {
+
+                if (mcv < 80) {
+                    anemiaType = "microcytic";
+                } else if (mcv > 100) {
+                    anemiaType = "macrocytic";
+                } else {
+                    anemiaType = "normocytic";
+                }
+            }
+
+            findings.push(
+                "Anemia present" +
+                (anemiaType ? " with a " + anemiaType + " pattern." : ".")
+            );
+
+            if (
+                !isNaN(ferritin) &&
+                ferritin < 30
+            ) {
+
+                actions.push(
+                    "Low ferritin supports iron deficiency; evaluate source and consider preoperative iron replacement when clinically appropriate."
+                );
+            }
+
+            if (
+                !isNaN(tsat) &&
+                tsat < 20
+            ) {
+
+                actions.push(
+                    "Low transferrin saturation supports iron-restricted erythropoiesis; correlate with ferritin and inflammatory status."
+                );
+            }
+
+            if (
+                labVal("labBloodLoss") === "Yes"
+            ) {
+
+                pending.push(
+                    "Anemia is present before a procedure with expected blood loss. Determine etiology and whether optimization is indicated before surgery."
+                );
+            } else {
+
+                actions.push(
+                    "Review anemia chronicity, symptoms, etiology and procedure-related blood-loss risk."
+                );
+            }
+        }
+    }
+
+
+    if (!isNaN(platelets)) {
+
+        findings.push(
+            "Platelets " + platelets + " K/µL."
+        );
+
+        if (platelets < 100) {
+
+            pending.push(
+                "Thrombocytopenia requires review of severity, trend, bleeding risk, planned procedure and neuraxial/anesthesia requirements."
+            );
+        }
+
+        if (platelets > 600) {
+
+            pending.push(
+                "Marked thrombocytosis requires review of etiology and thrombotic/inflammatory context."
+            );
+        }
+    }
+
+
+    /* =========================
+       ELECTROLYTES
+    ========================= */
+
+    if (!isNaN(na)) {
+
+        findings.push("Sodium " + na + " mmol/L.");
+
+        if (na <= 125 || na >= 155) {
+
+            stop.push(
+                "Severe sodium abnormality requires evaluation and correction before routine elective surgery."
+            );
+
+        } else if (na < 130 || na > 150) {
+
+            pending.push(
+                "Clinically significant sodium abnormality requires review of cause, symptoms, chronicity and correction plan."
+            );
+        }
+    }
+
+
+    if (!isNaN(k)) {
+
+        findings.push("Potassium " + k + " mmol/L.");
+
+        if (k <= 2.8 || k >= 6.0) {
+
+            stop.push(
+                "Severe potassium abnormality requires prompt evaluation and correction before routine elective surgery."
+            );
+
+        } else if (k < 3.2 || k > 5.5) {
+
+            pending.push(
+                "Potassium abnormality requires repeat/confirmation and assessment of renal function, medications and EKG risk before final optimization."
+            );
+        }
+    }
+
+
+    if (!isNaN(co2)) {
+
+        findings.push(
+            "CO₂/bicarbonate " + co2 + " mmol/L."
+        );
+
+        if (co2 < 18) {
+
+            pending.push(
+                "Low bicarbonate may indicate metabolic acidosis. Review anion gap, renal function, diabetes/SGLT2 exposure and clinical context."
+            );
+        }
+    }
+
+
+    if (!isNaN(ca)) {
+
+        findings.push("Calcium " + ca + " mg/dL.");
+
+        if (ca < 7.5 || ca > 12.0) {
+
+            pending.push(
+                "Significant calcium abnormality requires confirmation, albumin correction when appropriate and clinical evaluation."
+            );
+        }
+    }
+
+
+    if (!isNaN(mg)) {
+
+        findings.push("Magnesium " + mg + " mg/dL.");
+
+        if (mg < 1.5) {
+
+            actions.push(
+                "Hypomagnesemia may increase arrhythmia risk and should generally be corrected when clinically appropriate."
+            );
+        }
+    }
+
+
+    /* =========================
+       RENAL
+    ========================= */
+
+    if (!isNaN(cr)) {
+        findings.push("Creatinine " + cr + " mg/dL.");
+    }
+
+    if (!isNaN(bun)) {
+        findings.push("BUN " + bun + " mg/dL.");
+    }
+
+    if (!isNaN(egfr)) {
+
+        findings.push(
+            "eGFR " + egfr + " mL/min/1.73m²."
+        );
+
+        if (egfr < 30) {
+
+            actions.push(
+                "Advanced renal dysfunction may affect medication dosing, fluid management, electrolyte stability and perioperative renal risk."
+            );
+        }
+    }
+
+
+    if (labVal("labAKI") === "Yes") {
+
+        pending.push(
+            "Acute change in renal function / suspected AKI requires evaluation of cause, volume status, nephrotoxins and stability before elective surgery."
+        );
+    }
+
+
+    if (labVal("labDialysis") === "Yes") {
+
+        pending.push(
+            "Dialysis timing, volume status, potassium and perioperative renal plan should be confirmed."
+        );
+    }
+
+
+    /* =========================
+       GLUCOSE / A1C
+    ========================= */
+
+    if (!isNaN(glucose)) {
+
+        findings.push(
+            "Glucose " + glucose + " mg/dL."
+        );
+
+        if (glucose < 70) {
+
+            pending.push(
+                "Hypoglycemia requires correction and medication review."
+            );
+
+        } else if (glucose >= 300) {
+
+            pending.push(
+                "Marked hyperglycemia requires assessment for dehydration, ketosis or metabolic decompensation."
+            );
+
+        } else if (
+            labVal("labDiabetes") === "Yes" &&
+            (glucose < 100 || glucose > 180)
+        ) {
+
+            actions.push(
+                "Glucose is outside the usual 100–180 mg/dL perioperative target; review diabetes medication and monitoring plan."
+            );
+        }
+    }
+
+
+    if (!isNaN(a1c)) {
+
+        findings.push(
+            "A1c " + a1c + "%."
+        );
+
+        if (a1c >= 8) {
+
+            actions.push(
+                "A1c is above the preferred elective-surgery goal of <8% when achievable. Assess current glucose control and whether further optimization would improve perioperative safety; A1c alone should not automatically determine postponement."
+            );
+        }
+    }
+
+
+    if (labVal("labKetones") === "Yes") {
+
+        stop.push(
+            "Ketone or anion-gap acidosis concern requires evaluation for ketoacidosis before elective surgery."
+        );
+    }
+
+
+    /* =========================
+       COAGS
+    ========================= */
+
+    if (!isNaN(inr)) {
+
+        findings.push("INR " + inr + ".");
+
+        if (
+            labVal("labAnticoag") === "No" &&
+            inr > 1.5
+        ) {
+
+            pending.push(
+                "Unexpected INR elevation requires evaluation for liver disease, vitamin K deficiency, medication effect or coagulation disorder."
+            );
+        }
+    }
+
+
+    if (
+        labVal("labAnticoag") === "Yes" &&
+        labVal("labAnticoagPlan") !== "Yes"
+    ) {
+
+        pending.push(
+            "Anticoagulation is present but the perioperative interruption/resumption plan is not confirmed."
+        );
+    }
+
+
+    /* =========================
+       UA / INFECTION
+    ========================= */
+
+    const abnormalUA =
+        labVal("labLE") === "Positive" ||
+        labVal("labNitrite") === "Positive" ||
+        labVal("labPyuria") === "Yes" ||
+        labVal("labCulture") === "Positive";
+
+
+    if (
+        labVal("labUrinarySymptoms") === "Yes"
+    ) {
+
+        pending.push(
+            "Urinary symptoms are present. Evaluate for symptomatic UTI and treat when clinically indicated before elective surgery."
+        );
+
+    } else if (abnormalUA) {
+
+        actions.push(
+            "Abnormal UA/culture without urinary symptoms may represent asymptomatic bacteriuria or contamination; avoid automatically labeling this as symptomatic UTI solely from screening results."
+        );
+    }
+
+
+    if (
+        labVal("labCulture") === "Mixed flora"
+    ) {
+
+        actions.push(
+            "Mixed-flora urine culture commonly suggests contamination; correlate with symptoms and specimen quality before treatment."
+        );
+    }
+
+
+    if (
+        labVal("labSystemicInfection") === "Yes"
+    ) {
+
+        stop.push(
+            "Systemic infection/fever concern requires evaluation and treatment before routine elective surgery."
+        );
+    }
+
+
+    /* =========================
+       NUTRITION / ALBUMIN
+    ========================= */
+
+    if (!isNaN(albumin)) {
+
+        findings.push(
+            "Albumin " + albumin + " g/dL."
+        );
+
+        if (albumin < 3.0) {
+
+            actions.push(
+                "Low albumin may reflect malnutrition, inflammation, liver disease or chronic illness and may increase postoperative risk; assess clinical context."
+            );
+        }
+    }
+
+
+    if (labVal("labComments")) {
+
+        findings.push(
+            "Additional comments: " +
+            labVal("labComments")
+        );
+    }
+
+
+    /* =========================
+       REMOVE DUPLICATES
+    ========================= */
+
+    findings = [...new Set(findings)];
+    actions = [...new Set(actions)];
+    pending = [...new Set(pending)];
+    stop = [...new Set(stop)];
+
+
+    /* =========================
+       STATUS
+    ========================= */
+
+    let status = "";
+    let reason = "";
+
+    if (stop.length > 0) {
+
+        status = "Not optimized";
+        reason = stop.join(" ");
+
+    } else if (pending.length > 0) {
+
+        status = "Pending";
+        reason = pending.join(" ");
+
+    } else {
+
+        status = "Optimized";
+        reason =
+            "No unresolved clinically significant laboratory abnormality was identified from the entered information.";
+    }
+
+
+    /* =========================
+       OUTPUT
+    ========================= */
+
+    let html = "";
+
+    html +=
+        "<h2>Preoperative Laboratory Interpretation</h2>";
+
+
+    if (findings.length > 0) {
+
+        html += "<h3>Laboratory Findings</h3><ul>";
+
+        findings.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    if (actions.length > 0) {
+
+        html +=
+            "<h3>Suggested Clinical Actions</h3><ul>";
+
+        actions.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    if (pending.length > 0) {
+
+        html +=
+            "<h3>Items Requiring Resolution</h3><ul>";
+
+        pending.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    if (stop.length > 0) {
+
+        html +=
+            "<h3>Current Significant Abnormality</h3><ul>";
+
+        stop.forEach(function(item) {
+            html += "<li>" + item + "</li>";
+        });
+
+        html += "</ul>";
+    }
+
+
+    html += "<hr>";
+
+    html +=
+        "<h3>FINAL PREOPERATIVE OPTIMIZATION STATUS</h3>";
+
+    html +=
+        "<p><strong>" +
+        status +
+        "</strong></p>";
+
+    html +=
+        "<p><strong>Reason:</strong> " +
+        reason +
+        "</p>";
+
+
+    if (status === "Optimized") {
+
+        html +=
+            "<div class='success-box'>" +
+            "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time." +
+            "</div>";
+    }
+
+
+    html += "<hr>";
+
+    html +=
+        "<h3>Copy-Ready Provider Documentation</h3>";
+
+    html +=
+        "<p>Preoperative laboratory results reviewed. ";
+
+
+    if (!isNaN(hgb)) {
+        html += "Hemoglobin " + hgb + " g/dL. ";
+    }
+
+    if (!isNaN(platelets)) {
+        html += "Platelets " + platelets + " K/µL. ";
+    }
+
+    if (!isNaN(cr)) {
+        html += "Creatinine " + cr + " mg/dL. ";
+    }
+
+    if (!isNaN(egfr)) {
+        html += "eGFR " + egfr + " mL/min/1.73m². ";
+    }
+
+    if (!isNaN(glucose)) {
+        html += "Glucose " + glucose + " mg/dL. ";
+    }
+
+    if (!isNaN(a1c)) {
+        html += "A1c " + a1c + "%. ";
+    }
+
+
+    html +=
+        "<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS: " +
+        status +
+        ".</strong> ";
+
+
+    if (status !== "Optimized") {
+
+        html +=
+            "Reason: " +
+            reason;
+
+    } else {
+
+        html +=
+            "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time.";
+    }
+
+
+    html += "</p>";
+
+
+    const result =
+        document.getElementById("labResult");
+
+    result.innerHTML = html;
+
+    result.style.display = "block";
+
+    result.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+}
+
+
+async function copyLabInterpretation() {
+
+    interpretPreopLabs();
+
+    const text =
+        document.getElementById("labResult").innerText;
+
+    try {
+
+        await navigator.clipboard.writeText(text);
+
+        alert("Laboratory interpretation copied.");
+
+    } catch (error) {
+
+        const temp =
+            document.createElement("textarea");
+
+        temp.value = text;
+
+        temp.style.position = "fixed";
+        temp.style.opacity = "0";
+
+        document.body.appendChild(temp);
+
+        temp.select();
+
+        document.execCommand("copy");
+
+        document.body.removeChild(temp);
+
+        alert("Laboratory interpretation copied.");
+    }
+}
+
+
+function printLabInterpretation() {
+
+    interpretPreopLabs();
+
+    setTimeout(function() {
+        window.print();
+    }, 150);
+}
+
+
+function clearLabInterpreter() {
+
+    const ok =
+        confirm(
+            "Clear all patient-specific laboratory information?"
+        );
+
+    if (!ok) return;
+
+
+    document
+        .querySelectorAll(
+            "#interactiveLabInterpreter input, #interactiveLabInterpreter textarea"
+        )
+        .forEach(function(el) {
+            el.value = "";
+        });
+
+
+    document
+        .querySelectorAll(
+            "#interactiveLabInterpreter select"
+        )
+        .forEach(function(el) {
+            el.selectedIndex = 0;
+        });
+
+
+    const result =
+        document.getElementById("labResult");
+
+    result.innerHTML = "";
+    result.style.display = "none";
+
+
+    document
+        .getElementById("interactiveLabInterpreter")
+        .scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+}
+
+
+document
+.getElementById("labGenerate")
+.addEventListener(
+    "click",
+    interpretPreopLabs
+);
+
+
+document
+.getElementById("labCopy")
+.addEventListener(
+    "click",
+    copyLabInterpretation
+);
+
+
+document
+.getElementById("labPrint")
+.addEventListener(
+    "click",
+    printLabInterpretation
+);
+
+
+document
+.getElementById("labClear")
+.addEventListener(
+    "click",
+    clearLabInterpreter
+);
+
+</script>
 
 </main>
 

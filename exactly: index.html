@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>TSJH Handbook of Preoperative Care</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #f4f7fa;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #123a63, #1e5b8f);
+      color: white;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.3rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.05rem;
+      max-width: 800px;
+      margin: auto;
+      opacity: 0.95;
+    }
+
+    nav {
+      background: #ffffff;
+      padding: 14px 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav a {
+      display: inline-block;
+      color: #174c7e;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 5px 10px;
+    }
+
+    nav a:hover {
+      color: #0f2f4e;
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 35px 20px;
+    }
+
+    .intro {
+      background: white;
+      padding: 28px;
+      border-radius: 14px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+      margin-bottom: 30px;
+    }
+
+    .intro h2 {
+      color: #174c7e;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      color: #123a63;
+      font-size: 1.6rem;
+      margin: 35px 0 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+      border-top: 5px solid #2c78ad;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.11);
+    }
+
+    .card h3 {
+      color: #174c7e;
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      color: #4b5563;
+      font-size: 0.95rem;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 12px;
+      color: #1d6698;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    .quick-reference {
+      background: #eaf3f9;
+      border-left: 6px solid #1e6b9e;
+      padding: 24px;
+      border-radius: 10px;
+      margin-top: 35px;
+    }
+
+    .quick-reference h2 {
+      color: #123a63;
+      margin-bottom: 12px;
+    }
+
+    .quick-reference ul {
+      padding-left: 22px;
+    }
+
+    .quick-reference li {
+      margin-bottom: 8px;
+    }
+
+    .disclaimer {
+      background: #fff8e6;
+      border-left: 6px solid #d39b26;
+      padding: 22px;
+      border-radius: 10px;
+      margin-top: 30px;
+      font-size: 0.92rem;
+    }
+
+    footer {
+      margin-top: 45px;
+      background: #123a63;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #dcecf7;
+      color: #174c7e;
+      font-weight: 700;
+      border-radius: 20px;
+      padding: 5px 11px;
+      margin-bottom: 10px;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 38px 18px;
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      nav a {
+        margin: 5px 6px;
+        font-size: 0.9rem;
+      }
+
+      .container {
+        padding: 25px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>TSJH Handbook of Preoperative Care</h1>
+  <p>
+    A practical clinical resource for preoperative assessment,
+    medical optimization, risk stratification, perioperative planning,
+    and interdisciplinary communication.
+  </p>
+</header>
+
+<nav>
+  <a href="#evaluation">Evaluation</a>
+  <a href="#cardiac">Cardiac</a>
+  <a href="#pulmonary">Pulmonary</a>
+  <a href="#testing">Testing</a>
+  <a href="#medications">Medications</a>
+  <a href="#tools">Screening Tools</a>
+  <a href="#forms">Forms</a>
+</nav>
+
+<main class="container">
+
+  <section class="intro">
+    <span class="badge">Clinical Reference</span>
+    <h2>Welcome</h2>
+    <p>
+      This handbook is designed to support consistent, evidence-informed
+      preoperative evaluation of patients undergoing elective spine,
+      orthopedic, pain-management, and other noncardiac procedures.
+    </p>
+    <br>
+    <p>
+      Content is organized for rapid clinical use by providers, nurses,
+      anesthesia personnel, surgeons, and other members of the perioperative team.
+    </p>
+  </section>
+
+  <h2 class="section-title" id="evaluation">Preoperative Evaluation</h2>
+
+  <section class="grid">
+
+    <div class="card">
+      <h3>Preoperative H&amp;P</h3>
+      <p>
+        Standardized history and physical examination, functional assessment,
+        risk screening, optimization, and perioperative planning.
+      </p>
+      <a href="#">Open Chapter →</a>
+    </div>
+
+    <div class="card">
+      <h3>Risk Stratification</h3>
+      <p>
+        Surgical risk classification, RCRI assessment, functional capacity,
+        frailty, pulmonary risk, and perioperative decision-making.
+      </p>
+      <a href="#">Open Chapter →</a>
+    </div>
+
+    <div class="card">
+      <h3>Optimization Status</h3>
+      <p>
+        Framework for determining whether a patient is Optimized, Pending,
+        or Not Optimized before elective surgery.
+      </p>
+      <a href="#">Open Chapter →</a>
+    </div>
+
+  </section>
+
+  <h2 class="section-title" id="cardiac">Cardiovascular Evaluation</h2>
+
+  <section class="grid">
+
+    <div class="card">
+      <h3>2024 AHA/ACC Guidance</h3>
+      <p>
+        Stepwise cardiovascular risk assessment for patients undergoing
+        noncardiac surgery.
+      </p>
+      <a href="#">Open Chapter →</a>
+    </div>
+
+    <div class="card">
+      <h3>RCRI &amp; BNP Screening</h3>
+      <p>
+        Guidance for Revised Cardiac Risk Index scoring and perioperative
+        BNP or NT-proBNP screening.
+      </p>
+      <a href="#">Open Chapter →</a>
+    </div>
+
+    <div class="card">
+      <h3>Cardiac Testing</h3>
+      <p>
+        ECG, echocardiography, stress testing, cardiac catheterization,
+        valvular disease, heart failure, arrhythmias, and implanted devices.
+      </p>
+      <a href="#">Open Chapter →</a>
+    </div>
+
+  </section>
+
+  <h2 class="section-title" id="pulmonary">Pulmonary &amp; Sleep Evaluation</h2>
+
+  <section class="grid">
+
+    <div class="card">
+      <h3>Obstructive Sleep Apnea</h3>
+      <p>
+        STOP-BANG screening, PAP therapy, postoperative monitoring,
+        oxygenation, and respiratory precautions.
+      </p>
+      <a href="#">Open Chapter →</a>
+    </div>
+
+    <div class="card">
+      <h3>COPD &amp; Pulmonary Disease</h3>
+      <p>
+        COPD severity, CAT, BODE, pulmonary function testing,
+        oxygen requirements, and perioperative pulmonary risk.
+      </p>
+      <a href="#">Open Chapter →</a>
+    </div>
+
+    <div class="card">
+      <h3>Pulmonary Function Tests</h3>
+      <p>
+        Practical interpretation of spirometry, lung volumes,
+        diffusion capacity, and clinically significant abnormalities.
+      </p>
+      <a href="#">Open Chapter →</a>
+    </div>
+
+  </section>
+
+  <h2 class="section-title" id="testing">Laboratory &amp; Diagnostic Testing</h2>
+
+  <section class="grid">
+
+    <div class="card">
+      <h3>Preoperative Laboratory Testing</h3>
+      <p>
+        CBC, BMP/CMP, coagulation studies, A1c, renal function,
+        anemia assessment, and abnormal laboratory follow-up.
+      </p>
+      <a href="#">Open Chapter →</a>
+    </div>
+
+    <div class="card">
+      <h3>Urinalysis &amp; Urine Culture</h3>
+      <p>
+        When abnormal urinalysis findings require treatment,
+        culture, additional evaluation, or no intervention.
+      </p>
+      <a href="#">Open Chapter →</a>
+    </div>
+
+    <div class="card">
+      <h3>ECG Interpretation</h3>
+      <p>
+        Common preoperative ECG findings and guidance regarding
+        which abnormalities require additional cardiovascular evaluation.
+      </p>
+      <a href="#">Open Chapter →</a>
+    </div>
+
+  </section>
+
+  <h2 class="section-title" id="medications">Medication Management</h2>
+
+  <section class="grid">
+
+    <div class="card">
+      <h3>Anticoagulants &amp; Antiplatelets</h3>
+      <p>
+        Perioperative interruption, resumption, procedural considerations,
+        and when additional guidance is required.
+      </p>
+      <a href="#">Open Chapter →</a>
+    </div>
+
+    <div class="card">
+      <h3>Diabetes Medications</h3>
+      <p>
+        Perioperative management of insulin, oral medications,
+        GLP-1 receptor agonists, and other glucose-lowering therapies.
+      </p>
+      <a href="#">Open Chapter →</a>
+    </div>
+
+    <div class="card">
+      <h3>Chronic Medications</h3>
+      <p>
+        Practical recommendations for antihypertensives,
+        psychiatric medications, steroids, supplements, and other therapies.
+      </p>
+      <a href="#">Open Chapter →</a>
+    </div>
+
+  </section>
+
+  <h2 class="section-title" id="tools">Screening &amp; Assessment Tools</h2>
+
+  <section class="grid">
+
+    <div class="card">
+      <h3>DASI</h3>
+      <p>
+        Self-reported Duke Activity Status Index for functional capacity assessment.
+      </p>
+      <a href="#">Open Tool →</a>
+    </div>
+
+    <div class="card">
+      <h3>STOP-BANG</h3>
+      <p>
+        Screening tool for identification of patients at increased risk
+        for obstructive sleep apnea.
+      </p>
+      <a href="#">Open Tool →</a>
+    </div>
+
+    <div class="card">
+      <h3>Clinical Frailty Scale</h3>
+      <p>
+        Standardized assessment of frailty and physiologic reserve.
+      </p>
+      <a href="#">Open Tool →</a>
+    </div>
+
+    <div class="card">
+      <h3>RCRI</h3>
+      <p>
+        Revised Cardiac Risk Index for prediction of perioperative
+        cardiovascular complications.
+      </p>
+      <a href="#">Open Tool →</a>
+    </div>
+
+    <div class="card">
+      <h3>Arozullah Respiratory Risk</h3>
+      <p>
+        Assessment of postoperative respiratory failure risk.
+      </p>
+      <a href="#">Open Tool →</a>
+    </div>
+
+    <div class="card">
+      <h3>CAT &amp; BODE</h3>
+      <p>
+        COPD symptom burden and multidimensional pulmonary disease assessment.
+      </p>
+      <a href="#">Open Tool →</a>
+    </div>
+
+  </section>
+
+  <h2 class="section-title" id="forms">Clinical Forms &amp; Checklists</h2>
+
+  <section class="grid">
+
+    <div class="card">
+      <h3>Provider Questionnaire</h3>
+      <p>
+        Structured preoperative provider assessment and optimization worksheet.
+      </p>
+      <a href="#">Open Form →</a>
+    </div>
+
+    <div class="card">
+      <h3>Nursing Questionnaire</h3>
+      <p>
+        Standardized nursing intake and preoperative screening form.
+      </p>
+      <a href="#">Open Form →</a>
+    </div>
+
+    <div class="card">
+      <h3>Anesthesia Patient Questionnaire</h3>
+      <p>
+        Patient-facing questionnaire designed to identify anesthesia
+        and perioperative risk factors.
+      </p>
+      <a href="#">Open Form →</a>
+    </div>
+
+    <div class="card">
+      <h3>Optimization Checklist</h3>
+      <p>
+        Final review checklist to identify unresolved concerns
+        and reduce preventable same-day cancellations.
+      </p>
+      <a href="#">Open Checklist →</a>
+    </div>
+
+  </section>
+
+  <section class="quick-reference">
+    <h2>Quick Reference</h2>
+    <ul>
+      <li>Confirm procedure, surgeon, and surgery date.</li>
+      <li>Identify active medical or cardiovascular concerns.</li>
+      <li>Assess functional capacity with DASI.</li>
+      <li>Calculate RCRI when indicated.</li>
+      <li>Screen for OSA using STOP-BANG.</li>
+      <li>Assess frailty with the Clinical Frailty Scale.</li>
+      <li>Review medications requiring perioperative adjustment.</li>
+      <li>Address clinically significant abnormal laboratory or diagnostic findings.</li>
+      <li>Document final preoperative optimization status.</li>
+    </ul>
+  </section>
+
+  <section class="disclaimer">
+    <strong>Clinical Disclaimer:</strong>
+    This handbook is intended as an educational and clinical decision-support
+    resource. It does not replace individualized clinical judgment, current
+    institutional policy, surgeon or anesthesia recommendations, specialist
+    consultation, or applicable evidence-based guidelines. Recommendations
+    should be reviewed and updated as standards of care evolve.
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>TSJH Handbook of Preoperative Care</strong></p>
+  <p>Preoperative Assessment • Optimization • Perioperative Risk Management</p>
+</footer>
+
+</body>
+</html>

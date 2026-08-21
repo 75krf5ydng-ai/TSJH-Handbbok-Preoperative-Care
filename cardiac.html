@@ -1388,7 +1388,7 @@ if (severeAS) {
     const msGradient = parseFloat(cvVal("cvMSGradient"));
     const pasp = parseFloat(cvVal("cvPASP"));
 
-    let significantMS =
+  let concerningMS =
         cvVal("cvMS") === "Moderate" ||
         cvVal("cvMS") === "Severe" ||
         (!isNaN(mva) && mva <= 1.5) ||
@@ -1396,13 +1396,16 @@ if (severeAS) {
         (!isNaN(pasp) && pasp > 50);
 
     if (
-        significantMS &&
+    concerningMS &&
+        
         cvVal("cvValveReview") !== "Yes"
     ) {
 
-        pending.push(
-            "Moderate/severe mitral stenosis parameters require cardiovascular review."
-        );
+      pending.push(
+    "Moderate/severe or otherwise concerning mitral stenosis parameters require cardiovascular review."
+);
+
+      
     }
 
 

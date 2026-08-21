@@ -58,7 +58,7 @@ header p {
   opacity: .95;
 }
 
-..top-nav {
+.top-nav {
   position: sticky;
   top: 0;
   z-index: 100;
@@ -304,6 +304,29 @@ footer {
 .warning-box {
   background: #fff4f2;
 }
+.status-table td {
+  color: #1f2933 !important;
+  background: #ffffff;
+}
+
+.success-box,
+.success-box strong,
+.success-box p,
+.gold-box,
+.gold-box strong,
+.gold-box p,
+.clinical-box,
+.clinical-box strong,
+.clinical-box p {
+  color: #1f2933 !important;
+}
+
+#searchMessage {
+  color: #17324d;
+  font-weight: 600;
+  text-align: center;
+  padding: 6px 12px;
+}
 </style>
 </head>
 
@@ -317,7 +340,7 @@ Clinical decision support for elective spine, joint, orthopedic, pain and
 noncardiac surgery — evaluation, optimization, testing, medication management,
 risk assessment and postoperative planning.
 </p>
-</
+
 </header>
 
 <div class="search-wrap">
@@ -382,27 +405,7 @@ Open Final Checklist
 </div>
 
 
-<section id="start">
 
-<h2>Search the Handbook</h2>
-
-<p>
-Type a topic, medication, condition or test to quickly locate the appropriate chapter.
-</p>
-
-<div class="search-wrap">
-<input
-type="text"
-id="chapterSearch"
-placeholder="Search: LBBB, anemia, PFT, Eliquis, GLP-1, BNP, OSA, wound, surveillance..."
-onkeyup="searchChapters()">
-</div>
-
-<div id="noResults" class="no-results">
-No matching handbook section was found.
-</div>
-
-</section>
 
 
 <section>
@@ -865,7 +868,6 @@ Preoperative Optimization Handbook · Clinical Education & Decision Support
 
 
 <script>
-
 function searchChaptersTop() {
   const input = document
     .getElementById("chapterSearchTop")
@@ -873,26 +875,57 @@ function searchChaptersTop() {
     .toLowerCase()
     .trim();
 
-  const cards = document.querySelectorAll(".searchable");
+  const sections = document.querySelectorAll("main section");
+  const heroCards = document.querySelectorAll(".hero-card");
+  const message = document.getElementById("searchMessage");
 
   let found = 0;
 
-  cards.forEach(function(card) {
+  heroCards.forEach(function(card) {
     const text = card.innerText.toLowerCase();
+    const match = input === "" || text.includes(input);
 
-    if (input === "" || text.includes(input)) {
-      card.style.display = "";
+    card.style.display = match ? "" : "none";
+
+    if (input !== "" && match) {
       found++;
-    } else {
-      card.style.display = "none";
     }
   });
 
-  const message = document.getElementById("searchMessage");
+  sections.forEach(function(section) {
+    const cards = section.querySelectorAll(".searchable");
+
+    if (cards.length === 0) {
+      section.style.display = "";
+      return;
+    }
+
+    let sectionMatches = 0;
+
+    cards.forEach(function(card) {
+      const text = card.innerText.toLowerCase();
+      const match = input === "" || text.includes(input);
+
+      card.style.display = match ? "" : "none";
+
+      if (match) {
+        sectionMatches++;
+        if (input !== "") found++;
+      }
+    });
+
+    section.style.display =
+      input === "" || sectionMatches > 0 ? "" : "none";
+  });
 
   if (message) {
     if (input !== "" && found === 0) {
-      message.textContent = "No matching handbook section was found.";
+      message.innerHTML =
+        "<strong>No matching handbook section was found.</strong>";
+    } else if (input !== "") {
+      message.textContent =
+        found + " matching handbook item" +
+        (found === 1 ? "" : "s") + " found.";
     } else {
       message.textContent = "";
     }

@@ -866,43 +866,37 @@ Preoperative Optimization Handbook · Clinical Education & Decision Support
 
 <script>
 
-function searchChapters() {
+function searchChaptersTop() {
+  const input = document
+    .getElementById("chapterSearchTop")
+    .value
+    .toLowerCase()
+    .trim();
 
-  const input =
-    document.getElementById("chapterSearch").value.toLowerCase().trim();
-
-  const cards =
-    document.querySelectorAll(".searchable");
+  const cards = document.querySelectorAll(".searchable");
 
   let found = 0;
 
   cards.forEach(function(card) {
+    const text = card.innerText.toLowerCase();
 
-    const text =
-      card.innerText.toLowerCase();
-
-    if (!input || text.includes(input)) {
-
+    if (input === "" || text.includes(input)) {
       card.style.display = "";
       found++;
-
     } else {
-
       card.style.display = "none";
-
     }
-
   });
 
-  document.getElementById("noResults").style.display =
-    found === 0 ? "block" : "none";
-}
-function searchChaptersTop() {
-  const topSearch = document.getElementById("chapterSearchTop");
-  const chapterSearch = document.getElementById("chapterSearch");
+  const message = document.getElementById("searchMessage");
 
-  chapterSearch.value = topSearch.value;
-  searchChapters();
+  if (message) {
+    if (input !== "" && found === 0) {
+      message.textContent = "No matching handbook section was found.";
+    } else {
+      message.textContent = "";
+    }
+  }
 }
 </script>
 

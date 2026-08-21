@@ -1054,10 +1054,52 @@ Use this patient-specific workflow to confirm preoperative medical review,
 identify unresolved issues, assign escalation needs, and generate the final
 preoperative optimization status.
 </p>
+<div class="formula-box">
+
+<h3>Free-Text Clinical Intake</h3>
+
+<p>
+Paste the patient's preoperative clinical information below. The analyzer will
+identify supported clinical values, medications and risk factors and place them
+into the interactive workflow for provider review.
 </p>
 
-<!-- paste the new Free-Text Clinical Intake block here -->
+<label><strong>Clinical information</strong></label><br>
 
+<textarea
+  id="pwFreeText"
+  rows="10"
+  placeholder="Example: 72-year-old female for right TKA with Dr. Smith. History of CHF, EF 40%, NYHA II, OSA intolerant of CPAP, sodium 129, Hgb 10.8, A1c 7.4, on Eliquis for atrial fibrillation. No recent CHF admission. No active angina."
+  style="width:95%;padding:10px;margin:6px 0 14px;"
+></textarea>
+
+<button
+  type="button"
+  id="pwAnalyzeText"
+  style="padding:12px 18px;margin:6px 8px 6px 0;font-weight:bold;"
+>
+Analyze & Populate Workflow
+</button>
+
+<button
+  type="button"
+  id="pwClearText"
+  style="padding:12px 18px;margin:6px 0;font-weight:bold;"
+>
+Clear Free Text
+</button>
+
+<div id="pwTextAnalysis"
+     style="margin-top:14px;padding:12px;background:#f4f7f9;border-radius:8px;">
+<strong>Detected information:</strong> Nothing analyzed yet.
+</div>
+
+<p style="font-size:.9rem;">
+<strong>Provider review required:</strong>
+Verify all extracted values against the source information before using the generated optimization plan.
+</p>
+
+</div>
 <div class="formula-box">
 
 <h3>Patient / Procedure</h3>

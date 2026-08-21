@@ -1913,26 +1913,21 @@ function evaluateSurveillanceReadiness() {
   ) {
 
     if (
-      survVal(
-        "survAneurysmConcern"
-      ) === "yes"
-    ) {
+  survVal("survAneurysmConcern") === "yes" ||
+  survVal("survAneurysmConcern") === "unknown"
+) {
 
-      pending.push(
-        "Aneurysm size or interval progression is unresolved. Review current measurements, growth trend and specialist recommendations before elective surgery."
-      );
+  pending.push(
+    "AAA/aortic aneurysm surveillance concern is unresolved. For AAA >4.0 cm, confirm serial imaging demonstrating stability and no interval growth, typically with studies approximately 1 year apart, or obtain appropriate cardiology/vascular evaluation before final optimization."
+  );
 
-    } else {
+} else {
 
-      actions.push(
-        "Stable aneurysm surveillance should follow the disease-specific imaging interval. Repeat imaging when currently due, when growth is suspected, or when the result could change perioperative management."
-      );
+  actions.push(
+    "For AAA >4.0 cm with serial imaging showing stability and no interval growth, typically on studies approximately 1 year apart, continued surveillance may proceed according to the established disease-specific interval. Repeat imaging or obtain cardiology/vascular review when surveillance is due, growth is suspected, symptoms are present, or stability cannot be confirmed."
+  );
 
-    }
-
-  }
-
-
+}
   if (
     type === "carotid"
   ) {

@@ -1712,7 +1712,12 @@ Copy Summary
 style="background:#356f44;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
 Print
 </button>
-
+<button
+type="button"
+id="pwPatientInstructions"
+style="background:#6b4f9e;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
+Open Patient Instructions
+</button>
 <button type="button" id="pwClear"
 style="background:#8b2f2f;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
 Clear
@@ -3497,7 +3502,16 @@ document
     "click",
     clearProviderWorkflow
   );
+document
+  .getElementById("pwClear")
+  .addEventListener(
+    "click",
+    clearProviderWorkflow
+  );
 
+// PASTE THE OPEN PATIENT INSTRUCTIONS CODE HERE
+
+</script>
 </script>
 
 </section>

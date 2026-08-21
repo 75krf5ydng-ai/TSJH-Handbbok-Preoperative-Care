@@ -58,13 +58,13 @@ header p {
   opacity: .95;
 }
 
-.top-nav {
+..top-nav {
   position: sticky;
   top: 0;
   z-index: 100;
   background: white;
   border-bottom: 1px solid var(--border);
-  padding: 11px 14px;
+  padding: 6px 8px;
   text-align: center;
   box-shadow: 0 1px 4px rgba(0,0,0,.04);
 }
@@ -73,9 +73,9 @@ header p {
   color: var(--navy);
   text-decoration: none;
   font-weight: bold;
-  margin: 5px 8px;
+  margin: 2px 5px;
   display: inline-block;
-  font-size: .92rem;
+  font-size: .82rem;
 }
 
 main {
@@ -296,7 +296,14 @@ footer {
 .alert {
   background: #fff4f2;
 }
+.warning-box,
+.warning-box strong {
+  color: var(--navy) !important;
+}
 
+.warning-box {
+  background: #fff4f2;
+}
 </style>
 </head>
 

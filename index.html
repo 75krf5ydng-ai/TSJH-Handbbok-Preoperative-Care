@@ -299,8 +299,7 @@ footer {
 
 </style>
 </head>
-</style>
-</head>
+
 
 <body>
 
@@ -317,15 +316,15 @@ risk assessment and postoperative planning.
 <div class="search-wrap">
   <input
     type="search"
-    id="homeSearch"
+    id="chapterSearchTop"
     placeholder="Search the Preoperative Optimization Handbook..."
     aria-label="Search handbook"
-    oninput="searchHandbook()"
+    oninput="searchChaptersTop()"
   >
   <div id="searchMessage"></div>
 </div>
 
-<nav class="top-nav">
+
 <nav class="top-nav">
 <a href="#start">Start Here</a>
 <a href="#cardiac">Cardiac</a>
@@ -891,7 +890,13 @@ function searchChapters() {
   document.getElementById("noResults").style.display =
     found === 0 ? "block" : "none";
 }
+function searchChaptersTop() {
+  const topSearch = document.getElementById("chapterSearchTop");
+  const chapterSearch = document.getElementById("chapterSearch");
 
+  chapterSearch.value = topSearch.value;
+  searchChapters();
+}
 </script>
 
 </body>

@@ -1054,7 +1054,13 @@ Use this patient-specific workflow to confirm preoperative medical review,
 identify unresolved issues, assign escalation needs, and generate the final
 preoperative optimization status.
 </p>
+</p>
 
+<!-- paste the new Free-Text Clinical Intake block here -->
+
+<div class="formula-box">
+
+<h3>Patient / Procedure</h3>
 <div class="formula-box">
 
 <h3>Patient / Procedure</h3>
@@ -1685,7 +1691,626 @@ function pwVal(id) {
   const el = document.getElementById(id);
   return el ? el.value : "";
 }
+// ---------- FREE-TEXT CLINICAL INTAKE ANALYZER ----------
 
+function pwSet(id, value) {
+  const el = document.getElementById(id);
+  if (el && value !== null && value !== undefined && value !== "") {
+    el.value = value;
+  }
+}
+
+function pwFirstNumber(text, patterns) {
+  for (const pattern of patterns) {
+    const match = text.match(pattern);
+    if (match && match[1] !== undefined) {
+      const value = parseFloat(match[1]);
+      if (!isNaN(value)) return value;
+    }
+  }
+  return null;
+}
+
+function pwHas(text, patterns) {
+  return patterns.some(function(pattern) {
+    return pattern.test(text);
+  });
+}
+
+function analyzeProviderFreeText() {
+
+  const source = document.getElementById("pwFreeText");
+  const analysisBox = document.getElementById("pwTextAnalysis");
+
+  if (!source) return;
+
+  const raw = source.value.trim();
+
+  if (!raw) {
+    if (analysisBox) {
+      analysisBox.innerHTML =
+        "<strong>Detected information:</strong> Enter clinical information first.";
+    }
+    return;
+  }
+
+  const text = raw.toLowerCase();
+  const detected = [];
+
+  // ---------- PROCEDURE ----------
+
+  const procedureMatch = raw.match(
+    /(?:for|planned|scheduled for|procedure[:\s]+)\s+([^.\n]+)/i
+  );
+
+  if (procedureMatch) {
+    let procedure = procedureMatch[1].trim();
+
+    procedure = procedure
+      .replace(/\s+with\s+dr\.?.*$/i, "")
+      .replace(/\s+by\s+dr\.?.*$/i, "")
+      .trim();
+
+    if (procedure.length > 2 && procedure.length < 120) {
+      pwSet("pwProcedure", procedure);
+      detected.push("Procedure");
+    }
+  }
+
+  // ---------- SURGEON ----------
+
+  const surgeonMatch = raw.match(
+    /(?:dr\.?|doctor)\s+([a-z][a-z'-]+)/i
+  );
+
+  if (surgeonMatch) {
+    pwSet("pwSurgeon", surgeonMatch[1]);
+    detected.push("Surgeon");
+  }
+
+  // ---------- EF ----------
+
+  const ef = pwFirstNumber(text, [
+    /\bef\s*[:=]?\s*(\d+(?:\.\d+)?)\s*%?/i,
+    /ejection fraction\s*(?:of|[:=])?\s*(\d+(?:\.\d+)?)\s*%?/i
+  ]);
+
+  if (ef !== null) {
+    pwSet("pwEF", ef);
+    detected.push("EF " + ef + "%");
+  }
+
+  // ---------- NYHA ----------
+
+  const nyhaMatch = raw.match(
+    /\bnyha\s*(?:class)?\s*(i{1,3}|iv|[1-4])\b/i
+  );
+
+  if (nyhaMatch) {
+    const nyhaMap = {
+      "1": "I",
+      "2": "II",
+      "3": "III",
+      "4": "IV",
+      "i": "I",
+      "ii": "II",
+      "iii": "III",
+      "iv": "IV"
+    };
+
+    const nyha = nyhaMap[nyhaMatch[1].toLowerCase()];
+
+    if (nyha) {
+      pwSet("pwNYHA", nyha);
+      detected.push("NYHA " + nyha);
+    }
+  }
+
+  // ---------- BNP / NT-proBNP ----------
+
+  const ntproBNP = pwFirstNumber(text, [
+    /\bnt[-\s]?probnp\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+  ]);
+
+  if (ntproBNP !== null) {
+    pwSet("pwNTproBNP", ntproBNP);
+    pwSet("pwBNP", "completed");
+    detected.push("NT-proBNP " + ntproBNP);
+  }
+
+  const bnp = pwFirstNumber(text, [
+    /(?<!nt[-\s]pro)\bbnp\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+  ]);
+
+  if (bnp !== null) {
+    pwSet("pwBNPValue", bnp);
+    pwSet("pwBNP", "completed");
+    detected.push("BNP " + bnp);
+  }
+
+  // ---------- PULMONARY HYPERTENSION ----------
+
+  const rvsp = pwFirstNumber(text, [
+    /\brvsp\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+  ]);
+
+  if (rvsp !== null) {
+    pwSet("pwRVSP", rvsp);
+    pwSet("pwPH", "yes");
+    detected.push("RVSP " + rvsp);
+  }
+
+  const paPressure = pwFirstNumber(text, [
+    /\b(?:pa pressure|pulmonary artery pressure|pasp)\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+  ]);
+
+  if (paPressure !== null) {
+    pwSet("pwPAPressure", paPressure);
+    pwSet("pwPH", "yes");
+    detected.push("PA pressure " + paPressure);
+  }
+
+  const trVelocity = pwFirstNumber(text, [
+    /\btr velocity\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+  ]);
+
+  if (trVelocity !== null) {
+    pwSet("pwTRVelocity", trVelocity);
+    detected.push("TR velocity " + trVelocity);
+  }
+
+  if (pwHas(text, [
+    /\bpulmonary hypertension\b/i,
+    /\bpulm(?:onary)? htn\b/i
+  ])) {
+    pwSet("pwPH", "yes");
+    detected.push("Pulmonary hypertension");
+  }
+
+  if (pwHas(text, [
+    /\bwho group 1\b/i,
+    /\bgroup 1 pulmonary hypertension\b/i
+  ])) {
+    pwSet("pwWHO1", "yes");
+    pwSet("pwPH", "yes");
+    detected.push("WHO Group 1 PH");
+  }
+
+  if (pwHas(text, [
+    /\bsevere tricuspid regurgitation\b/i,
+    /\bsevere tr\b/i
+  ])) {
+    pwSet("pwSevereTR", "yes");
+    detected.push("Severe TR");
+  }
+
+  if (pwHas(text, [
+    /\bmoderate[-\s]to[-\s]severe rv dysfunction\b/i,
+    /\bsevere rv dysfunction\b/i
+  ])) {
+    pwSet("pwRVDysfunction", "yes");
+    detected.push("RV dysfunction");
+  }
+
+  // ---------- VALVES ----------
+
+  const ava = pwFirstNumber(text, [
+    /\bava\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+    /aortic valve area\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+  ]);
+
+  if (ava !== null) {
+    pwSet("pwAVA", ava);
+    detected.push("AVA " + ava);
+  }
+
+  const gradient = pwFirstNumber(text, [
+    /\bmean gradient\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+  ]);
+
+  if (gradient !== null) {
+    pwSet("pwASGradient", gradient);
+    detected.push("Aortic gradient " + gradient);
+  }
+
+  const vmax = pwFirstNumber(text, [
+    /\bvmax\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+    /\bpeak velocity\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+  ]);
+
+  if (vmax !== null) {
+    pwSet("pwVmax", vmax);
+    detected.push("Vmax " + vmax);
+  }
+
+  if (pwHas(text, [
+    /\bmoderate[-\s]to[-\s]severe mitral stenosis\b/i,
+    /\bsevere mitral stenosis\b/i
+  ])) {
+    pwSet("pwMitralStenosis", "yes");
+    detected.push("Mitral stenosis");
+  }
+
+  // ---------- CARDIAC SYMPTOMS ----------
+
+  if (pwHas(text, [
+    /\bactive angina\b/i,
+    /\bcurrent angina\b/i,
+    /\bangina at rest\b/i
+  ])) {
+    pwSet("pwAngina", "yes");
+    detected.push("Active angina");
+  }
+
+  if (pwHas(text, [
+    /\bvolume overload\b/i,
+    /\bdecompensated heart failure\b/i,
+    /\bpulmonary edema\b/i
+  ])) {
+    pwSet("pwVolumeOverload", "yes");
+    detected.push("Volume overload");
+  }
+
+  if (pwHas(text, [
+    /\blbbb\b/i,
+    /\bleft bundle branch block\b/i
+  ])) {
+    pwSet("pwLBBB", "yes");
+    detected.push("LBBB");
+  }
+
+  // ---------- LABS ----------
+
+  const sodium = pwFirstNumber(text, [
+    /\b(?:sodium|na)\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+  ]);
+
+  if (sodium !== null) {
+    pwSet("pwSodium", sodium);
+    detected.push("Na " + sodium);
+  }
+
+  const potassium = pwFirstNumber(text, [
+    /\b(?:potassium|k)\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+  ]);
+
+  if (potassium !== null) {
+    pwSet("pwPotassium", potassium);
+    detected.push("K " + potassium);
+  }
+
+  const creatinine = pwFirstNumber(text, [
+    /\b(?:creatinine|cr)\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+  ]);
+
+  if (creatinine !== null) {
+    pwSet("pwCreatinine", creatinine);
+    detected.push("Cr " + creatinine);
+  }
+
+  const egfr = pwFirstNumber(text, [
+    /\begfr\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+  ]);
+
+  if (egfr !== null) {
+    pwSet("pwEGFR", egfr);
+    detected.push("eGFR " + egfr);
+  }
+
+  const bicarb = pwFirstNumber(text, [
+    /\b(?:bicarbonate|bicarb|co2)\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+  ]);
+
+  if (bicarb !== null) {
+    pwSet("pwBicarb", bicarb);
+    detected.push("CO2 " + bicarb);
+  }
+
+  const hgb = pwFirstNumber(text, [
+    /\b(?:hemoglobin|hgb|hb)\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+  ]);
+
+  if (hgb !== null) {
+    pwSet("pwHemoglobin", hgb);
+    detected.push("Hgb " + hgb);
+  }
+
+  const platelets = pwFirstNumber(text, [
+    /\b(?:platelets|plt|plts)\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+  ]);
+
+  if (platelets !== null) {
+    pwSet("pwPlatelets", platelets);
+    detected.push("Platelets " + platelets);
+  }
+
+  const glucose = pwFirstNumber(text, [
+    /\b(?:glucose|glu)\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+  ]);
+
+  if (glucose !== null) {
+    pwSet("pwGlucose", glucose);
+    detected.push("Glucose " + glucose);
+  }
+
+  const a1c = pwFirstNumber(text, [
+    /\b(?:a1c|hba1c)\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+  ]);
+
+  if (a1c !== null) {
+    pwSet("pwA1c", a1c);
+    detected.push("A1c " + a1c);
+  }
+
+  // ---------- COPD / OSA ----------
+
+  if (pwHas(text, [/\bcopd\b/i])) {
+    pwSet("pwCOPD", "yes");
+    detected.push("COPD");
+  }
+
+  const fev1 = pwFirstNumber(text, [
+    /\bfev1\s*[:=]?\s*(\d+(?:\.\d+)?)\s*%?/i
+  ]);
+
+  if (fev1 !== null) {
+    pwSet("pwFEV1", fev1);
+    detected.push("FEV1 " + fev1 + "%");
+  }
+
+  const cat = pwFirstNumber(text, [
+    /\bcat(?: score)?\s*[:=]?\s*(\d+)/i
+  ]);
+
+  if (cat !== null) {
+    pwSet("pwCAT", cat);
+    detected.push("CAT " + cat);
+  }
+
+  const bode = pwFirstNumber(text, [
+    /\bbode(?: score)?\s*[:=]?\s*(\d+)/i
+  ]);
+
+  if (bode !== null) {
+    pwSet("pwBODE", bode);
+    detected.push("BODE " + bode);
+  }
+
+  const arozullah = pwFirstNumber(text, [
+    /\barozullah(?: score)?\s*[:=]?\s*(\d+)/i
+  ]);
+
+  if (arozullah !== null) {
+    pwSet("pwArozullah", arozullah);
+    detected.push("Arozullah " + arozullah);
+  }
+
+  if (pwHas(text, [
+    /\b24[-\s]?hour oxygen\b/i,
+    /\bcontinuous oxygen\b/i,
+    /\bhome oxygen continuously\b/i
+  ])) {
+    pwSet("pwContinuousO2", "yes");
+    detected.push("Continuous oxygen");
+  }
+
+  if (pwHas(text, [
+    /\bchronic hypercapnic respiratory failure\b/i,
+    /\bchronic hypercapnia\b/i
+  ])) {
+    pwSet("pwHypercapnia", "yes");
+    detected.push("Chronic hypercapnia");
+  }
+
+  if (pwHas(text, [
+    /\bidiopathic pulmonary fibrosis\b/i,
+    /\bipf\b/i
+  ])) {
+    pwSet("pwIPF", "yes");
+    detected.push("IPF");
+  }
+
+  if (pwHas(text, [
+    /\bosa\b/i,
+    /\bobstructive sleep apnea\b/i
+  ])) {
+    pwSet("pwOSA", "yes");
+    detected.push("OSA");
+  }
+
+  if (pwHas(text, [
+    /\bcpap\b/i,
+    /\bbipap\b/i,
+    /\bpap therapy\b/i
+  ])) {
+    pwSet("pwPAP", "yes");
+  }
+
+  if (pwHas(text, [
+    /\bcpap intolerant\b/i,
+    /\bpap intolerant\b/i,
+    /\bdoes not tolerate cpap\b/i,
+    /\bnot using cpap\b/i
+  ])) {
+    pwSet("pwPAP", "yes");
+    pwSet("pwPAPTolerance", "no");
+    detected.push("PAP intolerance");
+  } else if (
+    pwHas(text, [
+      /\buses cpap\b/i,
+      /\bcompliant with cpap\b/i,
+      /\busing pap\b/i
+    ])
+  ) {
+    pwSet("pwPAP", "yes");
+    pwSet("pwPAPTolerance", "yes");
+    detected.push("PAP use");
+  }
+
+  // ---------- ANTICOAGULANTS / ANTIPLATELETS ----------
+
+  const medicationMap = [
+    ["eliquis", /\b(?:eliquis|apixaban)\b/i],
+    ["xarelto", /\b(?:xarelto|rivaroxaban)\b/i],
+    ["savaysa", /\b(?:savaysa|edoxaban)\b/i],
+    ["pradaxa", /\b(?:pradaxa|dabigatran)\b/i],
+    ["warfarin", /\b(?:warfarin|coumadin)\b/i],
+    ["plavix", /\b(?:plavix|clopidogrel)\b/i],
+    ["brilinta", /\b(?:brilinta|ticagrelor)\b/i],
+    ["lovenox", /\b(?:lovenox|enoxaparin)\b/i],
+    ["aspirin", /\b(?:aspirin|asa)\b/i]
+  ];
+
+  for (const item of medicationMap) {
+    if (item[1].test(text)) {
+      pwSet("pwAntithrombotic", item[0]);
+      detected.push(item[0]);
+      break;
+    }
+  }
+
+  if (pwHas(text, [
+    /\brecent pci\b/i,
+    /\bcoronary stent\b/i,
+    /\bdrug[-\s]?eluting stent\b/i,
+    /\bbare[-\s]?metal stent\b/i
+  ])) {
+    pwSet("pwPCI", "yes");
+    detected.push("PCI/stent");
+  }
+
+  if (pwHas(text, [
+    /\bdual antiplatelet\b/i,
+    /\bdapt\b/i
+  ])) {
+    pwSet("pwDAPT", "yes");
+    detected.push("DAPT");
+  }
+
+  // ---------- SGLT2 ----------
+
+  const sgltMap = [
+    ["empagliflozin", /\b(?:empagliflozin|jardiance)\b/i],
+    ["dapagliflozin", /\b(?:dapagliflozin|farxiga)\b/i],
+    ["canagliflozin", /\b(?:canagliflozin|invokana)\b/i],
+    ["ertugliflozin", /\b(?:ertugliflozin|steglatro)\b/i]
+  ];
+
+  for (const item of sgltMap) {
+    if (item[1].test(text)) {
+      pwSet("pwSGLT2", item[0]);
+      detected.push("SGLT2 inhibitor");
+      break;
+    }
+  }
+
+  // ---------- GLP-1 ----------
+
+  if (pwHas(text, [
+    /\bsemaglutide\b/i,
+    /\bozempic\b/i,
+    /\bwegovy\b/i,
+    /\brybelsus\b/i,
+    /\btirzepatide\b/i,
+    /\bmounjaro\b/i,
+    /\bzepbound\b/i,
+    /\bdulaglutide\b/i,
+    /\btrulicity\b/i,
+    /\bliraglutide\b/i,
+    /\bvictoza\b/i,
+    /\bsaxenda\b/i
+  ])) {
+    pwSet("pwGLP1", "yes");
+    detected.push("GLP-1 therapy");
+  }
+
+  if (pwHas(text, [
+    /\bdose escalation\b/i,
+    /\bescalation phase\b/i,
+    /\bsignificant nausea\b/i,
+    /\bvomiting\b/i,
+    /\bgastroparesis\b/i,
+    /\bdelayed gastric emptying\b/i
+  ])) {
+    pwSet("pwGLP1Risk", "yes");
+    detected.push("GLP-1 aspiration-risk feature");
+  }
+
+  // ---------- TYPE 1 / INSULIN PUMP ----------
+
+  if (pwHas(text, [
+    /\btype 1 diabetes\b/i,
+    /\btype i diabetes\b/i,
+    /\bt1dm\b/i
+  ])) {
+    pwSet("pwType1DM", "yes");
+    detected.push("Type 1 diabetes");
+  }
+
+  if (pwHas(text, [
+    /\binsulin pump\b/i,
+    /\bcontinuous subcutaneous insulin infusion\b/i,
+    /\bcsii\b/i
+  ])) {
+    pwSet("pwInsulinPump", "yes");
+    detected.push("Insulin pump");
+  }
+
+  // ---------- DIALYSIS ----------
+
+  if (pwHas(text, [
+    /\bhemodialysis\b/i,
+    /\bperitoneal dialysis\b/i,
+    /\bon dialysis\b/i
+  ])) {
+    pwSet("pwDialysis", "yes");
+    detected.push("Dialysis");
+  }
+
+  // ---------- DISPLAY DETECTED ITEMS ----------
+
+  if (analysisBox) {
+    if (detected.length > 0) {
+      analysisBox.innerHTML =
+        "<strong>Detected information:</strong><br>" +
+        detected.map(function(item) {
+          return "• " + item;
+        }).join("<br>") +
+        "<br><br><strong>Next:</strong> Review the populated fields, correct anything needed, then select Generate Provider Optimization Summary.";
+    } else {
+      analysisBox.innerHTML =
+        "<strong>Detected information:</strong> No supported structured values were confidently identified. Review the text and complete the workflow manually.";
+    }
+  }
+}
+
+function clearProviderFreeText() {
+  const source = document.getElementById("pwFreeText");
+  const analysisBox = document.getElementById("pwTextAnalysis");
+
+  if (source) source.value = "";
+
+  if (analysisBox) {
+    analysisBox.innerHTML =
+      "<strong>Detected information:</strong> Nothing analyzed yet.";
+  }
+}
+
+const pwAnalyzeTextButton = document.getElementById("pwAnalyzeText");
+if (pwAnalyzeTextButton) {
+  pwAnalyzeTextButton.addEventListener(
+    "click",
+    analyzeProviderFreeText
+  );
+}
+
+const pwClearTextButton = document.getElementById("pwClearText");
+if (pwClearTextButton) {
+  pwClearTextButton.addEventListener(
+    "click",
+    clearProviderFreeText
+  );
+}
 
 function generateProviderWorkflow() {
 

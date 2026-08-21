@@ -2,17 +2,18 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Patient Discharge Instructions & Education | Preoperative Optimization Handbook ~ Starkey</title>
+<title>Patient Preoperative Instructions & Education</title>
 
 <style>
 
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
-  background: #f5f7f9;
+  background: #f4f7f9;
   color: #1f2933;
   line-height: 1.55;
 }
@@ -26,18 +27,13 @@ header {
 
 header h1 {
   margin: 0 0 8px;
-  font-size: 2rem;
-}
-
-header p {
-  margin: 0;
 }
 
 nav {
-  background: #ffffff;
+  background: white;
   padding: 12px;
   text-align: center;
-  border-bottom: 1px solid #d7dee5;
+  border-bottom: 1px solid #d9e2ec;
 }
 
 nav a {
@@ -48,10 +44,11 @@ nav a {
   background: #17324d;
   color: white;
   border-radius: 6px;
+  font-weight: bold;
 }
 
 main {
-  max-width: 1000px;
+  max-width: 1050px;
   margin: auto;
   padding: 20px;
 }
@@ -61,7 +58,7 @@ section {
   padding: 22px;
   margin: 18px 0;
   border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
 }
 
 h2, h3 {
@@ -79,16 +76,16 @@ textarea {
   width: 96%;
   padding: 10px;
   margin-top: 5px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   border: 1px solid #aeb8c2;
   border-radius: 6px;
-  font-size: 1rem;
   box-sizing: border-box;
+  font-size: 1rem;
 }
 
 .checkbox-group label {
   display: block;
-  margin: 8px 0;
+  margin: 9px 0;
 }
 
 .checkbox-group input {
@@ -101,8 +98,8 @@ button {
   color: white;
   border: none;
   border-radius: 6px;
-  padding: 11px 16px;
-  margin: 6px 5px 6px 0;
+  padding: 12px 17px;
+  margin: 7px 5px 7px 0;
   font-size: .98rem;
   font-weight: bold;
   cursor: pointer;
@@ -119,6 +116,14 @@ button:hover {
   margin: 15px 0;
 }
 
+.education-box {
+  background: #fafcfd;
+  border: 1px solid #d0d9e2;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 0;
+}
+
 .pending-box {
   background: #fff8e7;
   border-left: 5px solid #d7a600;
@@ -126,23 +131,15 @@ button:hover {
   margin: 15px 0;
 }
 
-.patient-output {
-  background: white;
-  border: 2px solid #17324d;
-  padding: 24px;
-  margin-top: 20px;
-}
-
-.patient-output h2 {
-  text-align: center;
-}
-
-.education-box {
-  border: 1px solid #ccd5dd;
+.hloc-box {
+  background: #fff1f0;
+  border-left: 5px solid #b42318;
   padding: 15px;
   margin: 15px 0;
-  border-radius: 8px;
-  background: #fafcfd;
+}
+
+.output {
+  border: 2px solid #17324d;
 }
 
 .log-table {
@@ -155,23 +152,25 @@ button:hover {
 .log-table td {
   border: 1px solid #7d8994;
   padding: 8px;
-  text-align: left;
   height: 28px;
+  text-align: left;
 }
 
 .log-table th {
   background: #edf2f5;
 }
 
-.small {
+.footer-note {
+  border-top: 1px solid #ccd5dd;
+  margin-top: 25px;
+  padding-top: 14px;
   font-size: .9rem;
 }
 
-.footer-note {
-  margin-top: 28px;
-  padding-top: 15px;
-  border-top: 1px solid #cbd3da;
-  font-size: .88rem;
+hr {
+  border: 0;
+  border-top: 1px solid #d9e2ec;
+  margin: 24px 0;
 }
 
 @media print {
@@ -196,37 +195,41 @@ button:hover {
     box-shadow: none;
     border-radius: 0;
     margin: 0;
-    padding: 10px;
   }
 
-  .patient-output {
+  .output {
     border: none;
-    padding: 0;
-  }
-
-  button {
-    display: none;
   }
 
   .page-break {
     page-break-before: always;
   }
+
 }
 
 </style>
+
 </head>
 
 <body>
 
 <header>
-<h1>Patient Discharge Instructions & Education</h1>
-<p>Preoperative Optimization Handbook ~ Starkey</p>
+<h1>Patient Preoperative Instructions & Education</h1>
+<p>Patient-specific education and follow-up planning</p>
 </header>
 
 <nav>
+
 <a href="index.html">Home</a>
-<a href="provider-optimization-workflow.html">Provider Workflow</a>
-<a href="preop-questionnaires-forms.html">Forms</a>
+
+<a href="provider-optimization-workflow.html">
+Provider Workflow
+</a>
+
+<a href="patient-education-resources.html">
+Patient Education Search
+</a>
+
 </nav>
 
 <main>
@@ -235,118 +238,35 @@ button:hover {
 
 <h2>Create Patient Instructions</h2>
 
-<p>
-Use this tool to create patient-friendly preoperative instructions, education,
-pending follow-up requirements, and home monitoring logs after the
-preoperative evaluation.
-</p>
-
 <div class="notice">
+
 <strong>Provider review required:</strong>
-Review all generated instructions before printing or giving them to the patient.
-Do not enter patient-identifying information into a public website unless
-permitted by your organization.
+
+Generated instructions must be reviewed before being given to the patient.
+Patient-specific treatment decisions remain the responsibility of the
+clinical team.
+
 </div>
 
 <h3>Patient / Procedure</h3>
 
-<label><strong>Patient display name or initials</strong></label>
-<input type="text" id="piPatient" placeholder="Optional">
+<label><strong>Patient name or initials</strong></label>
+<input type="text" id="piPatient">
 
-<label><strong>Diagnosis / reason for surgery</strong></label>
-<input type="text" id="piDiagnosis" placeholder="Example: Primary osteoarthritis of right knee">
+<label><strong>Diagnosis / condition</strong></label>
+<input
+type="text"
+id="piDiagnosis"
+placeholder="Example: Hypertension, hypokalemia, anemia">
 
 <label><strong>Procedure</strong></label>
-<input type="text" id="piProcedure" placeholder="Example: Right total knee arthroplasty">
+<input type="text" id="piProcedure">
 
 <label><strong>Surgeon</strong></label>
-<input type="text" id="piSurgeon" placeholder="Example: Dr. Smith">
+<input type="text" id="piSurgeon">
 
 <label><strong>Surgery date</strong></label>
 <input type="date" id="piDate">
-
-<hr>
-
-<h3>Patient Education to Include</h3>
-
-<div class="checkbox-group">
-
-<label>
-<input type="checkbox" id="piGeneral" checked>
-General preoperative instructions
-</label>
-
-<label>
-<input type="checkbox" id="piDiagnosisEducation">
-Diagnosis / condition education
-</label>
-
-<label>
-<input type="checkbox" id="piHypertension">
-Hypertension education
-</label>
-
-<label>
-<input type="checkbox" id="piBPLog">
-Blood pressure log
-</label>
-
-<label>
-<input type="checkbox" id="piDiabetes">
-Diabetes / glucose education
-</label>
-
-<label>
-<input type="checkbox" id="piGlucoseLog">
-Home glucose log
-</label>
-
-<label>
-<input type="checkbox" id="piAnemia">
-Anemia / iron education
-</label>
-
-<label>
-<input type="checkbox" id="piOSA">
-Sleep apnea / PAP instructions
-</label>
-
-<label>
-<input type="checkbox" id="piCOPD">
-COPD / pulmonary education
-</label>
-
-<label>
-<input type="checkbox" id="piRenal">
-Kidney / renal precautions
-</label>
-
-<label>
-<input type="checkbox" id="piAnticoag">
-Anticoagulant / antiplatelet instructions
-</label>
-
-<label>
-<input type="checkbox" id="piDiabetesMeds">
-GLP-1 / SGLT2 / insulin instructions
-</label>
-
-<label>
-<input type="checkbox" id="piNutrition">
-Preoperative nutrition / protein education
-</label>
-
-<label>
-<input type="checkbox" id="piSmoking">
-Smoking / nicotine cessation
-</label>
-
-<label>
-<input type="checkbox" id="piFall">
-Fall prevention / frailty precautions
-</label>
-
-</div>
 
 <hr>
 
@@ -381,73 +301,271 @@ Pending repeat laboratory testing
 
 <label>
 <input type="checkbox" id="piPhlebotomy">
-Pending phlebotomy with repeat H&amp;H
+Pending therapeutic phlebotomy with repeat H&amp;H
+</label>
+
+<label>
+<input type="checkbox" id="piHigherLevelCare">
+Surgery requires higher level of care / alternate facility
 </label>
 
 </div>
 
-<label><strong>Specialty / Referral Details</strong></label>
+<label><strong>Specialty / Referral</strong></label>
+
 <input
 type="text"
 id="piSpecialtyDetails"
-placeholder="Example: Cardiology, Pulmonology, Hematology, PCP, Vascular">
+placeholder="Cardiology, Pulmonology, Hematology, PCP, Vascular, etc.">
 
-<label><strong>Repeat Lab Details</strong></label>
-<input
-type="text"
-id="piRepeatLabDetails"
-placeholder="Example: Repeat CBC, BMP, sodium, potassium, H&H">
+<label><strong>Higher Level of Care Notes</strong></label>
 
-<label><strong>Pending Follow-Up Notes</strong></label>
 <textarea
-id="piPendingNotes"
+id="piHigherLevelCareNotes"
 rows="4"
-placeholder="Example: Cardiology evaluation scheduled 8/25. Repeat CBC after therapeutic phlebotomy.">
-</textarea>
-
-<label><strong>Additional Free-Text Instructions / Pending Items</strong></label>
-<textarea
-id="piFreeTextPending"
-rows="7"
-placeholder="Enter any additional pending evaluation, referral, medical records review, repeat testing, follow-up, or patient-specific instructions.">
+placeholder="Example: ICU availability and specialty services may be required postoperatively.">
 </textarea>
 
 <hr>
 
-<h3>Home Monitoring</h3>
+<h3>Repeat Laboratory Testing</h3>
 
-<label><strong>Blood pressure log length</strong></label>
+<label><strong>Tests to repeat</strong></label>
+
+<input
+type="text"
+id="piRepeatLabDetails"
+placeholder="CBC, BMP, sodium, potassium, H&H, etc.">
+
+<label><strong>Where will labs be drawn?</strong></label>
+
+<select id="piLabLocation">
+
+<option value="">Select</option>
+
+<option value="Return to preoperative clinic">
+Return to preoperative clinic
+</option>
+
+<option value="Primary care provider">
+Primary care provider
+</option>
+
+<option value="Outside laboratory">
+Outside laboratory
+</option>
+
+<option value="Other location">
+Other location
+</option>
+
+</select>
+
+<label><strong>Other lab location</strong></label>
+<input type="text" id="piOtherLabLocation">
+
+<label><strong>Complete labs by</strong></label>
+<input type="date" id="piLabDueDate">
+
+<hr>
+
+<h3>Urinary Symptoms / UTI</h3>
+
+<div class="checkbox-group">
+
+<label>
+<input type="checkbox" id="piUTI">
+UTI / urinary symptoms education
+</label>
+
+<label>
+<input type="checkbox" id="piCulturePending">
+Urine culture pending
+</label>
+
+<label>
+<input type="checkbox" id="piAntibioticSent">
+Antibiotic prescription sent
+</label>
+
+</div>
+
+<label><strong>UTI / culture instructions</strong></label>
+
+<textarea
+id="piUTINotes"
+rows="4"
+placeholder="Example: Urine culture pending. Antibiotic may be changed based on final culture results.">
+</textarea>
+
+<hr>
+
+<h3>Electrolyte Education</h3>
+
+<div class="checkbox-group">
+
+<label>
+<input type="checkbox" id="piHypokalemia">
+Hypokalemia / low potassium
+</label>
+
+<label>
+<input type="checkbox" id="piHyponatremia">
+Hyponatremia / low sodium
+</label>
+
+<label>
+<input type="checkbox" id="piHyperkalemia">
+Hyperkalemia / high potassium
+</label>
+
+<label>
+<input type="checkbox" id="piOtherElectrolyte">
+Other electrolyte abnormality
+</label>
+
+</div>
+
+<label><strong>Other electrolyte / instructions</strong></label>
+
+<textarea
+id="piElectrolyteNotes"
+rows="4"
+placeholder="Example: Low magnesium; repeat magnesium after replacement.">
+</textarea>
+
+<hr>
+
+<h3>Medication / Prescription Education</h3>
+
+<div class="checkbox-group">
+
+<label>
+<input type="checkbox" id="piPrescriptionSent">
+Prescription sent
+</label>
+
+<label>
+<input type="checkbox" id="piMedicationEducation">
+Include medication education
+</label>
+
+<label>
+<input type="checkbox" id="piAnticoag">
+Blood thinner / antiplatelet education
+</label>
+
+<label>
+<input type="checkbox" id="piDiabetesMeds">
+GLP-1 / SGLT2 / insulin education
+</label>
+
+</div>
+
+<label><strong>Medication / prescription name</strong></label>
+<input type="text" id="piMedicationName">
+
+<label><strong>Medication instructions</strong></label>
+
+<textarea
+id="piMedicationInstructions"
+rows="5"
+placeholder="Example: Potassium chloride prescription sent. Take exactly as prescribed. Repeat potassium as directed.">
+</textarea>
+
+<hr>
+
+<h3>Additional Education</h3>
+
+<div class="checkbox-group">
+
+<label>
+<input type="checkbox" id="piGeneral" checked>
+General preoperative instructions
+</label>
+
+<label>
+<input type="checkbox" id="piDiagnosisEducation">
+Diagnosis / condition education
+</label>
+
+<label>
+<input type="checkbox" id="piHypertension">
+Hypertension education
+</label>
+
+<label>
+<input type="checkbox" id="piBPLog">
+Blood pressure log
+</label>
+
+<label>
+<input type="checkbox" id="piDiabetes">
+Diabetes education
+</label>
+
+<label>
+<input type="checkbox" id="piGlucoseLog">
+Glucose log
+</label>
+
+<label>
+<input type="checkbox" id="piAnemia">
+Anemia / iron education
+</label>
+
+<label>
+<input type="checkbox" id="piOSA">
+OSA / PAP education
+</label>
+
+<label>
+<input type="checkbox" id="piCOPD">
+COPD / pulmonary education
+</label>
+
+<label>
+<input type="checkbox" id="piRenal">
+Kidney / renal education
+</label>
+
+</div>
+
+<label><strong>Blood Pressure Log</strong></label>
+
 <select id="piBPDays">
 <option value="7">7 days</option>
 <option value="14">14 days</option>
 </select>
 
-<label><strong>Medication instructions</strong></label>
+<hr>
+
+<h3>Free-Text Patient Instructions</h3>
+
 <textarea
-id="piMedicationInstructions"
-rows="5"
-placeholder="Example: Follow the medication hold instructions provided by your preoperative team. Bring an updated medication list on the day of surgery.">
+id="piFreeText"
+rows="8"
+placeholder="Enter any other patient-specific education, follow-up, testing, referrals, precautions, or instructions.">
 </textarea>
 
-<label><strong>Follow-up / testing needed before surgery</strong></label>
-<textarea
-id="piFollowUp"
-rows="5"
-placeholder="Example: Repeat sodium Monday. Send blood pressure readings to PCP. Obtain BNP before final optimization.">
-</textarea>
+<hr>
 
-<label><strong>Additional patient instructions</strong></label>
-<textarea
-id="piAdditional"
-rows="5"
-placeholder="Example: Bring CPAP to the hospital. Stay well hydrated unless instructed otherwise.">
-</textarea>
+<h3>Emergency / Return Precautions</h3>
 
-<button type="button" onclick="generatePatientInstructions()">
+<div class="checkbox-group">
+
+<label>
+<input type="checkbox" id="piERPrecautions">
+Include general urgent / emergency precautions
+</label>
+
+</div>
+
+<button type="button" onclick="generateInstructions()">
 Generate Patient Instructions
 </button>
 
-<button type="button" onclick="copyPatientInstructions()">
+<button type="button" onclick="copyInstructions()">
 Copy Instructions
 </button>
 
@@ -455,55 +573,68 @@ Copy Instructions
 Print
 </button>
 
-<button type="button" onclick="clearPatientInstructions()">
+<button type="button" onclick="clearForm()">
 Clear
 </button>
 
 </section>
 
-<section id="piOutputSection" style="display:none;">
-<div id="piOutput" class="patient-output"></div>
+<section
+id="outputSection"
+class="output"
+style="display:none;">
+
+<div id="output"></div>
+
 </section>
 
 </main>
 
 <script>
 
-function checked(id) {
-  const el = document.getElementById(id);
-  return el && el.checked;
-}
+function val(id) {
 
-function value(id) {
   const el = document.getElementById(id);
+
   return el ? el.value.trim() : "";
 }
 
-function escapeHTML(text) {
+function checked(id) {
+
+  const el = document.getElementById(id);
+
+  return el && el.checked;
+}
+
+function esc(text) {
+
   return text
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 }
 
-function buildBPLog(days) {
+function makeBPLog(days) {
 
   let html = `
+
     <div class="page-break"></div>
 
     <h2>Home Blood Pressure Log</h2>
 
     <div class="education-box">
 
-      <strong>How to check your blood pressure:</strong>
+      <p>
+      Check your blood pressure according to the instructions from your
+      healthcare team.
+      </p>
 
       <ul>
         <li>Sit quietly for about 5 minutes before checking.</li>
-        <li>Sit with your back supported and feet flat on the floor.</li>
-        <li>Keep your arm supported near heart level.</li>
-        <li>Do not talk during the reading.</li>
-        <li>Record blood pressure, heart rate, symptoms, and notes.</li>
-        <li>Follow the blood-pressure goals and call instructions provided by your healthcare team.</li>
+        <li>Keep your back supported and feet flat on the floor.</li>
+        <li>Keep the arm supported near heart level.</li>
+        <li>Do not talk during the measurement.</li>
+        <li>Record your blood pressure, heart rate, symptoms, and notes.</li>
       </ul>
 
     </div>
@@ -513,7 +644,7 @@ function buildBPLog(days) {
       <tr>
         <th>Date</th>
         <th>Time</th>
-        <th>Blood Pressure</th>
+        <th>BP</th>
         <th>Heart Rate</th>
         <th>Symptoms</th>
         <th>Notes</th>
@@ -523,6 +654,7 @@ function buildBPLog(days) {
   for (let i = 0; i < days * 2; i++) {
 
     html += `
+
       <tr>
         <td></td>
         <td></td>
@@ -539,17 +671,13 @@ function buildBPLog(days) {
   return html;
 }
 
-function buildGlucoseLog() {
+function makeGlucoseLog() {
 
   let html = `
+
     <div class="page-break"></div>
 
     <h2>Home Glucose Log</h2>
-
-    <p>
-      Check your blood sugar at the times recommended by your healthcare team.
-      Record your results and bring or send the log when requested.
-    </p>
 
     <table class="log-table">
 
@@ -559,13 +687,14 @@ function buildGlucoseLog() {
         <th>Glucose</th>
         <th>Meal / Fasting</th>
         <th>Medication / Insulin</th>
-        <th>Symptoms / Notes</th>
+        <th>Notes</th>
       </tr>
   `;
 
   for (let i = 0; i < 20; i++) {
 
     html += `
+
       <tr>
         <td></td>
         <td></td>
@@ -582,126 +711,69 @@ function buildGlucoseLog() {
   return html;
 }
 
-function generatePatientInstructions() {
+function generateInstructions() {
 
-  const patient =
-    escapeHTML(value("piPatient"));
+  const patient = esc(val("piPatient"));
 
-  const diagnosis =
-    escapeHTML(value("piDiagnosis"));
+  const diagnosis = esc(val("piDiagnosis"));
 
-  const procedure =
-    escapeHTML(value("piProcedure"));
+  const procedure = esc(val("piProcedure"));
 
-  const surgeon =
-    escapeHTML(value("piSurgeon"));
+  const surgeon = esc(val("piSurgeon"));
 
-  const surgeryDate =
-    escapeHTML(value("piDate"));
-
-  const meds =
-    escapeHTML(value("piMedicationInstructions"));
-
-  const followUp =
-    escapeHTML(value("piFollowUp"));
-
-  const additional =
-    escapeHTML(value("piAdditional"));
-
-  const specialtyDetails =
-    escapeHTML(value("piSpecialtyDetails"));
-
-  const repeatLabDetails =
-    escapeHTML(value("piRepeatLabDetails"));
-
-  const pendingNotes =
-    escapeHTML(value("piPendingNotes"));
-
-  const freeTextPending =
-    escapeHTML(value("piFreeTextPending"));
+  const surgeryDate = esc(val("piDate"));
 
   let html = `
 
     <h2>Preoperative Patient Instructions</h2>
 
     <p>
-      <strong>Patient:</strong>
-      ${patient || "____________________________"}<br>
 
-      <strong>Diagnosis:</strong>
-      ${diagnosis || "____________________________"}<br>
+    <strong>Patient:</strong>
+    ${patient || "________________________"}<br>
 
-      <strong>Procedure:</strong>
-      ${procedure || "____________________________"}<br>
+    <strong>Diagnosis:</strong>
+    ${diagnosis || "________________________"}<br>
 
-      <strong>Surgeon:</strong>
-      ${surgeon || "____________________________"}<br>
+    <strong>Procedure:</strong>
+    ${procedure || "________________________"}<br>
 
-      <strong>Surgery Date:</strong>
-      ${surgeryDate || "____________________________"}
+    <strong>Surgeon:</strong>
+    ${surgeon || "________________________"}<br>
+
+    <strong>Surgery Date:</strong>
+    ${surgeryDate || "________________________"}
+
     </p>
   `;
 
-  if (checked("piGeneral")) {
+  if (checked("piHigherLevelCare")) {
 
     html += `
 
-      <div class="education-box">
+      <div class="hloc-box">
 
-        <h3>General Preoperative Instructions</h3>
+      <h3>Surgery Location / Higher Level of Care</h3>
 
-        <ul>
+      <p>
+      Your surgeon's office will contact you regarding next steps.
+      Based on your preoperative evaluation, your surgery will need to
+      proceed at a facility that can provide a higher level of care,
+      including ICU-level monitoring and specialty services if they are
+      needed after surgery.
+      </p>
 
-          <li>
-          Follow the fasting instructions provided by your surgical and anesthesia team.
-          </li>
+      <p>
+      Please wait for instructions from your surgeon's office regarding
+      scheduling and the appropriate surgical location.
+      </p>
 
-          <li>
-          Take or hold medications exactly as instructed by your healthcare team.
-          </li>
-
-          <li>
-          Bring an updated medication list on the day of surgery.
-          </li>
-
-          <li>
-          Bring required medical equipment such as CPAP/PAP when instructed.
-          </li>
-
-          <li>
-          Notify your surgical team if you develop fever, significant respiratory illness,
-          new infection, chest pain, worsening shortness of breath, or another major change
-          in your health before surgery.
-          </li>
-
-          <li>
-          Complete all requested testing, specialist visits, and follow-up before surgery.
-          </li>
-
-        </ul>
-
-      </div>
-    `;
-  }
-
-  if (checked("piDiagnosisEducation") && diagnosis) {
-
-    html += `
-
-      <div class="education-box">
-
-        <h3>Your Diagnosis / Condition</h3>
-
-        <p>
-          Your preoperative evaluation includes review of
-          <strong>${diagnosis}</strong>.
-        </p>
-
-        <p>
-          Follow the treatment, medication, activity, monitoring, and follow-up
-          recommendations provided by your healthcare team. Ask your healthcare
-          provider if you have questions about how this condition may affect surgery.
-        </p>
+      ${val("piHigherLevelCareNotes")
+        ? "<p>" +
+          esc(val("piHigherLevelCareNotes"))
+            .replace(/\n/g,"<br>") +
+          "</p>"
+        : ""}
 
       </div>
     `;
@@ -709,35 +781,31 @@ function generatePatientInstructions() {
 
   const pendingItems = [];
 
+  const specialty = esc(val("piSpecialtyDetails"));
+
   if (checked("piSpecialtyEval")) {
 
     pendingItems.push(
-      "Complete the requested specialty evaluation before surgery" +
-      (specialtyDetails
-        ? " with " + specialtyDetails
-        : "") +
-      "."
+      "Complete the requested specialty evaluation" +
+      (specialty ? " with " + specialty : "") +
+      " before surgery."
     );
   }
 
   if (checked("piSpecialtyClearance")) {
 
     pendingItems.push(
-      "Obtain the requested specialty clearance before surgery" +
-      (specialtyDetails
-        ? " from " + specialtyDetails
-        : "") +
-      "."
+      "Obtain the requested specialty clearance" +
+      (specialty ? " from " + specialty : "") +
+      " before surgery."
     );
   }
 
   if (checked("piReferral")) {
 
     pendingItems.push(
-      "Complete the requested specialty referral" +
-      (specialtyDetails
-        ? " to " + specialtyDetails
-        : "") +
+      "Complete the requested referral" +
+      (specialty ? " to " + specialty : "") +
       "."
     );
   }
@@ -745,38 +813,49 @@ function generatePatientInstructions() {
   if (checked("piRecords")) {
 
     pendingItems.push(
-      "Required medical records are pending review before the preoperative evaluation can be finalized."
+      "Medical records are pending review before the preoperative evaluation can be finalized."
     );
   }
 
   if (checked("piRepeatLabs")) {
 
-    pendingItems.push(
-      "Complete repeat laboratory testing before surgery" +
-      (repeatLabDetails
-        ? ": " + repeatLabDetails
-        : ".")
-    );
+    let labText =
+      "Repeat laboratory testing is required before the preoperative evaluation can be finalized";
+
+    if (val("piRepeatLabDetails")) {
+
+      labText +=
+        ": " +
+        esc(val("piRepeatLabDetails"));
+    }
+
+    if (val("piLabLocation")) {
+
+      labText +=
+        ". Lab draw location: " +
+        (
+          val("piLabLocation") === "Other location"
+          ? esc(val("piOtherLabLocation"))
+          : esc(val("piLabLocation"))
+        );
+    }
+
+    if (val("piLabDueDate")) {
+
+      labText +=
+        ". Complete by " +
+        esc(val("piLabDueDate"));
+    }
+
+    labText += ".";
+
+    pendingItems.push(labText);
   }
 
   if (checked("piPhlebotomy")) {
 
     pendingItems.push(
-      "Complete therapeutic phlebotomy as directed, followed by repeat hemoglobin and hematocrit (H&H) testing before final preoperative review."
-    );
-  }
-
-  if (pendingNotes) {
-
-    pendingItems.push(
-      pendingNotes.replace(/\n/g, "<br>")
-    );
-  }
-
-  if (freeTextPending) {
-
-    pendingItems.push(
-      freeTextPending.replace(/\n/g, "<br>")
+      "Complete therapeutic phlebotomy as directed and obtain repeat hemoglobin and hematocrit (H&H) before final preoperative review."
     );
   }
 
@@ -786,266 +865,256 @@ function generatePatientInstructions() {
 
       <div class="pending-box">
 
-        <h3>Pending Follow-Up Before Surgery</h3>
+      <h3>Pending Follow-Up Before Surgery</h3>
 
-        <p>
-          The following items need to be completed or reviewed before your
-          preoperative evaluation is finalized:
-        </p>
+      <ul>
 
-        <ul>
-
-          ${pendingItems.map(function(item) {
+      ${
+        pendingItems
+          .map(function(item) {
             return "<li>" + item + "</li>";
-          }).join("")}
+          })
+          .join("")
+      }
 
-        </ul>
-
-      </div>
-    `;
-  }
-
-  if (followUp) {
-
-    html += `
-
-      <div class="education-box">
-
-        <h3>Follow-Up Needed Before Surgery</h3>
-
-        <p>
-        ${followUp.replace(/\n/g, "<br>")}
-        </p>
+      </ul>
 
       </div>
     `;
   }
 
-  if (meds) {
+  if (checked("piHypokalemia")) {
 
     html += `
 
       <div class="education-box">
 
-        <h3>Medication Instructions</h3>
+      <h3>Low Potassium — Hypokalemia</h3>
 
-        <p>
-        ${meds.replace(/\n/g, "<br>")}
-        </p>
+      <p>
+      Your potassium level is lower than expected. Potassium helps your
+      muscles, nerves, and heart function normally.
+      </p>
+
+      <p>
+      Symptoms can include weakness, fatigue, muscle cramps, constipation,
+      or an abnormal heartbeat. Some people have no symptoms.
+      </p>
+
+      <ul>
+
+      <li>
+      Take potassium replacement only if prescribed or specifically
+      recommended by your healthcare team.
+      </li>
+
+      <li>
+      Do not increase potassium supplements on your own.
+      </li>
+
+      <li>
+      Complete repeat laboratory testing when instructed.
+      </li>
+
+      <li>
+      Ask your healthcare team whether dietary potassium changes are
+      appropriate for you, especially if you have kidney or heart disease.
+      </li>
+
+      </ul>
 
       </div>
     `;
   }
 
-  if (checked("piHypertension")) {
+  if (checked("piHyponatremia")) {
 
     html += `
 
       <div class="education-box">
 
-        <h3>High Blood Pressure</h3>
+      <h3>Low Sodium — Hyponatremia</h3>
 
-        <p>
-          Blood pressure can change with pain, stress, activity, medications,
-          and illness. Take your prescribed blood-pressure medications according
-          to the instructions from your healthcare team.
-        </p>
+      <p>
+      Your sodium level is lower than expected. Treatment depends on why
+      the sodium is low.
+      </p>
 
-        <ul>
+      <p>
+      Symptoms may include nausea, headache, weakness, fatigue,
+      confusion, or balance problems.
+      </p>
 
-          <li>Check your blood pressure at home if instructed.</li>
+      <ul>
 
-          <li>Keep a written log of your readings.</li>
+      <li>
+      Follow the fluid, medication, and dietary instructions provided by
+      your healthcare team.
+      </li>
 
-          <li>Bring or send your readings to your healthcare team when requested.</li>
+      <li>
+      Do not automatically increase salt, restrict fluids, or drink extra
+      water unless specifically instructed.
+      </li>
 
-          <li>
-          Seek urgent medical attention for severe symptoms such as chest pain,
-          severe shortness of breath, new neurologic symptoms, fainting, or other
-          emergency symptoms.
-          </li>
+      <li>
+      Complete repeat sodium testing when requested.
+      </li>
 
-        </ul>
+      </ul>
 
       </div>
     `;
   }
 
-  if (checked("piDiabetes")) {
+  if (checked("piHyperkalemia")) {
 
     html += `
 
       <div class="education-box">
 
-        <h3>Diabetes and Blood Sugar</h3>
+      <h3>High Potassium — Hyperkalemia</h3>
 
-        <ul>
+      <p>
+      Your potassium level is higher than expected. High potassium can
+      affect heart rhythm and may require prompt evaluation.
+      </p>
 
-          <li>
-          Follow your individualized diabetes medication and insulin instructions.
-          </li>
-
-          <li>
-          Do not completely stop basal insulin in type 1 diabetes unless specifically
-          directed by the treating clinical team.
-          </li>
-
-          <li>
-          Check glucose as instructed before surgery.
-          </li>
-
-          <li>
-          Report significant low or high blood sugar readings according to your
-          healthcare team's instructions.
-          </li>
-
-          <li>
-          Bring your glucose meter, continuous glucose monitor information,
-          or insulin-pump supplies when instructed.
-          </li>
-
-        </ul>
+      <p>
+      Follow medication, dietary, and repeat-laboratory instructions
+      exactly as directed.
+      </p>
 
       </div>
     `;
   }
 
-  if (checked("piAnemia")) {
+  if (
+    checked("piOtherElectrolyte") &&
+    val("piElectrolyteNotes")
+  ) {
 
     html += `
 
       <div class="education-box">
 
-        <h3>Anemia</h3>
+      <h3>Electrolyte Follow-Up</h3>
 
-        <p>
-          Anemia means the red blood cell or hemoglobin level is lower than expected.
-          Your healthcare team may recommend additional blood tests or treatment
-          before surgery.
-        </p>
-
-        <ul>
-
-          <li>
-          Take iron or other prescribed treatment exactly as directed.
-          </li>
-
-          <li>
-          Do not start additional iron or supplements unless recommended by your
-          healthcare team.
-          </li>
-
-          <li>
-          Complete repeat laboratory testing when requested.
-          </li>
-
-          <li>
-          Report worsening shortness of breath, chest pain, fainting,
-          severe weakness, or other significant symptoms promptly.
-          </li>
-
-        </ul>
+      <p>
+      ${
+        esc(val("piElectrolyteNotes"))
+          .replace(/\n/g,"<br>")
+      }
+      </p>
 
       </div>
     `;
   }
 
-  if (checked("piOSA")) {
+  if (
+    checked("piUTI") ||
+    checked("piCulturePending")
+  ) {
 
     html += `
 
       <div class="education-box">
 
-        <h3>Sleep Apnea / PAP</h3>
+      <h3>Urinary Symptoms / Urine Culture</h3>
 
-        <ul>
+      ${
+        checked("piCulturePending")
+        ? `
+          <p>
+          Your urine culture is still pending. Your healthcare team will
+          review the final result. Treatment may be started, changed, or
+          stopped depending on the culture result and your symptoms.
+          </p>
+        `
+        : ""
+      }
 
-          <li>
-          If you use CPAP, BiPAP, or another PAP device, bring it to the hospital
-          when instructed.
-          </li>
+      ${
+        checked("piUTI")
+        ? `
+          <p>
+          Symptoms of a urinary infection can include burning with
+          urination, urinary urgency or frequency, lower abdominal
+          discomfort, fever, or flank/back pain.
+          </p>
+        `
+        : ""
+      }
 
-          <li>
-          Use PAP whenever sleeping after surgery when recommended by your healthcare team.
-          </li>
+      ${
+        checked("piAntibioticSent")
+        ? `
+          <p>
+          An antibiotic prescription was sent. Take the medication
+          exactly as prescribed unless your healthcare team gives you
+          different instructions after reviewing the culture.
+          </p>
+        `
+        : ""
+      }
 
-          <li>
-          Tell the surgical and anesthesia team if you cannot tolerate your PAP device.
-          </li>
-
-          <li>
-          You may require additional oxygen or continuous oxygen-level monitoring
-          after surgery.
-          </li>
-
-        </ul>
+      ${
+        val("piUTINotes")
+        ? "<p>" +
+          esc(val("piUTINotes"))
+            .replace(/\n/g,"<br>") +
+          "</p>"
+        : ""
+      }
 
       </div>
     `;
   }
 
-  if (checked("piCOPD")) {
+  if (
+    checked("piPrescriptionSent") ||
+    checked("piMedicationEducation")
+  ) {
 
     html += `
 
       <div class="education-box">
 
-        <h3>COPD / Lung Health</h3>
+      <h3>Medication / Prescription Instructions</h3>
 
-        <ul>
+      ${
+        checked("piPrescriptionSent")
+        ? `
+          <p>
+          A prescription was sent as discussed. Take the medication
+          exactly as directed.
+          </p>
+        `
+        : ""
+      }
 
-          <li>
-          Use prescribed inhalers and pulmonary medications as directed.
-          </li>
+      ${
+        val("piMedicationName")
+        ? "<p><strong>Medication:</strong> " +
+          esc(val("piMedicationName")) +
+          "</p>"
+        : ""
+      }
 
-          <li>
-          Notify your surgical team for worsening wheezing, cough, fever,
-          increased sputum, or shortness of breath.
-          </li>
+      ${
+        val("piMedicationInstructions")
+        ? "<p>" +
+          esc(val("piMedicationInstructions"))
+            .replace(/\n/g,"<br>") +
+          "</p>"
+        : ""
+      }
 
-          <li>
-          Use incentive spirometry or breathing exercises when instructed.
-          </li>
-
-          <li>
-          Bring prescribed inhalers and respiratory equipment when instructed.
-          </li>
-
-        </ul>
-
-      </div>
-    `;
-  }
-
-  if (checked("piRenal")) {
-
-    html += `
-
-      <div class="education-box">
-
-        <h3>Kidney / Renal Precautions</h3>
-
-        <ul>
-
-          <li>
-          Follow fluid and medication instructions from your healthcare team.
-          </li>
-
-          <li>
-          Avoid starting new over-the-counter medicines or supplements without
-          checking with your healthcare team.
-          </li>
-
-          <li>
-          If you receive dialysis, follow the dialysis schedule provided for
-          the period around surgery.
-          </li>
-
-          <li>
-          Complete requested kidney-function and electrolyte testing before surgery.
-          </li>
-
-        </ul>
+      <p>
+      Contact the prescribing clinician or pharmacist if you have questions
+      about how to take the medication or if you develop a suspected
+      medication reaction.
+      </p>
 
       </div>
     `;
@@ -1057,19 +1126,18 @@ function generatePatientInstructions() {
 
       <div class="education-box">
 
-        <h3>Blood Thinners / Antiplatelet Medicines</h3>
+      <h3>Blood Thinners / Antiplatelet Medicines</h3>
 
-        <p>
-          Do not stop or restart a blood thinner or antiplatelet medicine unless
-          you have received specific instructions from the clinician responsible
-          for your perioperative plan.
-        </p>
+      <p>
+      Do not stop or restart your blood thinner or antiplatelet medicine
+      unless you have specific instructions from your healthcare team.
+      </p>
 
-        <p>
-          This is especially important for patients with coronary stents,
-          recent blood clots, atrial fibrillation, mechanical heart valves,
-          or dual antiplatelet therapy.
-        </p>
+      <p>
+      This is especially important if you have a coronary stent,
+      atrial fibrillation, a mechanical heart valve, or a history of
+      blood clots.
+      </p>
 
       </div>
     `;
@@ -1081,125 +1149,232 @@ function generatePatientInstructions() {
 
       <div class="education-box">
 
-        <h3>GLP-1 / SGLT2 / Insulin Medicines</h3>
+      <h3>Diabetes Medication Instructions</h3>
 
-        <ul>
+      <ul>
 
-          <li>
-          Follow your individualized medication-hold instructions.
-          </li>
+      <li>
+      Follow the individualized instructions you received for insulin,
+      GLP-1 medicines, and SGLT2 medicines.
+      </li>
 
-          <li>
-          SGLT2 medicines may require interruption several days before surgery.
-          </li>
+      <li>
+      Do not completely stop basal insulin in type 1 diabetes unless the
+      treating clinical team specifically directs you to do so.
+      </li>
 
-          <li>
-          GLP-1 medication management depends on symptoms, dose changes,
-          aspiration risk, and current anesthesia guidance.
-          </li>
+      <li>
+      Bring insulin pump or glucose-monitoring supplies when instructed.
+      </li>
 
-          <li>
-          Patients using insulin or insulin pumps need an individualized
-          perioperative insulin plan.
-          </li>
-
-        </ul>
+      </ul>
 
       </div>
     `;
   }
 
-  if (checked("piNutrition")) {
+  if (checked("piHypertension")) {
 
     html += `
 
       <div class="education-box">
 
-        <h3>Nutrition Before Surgery</h3>
+      <h3>High Blood Pressure</h3>
 
-        <ul>
+      <p>
+      Take your blood-pressure medicines according to the instructions
+      provided by your healthcare team.
+      </p>
 
-          <li>
-          Eat balanced meals with adequate protein unless you have been given
-          dietary restrictions.
-          </li>
-
-          <li>
-          Stay appropriately hydrated until your fasting instructions begin.
-          </li>
-
-          <li>
-          Follow kidney, diabetes, heart-failure, or other disease-specific
-          dietary restrictions when applicable.
-          </li>
-
-        </ul>
+      <p>
+      Check and record home blood-pressure readings if requested.
+      </p>
 
       </div>
     `;
   }
 
-  if (checked("piSmoking")) {
+  if (checked("piDiabetes")) {
 
     html += `
 
       <div class="education-box">
 
-        <h3>Smoking / Nicotine</h3>
+      <h3>Diabetes</h3>
 
-        <p>
-          Avoiding smoking and nicotine before and after surgery can improve
-          oxygen delivery, wound healing, and pulmonary recovery.
-          Follow your surgical team's nicotine policy.
-        </p>
+      <p>
+      Check your blood sugar as instructed and follow your individualized
+      medication and insulin plan.
+      </p>
 
       </div>
     `;
   }
 
-  if (checked("piFall")) {
+  if (checked("piAnemia")) {
 
     html += `
 
       <div class="education-box">
 
-        <h3>Fall Prevention</h3>
+      <h3>Anemia</h3>
 
-        <ul>
+      <p>
+      Anemia means your hemoglobin or red blood cell level is lower than
+      expected. Additional testing or treatment may be recommended before
+      surgery.
+      </p>
 
-          <li>
-          Use prescribed walkers, canes, or other assistive devices.
-          </li>
-
-          <li>
-          Remove loose rugs and other tripping hazards at home.
-          </li>
-
-          <li>
-          Use adequate lighting, especially at night.
-          </li>
-
-          <li>
-          Ask for assistance if you feel weak, dizzy, or unsteady.
-          </li>
-
-        </ul>
+      <p>
+      Take iron or other treatment only as directed and complete repeat
+      laboratory testing when requested.
+      </p>
 
       </div>
     `;
   }
 
-  if (additional) {
+  if (checked("piOSA")) {
 
     html += `
 
       <div class="education-box">
 
-        <h3>Additional Instructions</h3>
+      <h3>Sleep Apnea / PAP</h3>
 
-        <p>
-        ${additional.replace(/\n/g, "<br>")}
-        </p>
+      <p>
+      Bring your CPAP, BiPAP, or other PAP device when instructed.
+      Tell the anesthesia team if you are unable to tolerate PAP therapy.
+      </p>
+
+      </div>
+    `;
+  }
+
+  if (checked("piCOPD")) {
+
+    html += `
+
+      <div class="education-box">
+
+      <h3>COPD / Lung Health</h3>
+
+      <p>
+      Continue prescribed respiratory medications as instructed and notify
+      your healthcare team if you develop worsening wheezing, fever,
+      increasing cough, sputum, or shortness of breath.
+      </p>
+
+      </div>
+    `;
+  }
+
+  if (checked("piRenal")) {
+
+    html += `
+
+      <div class="education-box">
+
+      <h3>Kidney / Renal Precautions</h3>
+
+      <p>
+      Follow your healthcare team's fluid, medication, dialysis, and
+      laboratory instructions.
+      </p>
+
+      </div>
+    `;
+  }
+
+  if (
+    checked("piDiagnosisEducation") &&
+    diagnosis
+  ) {
+
+    html += `
+
+      <div class="education-box">
+
+      <h3>Your Diagnosis / Condition</h3>
+
+      <p>
+      Your healthcare team is monitoring
+      <strong>${diagnosis}</strong>.
+      Follow the treatment, testing, medication, and follow-up
+      recommendations provided to you.
+      </p>
+
+      </div>
+    `;
+  }
+
+  if (val("piFreeText")) {
+
+    html += `
+
+      <div class="education-box">
+
+      <h3>Additional Instructions</h3>
+
+      <p>
+      ${
+        esc(val("piFreeText"))
+          .replace(/\n/g,"<br>")
+      }
+      </p>
+
+      </div>
+    `;
+  }
+
+  if (checked("piERPrecautions")) {
+
+    html += `
+
+      <div class="hloc-box">
+
+      <h3>Urgent / Emergency Precautions</h3>
+
+      <p>
+      Seek urgent medical attention or emergency evaluation for severe or
+      worsening symptoms such as chest pain, severe shortness of breath,
+      fainting, severe weakness, new confusion, seizure, new stroke-like
+      symptoms, significant palpitations, inability to keep fluids down,
+      or another rapidly worsening medical condition.
+      </p>
+
+      </div>
+    `;
+  }
+
+  if (checked("piGeneral")) {
+
+    html += `
+
+      <div class="education-box">
+
+      <h3>General Preoperative Instructions</h3>
+
+      <ul>
+
+      <li>
+      Follow fasting instructions from your surgical and anesthesia team.
+      </li>
+
+      <li>
+      Take or hold medications exactly as instructed.
+      </li>
+
+      <li>
+      Complete all requested testing and appointments before surgery.
+      </li>
+
+      <li>
+      Notify your surgical team if there is a significant change in your
+      health before surgery.
+      </li>
+
+      </ul>
 
       </div>
     `;
@@ -1209,13 +1384,13 @@ function generatePatientInstructions() {
 
     <div class="footer-note">
 
-      <strong>Important:</strong>
+    <strong>Important:</strong>
 
-      These instructions supplement, but do not replace, instructions from your
-      surgeon, anesthesia clinician, primary care clinician, or other treating
-      healthcare professionals.
+    These instructions supplement but do not replace instructions from your
+    surgeon, anesthesia clinician, primary care clinician, or other treating
+    healthcare professionals.
 
-      If instructions conflict, contact your healthcare team for clarification.
+    If instructions conflict, contact your healthcare team for clarification.
 
     </div>
   `;
@@ -1223,41 +1398,43 @@ function generatePatientInstructions() {
   if (checked("piBPLog")) {
 
     html +=
-      buildBPLog(
-        parseInt(value("piBPDays")) || 7
+      makeBPLog(
+        parseInt(val("piBPDays")) || 7
       );
   }
 
   if (checked("piGlucoseLog")) {
 
-    html +=
-      buildGlucoseLog();
+    html += makeGlucoseLog();
   }
 
   document
-    .getElementById("piOutput")
+    .getElementById("output")
     .innerHTML = html;
 
   document
-    .getElementById("piOutputSection")
+    .getElementById("outputSection")
     .style.display = "block";
 
   document
-    .getElementById("piOutputSection")
+    .getElementById("outputSection")
     .scrollIntoView({
       behavior: "smooth"
     });
 }
 
-function copyPatientInstructions() {
+function copyInstructions() {
 
   const output =
-    document.getElementById("piOutput");
+    document.getElementById("output");
 
-  if (!output || !output.innerText.trim()) {
+  if (
+    !output ||
+    !output.innerText.trim()
+  ) {
 
     alert(
-      "Generate the patient instructions first."
+      "Generate patient instructions first."
     );
 
     return;
@@ -1276,30 +1453,30 @@ function copyPatientInstructions() {
     .catch(function() {
 
       alert(
-        "Copy was not available. Select the generated text manually."
+        "Copy was unavailable. Select the generated text manually."
       );
     });
 }
 
-function clearPatientInstructions() {
+function clearForm() {
 
-  const textInputs =
+  const textFields =
     document.querySelectorAll(
       "#generatorSection input[type='text'], " +
       "#generatorSection input[type='date'], " +
       "#generatorSection textarea"
     );
 
-  textInputs.forEach(function(el) {
+  textFields.forEach(function(el) {
     el.value = "";
   });
 
-  const checkboxes =
+  const checks =
     document.querySelectorAll(
       "#generatorSection input[type='checkbox']"
     );
 
-  checkboxes.forEach(function(el) {
+  checks.forEach(function(el) {
     el.checked = false;
   });
 
@@ -1307,12 +1484,12 @@ function clearPatientInstructions() {
 
   document.getElementById("piBPDays").value = "7";
 
-  document
-    .getElementById("piOutput")
-    .innerHTML = "";
+  document.getElementById("piLabLocation").value = "";
+
+  document.getElementById("output").innerHTML = "";
 
   document
-    .getElementById("piOutputSection")
+    .getElementById("outputSection")
     .style.display = "none";
 }
 

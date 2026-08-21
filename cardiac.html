@@ -1429,28 +1429,28 @@ if (severeAS) {
     }
 
 
-    /* LBBB / EKG */
+ /* LBBB / EKG */
 
-    if (cvVal("cvLBBB") === "Yes") {
+if (cvVal("cvLBBB") === "Yes") {
 
-        pending.push(
-            "LBBB requires cardiology evaluation and/or appropriate pharmacologic nuclear ischemic evaluation when clinically indicated."
-        );
-    }
+    pending.push(
+        "LBBB requires cardiology evaluation or pharmacologic nuclear stress testing (Lexiscan) before final optimization for elective surgery."
+    );
+}
 
-    if (cvVal("cvIschemicEKG") === "Yes") {
+if (cvVal("cvIschemicEKG") === "Yes") {
 
-        pending.push(
-            "New ischemic EKG changes require cardiovascular evaluation before final optimization."
-        );
-    }
+    pending.push(
+        "New ischemic EKG changes require cardiovascular evaluation before final optimization."
+    );
+}
 
-    if (cvVal("cvOtherEKG") === "Yes") {
+if (cvVal("cvOtherEKG") === "Yes") {
 
-        pending.push(
-            "New clinically significant EKG abnormality requires provider review and additional evaluation when indicated."
-        );
-    }
+    pending.push(
+        "New clinically significant EKG abnormality requires provider review and additional evaluation when indicated."
+    );
+}
 
 
     /* BNP SCREENING - TSJH */

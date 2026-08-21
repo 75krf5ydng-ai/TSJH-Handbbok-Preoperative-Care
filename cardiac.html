@@ -1354,34 +1354,33 @@ function generateCardiacRecommendation() {
     }
 
 
-    /* AORTIC STENOSIS */
+   /* AORTIC STENOSIS */
 
-    const ava = parseFloat(cvVal("cvAVA"));
-    const asGradient = parseFloat(cvVal("cvASGradient"));
-    const vmax = parseFloat(cvVal("cvVmax"));
+const ava = parseFloat(cvVal("cvAVA"));
+const asGradient = parseFloat(cvVal("cvASGradient"));
+const vmax = parseFloat(cvVal("cvVmax"));
 
-    let severeAS =
-        cvVal("cvAS") === "Severe" ||
-        (!isNaN(ava) && ava < 1.0) ||
-        (!isNaN(asGradient) && asGradient > 40) ||
-        (!isNaN(vmax) && vmax > 4.0);
+let severeAS =
+    cvVal("cvAS") === "Severe" ||
+    (!isNaN(ava) && ava <= 1.0) ||
+    (!isNaN(asGradient) && asGradient >= 40) ||
+    (!isNaN(vmax) && vmax >= 4.0);
 
-    if (severeAS) {
+if (severeAS) {
 
-        stop.push(
-            "Severe aortic stenosis parameters are present; elective surgery at the current facility requires higher-level review/appropriate venue."
-        );
+    stop.push(
+        "Severe aortic stenosis parameters are present; elective surgery at the current facility requires higher-level review/appropriate venue."
+    );
 
-    } else if (
-        cvVal("cvAS") === "Moderate" &&
-        cvVal("cvValveReview") !== "Yes"
-    ) {
+} else if (
+    cvVal("cvAS") === "Moderate" &&
+    cvVal("cvValveReview") !== "Yes"
+) {
 
-        pending.push(
-            "Moderate aortic stenosis requires appropriate cardiovascular review before final optimization."
-        );
-    }
-
+    pending.push(
+        "Moderate aortic stenosis requires appropriate cardiovascular review before final optimization."
+    );
+}
 
     /* MITRAL STENOSIS */
 

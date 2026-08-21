@@ -1412,13 +1412,13 @@ if (severeAS) {
 
     /* PULMONARY HTN */
 
-    const rvsp = parseFloat(cvVal("cvRVSP"));
+    const rvsp = parseFloat(cvVal("ctRVSP"));
 
     let phHLOC =
         cvVal("cvWHO1") === "Yes" ||
         (!isNaN(rvsp) && rvsp > 65) ||
         cvVal("cvTR") === "Yes" ||
-        cvVal("cvRVDysfunction") === "Yes" ||
+        (cvVal("ctRVFunction") === "Moderate" || cvVal("ctRVFunction") === "Severe") ||
         cvVal("cvVasodilator") === "Yes";
 
     if (phHLOC) {

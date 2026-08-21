@@ -1450,22 +1450,36 @@ if (severeAS) {
 
     /* PULMONARY HTN */
 
-    const rvsp = parseFloat(cvVal("ctRVSP"));
+const rvsp = parseFloat(cvVal("cvRVSP"));
+const paPressure = parseFloat(cvVal("cvPAPressure"));
+const trVelocity = parseFloat(cvVal("cvTRVelocity"));
 
-    let phHLOC =
-        cvVal("cvWHO1") === "Yes" ||
-        (!isNaN(rvsp) && rvsp > 65) ||
-        cvVal("cvTR") === "Yes" ||
-        (cvVal("ctRVFunction") === "Moderate" || cvVal("ctRVFunction") === "Severe") ||
-        cvVal("cvVasodilator") === "Yes";
+let phHLOC =
+    cvVal("cvWHO1") === "Yes" ||
+    (!isNaN(rvsp) && rvsp > 65) ||
+    cvVal("cvTR") === "Yes" ||
+    cvVal("cvRVDysfunction") === "Yes" ||
+    cvVal("cvVasodilator") === "Yes";
 
-    if (phHLOC) {
+if (phHLOC) {
 
+    pending.push(
+        "Pulmonary-hypertension red flag meets the TSJH higher-level-of-care review pathway."
+    );
+
+} else {
+
+    let phCardiologyReview =
+        (!isNaN(rvsp) && rvsp > 50) ||
+        (!isNaN(paPressure) && paPressure > 50) ||
+        (!isNaN(trVelocity) && trVelocity >= 2.8);
+
+    if (phCardiologyReview) {
         pending.push(
-            "Pulmonary-hypertension red flag meets the TSJH higher-level-of-care review pathway."
+            "Pulmonary hypertension/right-heart parameters meet the TSJH cardiovascular-review pathway before final optimization."
         );
     }
-
+}
 
  /* LBBB / EKG */
 

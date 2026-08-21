@@ -1439,14 +1439,12 @@ function generateDiabetesPlan() {
             "A1c " + a1c + "%."
         );
 
-        if (a1c >= 8) {
+      if (a1c >= 8) {
 
-            recommendations.push(
-                "A1c is above the commonly recommended elective-surgery target of <8% when achievable; assess degree of hyperglycemia, procedure risk and whether additional optimization would meaningfully improve perioperative safety."
-            );
-        }
-    }
-
+    recommendations.push(
+        "A1c is above the current recommended preoperative goal of <8% when achievable. Assess current glycemia, procedure risk and whether additional optimization would meaningfully improve perioperative safety; A1c alone should not be used as the sole reason to postpone elective surgery."
+    );
+}
 
     if (!isNaN(glucose)) {
 

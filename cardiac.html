@@ -1319,48 +1319,69 @@ function generateCardiacRecommendation() {
 
     /* HEART FAILURE */
 
-    if (cvVal("cvHF") === "Yes") {
+if (cvVal("cvHF") === "Yes") {
 
-        findings.push("Known heart failure/cardiomyopathy.");
+    findings.push("Known heart failure/cardiomyopathy.");
 
-        if (!isNaN(ef)) {
+    if (!isNaN(ef)) {
 
-            findings.push("LVEF: " + ef + "%.");
+        findings.push("LVEF: " + ef + "%.");
 
-            if (ef < 35) {
+        if (ef < 35) {
 
+            pending.push(
+                "LVEF <35% meets the TSJH higher-level-of-care threshold."
+            );
+
+        } else {
+
+            if (
+                cvVal("cvNYHA") === "III" ||
+                cvVal("cvNYHA") === "IV"
+            ) {
                 pending.push(
-                    "LVEF <35% meets the TSJH higher-level-of-care threshold."
+                    "NYHA III–IV symptoms require further cardiac/venue review."
                 );
-
-            } else {
-
-                if (
-                    cvVal("cvNYHA") === "III" ||
-                    cvVal("cvNYHA") === "IV"
-                ) {
-                    pending.push(
-                        "NYHA III–IV symptoms require further cardiac/venue review."
-                    );
-                }
-
-                if (cvVal("cvHFAdmission") === "Yes") {
-                    pending.push(
-                        "CHF hospitalization within the last 2 years requires review under the TSJH heart-failure pathway."
-                    );
-                }
-
-                if (cvVal("cvGDMT") === "No") {
-                    pending.push(
-                    "Heart-failure guideline-directed medical therapy has not been confirmed as optimized."
-                }
-
-                if (cvVal("cvCardiology12") === "No") {
-                    pending.push(
-                      "Required cardiology evaluation within the prior 12 months has not been confirmed."
-                    );
-                }
             }
+
+            if (cvVal("cvAngina") === "Yes") {
+                pending.push(
+                    "Current angina does not meet the TSJH stable heart-failure pathway and requires cardiovascular review before final optimization."
+                );
+            }
+
+            if (cvVal("cvVolumeOverload") === "Yes") {
+                pending.push(
+                    "Symptomatic volume overload does not meet the TSJH stable heart-failure pathway and requires further optimization before elective surgery."
+                );
+            }
+
+            if (cvVal("cvHFAdmission") === "Yes") {
+                pending.push(
+                    "CHF hospitalization within the last 2 years requires review under the TSJH heart-failure pathway."
+                );
+            }
+
+            if (cvVal("cvGDMT") === "No") {
+                pending.push(
+                    "Heart-failure guideline-directed medical therapy has not been confirmed as optimized."
+                );
+            }
+
+            if (cvVal("cvCardiology12") === "No") {
+                pending.push(
+                    "Required cardiology evaluation within the prior 12 months has not been confirmed."
+                );
+            }
+        }
+
+    } else {
+
+        pending.push(
+            "Known heart failure/cardiomyopathy requires a documented LVEF to apply the TSJH heart-failure pathway."
+        );
+    }
+}
         }
     }
 

@@ -3407,7 +3407,362 @@ if (plan.length > 0) {
     ", CFS " +
     (pwVal("pwCFS") || "—") +
     ". ";
+// ============================================================
+// CLINICAL DIFFERENTIAL / WORKUP / TREATMENT SUPPORT
+// ============================================================
 
+let clinicalSupport = [];
+
+const sodiumValue = parseFloat(pwVal("pwSodium"));
+const potassiumValue = parseFloat(pwVal("pwPotassium"));
+const hemoglobinValue = parseFloat(pwVal("pwHemoglobin"));
+const plateletValue = parseFloat(pwVal("pwPlatelets"));
+const creatinineValue = parseFloat(pwVal("pwCreatinine"));
+const egfrValue = parseFloat(pwVal("pwEGFR"));
+const glucoseValue = parseFloat(pwVal("pwGlucose"));
+const a1cValue = parseFloat(pwVal("pwA1c"));
+
+
+// ---------------- HYPONATREMIA ----------------
+
+if (!isNaN(sodiumValue) && sodiumValue < 135) {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Hyponatremia — Na ${sodiumValue}</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Hyponatremia.</p>
+
+      <p><strong>Differential:</strong>
+      Medication effect including thiazide or other diuretics,
+      hypovolemia, SIADH, heart failure, renal dysfunction,
+      adrenal insufficiency, hypothyroidism, excess free-water
+      intake, or hyperglycemia-associated reduction in measured sodium.</p>
+
+      <p><strong>Further Workup:</strong>
+      Review prior sodium trend, medications and volume status.
+      Repeat BMP. Check glucose. Consider serum osmolality,
+      urine osmolality and urine sodium when the etiology is not
+      evident. Consider TSH and cortisol when clinically indicated.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Treat the underlying cause. Correct medication or volume
+      abnormalities when appropriate. Do not automatically prescribe
+      salt, fluid restriction or increased free-water intake without
+      determining the likely etiology. Symptomatic or severe
+      hyponatremia requires urgent medical management.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Establish stability and repeat sodium when clinically significant,
+      worsening or symptomatic. Follow TSJH electrolyte thresholds and
+      anesthesia/provider review requirements.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- HYPOKALEMIA ----------------
+
+if (!isNaN(potassiumValue) && potassiumValue < 3.5) {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Hypokalemia — K ${potassiumValue}</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Hypokalemia.</p>
+
+      <p><strong>Differential:</strong>
+      Diuretic therapy, gastrointestinal losses, inadequate intake,
+      renal potassium loss, hypomagnesemia, insulin effect,
+      beta-agonist effect or alkalosis.</p>
+
+      <p><strong>Further Workup:</strong>
+      Repeat BMP when appropriate. Review medications and recent
+      vomiting or diarrhea. Consider magnesium level. Review renal
+      function and ECG when potassium is significantly decreased,
+      symptoms are present or arrhythmia risk is increased.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Replace potassium according to severity, renal function and
+      clinical context. Correct magnesium deficiency when present.
+      Address gastrointestinal or medication-related losses.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Recheck potassium according to TSJH perioperative guidance
+      and establish an acceptable/stable value before elective surgery
+      when clinically indicated.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- HYPERKALEMIA ----------------
+
+if (!isNaN(potassiumValue) && potassiumValue > 5.0) {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Hyperkalemia — K ${potassiumValue}</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Hyperkalemia.</p>
+
+      <p><strong>Differential:</strong>
+      Hemolyzed specimen, renal dysfunction, ACE inhibitor or ARB,
+      potassium-sparing diuretic, potassium supplementation,
+      metabolic acidosis, tissue injury or other impaired potassium
+      excretion.</p>
+
+      <p><strong>Further Workup:</strong>
+      Repeat potassium promptly when unexpected or hemolysis is
+      possible. Review renal function and medications. Consider ECG
+      for significant elevation or symptoms.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Stop or adjust contributing medications when clinically
+      appropriate and treat the underlying cause. Significant,
+      rapidly rising or ECG-associated hyperkalemia requires urgent
+      medical management.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Confirm the abnormality and establish an acceptable potassium
+      level before routine elective surgery when clinically significant.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- ANEMIA ----------------
+
+if (!isNaN(hemoglobinValue) && hemoglobinValue < 12) {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Anemia — Hgb ${hemoglobinValue}</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Preoperative anemia.</p>
+
+      <p><strong>Differential:</strong>
+      Iron deficiency, anemia of chronic inflammation,
+      chronic kidney disease, vitamin B12 deficiency, folate deficiency,
+      acute or chronic blood loss, hemolysis or bone marrow disorder.</p>
+
+      <p><strong>Further Workup:</strong>
+      Review CBC indices and prior hemoglobin trend. Consider ferritin,
+      iron, TIBC/transferrin saturation, reticulocyte count,
+      vitamin B12 and folate. Evaluate for clinically relevant blood
+      loss when indicated. Review renal function.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Treat the identified cause. Iron deficiency may require oral or
+      IV iron depending on severity, tolerance and time before surgery.
+      B12 or folate deficiency should be replaced when confirmed.
+      Consider hematology evaluation for unexplained, severe or
+      progressive anemia.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Consider expected surgical blood loss, baseline hemoglobin and
+      ability to optimize before surgery. Escalate significant or
+      unexplained anemia for provider/anesthesia review.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- THROMBOCYTOPENIA ----------------
+
+if (!isNaN(plateletValue) && plateletValue < 100) {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Thrombocytopenia — Platelets ${plateletValue}</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Thrombocytopenia.</p>
+
+      <p><strong>Differential:</strong>
+      Laboratory artifact or platelet clumping, medication effect,
+      infection, liver disease, immune thrombocytopenia,
+      bone marrow disorder or other hematologic disease.</p>
+
+      <p><strong>Further Workup:</strong>
+      Repeat CBC and consider peripheral smear when appropriate.
+      Review prior platelet counts, medications, liver disease and
+      bleeding history.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Treat the underlying cause. Obtain hematology evaluation for
+      unexplained, progressive or clinically significant thrombocytopenia.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Platelet count below the TSJH threshold requires further
+      evaluation before routine elective surgery.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- RENAL DYSFUNCTION ----------------
+
+if (
+  (!isNaN(egfrValue) && egfrValue < 60) ||
+  (!isNaN(creatinineValue) && creatinineValue > 1.5)
+) {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Renal Dysfunction</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Reduced renal function requiring perioperative assessment.</p>
+
+      <p><strong>Differential:</strong>
+      Chronic kidney disease, acute kidney injury, dehydration,
+      medication effect, obstructive uropathy or cardiorenal disease.</p>
+
+      <p><strong>Further Workup:</strong>
+      Compare creatinine/eGFR with baseline. Review BMP, volume status,
+      nephrotoxic medications and recent contrast exposure.
+      Consider repeat renal function testing, urinalysis or specialty
+      evaluation when clinically indicated.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Correct reversible volume abnormalities, avoid unnecessary
+      nephrotoxins and dose medications for renal function.
+      Treat acute kidney injury or obstruction before elective surgery.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Determine whether renal dysfunction is chronic and stable versus
+      acute or progressive. Apply TSJH CKD and dialysis criteria.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- HYPERGLYCEMIA / DIABETES ----------------
+
+if (
+  (!isNaN(glucoseValue) && glucoseValue >= 180) ||
+  (!isNaN(a1cValue) && a1cValue > 8)
+) {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Hyperglycemia / Diabetes Optimization</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Suboptimal perioperative glycemic control.</p>
+
+      <p><strong>Differential:</strong>
+      Known diabetes, stress hyperglycemia, medication nonadherence,
+      steroid effect, infection or previously unrecognized diabetes.</p>
+
+      <p><strong>Further Workup:</strong>
+      Review glucose trend, A1c, diabetes medications and hypoglycemia
+      history. Assess for symptoms of severe hyperglycemia or acute
+      metabolic decompensation when appropriate.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Optimize glucose management with the patient's prescribing
+      clinician when needed. Apply perioperative insulin,
+      SGLT2 inhibitor and GLP-1 medication guidance.
+      A1c alone should not automatically determine cancellation.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Assess current glucose control and presence of acute metabolic
+      instability rather than using A1c as the sole postponement criterion.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- OSA ----------------
+
+if (pwVal("pwOSA") === "yes") {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Obstructive Sleep Apnea</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      OSA with increased postoperative respiratory risk.</p>
+
+      <p><strong>Differential / Contributing Factors:</strong>
+      Obesity, sedative/opioid sensitivity, upper-airway obstruction
+      and untreated or inadequately treated sleep-disordered breathing.</p>
+
+      <p><strong>Further Workup:</strong>
+      Confirm PAP use and tolerance, severity when available,
+      prior anesthesia complications and baseline oxygen requirement.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Continue PAP therapy. Patient should bring PAP equipment when
+      instructed. Use opioid-sparing strategies when feasible.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      PAP anytime asleep and appropriate postoperative respiratory
+      monitoring according to institutional guidance.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- COPD ----------------
+
+if (pwVal("pwCOPD") === "yes") {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>COPD / Chronic Pulmonary Disease</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      COPD with potential increased pulmonary complication risk.</p>
+
+      <p><strong>Differential / Contributing Factors:</strong>
+      Poor baseline disease control, active exacerbation,
+      respiratory infection, bronchospasm, tobacco exposure or
+      chronic hypercapnic respiratory failure.</p>
+
+      <p><strong>Further Workup:</strong>
+      Assess baseline symptoms, recent exacerbations, oxygen use,
+      inhaler adherence and pulmonary testing when indicated.
+      Review FEV1, CAT, BODE and Arozullah values when available.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Continue prescribed maintenance inhalers. Treat active
+      bronchospasm or respiratory infection before elective surgery.
+      Pulmonary consultation may be appropriate for high-risk disease.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Apply TSJH pulmonary exclusion and escalation criteria,
+      including continuous oxygen requirement, severe obstruction
+      and chronic hypercapnic respiratory failure.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- DISPLAY CLINICAL SUPPORT ----------------
+
+if (clinicalSupport.length > 0) {
+
+  html += `
+    <div class="result-section">
+      <h3>Clinical Differential, Further Workup & Recommended Treatment</h3>
+
+      <p style="font-size:14px;">
+        Clinical decision support only. Differential diagnoses,
+        diagnostic testing and treatment should be individualized
+        to the patient and confirmed by the treating provider.
+      </p>
+
+      ${clinicalSupport.join("")}
+    </div>
+  `;
+}
   html +=
     "<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS: " +
     status +

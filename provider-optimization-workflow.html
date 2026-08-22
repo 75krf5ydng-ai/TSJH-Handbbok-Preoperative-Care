@@ -3509,9 +3509,90 @@ document
     clearProviderWorkflow
   );
 
-// PASTE THE OPEN PATIENT INSTRUCTIONS CODE HERE
+// function openPatientInstructions() {
 
-</script>
+  const params = new URLSearchParams();
+
+  if (pwVal("pwPatient")) {
+    params.set("patient", pwVal("pwPatient"));
+  }
+
+  if (pwVal("pwProcedure")) {
+    params.set("procedure", pwVal("pwProcedure"));
+  }
+
+  if (pwVal("pwSurgeon")) {
+    params.set("surgeon", pwVal("pwSurgeon"));
+  }
+
+  if (pwVal("pwDOS")) {
+    params.set("date", pwVal("pwDOS"));
+  }
+
+  if (pwVal("pwSodium")) {
+    params.set("sodium", pwVal("pwSodium"));
+  }
+
+  if (pwVal("pwPotassium")) {
+    params.set("potassium", pwVal("pwPotassium"));
+  }
+
+  if (pwVal("pwHemoglobin")) {
+    params.set("hgb", pwVal("pwHemoglobin"));
+  }
+
+  if (pwVal("pwA1c")) {
+    params.set("a1c", pwVal("pwA1c"));
+  }
+
+  if (pwVal("pwOSA") === "yes") {
+    params.set("osa", "yes");
+  }
+
+  if (pwVal("pwCOPD") === "yes") {
+    params.set("copd", "yes");
+  }
+
+  if (
+    pwVal("pwAntithrombotic") &&
+    pwVal("pwAntithrombotic") !== "none"
+  ) {
+    params.set(
+      "antithrombotic",
+      pwVal("pwAntithrombotic")
+    );
+  }
+
+  if (
+    pwVal("pwSGLT2") &&
+    pwVal("pwSGLT2") !== "none"
+  ) {
+    params.set("sglt2", pwVal("pwSGLT2"));
+  }
+
+  if (pwVal("pwGLP1") === "yes") {
+    params.set("glp1", "yes");
+  }
+
+  if (pwVal("pwInsulinPump") === "yes") {
+    params.set("pump", "yes");
+  }
+
+  window.location.href =
+    "patient-discharge-education.html?" +
+    params.toString();
+}
+
+const patientInstructionsButton =
+  document.getElementById("pwPatientInstructions");
+
+if (patientInstructionsButton) {
+  patientInstructionsButton.addEventListener(
+    "click",
+    openPatientInstructions
+  );
+}
+
 </script>
 
 </section>

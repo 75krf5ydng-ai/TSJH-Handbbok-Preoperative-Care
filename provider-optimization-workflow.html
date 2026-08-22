@@ -1803,7 +1803,49 @@ function analyzeProviderFreeText() {
       detected.push("Procedure");
     }
   }
+// -------- PATIENT --------
 
+const patientMatch = raw.match(
+  /(?:patient|patient name|name)\s*[:\-]\s*([^\n\r]+)/i
+);
+
+if (patientMatch) {
+  const patientName = patientMatch[1].trim();
+
+  if (patientName) {
+    pwSet("pwPatient", patientName);
+    detected.push("Patient");
+  }
+}
+
+
+// -------- SURGERY DATE --------
+
+const surgeryDateMatch = raw.match(
+  /(?:surgery date|date of service|dos)\s*[:\-]\s*(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/i
+);
+
+if (surgeryDateMatch) {
+
+  const parts = surgeryDateMatch[1].split(/[\/\-]/);
+
+  if (parts.length === 3) {
+    let month = parts[0].padStart(2, "0");
+    let day = parts[1].padStart(2, "0");
+    let year = parts[2];
+
+    if (year.length === 2) {
+      year = "20" + year;
+    }
+
+    pwSet(
+      "pwDOS",
+      year + "-" + month + "-" + day
+    );
+
+    detected.push("Surgery Date");
+  }
+}
   // ---------- SURGEON ----------
 
   const surgeonMatch = raw.match(

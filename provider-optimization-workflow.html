@@ -4128,7 +4128,425 @@ if (pwVal("pwInsulinPump") === "yes") {
 }
 
 // ---------------- DISPLAY CLINICAL SUPPORT ----------------
+// ============================================================
+// ADDITIONAL CLINICAL DIFFERENTIAL / WORKUP / TREATMENT SUPPORT
+// Polycythemia, Leukocytosis, UTI, Hypertension,
+// Bicarbonate / Acid-Base, Liver Disease, Anemia Type
+// ============================================================
 
+
+// Helper allows the tool to safely look for alternate field IDs
+function pwFirstValue(ids) {
+  for (const id of ids) {
+    const el = document.getElementById(id);
+    if (el && String(el.value || "").trim() !== "") {
+      return String(el.value).trim();
+    }
+  }
+  return "";
+}
+
+
+// ---------------- POLYCYTHEMIA / ELEVATED HEMOGLOBIN ----------------
+
+const polyHgbValue = parseFloat(pwVal("pwHemoglobin"));
+
+if (!isNaN(polyHgbValue) && polyHgbValue >= 17.5) {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Elevated Hemoglobin / Polycythemia — Hgb ${polyHgbValue}</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Elevated hemoglobin with possible erythrocytosis/polycythemia.</p>
+
+      <p><strong>Differential:</strong>
+      Hemoconcentration or dehydration, tobacco exposure,
+      chronic hypoxemia, obstructive sleep apnea, COPD,
+      testosterone or androgen therapy, secondary erythrocytosis,
+      renal disease or erythropoietin-producing disorder,
+      or primary myeloproliferative disease such as polycythemia vera.</p>
+
+      <p><strong>Further Workup:</strong>
+      Review prior CBC trend and hydration status.
+      Repeat CBC when appropriate. Review oxygen saturation,
+      OSA/COPD history, tobacco use and testosterone/androgen therapy.
+      Persistent unexplained elevation may warrant erythropoietin level,
+      JAK2 testing or hematology evaluation.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Correct dehydration when present and treat the underlying cause.
+      Therapeutic phlebotomy should be directed by the appropriate treating
+      clinician when indicated rather than performed automatically.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      TSJH guidance identifies Hgb 17.5 g/dL or greater for evaluation.
+      Establish the cause and optimize toward Hgb below 17 g/dL when
+      required by the institutional pathway before elective surgery.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- LEUKOCYTOSIS ----------------
+
+const wbcValue = parseFloat(
+  pwFirstValue(["pwWBC", "pwWbc", "pwWhiteBloodCell"])
+);
+
+if (!isNaN(wbcValue) && wbcValue > 11) {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Leukocytosis — WBC ${wbcValue}</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Elevated white blood cell count requiring clinical correlation.</p>
+
+      <p><strong>Differential:</strong>
+      Acute infection, inflammatory response, corticosteroid effect,
+      physiologic stress, smoking, recent surgery or trauma,
+      hematologic disorder or other inflammatory condition.</p>
+
+      <p><strong>Further Workup:</strong>
+      Review CBC differential and prior WBC trend.
+      Assess for fever, respiratory symptoms, urinary symptoms,
+      wound/skin infection, dental infection or other localizing symptoms.
+      Additional testing should be directed by the suspected source.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Treat an identified infection or inflammatory condition.
+      Isolated mild leukocytosis without symptoms should not automatically
+      trigger antibiotic treatment.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Determine whether leukocytosis represents active infection or another
+      unstable process before elective surgery. Escalate clinically significant
+      or unexplained abnormalities for provider review.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- UTI / URINARY ABNORMALITY ----------------
+
+const urinarySymptoms = pwFirstValue([
+  "pwUTISymptoms",
+  "pwUrinarySymptoms",
+  "pwSymptomaticUTI"
+]).toLowerCase();
+
+const urineCulture = pwFirstValue([
+  "pwUrineCulture",
+  "pwCultureResult",
+  "pwUrineResult"
+]).toLowerCase();
+
+const abnormalUA = pwFirstValue([
+  "pwAbnormalUA",
+  "pwUAResult",
+  "pwUrinalysis"
+]).toLowerCase();
+
+if (
+  urinarySymptoms === "yes" ||
+  urinarySymptoms === "positive" ||
+  urineCulture.includes("positive") ||
+  abnormalUA.includes("positive") ||
+  abnormalUA.includes("abnormal")
+) {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Urinary Abnormality / Possible UTI</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Abnormal urinalysis, positive urine culture or urinary symptoms
+      requiring distinction between symptomatic UTI and asymptomatic bacteriuria.</p>
+
+      <p><strong>Differential:</strong>
+      Symptomatic cystitis, pyelonephritis, asymptomatic bacteriuria,
+      specimen contamination, colonization or noninfectious urinary inflammation.</p>
+
+      <p><strong>Further Workup:</strong>
+      Determine whether dysuria, urgency, frequency, suprapubic pain,
+      flank pain, fever or systemic symptoms are present.
+      Review urine culture organism, colony count and susceptibilities when available.
+      Repeat collection when contamination is suspected.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Treat a confirmed symptomatic UTI with culture-directed therapy when possible.
+      Avoid treating an isolated abnormal urinalysis without establishing a clinical
+      indication. Apply procedure-specific and institutional guidance regarding
+      asymptomatic bacteriuria.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Active symptomatic infection should be treated and clinically improved before
+      routine elective surgery. Urinalysis should not be ordered solely as a routine
+      screen when there is no clinical indication.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- HYPERTENSION ----------------
+
+const systolicBP = parseFloat(
+  pwFirstValue(["pwSBP", "pwSystolic", "pwSystolicBP"])
+);
+
+const diastolicBP = parseFloat(
+  pwFirstValue(["pwDBP", "pwDiastolic", "pwDiastolicBP"])
+);
+
+if (
+  (!isNaN(systolicBP) && systolicBP >= 160) ||
+  (!isNaN(diastolicBP) && diastolicBP >= 100)
+) {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Elevated Blood Pressure</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Hypertension requiring confirmation of severity and chronic control.</p>
+
+      <p><strong>Differential:</strong>
+      Chronic essential hypertension, pain or anxiety,
+      medication nonadherence, volume overload, stimulant exposure,
+      renal disease, endocrine disease or secondary hypertension.</p>
+
+      <p><strong>Further Workup:</strong>
+      Repeat blood pressure after appropriate rest and correct cuff sizing.
+      Review home BP trend, antihypertensive regimen, adherence,
+      renal function and symptoms suggesting hypertensive emergency.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Continue chronic antihypertensive therapy according to the perioperative
+      medication plan. Address medication adherence and markedly uncontrolled
+      hypertension with the prescribing clinician.
+      Avoid rapid asymptomatic blood-pressure reduction solely to meet a surgical number.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Assess the overall clinical context and repeat measurements.
+      Severe persistent hypertension or symptoms/signs of acute target-organ injury
+      require further evaluation before routine elective surgery.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- BICARBONATE / ACID-BASE ABNORMALITY ----------------
+
+const bicarbonateValue = parseFloat(
+  pwFirstValue([
+    "pwBicarbonate",
+    "pwCO2",
+    "pwCarbonDioxide"
+  ])
+);
+
+if (
+  !isNaN(bicarbonateValue) &&
+  (bicarbonateValue < 20 || bicarbonateValue > 32)
+) {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Abnormal Bicarbonate / CO₂ — ${bicarbonateValue}</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Abnormal serum bicarbonate suggesting a possible metabolic
+      or respiratory acid-base disorder.</p>
+
+      <p><strong>Differential:</strong>
+      Low bicarbonate may reflect metabolic acidosis from renal disease,
+      ketoacidosis, lactic acidosis, gastrointestinal bicarbonate loss
+      or medication effect. Elevated bicarbonate may occur with metabolic alkalosis,
+      diuretic therapy, vomiting or chronic compensated hypercapnia.</p>
+
+      <p><strong>Further Workup:</strong>
+      Repeat BMP when appropriate. Calculate/review anion gap.
+      Review renal function, glucose, medications and GI losses.
+      Consider ketones, lactate or blood gas when clinically indicated.
+      In COPD or suspected chronic hypercapnia, compare with the patient's baseline.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Treat the underlying acid-base disorder rather than the bicarbonate value alone.
+      Address dehydration, medication effects, uncontrolled diabetes,
+      renal dysfunction or respiratory decompensation as applicable.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Unexplained, acute or clinically significant acid-base abnormalities
+      should be evaluated and stabilized before routine elective surgery.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- LIVER DISEASE / ABNORMAL LIVER TESTS ----------------
+
+const astValue = parseFloat(pwFirstValue(["pwAST"]));
+const altValue = parseFloat(pwFirstValue(["pwALT"]));
+const bilirubinValue = parseFloat(
+  pwFirstValue(["pwBilirubin", "pwTotalBilirubin"])
+);
+
+const knownLiverDisease = pwFirstValue([
+  "pwLiverDisease",
+  "pwCirrhosis"
+]).toLowerCase();
+
+if (
+  knownLiverDisease === "yes" ||
+  (!isNaN(astValue) && astValue > 80) ||
+  (!isNaN(altValue) && altValue > 80) ||
+  (!isNaN(bilirubinValue) && bilirubinValue > 1.5)
+) {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Liver Disease / Abnormal Hepatic Testing</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Possible hepatic dysfunction requiring assessment of cause,
+      severity and synthetic function.</p>
+
+      <p><strong>Differential:</strong>
+      Metabolic-associated steatotic liver disease,
+      alcohol-related disease, medication effect,
+      viral hepatitis, biliary obstruction, congestive hepatopathy,
+      acute hepatitis or chronic cirrhosis.</p>
+
+      <p><strong>Further Workup:</strong>
+      Review AST, ALT, alkaline phosphatase, bilirubin,
+      albumin, platelet count and PT/INR.
+      Compare with prior values. Review medications and alcohol history.
+      Additional imaging, hepatitis studies or specialty evaluation should
+      be guided by the pattern and severity of abnormalities.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Treat reversible causes and avoid unnecessary hepatotoxic medications.
+      Decompensated cirrhosis, acute hepatitis, significant coagulopathy,
+      ascites or hepatic encephalopathy requires specialty evaluation.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Determine whether liver disease is stable/compensated or acute/decompensated.
+      Significant hepatic dysfunction warrants further assessment before elective surgery.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- ANEMIA TYPE INTERPRETATION ----------------
+
+const anemiaHgb = parseFloat(pwVal("pwHemoglobin"));
+
+const mcvValue = parseFloat(
+  pwFirstValue(["pwMCV", "pwMcv"])
+);
+
+const ferritinValue = parseFloat(
+  pwFirstValue(["pwFerritin"])
+);
+
+const tsatValue = parseFloat(
+  pwFirstValue(["pwTSAT", "pwTransferrinSaturation"])
+);
+
+if (
+  !isNaN(anemiaHgb) &&
+  anemiaHgb < 12 &&
+  !isNaN(mcvValue)
+) {
+
+  let anemiaPattern = "";
+  let anemiaDifferential = "";
+  let anemiaWorkup = "";
+
+  if (mcvValue < 80) {
+
+    anemiaPattern = "Microcytic anemia";
+
+    anemiaDifferential =
+      "Iron deficiency, chronic blood loss, thalassemia, " +
+      "anemia of chronic inflammation or less commonly sideroblastic disease.";
+
+    anemiaWorkup =
+      "Review ferritin and transferrin saturation, iron/TIBC, " +
+      "reticulocyte count and bleeding history. Evaluate for clinically " +
+      "appropriate gastrointestinal or other blood loss.";
+
+  } else if (mcvValue > 100) {
+
+    anemiaPattern = "Macrocytic anemia";
+
+    anemiaDifferential =
+      "Vitamin B12 deficiency, folate deficiency, alcohol use, " +
+      "liver disease, hypothyroidism, medication effect, reticulocytosis " +
+      "or bone marrow disease.";
+
+    anemiaWorkup =
+      "Consider vitamin B12, folate, reticulocyte count, TSH, " +
+      "liver tests and peripheral smear when clinically indicated.";
+
+  } else {
+
+    anemiaPattern = "Normocytic anemia";
+
+    anemiaDifferential =
+      "Anemia of chronic inflammation, chronic kidney disease, " +
+      "early iron deficiency, acute or chronic blood loss, hemolysis " +
+      "or bone marrow disease.";
+
+    anemiaWorkup =
+      "Review renal function, ferritin/TSAT, reticulocyte count, " +
+      "blood-loss history and inflammatory/chronic disease context.";
+  }
+
+
+  let ironComment = "";
+
+  if (
+    (!isNaN(ferritinValue) && ferritinValue < 30) ||
+    (!isNaN(tsatValue) && tsatValue < 20)
+  ) {
+    ironComment = `
+      <p><strong>Iron Pattern:</strong>
+      Available iron studies increase concern for iron deficiency.
+      Confirm the complete iron profile and evaluate the source when appropriate.</p>
+    `;
+  }
+
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>${anemiaPattern}</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Anemia pattern based on Hgb ${anemiaHgb} and MCV ${mcvValue}.</p>
+
+      <p><strong>Differential:</strong>
+      ${anemiaDifferential}</p>
+
+      <p><strong>Further Workup:</strong>
+      ${anemiaWorkup}</p>
+
+      ${ironComment}
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Treat the confirmed cause rather than the hemoglobin value alone.
+      Replace iron, vitamin B12 or folate when deficiency is established.
+      Address active blood loss or renal/inflammatory contributors.
+      Consider hematology evaluation for unexplained, progressive,
+      severe or mixed-pattern anemia.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Consider baseline hemoglobin, expected surgical blood loss,
+      urgency and available time for optimization before surgery.</p>
+    </div>
+  `);
+}
 if (clinicalSupport.length > 0) {
 
   html += `

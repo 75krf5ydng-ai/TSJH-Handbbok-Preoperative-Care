@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+(<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -3743,7 +3743,389 @@ if (pwVal("pwCOPD") === "yes") {
     </div>
   `);
 }
+// ============================================================
+// CARDIAC / VALVE / PH / MEDICATION DECISION SUPPORT
+// ============================================================
 
+
+// ---------------- HEART FAILURE / REDUCED EF ----------------
+
+const efValue = parseFloat(pwVal("pwEF"));
+const nyhaValue = (pwVal("pwNYHA") || "").toUpperCase();
+
+if (
+  (!isNaN(efValue) && efValue < 50) ||
+  pwVal("pwVolumeOverload") === "yes"
+) {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Heart Failure / Reduced Ejection Fraction</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Reduced left ventricular systolic function and/or clinical heart-failure risk.</p>
+
+      <p><strong>Differential:</strong>
+      Ischemic cardiomyopathy, nonischemic cardiomyopathy,
+      hypertensive heart disease, valvular disease, tachycardia-mediated
+      cardiomyopathy or other structural heart disease.</p>
+
+      <p><strong>Further Workup:</strong>
+      Review most recent echocardiogram, EF trend, NYHA class,
+      recent cardiology evaluation, symptoms, volume status and
+      guideline-directed medical therapy. Consider BNP/NT-proBNP when
+      indicated by the TSJH perioperative cardiac pathway.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Continue or optimize guideline-directed heart-failure therapy
+      when clinically appropriate. Treat decompensated volume overload,
+      active ischemia or other reversible instability before elective surgery.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      EF below 35% falls outside routine TSJH eligibility.
+      For EF 35% or greater, apply TSJH criteria including recent
+      cardiovascular evaluation, acceptable functional status,
+      NYHA I-II, optimized therapy and absence of active decompensation.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- ACTIVE CARDIAC SYMPTOMS ----------------
+
+if (
+  pwVal("pwAngina") === "yes" ||
+  pwVal("pwVolumeOverload") === "yes" ||
+  pwVal("pwActiveCardiac") === "yes"
+) {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Active Cardiac Symptoms / Possible Instability</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Possible active or unstable cardiovascular disease.</p>
+
+      <p><strong>Differential:</strong>
+      Acute coronary syndrome, unstable angina,
+      decompensated heart failure, uncontrolled arrhythmia,
+      severe symptomatic valvular disease or another acute cardiac process.</p>
+
+      <p><strong>Further Workup:</strong>
+      Clarify symptoms, onset and severity. Review ECG, prior cardiac studies
+      and cardiology history. Additional cardiac testing or urgent evaluation
+      should be based on the suspected condition and clinical stability.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Treat the active cardiovascular condition before routine elective surgery.
+      Escalate urgently for suspected ACS, significant decompensated heart failure
+      or other clinically unstable disease.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Active cardiac instability generally requires postponement of routine
+      elective surgery pending appropriate evaluation and treatment.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- AORTIC STENOSIS ----------------
+
+const avaValue = parseFloat(pwVal("pwAVA"));
+const gradientValue = parseFloat(pwVal("pwASGradient"));
+const vmaxValue = parseFloat(pwVal("pwVmax"));
+
+if (
+  (!isNaN(avaValue) && avaValue < 1.5) ||
+  (!isNaN(gradientValue) && gradientValue >= 20) ||
+  (!isNaN(vmaxValue) && vmaxValue >= 3)
+) {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Aortic Stenosis</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Aortic stenosis requiring severity and symptom assessment.</p>
+
+      <p><strong>Differential / Clinical Context:</strong>
+      Mild, moderate or severe calcific aortic stenosis;
+      low-flow/low-gradient disease; bicuspid valve disease;
+      or discordant echocardiographic measurements.</p>
+
+      <p><strong>Further Workup:</strong>
+      Review the most recent echocardiogram including AVA,
+      mean gradient and peak velocity. Determine whether symptoms such as
+      exertional dyspnea, angina, presyncope or syncope are present.
+      Cardiovascular review is appropriate for moderate/severe or symptomatic disease.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Optimize blood pressure and volume status.
+      Severe or symptomatic disease requires cardiology/structural-heart evaluation
+      and treatment planning before elective noncardiac surgery.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      TSJH exclusion criteria include AVA &lt;1.0 cm²,
+      mean gradient &gt;40 mmHg or Vmax &gt;4.0 m/s.
+      Apply the institutional pathway using the exact TSJH thresholds.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- MITRAL STENOSIS ----------------
+
+if (pwVal("pwMitralStenosis") === "yes") {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Mitral Stenosis</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Mitral stenosis requiring assessment of severity and hemodynamic impact.</p>
+
+      <p><strong>Differential / Clinical Context:</strong>
+      Rheumatic mitral stenosis, degenerative calcific disease,
+      mixed mitral valve disease or pulmonary hypertension secondary to valve disease.</p>
+
+      <p><strong>Further Workup:</strong>
+      Review echocardiogram for valve area, mean gradient,
+      pulmonary artery pressure, left atrial enlargement and right-heart effects.
+      Assess for dyspnea, atrial fibrillation and heart-failure symptoms.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Optimize rate control and volume status when applicable.
+      Address atrial fibrillation and anticoagulation appropriately.
+      Moderate-to-severe disease requires cardiovascular review.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Apply TSJH mitral-stenosis criteria and ensure appropriate cardiovascular
+      evaluation before elective surgery when disease is moderate-to-severe or severe.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- PULMONARY HYPERTENSION ----------------
+
+const rvspValue = parseFloat(pwVal("pwRVSP"));
+const paPressureValue = parseFloat(pwVal("pwPAPressure"));
+const trVelocityValue = parseFloat(pwVal("pwTRVelocity"));
+
+if (
+  (!isNaN(rvspValue) && rvspValue > 50) ||
+  (!isNaN(paPressureValue) && paPressureValue > 50) ||
+  (!isNaN(trVelocityValue) && trVelocityValue >= 2.8) ||
+  pwVal("pwWHO1") === "yes" ||
+  pwVal("pwSevereTR") === "yes" ||
+  pwVal("pwRVDysfunction") === "yes"
+) {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Pulmonary Hypertension / Right-Heart Risk</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Pulmonary hypertension and/or right-heart disease increasing perioperative risk.</p>
+
+      <p><strong>Differential:</strong>
+      Left-heart disease, chronic lung disease or hypoxia,
+      chronic thromboembolic disease, WHO Group 1 pulmonary arterial hypertension,
+      sleep-disordered breathing or multifactorial pulmonary hypertension.</p>
+
+      <p><strong>Further Workup:</strong>
+      Review echocardiogram, RVSP, PA pressure, TR velocity,
+      RV size/function and TR severity. Clarify WHO group,
+      symptoms, oxygen requirement and pulmonary vasodilator therapy.
+      Consider cardiology or pulmonary-hypertension specialist review as indicated.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Optimize volume status, oxygenation and underlying pulmonary/cardiac disease.
+      Continue specialized pulmonary vasodilator therapy unless directed otherwise
+      by the treating specialist.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      TSJH cardiovascular review is indicated for RVSP &gt;50,
+      PA pressure &gt;50 or TR velocity ≥2.8.
+      Higher-level-of-care concerns include WHO Group 1 disease,
+      RVSP &gt;65, severe TR, significant RV dysfunction or advanced vasodilator therapy.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- LBBB ----------------
+
+if (pwVal("pwLBBB") === "yes") {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Left Bundle Branch Block</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      LBBB limiting interpretation of conventional exercise ECG ischemia testing.</p>
+
+      <p><strong>Differential / Clinical Context:</strong>
+      Chronic conduction disease, ischemic heart disease,
+      cardiomyopathy, hypertensive structural disease or newly developed conduction abnormality.</p>
+
+      <p><strong>Further Workup:</strong>
+      Determine whether LBBB is new or chronic.
+      Review prior ECGs, symptoms and structural heart evaluation.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Treat underlying cardiac disease when identified.
+      Routine treatment of an asymptomatic chronic LBBB itself is not required.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Per TSJH guidance, use pharmacologic nuclear stress testing such as Lexiscan
+      or obtain cardiology evaluation when ischemic assessment is needed.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- ANTICOAGULANT / ANTIPLATELET ----------------
+
+const antithromboticValue = pwVal("pwAntithrombotic");
+
+if (
+  antithromboticValue &&
+  antithromboticValue !== "none"
+) {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Anticoagulant / Antiplatelet Management</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Perioperative antithrombotic management required for ${antithromboticValue}.</p>
+
+      <p><strong>Differential / Clinical Context:</strong>
+      Indication may include atrial fibrillation, venous thromboembolism,
+      mechanical valve, coronary stent, cerebrovascular disease or peripheral vascular disease.</p>
+
+      <p><strong>Further Workup:</strong>
+      Confirm medication, indication, renal function, last dose,
+      prior thrombosis history and presence/timing of PCI or coronary stent.
+      Determine whether neuraxial, spine, SCS or intrathecal procedures are planned.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Follow TSJH interruption intervals and procedure-specific guidance.
+      Bridging should be individualized based on thromboembolic risk and medication indication.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Do not interrupt required dual antiplatelet therapy after recent PCI
+      without multidisciplinary review. Restart antithrombotic therapy
+      as soon as surgical hemostasis permits.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- SGLT2 INHIBITOR ----------------
+
+const sglt2Value = pwVal("pwSGLT2");
+
+if (
+  sglt2Value &&
+  sglt2Value !== "none"
+) {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>SGLT2 Inhibitor — ${sglt2Value}</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Perioperative risk of euglycemic diabetic ketoacidosis.</p>
+
+      <p><strong>Differential / Clinical Context:</strong>
+      Increased risk may occur with fasting, dehydration,
+      acute illness, insulin deficiency or major surgical stress.</p>
+
+      <p><strong>Further Workup:</strong>
+      Confirm last dose and diabetes type.
+      If symptoms or metabolic concern are present, evaluate glucose,
+      bicarbonate/anion gap and ketones as clinically indicated.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Hold most SGLT2 inhibitors for 3 days before surgery;
+      ertugliflozin requires 4 days.
+      Maintain adequate hydration and appropriate diabetes management.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      If the medication was not held appropriately or there is concern for ketosis,
+      escalate for clinical assessment before proceeding.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- GLP-1 MEDICATION ----------------
+
+if (pwVal("pwGLP1") === "yes") {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>GLP-1 Receptor Agonist</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Potential delayed gastric emptying and aspiration risk.</p>
+
+      <p><strong>Differential / Risk Factors:</strong>
+      Dose-escalation phase, significant nausea or vomiting,
+      gastroparesis symptoms, higher doses or other conditions associated
+      with delayed gastric emptying.</p>
+
+      <p><strong>Further Workup:</strong>
+      Identify medication, dosing schedule, last dose,
+      escalation phase and current gastrointestinal symptoms.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Apply current anesthesia and institutional risk-based guidance.
+      Higher-risk patients may require dietary modification,
+      medication adjustment or additional anesthesia planning.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Do not use medication status alone as the only determinant;
+      assess individualized aspiration risk and coordinate with anesthesia.</p>
+    </div>
+  `);
+}
+
+
+// ---------------- INSULIN PUMP / TYPE 1 DIABETES ----------------
+
+if (pwVal("pwInsulinPump") === "yes") {
+
+  clinicalSupport.push(`
+    <div class="result-box">
+      <h4>Insulin Pump / Insulin-Dependent Diabetes</h4>
+
+      <p><strong>Diagnosis / Problem:</strong>
+      Continuous insulin requirement with risk of perioperative hypo-
+      or hyperglycemia and ketosis if basal insulin is interrupted.</p>
+
+      <p><strong>Differential / Clinical Context:</strong>
+      Type 1 diabetes, insulin-dependent Type 2 diabetes,
+      pump therapy or hybrid closed-loop system.</p>
+
+      <p><strong>Further Workup:</strong>
+      Confirm diabetes type, pump model, basal settings,
+      glucose-monitoring method, usual hypoglycemia pattern and
+      perioperative management plan.</p>
+
+      <p><strong>Recommended Treatment / Optimization:</strong>
+      Ensure continuous basal insulin coverage.
+      Coordinate pump/CGM management with anesthesia and the diabetes care plan.
+      Avoid prolonged interruption of insulin in Type 1 diabetes.</p>
+
+      <p><strong>Perioperative Recommendation:</strong>
+      Establish a clear day-of-surgery insulin and glucose-monitoring plan
+      before proceeding.</p>
+    </div>
+  `);
+}
 
 // ---------------- DISPLAY CLINICAL SUPPORT ----------------
 

@@ -1,0 +1,52 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Medication Perioperative Search</title>
+<style>
+body{font-family:Arial;margin:0;background:#f4f7f9;color:#1f2933;line-height:1.5}header{background:#17324d;color:white;padding:28px 18px;text-align:center}
+main{max-width:1000px;margin:auto;padding:18px}section{background:white;padding:20px;margin:16px 0;border-radius:10px}input{width:100%;padding:13px;font-size:16px;box-sizing:border-box}
+button{padding:10px 13px;margin:5px;border:0;border-radius:6px;font-weight:bold;background:#17324d;color:white}.chips button{background:#e9eef3;color:#17324d}
+.card{border:1px solid #d9e2ec;border-radius:8px;padding:14px;margin:12px 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.warn{background:#fff8e7;border-left:5px solid #996515;padding:12px}.danger{background:#fff3f1;border-left:5px solid #b42318;padding:12px}
+a{color:#17324d;font-weight:bold}@media(max-width:700px){.grid{grid-template-columns:1fr}}
+</style></head><body>
+<header><h1>Medication Perioperative Search</h1><p>Hold / continue, restart, and escalation guidance</p></header>
+<main><section><p><a href="index.html">Home</a> Â· <a href="tsjh-guidelines.html">TSJH Guidelines</a> Â· <a href="clinical-problem-search.html">Problem Search</a></p>
+<h2>Search a medication</h2><input id="q" placeholder="Example: Eliquis, Plavix, Ozempic, Jardiance, lisinopril, metoprolol">
+<button onclick="go()">Search</button><div class="chips">
+<button onclick="pick('Eliquis')">Eliquis</button><button onclick="pick('Plavix')">Plavix</button><button onclick="pick('Ozempic')">Ozempic</button>
+<button onclick="pick('Jardiance')">Jardiance</button><button onclick="pick('lisinopril')">Lisinopril</button><button onclick="pick('metoprolol')">Metoprolol</button></div>
+<div class="warn"><b>Quick-reference only.</b> Procedure bleeding risk, renal function, neuraxial timing, indication, recent PCI/stent, and current anesthesia/surgeon policy can change the plan.</div>
+</section><section id="r" style="display:none"><h2>Guidance</h2><div id="out"></div></section></main>
+<script>
+const M=[
+["Apixaban / Eliquis",["apixaban","eliquis"],"DOAC","TSJH quick reference: hold 72 hours when interruption is appropriate.","Restart after adequate surgical hemostasis per procedure/anesthesia plan.","Renal function, neuraxial timing and thromboembolic indication matter."],
+["Rivaroxaban / Xarelto",["rivaroxaban","xarelto"],"DOAC","TSJH quick reference: hold 72 hours when interruption is appropriate.","Restart after adequate hemostasis.","Consider renal function, indication and bleeding risk."],
+["Dabigatran / Pradaxa",["dabigatran","pradaxa"],"Anticoagulant","TSJH quick reference: approximately 3â5 days; renal function materially affects timing.","Restart after adequate hemostasis.","Avoid a one-size-fits-all interval in renal impairment or neuraxial procedures."],
+["Warfarin / Coumadin",["warfarin","coumadin"],"Anticoagulant","Typical quick reference: hold about 5 days when interruption is appropriate; verify INR.","Restart when surgical hemostasis permits.","Bridging is indication/risk dependent and is not routine for everyone."],
+["Clopidogrel / Plavix",["clopidogrel","plavix"],"Antiplatelet","Guideline interval about 5 days; TSJH quick reference approximately 7 days when interruption is appropriate.","Restart as soon as surgical hemostasis permits.","Do not interrupt required DAPT after recent PCI without multidisciplinary review."],
+["Ticagrelor / Brilinta",["ticagrelor","brilinta"],"Antiplatelet","Guideline interval approximately 3â5 days; TSJH quick reference approximately 7 days when interruption is appropriate.","Restart as soon as surgical hemostasis permits.","Recent PCI/stent requires multidisciplinary review before interruption."],
+["Prasugrel / Effient",["prasugrel","effient"],"Antiplatelet","TSJH quick reference: approximately 7 days when interruption is appropriate.","Restart as soon as surgical hemostasis permits.","Recent PCI/DAPT requirements take priority over routine hold rules."],
+["Aspirin",["aspirin","asa"],"Antiplatelet","Procedure/indication dependent. TSJH quick reference commonly uses ~5 days for joints and ~7 days for spine/SCS/IT when interruption is appropriate.","Restart when hemostasis permits.","Continue when required for dual/triple therapy unless multidisciplinary plan supports interruption."],
+["Enoxaparin / Lovenox",["enoxaparin","lovenox"],"LMWH","TSJH quick reference: approximately 24 hours; dose and neuraxial timing matter.","Restart according to hemostasis, dose, procedure and anesthesia plan.","Therapeutic vs prophylactic dosing changes management."],
+["Empagliflozin / Jardiance",["empagliflozin","jardiance"],"SGLT2","Common perioperative guidance: hold 3 days before scheduled surgery.","Restart when stable, eating/drinking adequately, and ketoacidosis risk has resolved.","Consider euglycemic ketoacidosis even without marked hyperglycemia."],
+["Dapagliflozin / Farxiga",["dapagliflozin","farxiga"],"SGLT2","Common perioperative guidance: hold 3 days before scheduled surgery.","Restart when stable with adequate intake.","Assess for ketoacidosis if clinically concerning."],
+["Ertugliflozin / Steglatro",["ertugliflozin","steglatro"],"SGLT2","Common perioperative guidance: hold 4 days before scheduled surgery.","Restart when stable with adequate intake.","Longer interruption is commonly recommended for ertugliflozin."],
+["Semaglutide / Ozempic / Wegovy / Rybelsus",["semaglutide","ozempic","wegovy","rybelsus"],"GLP-1","Individualize using current anesthesia guidance, escalation phase, dose, GI symptoms and aspiration risk; avoid an automatic universal hold.","Resume according to postoperative intake and prescribing plan.","Significant GI symptoms or aspiration-risk features warrant anesthesia review."],
+["Tirzepatide / Mounjaro / Zepbound",["tirzepatide","mounjaro","zepbound"],"GIP/GLP-1","Individualize using current anesthesia guidance, escalation phase and GI symptoms.","Resume based on intake and prescribing plan.","Escalation phase or significant GI symptoms may alter the plan."],
+["Lisinopril",["lisinopril","zestril","prinivil"],"ACE inhibitor","Indication matters. For hypertension, withholding before surgery may be considered; heart-failure use may warrant continuation depending on context.","Restart when hemodynamically appropriate.","Follow anesthesia/facility guidance and distinguish hypertension from HFrEF therapy."],
+["Losartan",["losartan","cozaar"],"ARB","Indication matters. For hypertension, preoperative withholding may be considered; HF indications require individualized review.","Restart when hemodynamically appropriate.","Use current anesthesia/facility policy."],
+["Metoprolol",["metoprolol","lopressor","toprol"],"Beta blocker","Generally continue chronic beta-blocker therapy unless a patient-specific contraindication exists.","Continue/restart when clinically appropriate.","Review significant bradycardia, hypotension or high-grade AV block."],
+["Amlodipine",["amlodipine","norvasc"],"Calcium-channel blocker","Generally continue perioperatively unless patient-specific hypotension or another contraindication exists.","Continue/restart when clinically appropriate.","Assess significant hypotension in context."],
+["Furosemide / Lasix",["furosemide","lasix"],"Loop diuretic","Morning-of-surgery plan depends on indication, volume status and anesthesia/facility practice.","Resume according to volume status, renal function and intake.","HF/congestion should not be managed with a simplistic blanket hold rule."],
+["Metformin",["metformin","glucophage"],"Diabetes","Follow facility/anesthesia day-of-surgery diabetes-medication protocol; renal function and contrast exposure may affect management.","Resume when renal function and intake are appropriate.","AKI, hypoxia, acidosis or instability changes the plan."],
+["Basal insulin / Glargine",["glargine","lantus","basaglar","toujeo","basal insulin"],"Insulin","Do not completely stop basal insulin reflexively; use the facility dose-reduction protocol.","Continue individualized insulin management with glucose monitoring.","Type 1 diabetes requires basal insulin to prevent ketoacidosis."],
+["Levothyroxine / Synthroid",["levothyroxine","synthroid"],"Thyroid","Generally continue perioperatively.","Continue usual therapy when feasible.","Severe uncontrolled thyroid disease is an optimization issue rather than a medication-hold issue."]
+];
+function e(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function pick(x){document.getElementById("q").value=x;go()}
+function go(){let q=document.getElementById("q").value.toLowerCase().trim(),hits=M.filter(m=>m[0].toLowerCase().includes(q)||m[1].some(a=>a.includes(q)||q.includes(a)));
+let o=document.getElementById("out"),r=document.getElementById("r");r.style.display="block";
+if(!q){o.innerHTML='<div class="warn">Enter a medication name.</div>';return}
+if(!hits.length){o.innerHTML='<div class="warn">No close match yet. Try the generic or brand name.</div>';return}
+o.innerHTML=hits.map(m=>`<div class="card"><h3>${e(m[0])}</h3><b>${e(m[2])}</b><div class="grid"><div><h4>Preoperative action</h4><p>${e(m[3])}</p></div><div><h4>Restart</h4><p>${e(m[4])}</p></div></div><div class="danger"><b>Caution:</b> ${e(m[5])}</div></div>`).join("")}
+document.getElementById("q").addEventListener("keydown",x=>{if(x.key==="Enter")go()});
+</script></body></html>

@@ -1494,126 +1494,95 @@ function clearForm() {
 }
 function loadProviderInformation() {
 
-  const params =
-    new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.location.search);
 
   function setValue(id, param) {
     const el = document.getElementById(id);
-    const incoming = params.get(param);
+    const value = params.get(param);
 
-    if (el && incoming) {
-      el.value = incoming;
+    if (el && value !== null && value !== "") {
+      el.value = value;
+      el.dispatchEvent(new Event("input", { bubbles: true }));
+      el.dispatchEvent(new Event("change", { bubbles: true }));
     }
   }
 
-  function setCheck(id, param) {
+  function checkBox(id) {
     const el = document.getElementById(id);
 
-    if (el && params.get(param) === "yes") {
+    if (el) {
       el.checked = true;
+      el.dispatchEvent(new Event("change", { bubbles: true }));
     }
   }
 
+  // Patient / procedure information
   setValue("piPatient", "patient");
   setValue("piProcedure", "procedure");
   setValue("piSurgeon", "surgeon");
   setValue("piDate", "date");
 
-  setCheck("piOSA", "osa");
-  setCheck("piCOPD", "copd");
-
-  if (params.get("glp1") === "yes") {
-    const el = document.getElementById("piDiabetesMeds");
-    if (el) el.checked = true;
+  // OSA
+  if (params.get("osa") === "yes") {
+    checkBox("piOSA");
   }
 
-  if (params.get("sglt2")) {
-    const el = document.getElementById("piDiabetesMeds");
-    if (el) el.checked = true;
+  // COPD
+  if (params.get("copd") === "yes") {
+    checkBox("piCOPD");
   }
 
-  if (params.get("pump") === "yes") {
-    const el = document.getElementById("piDiabetesMeds");
-    if (el) el.checked = true;
-  }
+  // Anticoagulant / antiplatelet
+  const antithrombotic = params.get("antithrombotic");
 
-  if (params.get("antithrombotic")) {
+  if (antithrombotic) {
+    checkBox("piAnticoag");
 
-    const anticoag =
-      document.getElementById("piAnticoag");
-
-    if (anticoag) {
-      anticoag.checked = true;
-    }
-
-    const med =
-      document.getElementById("piMedicationName");
+    const med = document.getElementById("piMedicationName");
 
     if (med && !med.value) {
-      med.value =
-        params.get("antithrombotic");
+      med.value = antithrombotic;
     }
   }
 
-  const sodium =
-    parseFloat(params.get("sodium"));
+  // Diabetes medication education
+  if (
+    params.get("glp1") === "yes" ||
+    params.get("sglt2") ||
+    params.get("pump") === "yes"
+  ) {
+    checkBox("piDiabetesMeds");
+  }
+
+  // Sodium
+  const sodium = parseFloat(params.get("sodium"));
 
   if (!isNaN(sodium) && sodium < 130) {
-
-    const hypoNa =
-      document.getElementById("piHyponatremia");
-
-    const repeatLabs =
-      document.getElementById("piRepeatLabs");
-
-    if (hypoNa) {
-      hypoNa.checked = true;
-    }
-
-    if (repeatLabs) {
-      repeatLabs.checked = true;
-    }
+    checkBox("piHyponatremia");
+    checkBox("piRepeatLabs");
   }
 
-  const potassium =
-    parseFloat(params.get("potassium"));
+  // Potassium
+  const potassium = parseFloat(params.get("potassium"));
 
   if (!isNaN(potassium)) {
 
     if (potassium < 3.2) {
-
-      const hypoK =
-        document.getElementById("piHypokalemia");
-
-      const repeatLabs =
-        document.getElementById("piRepeatLabs");
-
-      if (hypoK) {
-        hypoK.checked = true;
-      }
-
-      if (repeatLabs) {
-        repeatLabs.checked = true;
-      }
+      checkBox("piHypokalemia");
+      checkBox("piRepeatLabs");
     }
 
     if (potassium > 5.5) {
-
-      const hyperK =
-        document.getElementById("piHyperkalemia");
-
-      const repeatLabs =
-        document.getElementById("piRepeatLabs");
-
-      if (hyperK) {
-        hyperK.checked = true;
-      }
-
-      if (repeatLabs) {
-        repeatLabs.checked = true;
-      }
+      checkBox("piHyperkalemia");
+      checkBox("piRepeatLabs");
     }
   }
+
+  // Helpful test message in browser console
+  console.log(
+    "Provider information loaded:",
+    Object.fromEntries(params.entries())
+  );
 }
 
 window.addEventListener(

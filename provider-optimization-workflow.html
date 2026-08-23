@@ -4563,6 +4563,248 @@ if (clinicalSupport.length > 0) {
     </div>
   `;
 }
+  // ============================================================
+// TRUBRIDGE-READY ASSESSMENT & PLAN
+// ============================================================
+
+let apItems = [];
+
+const apPatient = pwVal("pwPatient");
+const apProcedure = pwVal("pwProcedure");
+const apSurgeon = pwVal("pwSurgeon");
+const apDOS = pwVal("pwDOS");
+
+let formattedDOS = apDOS;
+
+if (apDOS && apDOS.includes("-")) {
+  const d = apDOS.split("-");
+  if (d.length === 3) {
+    formattedDOS = d[1] + "/" + d[2] + "/" + d[0];
+  }
+}
+
+
+// -------- A&P #1: SURGICAL DIAGNOSIS / PROCEDURE --------
+
+let surgicalDiagnosis = pwVal("pwDiagnosis");
+
+if (!surgicalDiagnosis) {
+  surgicalDiagnosis = "Surgical condition";
+}
+
+let surgeonDisplay = apSurgeon || "[Surgeon]";
+
+surgeonDisplay = surgeonDisplay
+  .replace(/^dr\.?\s*/i, "")
+  .trim();
+
+apItems.push(
+  "<strong>1. " +
+  surgicalDiagnosis +
+  ".</strong> Planned " +
+  (apProcedure || "[procedure]") +
+  " with Dr. " +
+  surgeonDisplay +
+  " on " +
+  (formattedDOS || "[surgery date]") +
+  ". DVT prophy, PT and analgesia guided by surgeon."
+);
+
+
+// -------- HYPONATREMIA --------
+
+if (!isNaN(sodiumValue) && sodiumValue < 135) {
+
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Hyponatremia.</strong> Sodium " +
+    sodiumValue +
+    ". Review trend, medications and volume status. " +
+    "Repeat BMP as clinically indicated and evaluate underlying etiology. " +
+    "Avoid empiric salt or fluid restriction without determining likely cause."
+  );
+}
+
+
+// -------- HYPOKALEMIA --------
+
+if (!isNaN(potassiumValue) && potassiumValue < 3.5) {
+
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Hypokalemia.</strong> Potassium " +
+    potassiumValue +
+    ". Review medication and GI losses; consider magnesium level. " +
+    "Replace potassium as clinically appropriate and repeat level per perioperative protocol."
+  );
+}
+
+
+// -------- HYPERKALEMIA --------
+
+if (!isNaN(potassiumValue) && potassiumValue > 5.0) {
+
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Hyperkalemia.</strong> Potassium " +
+    potassiumValue +
+    ". Confirm with repeat testing if unexpected or hemolysis is possible. " +
+    "Review renal function and contributing medications; obtain ECG when clinically indicated."
+  );
+}
+
+
+// -------- ANEMIA --------
+
+if (!isNaN(hemoglobinValue) && hemoglobinValue < 12) {
+
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Anemia.</strong> Hemoglobin " +
+    hemoglobinValue +
+    ". Review CBC indices and trend. Consider iron studies, ferritin, TSAT, " +
+    "B12, folate and reticulocyte count as clinically indicated. " +
+    "Treat identified deficiency or underlying cause prior to surgery when feasible."
+  );
+}
+
+
+// -------- POLYCYTHEMIA --------
+
+if (!isNaN(hemoglobinValue) && hemoglobinValue >= 17.5) {
+
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Elevated hemoglobin / erythrocytosis.</strong> Hemoglobin " +
+    hemoglobinValue +
+    ". Assess hydration, hypoxemia, OSA/COPD, tobacco or androgen exposure. " +
+    "Repeat CBC and pursue hematology evaluation when unexplained or persistent. " +
+    "Apply TSJH hemoglobin optimization criteria."
+  );
+}
+
+
+// -------- RENAL DYSFUNCTION --------
+
+if (
+  (!isNaN(egfrValue) && egfrValue < 60) ||
+  (!isNaN(creatinineValue) && creatinineValue > 1.5)
+) {
+
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Renal dysfunction.</strong> Review baseline renal function and determine " +
+    "chronic stable CKD versus acute kidney injury. Avoid unnecessary nephrotoxins, " +
+    "renally dose medications and repeat renal studies when clinically indicated."
+  );
+}
+
+
+// -------- DIABETES / HYPERGLYCEMIA --------
+
+if (
+  (!isNaN(glucoseValue) && glucoseValue >= 180) ||
+  (!isNaN(a1cValue) && a1cValue > 8)
+) {
+
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Diabetes mellitus / hyperglycemia.</strong> Review glucose trend and current regimen. " +
+    "Optimize glycemic control and apply perioperative insulin, SGLT2 and GLP-1 guidance. " +
+    "A1c alone should not be used as the sole reason to postpone surgery."
+  );
+}
+
+
+// -------- OSA --------
+
+if (pwVal("pwOSA") === "yes") {
+
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Obstructive sleep apnea.</strong> Continue PAP therapy. " +
+    "PAP anytime asleep; respiratory therapy assistance and postoperative monitoring as indicated."
+  );
+}
+
+
+// -------- COPD --------
+
+if (pwVal("pwCOPD") === "yes") {
+
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". COPD.</strong> Continue prescribed maintenance inhalers. " +
+    "Assess for active exacerbation, infection, oxygen requirement or hypercapnia. " +
+    "Apply TSJH pulmonary risk criteria and escalate when indicated."
+  );
+}
+
+
+// -------- ANTICOAGULANT / ANTIPLATELET --------
+
+if (
+  antithromboticValue &&
+  antithromboticValue !== "none"
+) {
+
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Chronic antithrombotic therapy.</strong> " +
+    antithromboticValue +
+    ". Confirm indication, renal function, last dose, PCI/stent history and procedural bleeding risk. " +
+    "Follow TSJH interruption guidance and coordinate bridging when clinically indicated."
+  );
+}
+
+
+// -------- HEART FAILURE --------
+
+if (
+  (!isNaN(efValue) && efValue < 50) ||
+  pwVal("pwVolumeOverload") === "yes"
+) {
+
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Heart failure / reduced LV systolic function.</strong> " +
+    (!isNaN(efValue) ? "LVEF " + efValue + "%. " : "") +
+    "Assess NYHA class, volume status, recent cardiovascular evaluation and GDMT. " +
+    "Active decompensation requires treatment before routine elective surgery."
+  );
+}
+
+
+// -------- PULMONARY HYPERTENSION --------
+
+if (
+  (!isNaN(rvspValue) && rvspValue > 50) ||
+  pwVal("pwWHO1") === "yes" ||
+  pwVal("pwSevereTR") === "yes" ||
+  pwVal("pwRVDysfunction") === "yes"
+) {
+
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Pulmonary hypertension / right-heart risk.</strong> " +
+    (!isNaN(rvspValue) ? "RVSP " + rvspValue + " mmHg. " : "") +
+    "Review RV function, TR severity, WHO group, oxygen requirement and vasodilator therapy. " +
+    "Apply TSJH cardiovascular review and higher-level-of-care criteria."
+  );
+}
+
+
+// -------- DISPLAY A&P --------
+
+html += `
+  <div class="result-section">
+    <h3>Assessment & Plan</h3>
+
+    ${apItems.map(item =>
+      "<p style='margin-bottom:12px;'>" + item + "</p>"
+    ).join("")}
+  </div>
+`;
   html +=
     "<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS: " +
     status +

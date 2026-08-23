@@ -769,7 +769,422 @@ const problems = [
     "Use specialist/anticoagulation resources for complex bridging decisions"
   ],
   next:"Pending until an appropriate perioperative anticoagulation plan and acceptable coagulation status are established."
+},
+{
+  title:"Chest Pain",
+  aliases:["chest pain","chest pressure","angina","chest discomfort"],
+  tags:["Cardiac","Symptoms","Ischemia"],
+  differential:[
+    "Acute coronary syndrome / ischemia",
+    "Musculoskeletal pain",
+    "GERD/esophageal disease",
+    "Pulmonary embolism",
+    "Pericarditis",
+    "Aortic pathology"
+  ],
+  workup:[
+    "Clarify onset, exertional component, associated symptoms, and current stability",
+    "12-lead ECG and troponin when acute ischemia is a concern",
+    "Review prior CAD history/testing and cardiology notes",
+    "Escalate emergently for ongoing or unstable symptoms"
+  ],
+  optimize:[
+    "Do not proceed with elective surgery until active ischemia or other acute cardiopulmonary pathology is excluded",
+    "Treat identified cause and obtain cardiology/anesthesia input when appropriate"
+  ],
+  next:"New, unstable, or unexplained chest pain is Not optimized until evaluated. Chronic stable noncardiac pain may proceed after appropriate review."
+},
+{
+  title:"Syncope / Near Syncope",
+  aliases:["syncope","near syncope","fainting","passed out","presyncope"],
+  tags:["Cardiac","Neurologic","Symptoms"],
+  differential:[
+    "Arrhythmia or conduction disease",
+    "Orthostatic hypotension / dehydration",
+    "Vasovagal syncope",
+    "Structural heart disease",
+    "Neurologic cause",
+    "Medication effect"
+  ],
+  workup:[
+    "Review event details, prodrome, exertional component, injury, and recurrence",
+    "Orthostatic vitals and medication review",
+    "12-lead ECG",
+    "CBC/BMP and echocardiography or rhythm monitoring when clinically indicated"
+  ],
+  optimize:[
+    "Correct reversible causes",
+    "Unexplained, exertional, or recurrent syncope warrants cardiac evaluation before elective surgery"
+  ],
+  next:"Usually Pending until cause is reasonably established. Syncope with unstable arrhythmia, severe structural disease, or active symptoms is Not optimized."
+},
+{
+  title:"PVCs / Ventricular Ectopy",
+  aliases:["pvcs","premature ventricular contractions","ventricular ectopy","frequent pvcs"],
+  tags:["Cardiac","Rhythm","EKG"],
+  differential:[
+    "Benign isolated ectopy",
+    "Electrolyte abnormality",
+    "Ischemia",
+    "Structural heart disease",
+    "Stimulant/medication effect"
+  ],
+  workup:[
+    "Assess symptoms and frequency/burden",
+    "Compare with prior ECG",
+    "Check potassium/magnesium and review medications/stimulants",
+    "Consider Holter/event monitor or cardiology review for frequent/symptomatic ectopy"
+  ],
+  optimize:[
+    "Correct electrolyte or medication contributors",
+    "Evaluate frequent, symptomatic, multifocal, or complex ventricular ectopy"
+  ],
+  next:"Occasional asymptomatic PVCs may be Optimized. Frequent or symptomatic ventricular ectopy is Pending specialist review."
+},
+{
+  title:"Atrial Fibrillation",
+  aliases:["atrial fibrillation","afib","a fib","atrial fib"],
+  tags:["Cardiac","Rhythm","Anticoagulation"],
+  differential:[
+    "Chronic rate-controlled atrial fibrillation",
+    "New-onset atrial fibrillation",
+    "Thyroid disease",
+    "Infection, anemia, or electrolyte disturbance",
+    "Structural heart disease"
+  ],
+  workup:[
+    "Determine new vs chronic AF and assess rate control",
+    "Review anticoagulation indication and perioperative interruption plan",
+    "ECG, electrolytes, thyroid testing, and echocardiography when clinically indicated"
+  ],
+  optimize:[
+    "Achieve clinically acceptable rate control",
+    "Resolve anticoagulation plan",
+    "Evaluate new-onset or symptomatic AF before elective surgery"
+  ],
+  next:"Stable chronic rate-controlled AF with an appropriate anticoagulation plan may be Optimized. New, rapid, symptomatic, or unstable AF is Pending/Not optimized."
+},
+{
+  title:"Prolonged QTc",
+  aliases:["prolonged qtc","long qtc","qtc prolonged","long qt"],
+  tags:["EKG","Arrhythmia","Medication"],
+  differential:[
+    "Medication effect",
+    "Hypokalemia or hypomagnesemia",
+    "Congenital long-QT syndrome",
+    "Bradycardia",
+    "Acute illness"
+  ],
+  workup:[
+    "Confirm QTc and compare with prior ECG",
+    "Review QT-prolonging medications",
+    "Check potassium, magnesium, calcium, and renal function",
+    "Assess syncope/palpitations history"
+  ],
+  optimize:[
+    "Correct electrolytes and reduce avoidable QT-prolonging medications when appropriate",
+    "Marked QTc prolongation or associated symptoms warrants anesthesia/cardiology review"
+  ],
+  next:"Marked QTc prolongation (especially around â¥500 ms) is usually Pending further review; symptomatic long-QT physiology may be Not optimized."
+},
+{
+  title:"Abnormal Chest X-ray",
+  aliases:["abnormal chest xray","abnormal cxr","chest xray abnormal","cxr abnormal"],
+  tags:["Pulmonary","Imaging","Cardiac"],
+  differential:[
+    "Atelectasis or chronic scar",
+    "Pulmonary edema",
+    "Pneumonia",
+    "Pleural effusion",
+    "Mass/nodule",
+    "Chronic hyperinflation"
+  ],
+  workup:[
+    "Compare with prior imaging",
+    "Correlate with symptoms, oxygen saturation, exam, and cardiopulmonary history",
+    "Obtain follow-up imaging or specialty evaluation when the finding is new or clinically significant"
+  ],
+  optimize:[
+    "Treat active infection or decompensated cardiopulmonary disease",
+    "Do not delay surgery for stable chronic incidental findings without clinical significance"
+  ],
+  next:"Depends on cause. Acute pneumonia, pulmonary edema, or unexplained significant new findings are Pending/Not optimized."
+},
+{
+  title:"COPD Exacerbation",
+  aliases:["copd exacerbation","wheezing","copd flare","acute copd"],
+  tags:["Pulmonary","COPD","Respiratory"],
+  differential:[
+    "COPD exacerbation",
+    "Respiratory infection",
+    "Heart failure",
+    "Pulmonary embolism",
+    "Bronchospasm/asthma overlap"
+  ],
+  workup:[
+    "Assess dyspnea, sputum change, wheeze, oxygen requirement, and baseline status",
+    "Pulse oximetry and focused pulmonary exam",
+    "Chest imaging, viral testing, ABG/VBG, or PFT data when clinically indicated"
+  ],
+  optimize:[
+    "Treat acute exacerbation and return patient toward baseline before elective surgery",
+    "Continue/optimize bronchodilator therapy",
+    "Escalate if oxygen needs or hypercapnia exceed facility pathway"
+  ],
+  next:"Active COPD exacerbation is generally Not optimized until clinically improved. Stable COPD may proceed if TSJH pulmonary criteria are satisfied."
+},
+{
+  title:"OSA Without PAP / PAP Intolerance",
+  aliases:["osa no cpap","osa without cpap","cpap intolerant","pap intolerant","sleep apnea no cpap"],
+  tags:["OSA","Pulmonary","Monitoring"],
+  differential:[
+    "Untreated or undertreated obstructive sleep apnea",
+    "PAP intolerance",
+    "Poor adherence",
+    "Unrecognized obesity hypoventilation"
+  ],
+  workup:[
+    "Clarify severity, prior sleep study, PAP prescription and adherence",
+    "Assess resting oxygenation and hypercapnia risk when indicated",
+    "Review opioid/sedative risk"
+  ],
+  optimize:[
+    "Encourage PAP use when prescribed",
+    "If PAP intolerant, plan continuous postoperative oximetry and respiratory support as indicated"
+  ],
+  next:"OSA alone does not necessarily prevent surgery. Untreated severe disease with hypoxemia/hypercapnia or other exclusion features may require escalation."
+},
+{
+  title:"Fever",
+  aliases:["fever","febrile","temperature elevated"],
+  tags:["Infection","Symptoms","Systemic"],
+  differential:[
+    "Viral infection",
+    "Bacterial infection",
+    "Post-inflammatory process",
+    "Drug fever",
+    "Other systemic inflammatory condition"
+  ],
+  workup:[
+    "Repeat temperature and assess symptoms/exam",
+    "Targeted CBC, UA/culture, respiratory testing, imaging, or cultures based on clinical source"
+  ],
+  optimize:[
+    "Treat active infection and defer elective surgery when systemic illness is present",
+    "Avoid broad testing without clinical direction"
+  ],
+  next:"Unexplained or infectious fever is generally Pending/Not optimized until evaluated and clinically resolved."
+},
+{
+  title:"MRSA / MSSA Screening",
+  aliases:["mrsa positive","mssa positive","mrsa screen","mssa screen","staph aureus positive"],
+  tags:["Infection","Screening","Implant"],
+  differential:[
+    "Nasal colonization",
+    "Active staphylococcal infection"
+  ],
+  workup:[
+    "Distinguish colonization from active infection",
+    "Follow current surgeon/facility decolonization protocol when applicable"
+  ],
+  optimize:[
+    "Use prescribed decolonization regimen when indicated",
+    "Coordinate perioperative antibiotic selection per facility/surgeon protocol"
+  ],
+  next:"Colonization alone is generally not a Not optimized status if the facility pathway is followed. Active infection requires treatment and reassessment."
+},
+{
+  title:"Open Wound / Skin Infection",
+  aliases:["open wound","draining wound","cellulitis","skin infection","ulcer"],
+  tags:["Infection","Wound","Implant"],
+  differential:[
+    "Cellulitis",
+    "Pressure or venous ulcer",
+    "Traumatic wound",
+    "Diabetic ulcer",
+    "Surgical wound complication"
+  ],
+  workup:[
+    "Assess location, drainage, erythema, depth, systemic symptoms, and proximity to operative site",
+    "Culture only when clinically indicated",
+    "Surgeon review for implant procedures"
+  ],
+  optimize:[
+    "Treat active infection and promote wound healing",
+    "Avoid elective implant surgery with uncontrolled active infection"
+  ],
+  next:"Usually Pending; active cellulitis, drainage, or infected wound may be Not optimized until treated."
+},
+{
+  title:"Dental Infection",
+  aliases:["dental infection","tooth infection","dental abscess","abscessed tooth"],
+  tags:["Infection","Dental","Implant"],
+  differential:[
+    "Dental abscess",
+    "Periodontal infection",
+    "Caries without active infection"
+  ],
+  workup:[
+    "Assess pain, swelling, drainage, fever, and dental evaluation",
+    "Coordinate with surgeon when prosthetic implant surgery is planned"
+  ],
+  optimize:[
+    "Treat active dental infection before elective implant surgery when clinically appropriate"
+  ],
+  next:"Active dental infection is generally Pending until treated/clinically resolved; simple dental disease without infection may not delay surgery."
+},
+{
+  title:"Elevated AST / ALT",
+  aliases:["elevated ast","elevated alt","high liver enzymes","transaminitis","elevated liver enzymes"],
+  tags:["Liver","Labs","Medication"],
+  differential:[
+    "Fatty liver disease",
+    "Alcohol-related injury",
+    "Medication effect",
+    "Viral hepatitis",
+    "Ischemic or congestive hepatopathy",
+    "Muscle injury"
+  ],
+  workup:[
+    "Review prior trend, alcohol/medication history, bilirubin and alkaline phosphatase",
+    "Consider hepatitis testing or imaging when indicated",
+    "Assess synthetic function with INR/albumin when liver disease is suspected"
+  ],
+  optimize:[
+    "Treat/clarify acute hepatic injury",
+    "Stable mild chronic transaminase elevation may not require delay"
+  ],
+  next:"Mild stable elevation may be Optimized. Acute marked transaminitis, jaundice, or impaired synthetic function is Pending/Not optimized."
+},
+{
+  title:"Elevated Bilirubin / Jaundice",
+  aliases:["elevated bilirubin","high bilirubin","jaundice"],
+  tags:["Liver","Biliary","Labs"],
+  differential:[
+    "Biliary obstruction",
+    "Hemolysis",
+    "Hepatocellular disease",
+    "Gilbert syndrome",
+    "Medication-related cholestasis"
+  ],
+  workup:[
+    "Fractionate bilirubin when useful",
+    "Review AST/ALT/alkaline phosphatase and prior trend",
+    "CBC/hemolysis studies or hepatobiliary imaging as indicated"
+  ],
+  optimize:[
+    "Clarify acute jaundice/obstruction before elective surgery",
+    "Stable Gilbert syndrome generally requires no optimization"
+  ],
+  next:"New jaundice or unexplained significant bilirubin elevation is Pending. Acute obstruction/cholangitis or hepatic decompensation is Not optimized."
+},
+{
+  title:"Low Albumin",
+  aliases:["low albumin","hypoalbuminemia","albumin low"],
+  tags:["Nutrition","Liver","Risk"],
+  differential:[
+    "Malnutrition",
+    "Chronic inflammation",
+    "Liver disease",
+    "Nephrotic protein loss",
+    "Protein-losing enteropathy"
+  ],
+  workup:[
+    "Review weight loss, intake, liver/renal disease, edema, and chronic illness",
+    "Consider nutrition evaluation when clinically significant"
+  ],
+  optimize:[
+    "Address reversible nutritional deficits when time allows",
+    "Use low albumin as a risk marker rather than an isolated cancellation criterion"
+  ],
+  next:"Usually a risk/optimization marker rather than automatic delay; severe unexplained hypoalbuminemia may be Pending further evaluation."
+},
+{
+  title:"Abnormal TSH / Thyroid Disease",
+  aliases:["abnormal tsh","high tsh","low tsh","hypothyroidism","hyperthyroidism","thyroid abnormal"],
+  tags:["Endocrine","Thyroid","Labs"],
+  differential:[
+    "Hypothyroidism",
+    "Hyperthyroidism",
+    "Medication dosing issue",
+    "Non-thyroidal illness"
+  ],
+  workup:[
+    "Review TSH/free T4 and symptoms",
+    "Assess medication adherence and recent dose changes",
+    "Evaluate significant tachycardia, arrhythmia, weight loss, or severe hypothyroid symptoms"
+  ],
+  optimize:[
+    "Mild stable thyroid dysfunction may not require delay",
+    "Overt uncontrolled hyperthyroidism or severe hypothyroidism should be treated before elective surgery"
+  ],
+  next:"Stable treated disease is usually Optimized. Overt symptomatic uncontrolled disease is Pending/Not optimized."
+},
+{
+  title:"Obesity / High BMI",
+  aliases:["obesity","high bmi","morbid obesity","bmi high"],
+  tags:["BMI","OSA","Airway"],
+  differential:[
+    "Obesity with or without OSA",
+    "Obesity hypoventilation syndrome",
+    "Metabolic syndrome"
+  ],
+  workup:[
+    "Assess OSA risk/PAP use, functional status, cardiopulmonary symptoms, and facility BMI criteria",
+    "Consider respiratory risk and equipment/positioning needs"
+  ],
+  optimize:[
+    "Optimize OSA, diabetes, BP, and pulmonary status",
+    "Weight alone should be interpreted within facility/procedure requirements"
+  ],
+  next:"Often Optimized if comorbidities and facility criteria are satisfied. Obesity hypoventilation or major respiratory risk may require escalation."
+},
+{
+  title:"Peripheral Edema",
+  aliases:["edema","leg swelling","peripheral edema","bilateral leg edema"],
+  tags:["Cardiac","Renal","Vascular"],
+  differential:[
+    "Heart failure",
+    "Venous insufficiency",
+    "Renal disease",
+    "Liver disease",
+    "Medication effect",
+    "DVT when unilateral/acute"
+  ],
+  workup:[
+    "Determine unilateral vs bilateral, acute vs chronic",
+    "Assess dyspnea, weight gain, JVP, lung exam, renal/liver history",
+    "BNP, echocardiography, venous ultrasound or labs when clinically indicated"
+  ],
+  optimize:[
+    "Treat decompensated volume overload or acute DVT",
+    "Stable chronic venous edema may not require delay"
+  ],
+  next:"New edema with cardiopulmonary symptoms is Pending. Decompensated HF or acute DVT is Not optimized."
+},
+{
+  title:"Heart Murmur",
+  aliases:["murmur","heart murmur","new murmur","systolic murmur"],
+  tags:["Cardiac","Valve","Exam"],
+  differential:[
+    "Aortic stenosis",
+    "Mitral regurgitation",
+    "Tricuspid regurgitation",
+    "Flow murmur",
+    "Other structural valve disease"
+  ],
+  workup:[
+    "Assess whether murmur is new and whether symptoms are present",
+    "Review prior echocardiogram",
+    "Obtain echocardiography when a clinically significant valve lesion is suspected and current data are unavailable"
+  ],
+  optimize:[
+    "Manage based on actual valve lesion and severity",
+    "Do not label a murmur as benign without appropriate context when symptoms or high-risk features are present"
+  ],
+  next:"Stable known benign/chronic murmur may be Optimized. New murmur with symptoms or suspected significant valve disease is Pending."
 }
+
 ];
 
 function normalize(s){

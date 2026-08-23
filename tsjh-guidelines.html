@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TSJH Perioperative Guidelines Resource</title>
+<style>
+:root{
+  --navy:#17324d;
+  --blue:#274c6b;
+  --bg:#f4f7f9;
+  --card:#ffffff;
+  --line:#d9e2ec;
+  --text:#1f2933;
+  --muted:#52606d;
+  --green:#2d7a46;
+  --green-bg:#eef9f0;
+  --yellow:#9a6700;
+  --yellow-bg:#fff9e8;
+  --red:#b42318;
+  --red-bg:#fff4f2;
+  --info:#3178a8;
+  --info-bg:#eef6fb;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.55;
+}
+header{
+  background:var(--navy);
+  color:#fff;
+  padding:28px 18px;
+  text-align:center;
+}
+header h1{margin:0 0 8px;font-size:1.9rem}
+header p{margin:0;opacity:.95}
+nav{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  padding:10px;
+  overflow-x:auto;
+  white-space:nowrap;
+}
+nav a{
+  display:inline-block;
+  margin:2px 5px;
+  padding:8px 10px;
+  border-radius:6px;
+  text-decoration:none;
+  color:var(--navy);
+  font-weight:bold;
+  background:#f8fafc;
+}
+main{
+  max-width:1120px;
+  margin:22px auto;
+  padding:0 14px 40px;
+}
+section{
+  background:var(--card);
+  border-radius:10px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+h2{
+  margin-top:0;
+  color:var(--navy);
+  border-bottom:2px solid var(--line);
+  padding-bottom:8px;
+}
+h3{color:var(--blue);margin-bottom:6px}
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:10px 0;
+}
+th,td{
+  border:1px solid var(--line);
+  padding:9px;
+  text-align:left;
+  vertical-align:top;
+}
+th{background:#eef3f7;color:var(--navy)}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.card{
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:14px;
+  background:#fff;
+}
+.box{
+  border-left:5px solid;
+  border-radius:5px;
+  padding:13px 14px;
+  margin:12px 0;
+}
+.info{background:var(--info-bg);border-color:var(--info)}
+.good{background:var(--green-bg);border-color:var(--green)}
+.warn{background:var(--yellow-bg);border-color:var(--yellow)}
+.danger{background:var(--red-bg);border-color:var(--red)}
+.small{font-size:.9rem;color:var(--muted)}
+code{
+  background:#eef3f7;
+  padding:2px 5px;
+  border-radius:4px;
+}
+.quick-links a{
+  display:inline-block;
+  margin:4px 6px 4px 0;
+  padding:8px 10px;
+  background:#eef3f7;
+  color:var(--navy);
+  text-decoration:none;
+  border-radius:6px;
+  font-weight:bold;
+}
+footer{
+  text-align:center;
+  padding:24px 14px;
+  color:var(--muted);
+  font-size:.9rem;
+}
+@media(max-width:760px){
+  .grid{grid-template-columns:1fr}
+  header h1{font-size:1.5rem}
+  th,td{font-size:.92rem}
+}
+@media print{
+  nav{display:none}
+  body{background:#fff}
+  section{box-shadow:none;break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>TSJH Perioperative Guidelines Resource</h1>
+  <p>Quick-reference thresholds, escalation criteria, medication holds, surveillance pathways, and optimization guidance</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="#cardiac">Cardiac</a>
+  <a href="#valves">Valves</a>
+  <a href="#hf">Heart Failure</a>
+  <a href="#ph">Pulmonary HTN</a>
+  <a href="#pulmonary">Pulmonary/OSA</a>
+  <a href="#stroke">CVA</a>
+  <a href="#antithrombotic">Antithrombotics</a>
+  <a href="#diabetes">Diabetes Meds</a>
+  <a href="#labs">Labs</a>
+  <a href="#bnptrop">BNP/Troponin</a>
+  <a href="#hloc">HLOC</a>
+</nav>
+
+<main>
+
+<section>
+  <h2>How to Use This Page</h2>
+  <div class="box info">
+    <strong>Purpose:</strong> rapid provider reference for TSJH preoperative optimization. This page supports, but does not replace, clinical judgment, anesthesia review, surgeon discussion, or the most current facility policy.
+  </div>
+  <div class="quick-links">
+    <a href="provider-optimization-workflow.html">Provider Optimization Workflow</a>
+    <a href="cardiac.html">Cardiac</a>
+    <a href="pulmonary.html">Pulmonary</a>
+    <a href="pulmonary-risk-calculators.html">Pulmonary Risk Calculators</a>
+    <a href="clinical-calculators-resources.html">Clinical Calculators</a>
+    <a href="references.html">References</a>
+  </div>
+</section>
+
+<section id="cardiac">
+  <h2>Preoperative Cardiac Risk</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Surgical Risk</h3>
+      <p><strong>Low:</strong> &lt;1%</p>
+      <p><strong>Intermediate:</strong> 1â5%</p>
+      <p><strong>High:</strong> &gt;5%</p>
+    </div>
+    <div class="card">
+      <h3>Functional & Risk Screening</h3>
+      <p>DASI score</p>
+      <p>STOP-BANG total</p>
+      <p>Clinical Frailty Scale</p>
+      <p>RCRI points</p>
+    </div>
+  </div>
+
+  <div class="box warn">
+    <strong>LBBB:</strong> obtain cardiology evaluation or pharmacologic nuclear stress testing (Lexiscan) before elective surgery per TSJH pathway.
+  </div>
+
+  <div class="box danger">
+    <strong>Active cardiac problems:</strong> active/unstable cardiac disease should not be labeled optimized until appropriately evaluated and stabilized.
+  </div>
+</section>
+
+<section id="bnptrop">
+  <h2>BNP / NT-proBNP Screening and Postoperative Surveillance</h2>
+
+  <p><strong>Obtain BNP/NT-proBNP when:</strong></p>
+  <ul>
+    <li>RCRI â¥1, or</li>
+    <li>Age â¥65, or</li>
+    <li>Age 45â64 with significant cardiac disease.</li>
+  </ul>
+
+  <table>
+    <thead>
+      <tr><th>Marker</th><th>Threshold</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>NT-proBNP</td>
+        <td>â¥300 ng/L</td>
+        <td>PACU EKG + daily troponins for 48â72 hours</td>
+      </tr>
+      <tr>
+        <td>BNP</td>
+        <td>â¥92 pg/mL</td>
+        <td>PACU EKG + daily troponins for 48â72 hours</td>
+      </tr>
+      <tr>
+        <td>Below threshold</td>
+        <td>NT-proBNP &lt;300 or BNP &lt;92</td>
+        <td>No routine postoperative cardiac surveillance solely on this basis</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box info">
+    <strong>TSJH smart phrase:</strong><br>
+    BNP screening. Obtain BNP because of age greater than 65 years and RCRI score of 1. If BNP is 92 pg/mL or greater, implement the TSJH postoperative cardiac-surveillance protocol with postoperative EKG and daily troponins for 48â72 hours.
+  </div>
+
+  <p class="small">If BNP/NT-proBNP assay is unavailable, use EKG + troponin surveillance for selected high-risk cardiovascular disease including CAD, CVA, PAD, HF, severe pulmonary hypertension, or severe obstructive lesions.</p>
+</section>
+
+<section id="valves">
+  <h2>Valvular Heart Disease</h2>
+
+  <h3>Aortic Stenosis</h3>
+  <table>
+    <thead>
+      <tr><th>Finding</th><th>TSJH Action</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>AVA &lt;1.0 cmÂ²</td>
+        <td rowspan="3"><strong>Severe AS / higher-level-of-care concern</strong></td>
+      </tr>
+      <tr><td>Mean gradient &gt;40 mmHg</td></tr>
+      <tr><td>Vmax &gt;4.0 m/s</td></tr>
+      <tr>
+        <td>Moderate AS or symptomatic AS</td>
+        <td>Cardiovascular review required</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box danger">
+    <strong>TSJH:</strong> severe aortic stenosis is not appropriate for routine TSJH elective pathway without escalation / alternate-level review.
+  </div>
+
+  <h3>Mitral Stenosis</h3>
+  <table>
+    <thead>
+      <tr><th>Finding</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>MVA â¤1.5 cmÂ²</td><td rowspan="3">Moderateâsevere disease requires cardiovascular review</td></tr>
+      <tr><td>Mean gradient â¥10 mmHg</td></tr>
+      <tr><td>PASP &gt;50 mmHg</td></tr>
+    </tbody>
+  </table>
+  <p>Cardiovascular review should be current within 12 months when required by facility pathway.</p>
+</section>
+
+<section id="hf">
+  <h2>Heart Failure / Reduced EF</h2>
+  <div class="box danger">
+    <strong>Higher-level-of-care trigger:</strong> LVEF &lt;35%.
+  </div>
+  <p>For patients with EF â¥35%, TSJH pathway considerations include:</p>
+  <ul>
+    <li>Cardiology evaluation within 12 months when indicated</li>
+    <li>Adequate functional capacity / DASI equivalent</li>
+    <li>NYHA IâII</li>
+    <li>Optimized guideline-directed medical therapy</li>
+    <li>No CHF admissions within 2 years</li>
+    <li>No ischemic EKG changes</li>
+  </ul>
+</section>
+
+<section id="ph">
+  <h2>Pulmonary Hypertension / Right Heart</h2>
+  <div class="box danger">
+    <strong>TSJH HLOC red flags:</strong>
+    <ul>
+      <li>WHO Group 1 pulmonary hypertension</li>
+      <li>RVSP &gt;65 mmHg</li>
+      <li>Severe tricuspid regurgitation</li>
+      <li>Moderate-to-severe RV dysfunction</li>
+      <li>Advanced pulmonary vasodilator therapy</li>
+    </ul>
+  </div>
+  <p>Any of these findings should trigger deliberate surgeon/anesthesia review and consideration of an alternate facility / higher level of care.</p>
+</section>
+
+<section id="pulmonary">
+  <h2>Pulmonary / COPD / OSA</h2>
+
+  <h3>COPD / Pulmonary Exclusion or Escalation Features</h3>
+  <table>
+    <thead><tr><th>Finding</th><th>Concern</th></tr></thead>
+    <tbody>
+      <tr><td>Oxygen 24 hr/day</td><td>Escalation / OPSS exclusion concern</td></tr>
+      <tr><td>FEV1 &lt;50%</td><td>Escalation / OPSS exclusion concern</td></tr>
+      <tr><td>BODE â¥5</td><td>Escalation / OPSS exclusion concern</td></tr>
+      <tr><td>CAT &gt;10</td><td>Escalation / OPSS exclusion concern</td></tr>
+      <tr><td>Arozullah â¥4</td><td>Escalation / OPSS exclusion concern</td></tr>
+      <tr><td>Chronic hypercapnic respiratory failure</td><td>Escalation / OPSS exclusion concern</td></tr>
+      <tr><td>Idiopathic pulmonary fibrosis</td><td>Exclusion / alternate-setting concern</td></tr>
+    </tbody>
+  </table>
+
+  <h3>OSA</h3>
+  <div class="grid">
+    <div class="card">
+      <strong>PAP user:</strong>
+      <p>Wear PAP anytime asleep; RT assist as needed.</p>
+    </div>
+    <div class="card">
+      <strong>PAP intolerant:</strong>
+      <p>Continuous oximetry; respiratory support / escalation as clinically indicated.</p>
+    </div>
+  </div>
+</section>
+
+<section id="stroke">
+  <h2>CVA / TIA Timing</h2>
+  <div class="box warn">
+    <strong>Anesthesia preference:</strong> approximately 1 year after CVA when feasible.
+  </div>
+  <p><strong>Minimum interval commonly discussed:</strong> about 8â9 months, with anesthesia/surgeon discussion and individualized risk review.</p>
+  <p>New focal neurologic symptoms or unstable neurologic disease should be evaluated before elective surgery.</p>
+</section>
+
+<section id="antithrombotic">
+  <h2>Anticoagulant / Antiplatelet Quick Reference</h2>
+
+  <table>
+    <thead><tr><th>Medication</th><th>Typical TSJH Quick Reference Hold</th></tr></thead>
+    <tbody>
+      <tr><td>Rivaroxaban / Xarelto</td><td>72 hr</td></tr>
+      <tr><td>Apixaban / Eliquis</td><td>72 hr</td></tr>
+      <tr><td>Edoxaban / Savaysa</td><td>72 hr</td></tr>
+      <tr><td>Dabigatran / Pradaxa</td><td>3â5 days</td></tr>
+      <tr><td>Warfarin</td><td>5 days</td></tr>
+      <tr><td>Clopidogrel / Plavix</td><td>Guideline interval 5 days; TSJH quick reference approximately 7 days when interruption is appropriate</td></tr>
+      <tr><td>Ticagrelor / Brilinta</td><td>Guideline interval 3â5 days; TSJH quick reference approximately 7 days when interruption is appropriate</td></tr>
+      <tr><td>Prasugrel / Effient</td><td>7 days</td></tr>
+      <tr><td>Enoxaparin / Lovenox</td><td>24 hr</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box danger">
+    <strong>PCI / stent caution:</strong> do not interrupt required dual antiplatelet therapy after recent PCI without multidisciplinary review.
+  </div>
+
+  <ul>
+    <li>Continue aspirin when required for dual/triple therapy unless procedure-specific bleeding risk dictates otherwise.</li>
+    <li>Joints: aspirin often held approximately 5 days when interruption is appropriate.</li>
+    <li>Spine / SCS / IT procedures: aspirin often held approximately 7 days when interruption is appropriate.</li>
+    <li>Restart antiplatelet therapy as soon as surgical hemostasis permits.</li>
+    <li>Watchman / ablation: avoid interrupting required anticoagulation during the early post-procedure period without specialist guidance.</li>
+    <li>Use ManageAnticoag / MDCalc or specialist input when bridging decisions are needed.</li>
+  </ul>
+</section>
+
+<section id="diabetes">
+  <h2>GLP-1 / SGLT2 / Diabetes Medication Considerations</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>SGLT2</h3>
+      <p>Confirm appropriate preoperative hold plan and assess for euglycemic ketoacidosis risk when clinically relevant.</p>
+    </div>
+    <div class="card">
+      <h3>GLP-1</h3>
+      <p>Assess current GI symptoms, aspiration risk, dosing pattern, and current anesthesia guidance rather than applying a single rule without context.</p>
+    </div>
+    <div class="card">
+      <h3>Insulin Pump</h3>
+      <p>Ensure a documented perioperative pump / glucose-management plan.</p>
+    </div>
+    <div class="card">
+      <h3>Hyperglycemia</h3>
+      <p>Marked or symptomatic hyperglycemia requires evaluation and optimization before elective surgery.</p>
+    </div>
+  </div>
+</section>
+
+<section id="labs">
+  <h2>Laboratory / Medical Optimization</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Anemia</h3>
+      <p>Review chronicity, expected surgical blood loss, MCV/iron studies when appropriate, renal disease, bleeding history, and cause. Optimize when clinically appropriate.</p>
+    </div>
+    <div class="card">
+      <h3>Polycythemia</h3>
+      <p>Evaluate persistent elevated hemoglobin for dehydration, hypoxemia, OSA/COPD, testosterone/androgen exposure, renal/EPO-mediated causes, or myeloproliferative disease.</p>
+    </div>
+    <div class="card">
+      <h3>Electrolytes</h3>
+      <p>Abnormal sodium or potassium should be interpreted by severity, symptoms, chronicity, etiology, and procedure risk. Repeat testing when clinically indicated.</p>
+    </div>
+    <div class="card">
+      <h3>Renal</h3>
+      <p>Active/progressive AKI, major electrolyte disturbance, or unresolved dialysis timing requires optimization / review before final status.</p>
+    </div>
+  </div>
+</section>
+
+<section id="hloc">
+  <h2>Higher-Level-of-Care / Not Optimized Summary</h2>
+
+  <div class="box danger">
+    <strong>Examples that should drive âNot optimized / higher level of careâ in the provider workflow:</strong>
+    <ul>
+      <li>LVEF &lt;35%</li>
+      <li>Severe aortic stenosis by TSJH thresholds</li>
+      <li>WHO Group 1 pulmonary hypertension</li>
+      <li>RVSP &gt;65 mmHg</li>
+      <li>Severe tricuspid regurgitation</li>
+      <li>Moderate-to-severe RV dysfunction</li>
+      <li>Advanced pulmonary vasodilator therapy</li>
+      <li>Other active/unstable medical conditions that cannot be appropriately managed in the planned setting</li>
+    </ul>
+  </div>
+
+  <div class="box warn">
+    <strong>Pending:</strong> use when the patient may ultimately be appropriate for surgery but required testing, records, specialist/anesthesia review, medication planning, repeat labs, or other optimization items remain unresolved.
+  </div>
+
+  <div class="box good">
+    <strong>Optimized:</strong> use when no unresolved medical optimization, required testing, or TSJH higher-level-of-care criteria remain.
+  </div>
+</section>
+
+<section>
+  <h2>Core References / Policy Anchors</h2>
+  <ul>
+    <li>2024 AHA/ACC Guideline for Perioperative Cardiovascular Management for Noncardiac Surgery</li>
+    <li>TSJH Perioperative Consensus Guidelines, effective 08/05/2025</li>
+    <li>TSJH / TSJR RCRI-BNP postoperative surveillance pathway</li>
+    <li>Current anesthesia, surgeon, cardiology, pulmonary, and specialty guidance when patient-specific factors require escalation</li>
+  </ul>
+  <p class="small">Verify the latest facility policy before using any quick-reference interval or threshold for patient care.</p>
+</section>
+
+</main>
+
+<footer>
+  TSJH Preoperative Handbook Â· Perioperative Guidelines Resource
+</footer>
+</body>
+</html>

@@ -1967,10 +1967,23 @@ if (surgeryDateMatch) {
     detected.push("WHO Group 1 PH");
   }
 
-  PH");
-  }
 
- 
+
+ if (pwHas(text, [
+  /\bsevere tricuspid regurgitation\b/i,
+  /\bsevere tr\b/i
+])) {
+  pwSet("pwSevereTR", "yes");
+  detected.push("Severe TR");
+}
+
+if (pwHas(text, [
+  /\bmoderate[-\s]to[-\s]severe rv dysfunction\b/i,
+  /\bsevere rv dysfunction\b/i
+])) {
+  pwSet("pwRVDysfunction", "yes");
+  detected.push("RV dysfunction");
+}
 
   // ---------- VALVES ----------
 

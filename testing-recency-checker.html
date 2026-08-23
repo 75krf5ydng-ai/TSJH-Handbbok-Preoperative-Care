@@ -1,0 +1,49 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Testing & Surveillance Checker | TSJH</title><style>
+body{font-family:Arial;margin:0;background:#f4f7f9;color:#1f2933;line-height:1.5}header{background:#17324d;color:white;text-align:center;padding:26px}
+main{max-width:980px;margin:auto;padding:16px}section{background:white;padding:20px;margin:15px 0;border-radius:10px}h2{color:#17324d}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{font-weight:bold;display:block;margin:5px 0}select,input{width:100%;padding:11px;box-sizing:border-box}
+button{background:#17324d;color:white;border:0;border-radius:7px;padding:11px 14px;font-weight:bold;margin-top:12px}
+.box{padding:13px;border-left:5px solid;margin:10px 0}.good{background:#eef9f1;border-color:#2f7d46}.warn{background:#fff8e7;border-color:#996515}.danger{background:#fff3f1;border-color:#b42318}.info{background:#eef6fb;border-color:#3178a8}
+a{color:#17324d;font-weight:bold}@media(max-width:700px){.grid{grid-template-columns:1fr}}</style></head><body>
+<header><h1>Testing & Surveillance Checker</h1><p>TSJH preoperative review + society surveillance guidance</p></header><main>
+<section><p><a href="index.html">Home</a> Â· <a href="tsjh-guidelines.html">TSJH Guidelines</a></p>
+<h2>Enter Clinical Information</h2><div class="grid">
+<div><label>Condition / study</label><select id="type">
+<option value="">Select</option><option value="as_mild">Aortic stenosis â mild</option><option value="as_mod">Aortic stenosis â moderate</option><option value="as_sev">Aortic stenosis â severe asymptomatic</option>
+<option value="ar_mild">Aortic regurgitation â mild</option><option value="ar_mod">Aortic regurgitation â moderate</option><option value="ar_sev">Aortic regurgitation â severe asymptomatic</option>
+<option value="mr_mild">Mitral regurgitation â mild</option><option value="mr_mod">Mitral regurgitation â moderate</option><option value="mr_sev">Mitral regurgitation â severe asymptomatic</option>
+<option value="ms_mild">Mitral stenosis â MVA >1.5 cmÂ²</option><option value="ms_mod">Mitral stenosis â MVA 1.0â1.5 cmÂ²</option><option value="ms_sev">Mitral stenosis â MVA <1.0 cmÂ²</option>
+<option value="hf">Heart failure / cardiomyopathy EF assessment</option><option value="cardiology">Cardiology evaluation for applicable TSJH valve/HFrEF pathway</option>
+<option value="stress">Stress test</option><option value="ekg">EKG</option><option value="pft">PFT</option><option value="sleep">Sleep study</option><option value="other">Other testing</option>
+</select></div><div><label>Last test / evaluation date</label><input id="date" type="date"></div>
+<div><label>New/worsening symptoms or significant clinical change?</label><select id="change"><option value="no">No</option><option value="yes">Yes</option></select></div>
+<div><label>Mixed valve disease?</label><select id="mixed"><option value="no">No</option><option value="yes">Yes</option></select></div>
+</div><button onclick="check()">Check Testing & Surveillance</button>
+<div class="box info"><b>Two separate answers:</b> this checker distinguishes facility preoperative review from long-term society surveillance. A test can be within a surveillance interval but still need earlier reassessment because of new symptoms or interval change.</div></section>
+<section id="rs" style="display:none"><h2>Result</h2><div id="out"></div></section>
+<section><h2>Society Surveillance Built Into This Tool</h2>
+<p>For asymptomatic patients with normal LV function, ACC/AHA valve surveillance intervals used here are: mild AS/AR/MR about every 3â5 years; moderate AS/AR/MR every 1â2 years; mild MS with MVA &gt;1.5 cmÂ² every 3â5 years; severe asymptomatic AS/AR/MR every 6â12 months; MS with MVA 1.0â1.5 cmÂ² every 1â2 years and MVA &lt;1.0 cmÂ² yearly. Mixed valve disease may need earlier evaluation.</p>
+<p>Heart failure is handled differently: routine repeat EF is not assigned an arbitrary expiration here. Repeat EF/structural assessment is prompted by significant clinical change or when results would affect management.</p></section></main>
+<script>
+const data={
+as_mild:["Mild aortic stenosis",36,60],as_mod:["Moderate aortic stenosis",12,24],as_sev:["Severe asymptomatic aortic stenosis",6,12],
+ar_mild:["Mild aortic regurgitation",36,60],ar_mod:["Moderate aortic regurgitation",12,24],ar_sev:["Severe asymptomatic aortic regurgitation",6,12],
+mr_mild:["Mild mitral regurgitation",36,60],mr_mod:["Moderate mitral regurgitation",12,24],mr_sev:["Severe asymptomatic mitral regurgitation",6,12],
+ms_mild:["Mitral stenosis, MVA >1.5 cmÂ²",36,60],ms_mod:["Mitral stenosis, MVA 1.0â1.5 cmÂ²",12,24],ms_sev:["Mitral stenosis, MVA <1.0 cmÂ²",12,12]
+};
+function addMonths(d,n){let x=new Date(d);x.setMonth(x.getMonth()+n);return x}
+function fmt(d){return d.toLocaleDateString()}
+function check(){let t=document.getElementById("type").value,ds=document.getElementById("date").value,ch=document.getElementById("change").value==="yes",mix=document.getElementById("mixed").value==="yes";
+let r=document.getElementById("rs"),o=document.getElementById("out");r.style.display="block";if(!t||!ds){o.innerHTML='<div class="box warn">Select a condition/study and date.</div>';return}
+let d=new Date(ds+"T12:00:00"),now=new Date(),days=Math.floor((now-d)/86400000),months=days/30.4375;if(days<0){o.innerHTML='<div class="box warn">Entered date is in the future.</div>';return}
+let h=`<div class="box info"><b>Age of study:</b> ${days} days (about ${months.toFixed(1)} months).</div>`;
+if(ch)h+=`<div class="box danger"><b>CLINICAL OVERRIDE:</b> New/worsening symptoms or significant clinical change should trigger reassessment regardless of the calendar interval. Determine whether updated imaging/testing or specialty evaluation is indicated before elective surgery.</div>`;
+if(data[t]){let [name,min,max]=data[t],due1=addMonths(d,min),due2=addMonths(d,max),over=now>due2;
+h+=`<div class="box ${over?'warn':'good'}"><b>SOCIETY SURVEILLANCE â ${name}</b><br>Typical ACC/AHA surveillance: ${min===max?max+' months':min+'â'+max+' months'}. Based on the entered date, the usual surveillance window is approximately ${fmt(due1)}${min===max?'':' to '+fmt(due2)}.${over?' The usual surveillance window has passed.':' The study is within the usual surveillance window by date alone.'}${mix?' Mixed valve disease may require earlier serial evaluation.':''}</div>`;
+h+=`<div class="box info"><b>TSJH PREOP:</b> Do not equate a society surveillance interval with automatic surgical acceptability. Apply TSJH severity/HLOC criteria, symptoms, ventricular response, pulmonary pressures, and required cardiovascular review.</div>`;
+}else if(t==="cardiology"){h+=`<div class="box ${days<=365?'good':'warn'}"><b>TSJH PREOP REVIEW:</b> ${days<=365?'Within':'Outside'} the 12-month cardiovascular-review window used for applicable TSJH valve/HFrEF pathways in this handbook. Confirm the review addresses the relevant condition.</div>`;
+}else if(t==="hf"){h+=`<div class="box info"><b>HEART FAILURE SURVEILLANCE:</b> No arbitrary fixed expiration is applied. Repeat EF/structural/valvular assessment when there has been significant clinical change or when the result would affect therapeutic or procedural decision-making.</div>`;
+}else{h+=`<div class="box info"><b>NO UNIVERSAL EXPIRATION APPLIED:</b> Repeat testing should follow the same clinical indications used outside the perioperative setting, plus current TSJH/facility requirements. Do not repeat solely because a generic number of years has elapsed.</div>`}
+o.innerHTML=h;r.scrollIntoView({behavior:"smooth"})}
+</script></body></html>

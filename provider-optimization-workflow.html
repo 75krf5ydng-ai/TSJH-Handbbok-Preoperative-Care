@@ -4793,7 +4793,152 @@ if (
   );
 }
 
+// -------- THROMBOCYTOPENIA --------
 
+if (!isNaN(plateletValue) && plateletValue < 100) {
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Thrombocytopenia.</strong> Platelets " +
+    plateletValue +
+    ". Review prior trend, medications, liver disease and bleeding history. " +
+    "Repeat CBC and consider peripheral smear. Hematology evaluation as indicated."
+  );
+}
+
+
+// -------- LEUKOCYTOSIS --------
+
+if (!isNaN(wbcValue) && wbcValue > 11) {
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Leukocytosis.</strong> WBC " +
+    wbcValue +
+    ". Assess for infectious or inflammatory source and review CBC differential/trend. " +
+    "Do not treat isolated leukocytosis with antibiotics without a clinical indication."
+  );
+}
+
+
+// -------- UTI / URINARY ABNORMALITY --------
+
+if (
+  urinarySymptoms === "yes" ||
+  urinarySymptoms === "positive" ||
+  urineCulture.includes("positive") ||
+  abnormalUA.includes("positive") ||
+  abnormalUA.includes("abnormal")
+) {
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Urinary abnormality / possible UTI.</strong> Distinguish symptomatic UTI from asymptomatic bacteriuria or contamination. " +
+    "Review urinary symptoms and culture results. Treat symptomatic infection with culture-directed therapy when appropriate."
+  );
+}
+
+
+// -------- HYPERTENSION --------
+
+if (
+  (!isNaN(systolicBP) && systolicBP >= 160) ||
+  (!isNaN(diastolicBP) && diastolicBP >= 100)
+) {
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Hypertension.</strong> Repeat BP after appropriate rest and confirm cuff size. " +
+    "Review home readings, medications and adherence. Severe persistent hypertension or target-organ symptoms require further evaluation."
+  );
+}
+
+
+// -------- AORTIC STENOSIS --------
+
+if (
+  (!isNaN(avaValue) && avaValue < 1.5) ||
+  (!isNaN(gradientValue) && gradientValue >= 20) ||
+  (!isNaN(vmaxValue) && vmaxValue >= 3)
+) {
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Aortic stenosis.</strong> Review AVA, mean gradient, Vmax and symptoms. " +
+    "Moderate/severe or symptomatic disease requires cardiovascular review. " +
+    "Apply exact TSJH exclusion thresholds."
+  );
+}
+
+
+// -------- MITRAL STENOSIS --------
+
+if (pwVal("pwMitralStenosis") === "yes") {
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Mitral stenosis.</strong> Review valve area, mean gradient, pulmonary pressures and symptoms. " +
+    "Moderate-to-severe disease requires cardiovascular review per TSJH guidance."
+  );
+}
+
+
+// -------- LBBB --------
+
+if (pwVal("pwLBBB") === "yes") {
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Left bundle branch block.</strong> Determine whether new or chronic and review prior ECGs. " +
+    "When ischemic evaluation is indicated, obtain cardiology evaluation or pharmacologic nuclear stress testing per TSJH guidance."
+  );
+}
+
+
+// -------- SGLT2 INHIBITOR --------
+
+if (sglt2Value && sglt2Value !== "none") {
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". SGLT2 inhibitor therapy.</strong> " +
+    sglt2Value +
+    ". Hold 3 days before surgery; ertugliflozin 4 days. " +
+    "Assess for ketosis or metabolic acidosis if medication was not appropriately held or symptoms are present."
+  );
+}
+
+
+// -------- GLP-1 --------
+
+if (pwVal("pwGLP1") === "yes") {
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". GLP-1 receptor agonist therapy.</strong> Assess medication, last dose, dose-escalation phase and GI symptoms. " +
+    "Apply current risk-based anesthesia guidance for delayed gastric emptying and aspiration risk."
+  );
+}
+
+
+// -------- INSULIN PUMP --------
+
+if (pwVal("pwInsulinPump") === "yes") {
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Insulin pump / insulin-dependent diabetes.</strong> Establish a clear day-of-surgery insulin and glucose-monitoring plan. " +
+    "Maintain basal insulin coverage and coordinate pump/CGM management with anesthesia."
+  );
+}
+
+
+// -------- PENDING SPECIALTY EVALUATION --------
+
+const pendingSpecialty = pwFirstValue([
+  "pwPendingSpecialty",
+  "pwSpecialtyReferral",
+  "pwPendingReferral"
+]);
+
+if (pendingSpecialty) {
+  apItems.push(
+    "<strong>" + (apItems.length + 1) +
+    ". Pending specialty evaluation.</strong> " +
+    pendingSpecialty +
+    ". Obtain requested evaluation/recommendations and review results before finalizing perioperative optimization status."
+  );
+}
 // -------- DISPLAY A&P --------
 
 html += `

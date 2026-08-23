@@ -3,5419 +3,709 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Provider Preoperative Optimization Workflow</title>
-
 <style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  background: #f4f7f9;
-  color: #1f2933;
-  line-height: 1.6;
-}
-
-header {
-  background: #17324d;
-  color: white;
-  padding: 28px 20px;
-  text-align: center;
-}
-
-header h1 {
-  margin: 0 0 8px;
-  font-size: 2rem;
-}
-
-header p { margin: 0; }
-
-nav {
-  background: white;
-  padding: 12px 20px;
-  border-bottom: 1px solid #d9e2ec;
-  text-align: center;
-}
-
-nav a {
-  color: #17324d;
-  text-decoration: none;
-  font-weight: bold;
-  margin: 0 7px;
-}
-
-main {
-  max-width: 1180px;
-  margin: 24px auto;
-  padding: 0 18px 40px;
-}
-
-section {
-  background: white;
-  margin-bottom: 22px;
-  padding: 24px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.06);
-}
-
-h2 {
-  color: #17324d;
-  border-bottom: 2px solid #d9e2ec;
-  padding-bottom: 8px;
-}
-
-h3 {
-  color: #274c6b;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 14px 0;
-}
-
-th, td {
-  border: 1px solid #cbd5e1;
-  padding: 10px;
-  text-align: left;
-  vertical-align: top;
-}
-
-th {
-  background: #eaf0f5;
-  color: #17324d;
-}
-
-.clinical-box {
-  background: #eef6fb;
-  border-left: 5px solid #3178a8;
-  padding: 15px;
-  margin: 16px 0;
-}
-
-.warning-box {
-  background: #fff5f5;
-  border-left: 5px solid #b42318;
-  padding: 15px;
-  margin: 16px 0;
-}
-
-.success-box {
-  background: #eef9f0;
-  border-left: 5px solid #2d7a46;
-  padding: 15px;
-  margin: 16px 0;
-}
-
-.formula-box {
-  background: #f7f7fb;
-  border: 1px solid #d8d8e5;
-  border-radius: 8px;
-  padding: 15px;
-  margin: 16px 0;
-}
-
-.scope-box {
-  background: #fff9e8;
-  border-left: 5px solid #c58b00;
-  padding: 15px;
-  margin: 16px 0;
-}
-
-footer {
-  text-align: center;
-  padding: 24px;
-  color: #52606d;
-  font-size: .9rem;
-}
-
-@media(max-width:700px) {
-  table { font-size: .78rem; }
-  header h1 { font-size: 1.4rem; }
-}
+  :root{
+    --navy:#17324d;
+    --blue:#274c6b;
+    --bg:#f4f7f9;
+    --line:#d9e2ec;
+    --text:#1f2933;
+    --green-bg:#eef9f0;
+    --green:#2d7a46;
+    --yellow-bg:#fff9e8;
+    --yellow:#a66c00;
+    --red-bg:#fff5f5;
+    --red:#b42318;
+    --info-bg:#eef6fb;
+    --info:#3178a8;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:Arial,Helvetica,sans-serif;
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.5;
+  }
+  header{
+    background:var(--navy);
+    color:#fff;
+    padding:24px 18px;
+    text-align:center;
+  }
+  header h1{margin:0 0 6px;font-size:1.8rem}
+  header p{margin:0}
+  nav{
+    background:#fff;
+    padding:12px;
+    border-bottom:1px solid var(--line);
+    text-align:center;
+  }
+  nav a{
+    color:var(--navy);
+    text-decoration:none;
+    font-weight:bold;
+    margin:0 6px;
+  }
+  main{
+    max-width:1100px;
+    margin:20px auto;
+    padding:0 14px 40px;
+  }
+  section{
+    background:#fff;
+    margin-bottom:18px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+  }
+  h2{
+    color:var(--navy);
+    border-bottom:2px solid var(--line);
+    padding-bottom:7px;
+    margin-top:0;
+  }
+  h3{color:var(--blue)}
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px 16px;
+  }
+  .full{grid-column:1/-1}
+  label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:4px;
+  }
+  input, select, textarea, button{
+    width:100%;
+    font:inherit;
+  }
+  input,select,textarea{
+    padding:10px;
+    border:1px solid #b8c5d1;
+    border-radius:6px;
+    background:#fff;
+  }
+  textarea{min-height:150px;resize:vertical}
+  button{
+    border:0;
+    border-radius:7px;
+    padding:11px 12px;
+    cursor:pointer;
+    font-weight:bold;
+  }
+  .btn-primary{background:var(--navy);color:#fff}
+  .btn-secondary{background:#e8eef3;color:var(--navy)}
+  .btn-danger{background:#fbe9e7;color:#8f1d14}
+  .buttons{
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:8px;
+    margin-top:14px;
+  }
+  .box{
+    padding:14px;
+    margin:14px 0;
+    border-left:5px solid;
+    border-radius:4px;
+  }
+  .info{background:var(--info-bg);border-color:var(--info)}
+  .success{background:var(--green-bg);border-color:var(--green)}
+  .warning{background:var(--yellow-bg);border-color:var(--yellow)}
+  .danger{background:var(--red-bg);border-color:var(--red)}
+  #pwResult{display:none}
+  .status{
+    padding:16px;
+    border-radius:8px;
+    font-size:1.05rem;
+    margin:12px 0;
+  }
+  .status.optimized{background:var(--green-bg);border:2px solid var(--green)}
+  .status.pending{background:var(--yellow-bg);border:2px solid var(--yellow)}
+  .status.not-optimized{background:var(--red-bg);border:2px solid var(--red)}
+  ul{margin-top:6px}
+  .small{font-size:.9rem;color:#52606d}
+  footer{text-align:center;padding:24px;color:#52606d;font-size:.9rem}
+  @media(max-width:760px){
+    .grid{grid-template-columns:1fr}
+    .buttons{grid-template-columns:1fr 1fr}
+    header h1{font-size:1.35rem}
+  }
+  @media print{
+    nav,.no-print,#freeTextSection,.buttons{display:none!important}
+    body{background:#fff}
+    section{box-shadow:none}
+  }
 </style>
 </head>
-
 <body>
 
 <header>
-<h1>Provider Preoperative Optimization Workflow</h1>
-<p>Medical interpretation, direct optimization, escalation decisions and final perioperative status</p>
+  <h1>Provider Preoperative Optimization Workflow</h1>
+  <p>TSJH-oriented clinical decision support for preoperative medical optimization</p>
 </header>
 
 <nav>
-<a href="index.html">Home</a>
-<a href="evaluation.html">Evaluation</a>
-<a href="rn-preop-workflow.html">RN Workflow</a>
-<a href="preop-red-flags.html">Red Flags</a>
-<a href="perioperative-medications.html">Medications</a>
-<a href="provider-resources.html">Resources</a>
+  <a href="index.html">Home</a>
+  <a href="evaluation.html">Evaluation</a>
+  <a href="preop-red-flags.html">Red Flags</a>
+  <a href="provider-resources.html">Resources</a>
 </nav>
 
-<main>
+<main id="providerWorkflowInteractive">
 
-<section>
-<h2>Purpose</h2>
-
-<p>
-The preoperative provider is responsible for integrating the patient's history,
-functional status, physical examination, laboratory data, EKG, prior testing,
-specialist records and procedure-specific risk into a practical perioperative
-medical plan.
-</p>
-
-<div class="scope-box">
-The goal is not to obtain unnecessary “clearance” from multiple specialists. The
-goal is to identify what can be reasonably optimized directly, what requires
-additional evaluation, and whether the patient can proceed in the planned
-surgical setting.
-</div>
+<section id="freeTextSection">
+  <h2>Provider Free-Text Analyzer</h2>
+  <p class="small">Paste or type clinically relevant findings. The analyzer will populate supported fields below. Review all populated values before generating the final status.</p>
+  <textarea id="pwFreeText" placeholder="Example: EF 30%, RVSP 70 mmHg, severe TR, WHO Group 1 pulmonary hypertension, Hgb 9.1, sodium 128..."></textarea>
+  <div class="buttons">
+    <button type="button" class="btn-primary" id="pwAnalyzeText">Analyze Findings</button>
+    <button type="button" class="btn-secondary" id="pwClearText">Clear Text</button>
+  </div>
+  <div id="pwDetected" class="box info" style="display:none"></div>
 </section>
 
-
 <section>
-<h2>Provider Workflow — At a Glance</h2>
-
-<div class="formula-box">
-
-Review RN packet<br>
-↓<br>
-Confirm procedure + date + surgeon<br>
-↓<br>
-Assess symptoms and active medical problems<br>
-↓<br>
-Review functional capacity + frailty + OSA risk<br>
-↓<br>
-Review vitals + labs + EKG<br>
-↓<br>
-Apply cardiac/pulmonary/renal/hematologic risk pathways<br>
-↓<br>
-Address medication holds and continuation<br>
-↓<br>
-Review specialist testing only when clinically relevant<br>
-↓<br>
-Optimize issues within provider scope<br>
-↓<br>
-Escalate unresolved specialty/anesthesia questions<br>
-↓<br>
-Establish postoperative monitoring plan<br>
-↓<br>
-Assign final optimization status
-
-</div>
+  <h2>Patient / Procedure</h2>
+  <div class="grid">
+    <div><label for="pwPatient">Patient</label><input id="pwPatient" type="text"></div>
+    <div><label for="pwDOS">Date of Service / Surgery Date</label><input id="pwDOS" type="date"></div>
+    <div><label for="pwProcedure">Procedure</label><input id="pwProcedure" type="text"></div>
+    <div><label for="pwSurgeon">Surgeon</label><input id="pwSurgeon" type="text"></div>
+    <div>
+      <label for="pwSurgicalRisk">Surgical Risk</label>
+      <select id="pwSurgicalRisk">
+        <option value="">Select</option>
+        <option>Low</option><option>Intermediate</option><option>High</option>
+      </select>
+    </div>
+    <div><label for="pwDASI">DASI Score</label><input id="pwDASI" type="number" step="0.1"></div>
+    <div><label for="pwSTOPBANG">STOP-BANG Total</label><input id="pwSTOPBANG" type="number" min="0" max="8"></div>
+    <div><label for="pwCFS">Clinical Frailty Scale</label><input id="pwCFS" type="number" min="1" max="9"></div>
+    <div><label for="pwRCRI">RCRI Points</label><input id="pwRCRI" type="number" min="0" max="6"></div>
+  </div>
 </section>
 
-
 <section>
-<h2>Step 1 — Confirm Procedure-Specific Risk</h2>
-
-<div class="formula-box">
-
-Procedure: ___<br>
-Surgeon: ___<br>
-Surgery date: ___<br>
-Expected OR time: ___<br>
-Surgical risk: Low / Intermediate / High<br>
-Expected blood loss: Minimal / Moderate / Significant<br>
-Implant/hardware: Yes / No<br>
-Spine/neuraxial/SCS/intrathecal: Yes / No
-
-</div>
-
-<div class="clinical-box">
-The same medical abnormality may carry very different significance for a
-15-minute trigger-finger release versus a multilevel revision spine fusion.
-</div>
+  <h2>Active / Unstable Conditions</h2>
+  <div class="grid">
+    <div><label for="pwUnstable">Active or unstable medical condition</label><select id="pwUnstable"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwActiveCardiac">Active cardiac problem</label><select id="pwActiveCardiac"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwSymptomaticInfection">Symptomatic active infection</label><select id="pwSymptomaticInfection"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwOpenWound">Open/draining wound or cellulitis</label><select id="pwOpenWound"><option value="no">No</option><option value="yes">Yes</option></select></div>
+  </div>
 </section>
 
-
 <section>
-<h2>Step 2 — Identify Active Cardiac Problems</h2>
-
-<div class="formula-box">
-
-Active cardiac problems: Yes / No<br><br>
-
-If yes:<br>
-[ ] Acute coronary syndrome / unstable ischemia<br>
-[ ] Decompensated heart failure<br>
-[ ] Unstable arrhythmia<br>
-[ ] Severe symptomatic valvular disease<br>
-[ ] Other: ___
-
-</div>
-
-<div class="warning-box">
-Active unstable cardiac disease should be addressed before routine elective
-surgery rather than bypassed with additional screening scores.
-</div>
+  <h2>Cardiac / Heart Failure</h2>
+  <div class="grid">
+    <div><label for="pwEF">LVEF (%)</label><input id="pwEF" type="number" step="1" placeholder="Leave blank if unavailable"></div>
+    <div><label for="pwLBBB">LBBB</label><select id="pwLBBB"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwRecentPCI">Recent PCI/stent with unresolved antiplatelet plan</label><select id="pwRecentPCI"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwCHFAdmission">CHF admission within past 2 years</label><select id="pwCHFAdmission"><option value="no">No</option><option value="yes">Yes</option></select></div>
+  </div>
 </section>
 
-
 <section>
-<h2>Step 3 — Functional Capacity</h2>
-
-<div class="formula-box">
-
-DASI score: ___
-</div>
-
-<p>
-Use self-reported DASI to estimate functional capacity and interpret limitations
-in the context of orthopedic or spine disease.
-</p>
-
-<div class="clinical-box">
-A low DASI may reflect joint or spine pain rather than cardiopulmonary limitation.
-Document the reason for functional restriction when it is clear.
-</div>
+  <h2>Valvular Disease</h2>
+  <div class="grid">
+    <div><label for="pwAVA">Aortic Valve Area (cmÂ²)</label><input id="pwAVA" type="number" step="0.1"></div>
+    <div><label for="pwASGradient">Aortic Mean Gradient (mmHg)</label><input id="pwASGradient" type="number" step="1"></div>
+    <div><label for="pwVmax">Aortic Vmax (m/s)</label><input id="pwVmax" type="number" step="0.1"></div>
+    <div><label for="pwSymptomaticAS">Symptomatic aortic stenosis</label><select id="pwSymptomaticAS"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwMVA">Mitral Valve Area (cmÂ²)</label><input id="pwMVA" type="number" step="0.1"></div>
+    <div><label for="pwMSGradient">Mitral Mean Gradient (mmHg)</label><input id="pwMSGradient" type="number" step="1"></div>
+    <div><label for="pwPASP">PASP (mmHg)</label><input id="pwPASP" type="number" step="1"></div>
+    <div><label for="pwCardiologyCurrent">Required cardiology review available/current</label><select id="pwCardiologyCurrent"><option value="yes">Yes</option><option value="no">No</option></select></div>
+  </div>
 </section>
 
-
 <section>
-<h2>Step 4 — RCRI</h2>
-
-<div class="formula-box">
-
-RCRI: ___ points
-</div>
-
-<p>
-Apply RCRI as part of overall cardiovascular risk assessment rather than as a
-stand-alone decision rule.
-</p>
+  <h2>Pulmonary Hypertension / Right Heart</h2>
+  <div class="grid">
+    <div><label for="pwRVSP">RVSP (mmHg)</label><input id="pwRVSP" type="number" step="1"></div>
+    <div><label for="pwPAPressure">Pulmonary artery pressure (mmHg)</label><input id="pwPAPressure" type="number" step="0.1"></div>
+    <div><label for="pwTRVelocity">TR velocity (m/s)</label><input id="pwTRVelocity" type="number" step="0.1"></div>
+    <div><label for="pwSevereTR">Severe tricuspid regurgitation</label><select id="pwSevereTR"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwRVDysfunction">Moderate-to-severe RV dysfunction</label><select id="pwRVDysfunction"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwWHO1">WHO Group 1 pulmonary hypertension</label><select id="pwWHO1"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwPulmVasodilator">Advanced pulmonary vasodilator therapy</label><select id="pwPulmVasodilator"><option value="no">No</option><option value="yes">Yes</option></select></div>
+  </div>
+  <div class="box danger"><strong>TSJH HLOC red flags:</strong> WHO Group 1 PH, RVSP &gt;65 mmHg, severe TR, moderate-to-severe RV dysfunction, or advanced pulmonary vasodilator therapy.</div>
 </section>
 
-
 <section>
-<h2>BNP Screening</h2>
-
-<div class="clinical-box">
-Apply the institutional BNP/NT-proBNP protocol when age and cardiovascular risk
-criteria are met.
-</div>
-
-<div class="formula-box">
-
-BNP screening indicated: Yes / No<br>
-BNP: ___ pg/mL<br>
-NT-proBNP: ___ ng/L<br>
-Postoperative surveillance triggered: Yes / No
-
-</div>
-
-<div class="warning-box">
-Under the TSJH pathway, BNP ≥92 pg/mL or NT-proBNP ≥300 ng/L triggers the
-postoperative cardiac-surveillance protocol with postoperative EKG and daily
-troponins for 48–72 hours.
-</div>
+  <h2>Pulmonary / OSA</h2>
+  <div class="grid">
+    <div><label for="pwCOPD">COPD</label><select id="pwCOPD"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwFEV1">FEV1 (% predicted)</label><input id="pwFEV1" type="number" step="1"></div>
+    <div><label for="pwBODE">BODE</label><input id="pwBODE" type="number" step="1"></div>
+    <div><label for="pwCAT">CAT</label><input id="pwCAT" type="number" step="1"></div>
+    <div><label for="pwArozullah">Arozullah</label><input id="pwArozullah" type="number" step="1"></div>
+    <div><label for="pwO2_24h">24-hour oxygen</label><select id="pwO2_24h"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwHypercapnia">Chronic hypercapnic respiratory failure</label><select id="pwHypercapnia"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwIPF">Idiopathic pulmonary fibrosis</label><select id="pwIPF"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwOSA">OSA</label><select id="pwOSA"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwPAP">PAP use/tolerance</label><select id="pwPAP"><option value="na">N/A</option><option value="yes">Yes</option><option value="no">No / intolerant</option></select></div>
+  </div>
 </section>
 
-
 <section>
-<h2>Step 5 — EKG Review</h2>
-
-<div class="formula-box">
-
-Date: ___<br>
-Rate: ___<br>
-Rhythm: ___<br>
-PR: ___<br>
-QRS: ___<br>
-QTc: ___<br>
-Conduction abnormality: ___<br>
-ST-T abnormality: ___<br>
-Prior comparison: Stable / New / Unavailable<br>
-Further workup required: Yes / No
-
-</div>
-
-<div class="clinical-box">
-Stable chronic EKG abnormalities often do not require new cardiac testing.
-New abnormalities should be interpreted in the context of symptoms and prior tracings.
-</div>
+  <h2>Neurologic / Stroke</h2>
+  <div class="grid">
+    <div><label for="pwRecentStroke">Recent CVA/TIA</label><select id="pwRecentStroke"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwStrokeMonths">Months since CVA/TIA</label><input id="pwStrokeMonths" type="number" min="0" step="1"></div>
+    <div><label for="pwNewNeuro">New neurologic symptoms</label><select id="pwNewNeuro"><option value="no">No</option><option value="yes">Yes</option></select></div>
+  </div>
 </section>
 
-
 <section>
-<h2>Step 6 — Cardiac Testing Review</h2>
-
-<p>
-Review prior testing only if it meaningfully contributes to the current
-perioperative question.
-</p>
-
-<div class="formula-box">
-
-<strong>CARDIAC TESTING — MOST RECENT TO OLDEST</strong><br><br>
-
-Date: ___<br>
-Study: ___<br>
-Interpretation: ___<br>
-Perioperative relevance: ___<br><br>
-
-Date: ___<br>
-Study: ___<br>
-Interpretation: ___<br>
-Perioperative relevance: ___
-
-</div>
+  <h2>Labs / Metabolic</h2>
+  <div class="grid">
+    <div><label for="pwSodium">Sodium</label><input id="pwSodium" type="number" step="0.1"></div>
+    <div><label for="pwPotassium">Potassium</label><input id="pwPotassium" type="number" step="0.1"></div>
+    <div><label for="pwHemoglobin">Hemoglobin</label><input id="pwHemoglobin" type="number" step="0.1"></div>
+    <div><label for="pwPlatelets">Platelets (K/ÂµL)</label><input id="pwPlatelets" type="number" step="1"></div>
+    <div><label for="pwCreatinine">Creatinine</label><input id="pwCreatinine" type="number" step="0.01"></div>
+    <div><label for="pwEGFR">eGFR</label><input id="pwEGFR" type="number" step="1"></div>
+    <div><label for="pwGlucose">Glucose</label><input id="pwGlucose" type="number" step="1"></div>
+    <div><label for="pwA1c">A1c (%)</label><input id="pwA1c" type="number" step="0.1"></div>
+    <div><label for="pwAKI">Active/progressive AKI</label><select id="pwAKI"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwDialysisIssue">Unresolved dialysis timing/complexity</label><select id="pwDialysisIssue"><option value="no">No</option><option value="yes">Yes</option></select></div>
+  </div>
 </section>
 
-
 <section>
-<h2>When Cardiology Is Not Automatically Required</h2>
-
-<div class="success-box">
-
-Stable hypertension<br>
-Stable chronic RBBB<br>
-Stable nonspecific ST-T changes<br>
-Controlled chronic AF with established management<br>
-Remote stable CAD with adequate prior assessment and no new symptoms<br>
-Remote normal stress testing without interval clinical change<br>
-Cardiovascular risk factors alone
-
-</div>
+  <h2>Medication / Perioperative Plans</h2>
+  <div class="grid">
+    <div><label for="pwAntithrombotic">Anticoagulant / antiplatelet</label>
+      <select id="pwAntithrombotic">
+        <option value="none">None</option>
+        <option>Apixaban/Eliquis</option><option>Rivaroxaban/Xarelto</option><option>Dabigatran/Pradaxa</option>
+        <option>Warfarin</option><option>Clopidogrel/Plavix</option><option>Ticagrelor/Brilinta</option><option>Other</option>
+      </select>
+    </div>
+    <div><label for="pwAntithromboticPlan">Medication hold/restart plan resolved</label><select id="pwAntithromboticPlan"><option value="yes">Yes</option><option value="no">No</option></select></div>
+    <div><label for="pwSGLT2">SGLT2 inhibitor</label><select id="pwSGLT2"><option value="none">None</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwSGLT2Plan">SGLT2 hold plan resolved</label><select id="pwSGLT2Plan"><option value="yes">Yes</option><option value="no">No</option></select></div>
+    <div><label for="pwGLP1">GLP-1 therapy</label><select id="pwGLP1"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwGLP1Concern">Unresolved aspiration/GI concern</label><select id="pwGLP1Concern"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwInsulinPump">Insulin pump</label><select id="pwInsulinPump"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwPumpPlan">Pump plan resolved</label><select id="pwPumpPlan"><option value="yes">Yes</option><option value="no">No</option></select></div>
+  </div>
 </section>
 
-
 <section>
-<h2>When Cardiology Is Appropriate</h2>
-
-<div class="warning-box">
-
-New ischemic symptoms<br>
-Decompensated heart failure<br>
-New significant arrhythmia<br>
-Unexplained cardiac syncope<br>
-Moderate-to-severe symptomatic valve disease<br>
-Recent PCI/stent with uncertain antiplatelet interruption<br>
-Complex cardiomyopathy<br>
-New LBBB requiring evaluation under facility pathway<br>
-Other significant unstable cardiovascular disease
-
-</div>
+  <h2>Required Review / Testing</h2>
+  <div class="grid">
+    <div><label for="pwRepeatLabs">Repeat labs required</label><select id="pwRepeatLabs"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwCardiacTesting">Cardiac testing pending</label><select id="pwCardiacTesting"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwDevice">Device interrogation pending</label><select id="pwDevice"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwAnesthesiaReview">Anesthesia review pending</label><select id="pwAnesthesiaReview"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwSpecialistReview">Specialist recommendation pending</label><select id="pwSpecialistReview"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwOtherPending">Other required item pending</label><input id="pwOtherPending" type="text"></div>
+  </div>
 </section>
 
-
 <section>
-<h2>Step 7 — Pulmonary Risk</h2>
-
-<div class="formula-box">
-
-COPD/asthma: Yes / No<br>
-Recent exacerbation: Yes / No<br>
-FEV1: ___% predicted<br>
-CAT: ___<br>
-BODE: ___<br>
-Arozullah: ___<br>
-Home oxygen: Yes / No<br>
-24-hour oxygen: Yes / No<br>
-Hypercapnic respiratory failure: Yes / No<br>
-IPF: Yes / No<br>
-OSA: Yes / No<br>
-STOP-BANG: ___<br>
-PAP use: Yes / No
-
-</div>
+  <h2>Generate Final Optimization Status</h2>
+  <div class="buttons no-print">
+    <button type="button" class="btn-primary" id="pwGenerate">Generate</button>
+    <button type="button" class="btn-secondary" id="pwCopy">Copy</button>
+    <button type="button" class="btn-secondary" id="pwPrint">Print</button>
+    <button type="button" class="btn-danger" id="pwClear">Clear</button>
+    <button type="button" class="btn-secondary" id="pwPatientInstructions">Patient Instructions</button>
+  </div>
+  <div id="pwResult"></div>
 </section>
 
-
-<section>
-<h2>TSJH Pulmonary Higher-Risk Features</h2>
-
-<div class="warning-box">
-
-FEV1 &lt;50% predicted<br>
-BODE ≥5<br>
-CAT &gt;10<br>
-Arozullah ≥4<br>
-24-hour oxygen requirement<br>
-Chronic hypercapnic respiratory failure<br>
-Idiopathic pulmonary fibrosis
-
-</div>
-
-<p>
-These findings should prompt deliberate review of pulmonary optimization,
-anesthesia risk and appropriateness of surgical venue.
-</p>
-</section>
-
-
-<section>
-<h2>Step 8 — Pulmonary Hypertension</h2>
-
-<div class="warning-box">
-
-Higher-level-of-care concerns include:<br><br>
-
-WHO Group 1 pulmonary arterial hypertension<br>
-RVSP &gt;65 mmHg<br>
-Severe tricuspid regurgitation<br>
-Moderate-to-severe RV dysfunction<br>
-Advanced pulmonary vasodilator therapy
-
-</div>
-</section>
-
-
-<section>
-<h2>Step 9 — Renal Assessment</h2>
-
-<div class="formula-box">
-
-Creatinine: ___<br>
-eGFR: ___<br>
-Baseline: ___<br>
-Potassium: ___<br>
-Sodium: ___<br>
-Bicarbonate: ___<br>
-AKI present: Yes / No<br>
-Dialysis: Yes / No<br>
-Dialysis timing: ___
-
-</div>
-
-<div class="clinical-box">
-Stable CKD can often be managed directly with medication and nephrotoxin review.
-Progressive AKI, severe electrolyte disturbance or dialysis complexity may require
-nephrology involvement.
-</div>
-</section>
-
-
-<section>
-<h2>Step 10 — Anemia & Hematology</h2>
-
-<div class="formula-box">
-
-Hgb: ___<br>
-Prior Hgb: ___<br>
-MCV: ___<br>
-Platelets: ___<br>
-Ferritin: ___<br>
-TSAT: ___<br>
-Active bleeding: Yes / No<br>
-Expected surgical blood loss: ___
-
-</div>
-
-<div class="clinical-box">
-Mild stable anemia does not automatically require hematology referral. Determine
-the likely cause, chronicity and whether treatment is appropriate before the
-planned operation.
-</div>
-</section>
-
-
-<section>
-<h2>Conditions the Provider Can Often Optimize Directly</h2>
-
-<table>
-
-<tr>
-<th>Issue</th>
-<th>Potential Direct Management</th>
-</tr>
-
-<tr>
-<td>Stable hypertension</td>
-<td>Review trend, adherence and perioperative medication plan.</td>
-</tr>
-
-<tr>
-<td>Mild anemia</td>
-<td>Classify pattern, order focused workup and initiate appropriate treatment.</td>
-</tr>
-
-<tr>
-<td>Iron deficiency</td>
-<td>Initiate iron replacement when appropriate and determine need for further source evaluation.</td>
-</tr>
-
-<tr>
-<td>Stable CKD</td>
-<td>Review electrolytes, renal function, nephrotoxins and medication dosing.</td>
-</tr>
-
-<tr>
-<td>Stable COPD/asthma</td>
-<td>Confirm inhaler regimen, absence of exacerbation and postoperative pulmonary plan.</td>
-</tr>
-
-<tr>
-<td>OSA</td>
-<td>Assess PAP adherence/intolerance and establish respiratory monitoring recommendations.</td>
-</tr>
-
-<tr>
-<td>Stable diabetes</td>
-<td>Review A1c/current glucose and establish perioperative medication instructions.</td>
-</tr>
-
-<tr>
-<td>Stable hypothyroidism</td>
-<td>Confirm treatment and assess need for updated labs only when clinically indicated.</td>
-</tr>
-
-<tr>
-<td>Constipation risk</td>
-<td>Plan bowel prevention when postoperative opioids are expected.</td>
-</tr>
-
-<tr>
-<td>Frailty</td>
-<td>Integrate CFS into postoperative mobility/disposition planning.</td>
-</tr>
-
-</table>
-</section>
-
-
-<section>
-<h2>Do Not Automatically Send Abnormal Labs to PCP</h2>
-
-<div class="clinical-box">
-The provider should first determine severity, chronicity, clinical relevance and
-whether the abnormality can be reasonably evaluated and optimized in the
-preoperative clinic.
-</div>
-
-<h3>Examples often manageable directly</h3>
-
-<ul>
-<li>Mild stable anemia</li>
-<li>Mild glucose elevation</li>
-<li>Prediabetic A1c</li>
-<li>Stable CKD</li>
-<li>Mild thrombocytosis</li>
-<li>Mild asymptomatic leukocytosis</li>
-<li>Mild isolated electrolyte abnormality</li>
-<li>Abnormal UA without urinary symptoms</li>
-</ul>
-</section>
-
-
-<section>
-<h2>When PCP Involvement Is Helpful</h2>
-
-<p>
-PCP involvement is most useful when the issue requires longitudinal management
-rather than a perioperative-only decision.
-</p>
-
-<ul>
-<li>New chronic disease requiring ongoing treatment</li>
-<li>Poorly controlled hypertension requiring longer-term titration</li>
-<li>New diabetes requiring long-term management</li>
-<li>Complex chronic medication management</li>
-<li>Unexplained symptoms requiring broader outpatient workup</li>
-</ul>
-</section>
-
-
-<section>
-<h2>Step 11 — Diabetes Medication Review</h2>
-
-<div class="formula-box">
-
-A1c: ___<br>
-Current glucose: ___<br>
-Type 1 / Type 2<br>
-SGLT2: ___<br>
-Last dose: ___<br>
-GLP-1: ___<br>
-Last dose: ___<br>
-GI symptoms: Yes / No<br>
-Basal insulin plan: ___<br>
-Pump plan: ___
-
-</div>
-
-<div class="warning-box">
-Do not tell a type 1 diabetic patient to hold all insulin. Basal insulin must be
-maintained in some form during fasting.
-</div>
-</section>
-
-
-<section>
-<h2>Step 12 — Anticoagulation / Antiplatelet Plan</h2>
-
-<div class="formula-box">
-
-Medication: ___<br>
-Indication: ___<br>
-Last dose: ___<br>
-Renal function: ___<br>
-Procedure bleeding consequence: ___<br>
-Hold interval: ___<br>
-Bridging: Yes / No / N/A<br>
-Restart plan: ___
-
-</div>
-
-<div class="clinical-box">
-Use the established anticoagulation algorithm and procedure-specific bleeding
-requirements rather than applying one universal hold to every patient.
-</div>
-</section>
-
-
-<section>
-<h2>Step 13 — Infection / Wound Review</h2>
-
-<div class="formula-box">
-
-Active fever: Yes / No<br>
-Urinary symptoms: Yes / No<br>
-Respiratory infection symptoms: Yes / No<br>
-Open/draining wound: Yes / No<br>
-Cellulitis: Yes / No<br>
-Current antibiotics: Yes / No<br>
-Reason: ___
-
-</div>
-
-<div class="clinical-box">
-Do not treat asymptomatic bacteriuria or an abnormal UA as symptomatic infection
-without appropriate clinical evidence.
-</div>
-</section>
-
-
-<section>
-<h2>Step 14 — Frailty / Delirium / Disposition</h2>
-
-<div class="formula-box">
-
-CFS: ___<br>
-AWOL-S: ___<br>
-Recent falls: Yes / No<br>
-Baseline assistive device: ___<br>
-Lives alone: Yes / No<br>
-Reliable caregiver: Yes / No<br>
-OP PT arranged: Yes / No<br>
-Own rolling walker: Yes / No<br>
-Potential rehab need: Yes / No
-
-</div>
-</section>
-
-
-<section>
-<h2>Step 15 — Medication Risk</h2>
-
-<p>
-Review medications that can create perioperative withdrawal, respiratory,
-bleeding, hemodynamic or metabolic risk.
-</p>
-
-<h3>High-priority categories</h3>
-
-<ul>
-<li>Anticoagulants</li>
-<li>Antiplatelets</li>
-<li>SGLT2 inhibitors</li>
-<li>GLP-1 agents</li>
-<li>Insulin</li>
-<li>Chronic steroids</li>
-<li>Beta blockers</li>
-<li>Antiseizure medications</li>
-<li>Parkinson medications</li>
-<li>Benzodiazepines</li>
-<li>Chronic opioids</li>
-<li>Buprenorphine/methadone</li>
-<li>Biologics/JAK inhibitors</li>
-</ul>
-</section>
-
-
-<section>
-<h2>Step 16 — Determine Need for Anesthesia Review</h2>
-
-<div class="warning-box">
-
-Consider anesthesia review for:<br><br>
-
-Prior difficult airway<br>
-Major anesthesia complication<br>
-Severe OSA or PAP intolerance with high sedative risk<br>
-Severe pulmonary disease<br>
-Pulmonary hypertension<br>
-Complex CIED management<br>
-Neuraxial anticoagulant timing<br>
-GLP-1 aspiration concern<br>
-Severe frailty<br>
-Complex insulin pump management<br>
-Concern regarding appropriate surgical venue
-
-</div>
-</section>
-
-
-<section>
-<h2>Step 17 — Determine Need for Specialist Review</h2>
-
-<table>
-
-<tr>
-<th>Clinical Problem</th>
-<th>Likely Service</th>
-</tr>
-
-<tr>
-<td>Unstable CAD / HF / valve disease</td>
-<td>Cardiology</td>
-</tr>
-
-<tr>
-<td>Complex pacemaker/ICD issue</td>
-<td>EP / device clinic</td>
-</tr>
-
-<tr>
-<td>Severe COPD / ILD / hypercapnia</td>
-<td>Pulmonology</td>
-</tr>
-
-<tr>
-<td>Progressive AKI / dialysis complexity</td>
-<td>Nephrology</td>
-</tr>
-
-<tr>
-<td>Unexplained severe anemia / hemolysis / cytopenia</td>
-<td>Hematology</td>
-</tr>
-
-<tr>
-<td>Recent stroke or new neurologic symptoms</td>
-<td>Neurology / acute neurologic evaluation</td>
-</tr>
-
-<tr>
-<td>Complex diabetes/endocrine instability</td>
-<td>Endocrinology</td>
-</tr>
-
-<tr>
-<td>Complex immunosuppression</td>
-<td>Rheumatology / transplant specialist</td>
-</tr>
-
-</table>
-</section>
-
-
-<section>
-<h2>Specific Consultation Questions</h2>
-
-<div class="warning-box">
-Avoid generic requests such as “please clear patient for surgery.”
-</div>
-
-<div class="success-box">
-
-<strong>Better example:</strong><br><br>
-
-“Patient scheduled for elective L3-5 fusion on ___. Known ischemic
-cardiomyopathy with EF 40%. No CHF admission in 2 years, NYHA II, no current
-angina. Please assess current cardiovascular stability and provide any specific
-perioperative recommendations for planned noncardiac surgery.”
-
-</div>
-</section>
-
-
-<section>
-<h2>Step 18 — Postoperative Medical Plan</h2>
-
-<div class="formula-box">
-
-Cardiac surveillance: Yes / No<br>
-Continuous pulse oximetry: Yes / No<br>
-PAP anytime asleep: Yes / No<br>
-RT support: Yes / No<br>
-NIPPV if needed: Yes / No<br>
-Troponins: Yes / No<br>
-Postoperative EKG: Yes / No<br>
-Glucose monitoring: Yes / No<br>
-Renal/electrolyte monitoring: Yes / No<br>
-Bowel regimen: Yes / No<br>
-Fall/delirium precautions: Yes / No
-
-</div>
-</section>
-
-
-<section>
-<h2>Postoperative BNP Protocol</h2>
-
-<div class="warning-box">
-When BNP ≥92 pg/mL or NT-proBNP ≥300 ng/L under the applicable TSJH protocol,
-implement postoperative EKG and daily troponins for 48–72 hours.
-</div>
-</section>
-
-
-<section>
-<h2>OSA Postoperative Plan</h2>
-
-<div class="clinical-box">
-PAP anytime asleep when prescribed and tolerated. For PAP-intolerant OSA,
-continuous pulse oximetry is appropriate when indicated, with NIPPV and/or
-supplemental oxygen available when clinically warranted.
-</div>
-</section>
-
-
-<section>
-<h2>Final Decision — Optimized</h2>
-
-<div class="success-box">
-
-Use <strong>Optimized</strong> when:<br><br>
-
-Required evaluation is complete<br>
-No active unstable medical condition is present<br>
-Clinically important abnormalities have been addressed<br>
-Medication plan is established<br>
-Required specialist/anesthesia recommendations are available<br>
-Postoperative monitoring plan is appropriate<br>
-Planned surgical venue is appropriate
-
-</div>
-</section>
-
-
-<section>
-<h2>Final Decision — Pending</h2>
-
-<div class="warning-box">
-
-Use <strong>Pending</strong> when a required item remains unresolved, such as:<br><br>
-
-Repeat laboratory testing<br>
-Cardiac testing<br>
-Device interrogation<br>
-Anticoagulation plan<br>
-Anesthesia review<br>
-Specialist recommendation<br>
-Resolution of symptomatic infection<br>
-Further anemia optimization<br>
-Other required clinical decision
-
-</div>
-</section>
-
-
-<section>
-<h2>Final Decision — Not Optimized</h2>
-
-<div class="warning-box">
-
-Use <strong>Not optimized</strong> when there is a current condition requiring
-treatment, stabilization, delay or higher-level-of-care planning before elective surgery.
-
-</div>
-
-<h3>Examples</h3>
-
-<ul>
-<li>Active ACS</li>
-<li>Decompensated HF</li>
-<li>Unstable arrhythmia</li>
-<li>Active systemic infection</li>
-<li>DKA/HHS</li>
-<li>Acute pulmonary decompensation</li>
-<li>Progressive significant AKI</li>
-<li>Active major bleeding</li>
-<li>Other acute instability</li>
-</ul>
-</section>
-
-
-<section>
-<h2>Provider Final Checklist</h2>
-
-<div class="formula-box">
-
-<strong>FINAL PROVIDER REVIEW</strong><br><br>
-
-[ ] Procedure/date/surgeon confirmed<br>
-[ ] Surgical risk documented<br>
-[ ] DASI documented<br>
-[ ] RCRI documented<br>
-[ ] STOP-BANG documented<br>
-[ ] CFS documented when appropriate<br>
-[ ] Active cardiac problem status documented<br>
-[ ] BNP screening addressed<br>
-[ ] EKG reviewed when indicated<br>
-[ ] Cardiac testing reviewed when applicable<br>
-[ ] Pulmonary risk assessed<br>
-[ ] Renal status assessed<br>
-[ ] Anemia/labs addressed<br>
-[ ] Infection/wound status addressed<br>
-[ ] Anticoagulation/antiplatelet plan complete<br>
-[ ] Diabetes medication plan complete<br>
-[ ] CIED plan complete when applicable<br>
-[ ] Specialist recommendations reviewed<br>
-[ ] Anesthesia concerns resolved<br>
-[ ] Postoperative monitoring plan established<br>
-[ ] Mobility/disposition plan reasonable<br>
-[ ] All pending items resolved or explicitly assigned<br>
-[ ] Final optimization status documented
-
-</div>
-</section>
-
-
-<section>
-<h2>Concise Provider Documentation</h2>
-
-<div class="formula-box">
-
-<strong>Preoperative Cardiac Guidelines Application</strong><br><br>
-
-Surgical Risk: Low / Intermediate / High<br>
-RCRI: ___<br>
-Active Cardiac Problems: Yes / No<br>
-BNP Screening: Yes / No<br><br>
-
-<strong>Functional & Risk Screening</strong><br><br>
-
-DASI: ___<br>
-STOP-BANG: ___<br>
-CFS: ___<br><br>
-
-<strong>Risk Stratification & Medical Optimization</strong><br><br>
-
-1. ___<br>
-2. ___<br>
-3. ___<br><br>
-
-<strong>Postoperative Plan</strong><br><br>
-
-___
-
-</div>
-</section>
-
-
-<section>
-<h2>Final Preoperative Optimization Language</h2>
-
-<div class="formula-box">
-
-<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS:</strong><br><br>
-
-Optimized / Pending / Not optimized<br><br>
-
-Reason: ________________________________________________
-
-</div>
-
-<div class="success-box">
-Patient meets TSJH perioperative consensus guidelines to proceed with elective
-surgery on scheduled surgery date at this time.
-</div>
-</section>
-
-
-<section>
-<h2>Key Takeaways</h2>
-
-<ul>
-<li>The provider should directly optimize conditions that reasonably fall within preoperative medical scope.</li>
-<li>Do not automatically refer every abnormality to PCP or a specialist.</li>
-<li>Use specialists for specific unresolved questions or unstable disease.</li>
-<li>Use anesthesia for airway, anesthetic, neuraxial, device and venue-specific concerns.</li>
-<li>Stable chronic abnormalities often do not require repeat testing.</li>
-<li>Procedure risk and expected blood loss change the significance of medical findings.</li>
-<li>Medication management is part of medical optimization.</li>
-<li>Postoperative monitoring should be planned before surgery.</li>
-<li>Every Pending status needs a reason and an owner.</li>
-<li>Do not use the phrase “cleared for surgery.”</li>
-<li>Final status should be Optimized, Pending or Not optimized.</li>
-</ul>
-</section>
-<!-- =========================================================
-     INTERACTIVE PROVIDER OPTIMIZATION WORKFLOW
-========================================================= -->
-
-<section id="providerWorkflowInteractive">
-
-<h2>Interactive Provider Optimization Workflow</h2>
-
-<p>
-Use this patient-specific workflow to confirm preoperative medical review,
-identify unresolved issues, assign escalation needs, and generate the final
-preoperative optimization status.
-</p>
-<div class="formula-box">
-
-<h3>Free-Text Clinical Intake</h3>
-
-<p>
-Paste the patient's preoperative clinical information below. The analyzer will
-identify supported clinical values, medications and risk factors and place them
-into the interactive workflow for provider review.
-</p>
-
-<label><strong>Clinical information</strong></label><br>
-
-<textarea
-  id="pwFreeText"
-  rows="10"
-  placeholder="Example: 72-year-old female for right TKA with Dr. Smith. History of CHF, EF 40%, NYHA II, OSA intolerant of CPAP, sodium 129, Hgb 10.8, A1c 7.4, on Eliquis for atrial fibrillation. No recent CHF admission. No active angina."
-  style="width:95%;padding:10px;margin:6px 0 14px;"
-></textarea>
-
-<button
-  type="button"
-  id="pwAnalyzeText"
-  style="padding:12px 18px;margin:6px 8px 6px 0;font-weight:bold;"
->
-Analyze & Populate Workflow
-</button>
-
-<button
-  type="button"
-  id="pwClearText"
-  style="padding:12px 18px;margin:6px 0;font-weight:bold;"
->
-Clear Free Text
-</button>
-
-<div id="pwTextAnalysis"
-     style="margin-top:14px;padding:12px;background:#f4f7f9;border-radius:8px;">
-<strong>Detected information:</strong> Nothing analyzed yet.
-</div>
-
-<p style="font-size:.9rem;">
-<strong>Provider review required:</strong>
-Verify all extracted values against the source information before using the generated optimization plan.
-</p>
-
-</div>
-<div class="formula-box">
-
-<h3>Patient / Procedure</h3>
-<div class="formula-box">
-
-<h3>Patient / Procedure</h3>
-
-<label><strong>Patient</strong></label><br>
-<input type="text" id="pwPatient"
-style="width:95%;padding:10px;margin:6px 0 14px;"><br>
-
-<label><strong>Procedure</strong></label><br>
-<input type="text" id="pwProcedure"
-style="width:95%;padding:10px;margin:6px 0 14px;"><br>
-
-<label><strong>Surgeon</strong></label><br>
-<input type="text" id="pwSurgeon"
-style="width:95%;padding:10px;margin:6px 0 14px;"><br>
-
-<label><strong>Surgery Date / Date of Service</strong></label><br>
-<input type="date" id="pwDOS"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-</div>
-
-
-<div class="formula-box">
-
-<h3>Functional & Risk Screening</h3>
-
-<label><strong>DASI score</strong></label><br>
-<input type="number" step="0.01" id="pwDASI"
-style="width:95%;padding:10px;margin:6px 0 14px;"><br>
-
-<label><strong>RCRI points</strong></label><br>
-<input type="number" min="0" id="pwRCRI"
-style="width:95%;padding:10px;margin:6px 0 14px;"><br>
-
-<label><strong>STOP-BANG total</strong></label><br>
-<input type="number" min="0" max="8" id="pwSTOP"
-style="width:95%;padding:10px;margin:6px 0 14px;"><br>
-
-<label><strong>CFS</strong></label><br>
-<input type="number" min="1" max="9" id="pwCFS"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-</div>
-
-
-<div class="formula-box">
-
-<h3>Preoperative Cardiac Guidelines Application</h3>
-
-<label><strong>Surgical risk</strong></label><br>
-<select id="pwSurgicalRisk" style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="">Select</option>
-<option value="Low">Low (&lt;1%)</option>
-<option value="Intermediate">Intermediate (1–5%)</option>
-<option value="High">High (&gt;5%)</option>
-</select>
-
-<label><strong>Active cardiac problem?</strong></label><br>
-<select id="pwActiveCardiac" style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<label><strong>BNP / NT-proBNP screening indicated?</strong></label><br>
-<select id="pwBNP" style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes — not yet completed</option>
-<option value="completed">Completed / reviewed</option>
-</select>
-
-<label><strong>BNP result (pg/mL)</strong></label><br>
-<input type="number" step="0.1" id="pwBNPValue"
-placeholder="Leave blank if not obtained"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>NT-proBNP result (ng/L)</strong></label><br>
-<input type="number" step="0.1" id="pwNTproBNP"
-placeholder="Leave blank if not obtained"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<hr>
-
-<h3>Heart Failure / LV Function</h3>
-
-<label><strong>Ejection fraction (%)</strong></label><br>
-<input type="number" min="0" max="100" id="pwEF"
-placeholder="Example: 45"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>NYHA class</strong></label><br>
-<select id="pwNYHA" style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="">N/A / Unknown</option>
-<option value="I">I</option>
-<option value="II">II</option>
-<option value="III">III</option>
-<option value="IV">IV</option>
-</select>
-
-<label><strong>Active angina?</strong></label><br>
-<select id="pwAngina" style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<label><strong>Symptomatic volume overload?</strong></label><br>
-<select id="pwVolumeOverload" style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<label><strong>Heart-failure hospitalization within past 2 years?</strong></label><br>
-<select id="pwHFHospitalization" style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-<option value="unknown">Unknown</option>
-</select>
-
-<label><strong>Guideline-directed heart-failure therapy optimized?</strong></label><br>
-<select id="pwGDMT" style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="na">N/A</option>
-<option value="yes">Yes</option>
-<option value="no">No</option>
-<option value="unknown">Unknown</option>
-</select>
-
-<hr>
-
-<h3>EKG / Conduction</h3>
-
-<label><strong>Left bundle branch block (LBBB)?</strong></label><br>
-<select id="pwLBBB" style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<hr>
-
-<h3>Pulmonary Hypertension / Right Heart</h3>
-
-<label><strong>Known pulmonary hypertension?</strong></label><br>
-<select id="pwPH" style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<label><strong>RVSP (mmHg)</strong></label><br>
-<input type="number" step="0.1" id="pwRVSP"
-placeholder="Leave blank if unavailable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>Pulmonary artery pressure (mmHg)</strong></label><br>
-<input type="number" step="0.1" id="pwPAPressure"
-placeholder="Leave blank if unavailable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>TR velocity (m/s)</strong></label><br>
-<input type="number" step="0.1" id="pwTRVelocity"
-placeholder="Leave blank if unavailable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>Severe tricuspid regurgitation?</strong></label><br>
-<select id="pwSevereTR" style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<label><strong>Moderate-to-severe RV dysfunction?</strong></label><br>
-<select id="pwRVDysfunction" style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<label><strong>WHO Group 1 pulmonary hypertension?</strong></label><br>
-<select id="pwWHO1" style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<label><strong>Advanced pulmonary vasodilator therapy?</strong></label><br>
-<select id="pwPulmVasodilator" style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<hr>
-
-<h3>Valvular Disease</h3>
-
-<label><strong>Aortic valve area (cm²)</strong></label><br>
-<input type="number" step="0.01" id="pwAVA"
-placeholder="Leave blank if unavailable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>Aortic mean gradient (mmHg)</strong></label><br>
-<input type="number" step="0.1" id="pwASGradient"
-placeholder="Leave blank if unavailable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>Aortic Vmax (m/s)</strong></label><br>
-<input type="number" step="0.1" id="pwVmax"
-placeholder="Leave blank if unavailable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>Moderate-to-severe or severe mitral stenosis?</strong></label><br>
-<select id="pwMitralStenosis" style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-<option value="unknown">Unknown</option>
-</select>
-
-</div>
-<div class="formula-box">
-
-<h3>Provider Review</h3>
-
-<label><strong>Active medical instability?</strong></label><br>
-<select id="pwUnstable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<label><strong>Vitals reviewed and acceptable?</strong></label><br>
-<select id="pwVitals"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="yes">Yes</option>
-<option value="no">No</option>
-</select>
-
-<label><strong>Labs reviewed and clinically acceptable?</strong></label><br>
-<select id="pwLabs"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="yes">Yes</option>
-<option value="no">No</option>
-</select>
-
-<hr>
-
-<h3>Labs / Renal / Anemia / Electrolytes</h3>
-
-<label><strong>Sodium (mEq/L)</strong></label><br>
-<input type="number" step="0.1" id="pwSodium"
-placeholder="Leave blank if unavailable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>Potassium (mEq/L)</strong></label><br>
-<input type="number" step="0.1" id="pwPotassium"
-placeholder="Leave blank if unavailable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>Creatinine (mg/dL)</strong></label><br>
-<input type="number" step="0.01" id="pwCreatinine"
-placeholder="Leave blank if unavailable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>eGFR (mL/min/1.73 m²)</strong></label><br>
-<input type="number" step="1" id="pwEGFR"
-placeholder="Leave blank if unavailable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>Bicarbonate / CO₂ (mEq/L)</strong></label><br>
-<input type="number" step="0.1" id="pwBicarb"
-placeholder="Leave blank if unavailable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>Hemoglobin (g/dL)</strong></label><br>
-<input type="number" step="0.1" id="pwHemoglobin"
-placeholder="Leave blank if unavailable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>Platelets (K/µL)</strong></label><br>
-<input type="number" step="1" id="pwPlatelets"
-placeholder="Leave blank if unavailable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>Glucose (mg/dL)</strong></label><br>
-<input type="number" step="1" id="pwGlucose"
-placeholder="Leave blank if unavailable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>A1c (%)</strong></label><br>
-<input type="number" step="0.1" id="pwA1c"
-placeholder="Leave blank if unavailable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>Dialysis patient?</strong></label><br>
-<select id="pwDialysis"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<label><strong>Dialysis plan confirmed?</strong></label><br>
-<select id="pwDialysisPlan"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="na">N/A</option>
-<option value="yes">Yes</option>
-<option value="no">No</option>
-<option value="unknown">Unknown</option>
-</select>
-
-<label><strong>EKG reviewed when indicated?</strong></label><br>
-<select id="pwEKG"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="na">N/A</option>
-<option value="yes">Yes</option>
-<option value="no">No</option>
-</select>
-
-<label><strong>Required testing completed and reviewed?</strong></label><br>
-<select id="pwTesting"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="yes">Yes</option>
-<option value="no">No</option>
-<option value="na">N/A</option>
-</select>
-
-</div>
-
-
-<div class="formula-box">
-
-<h3>Medication / Specialty / Anesthesia Closure</h3>
-
-<label><strong>Required medication holds verified?</strong></label><br>
-<select id="pwMeds"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="yes">Yes</option>
-<option value="no">No</option>
-<option value="na">N/A</option>
-</select>
-
-<hr>
-
-<h3>Medication / Anticoagulation / Diabetes Plan</h3>
-
-<label><strong>Anticoagulant / antiplatelet medication</strong></label><br>
-<select id="pwAntithrombotic"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="none">None</option>
-<option value="eliquis">Eliquis / apixaban</option>
-<option value="xarelto">Xarelto / rivaroxaban</option>
-<option value="savaysa">Savaysa / edoxaban</option>
-<option value="pradaxa">Pradaxa / dabigatran</option>
-<option value="warfarin">Warfarin</option>
-<option value="plavix">Plavix / clopidogrel</option>
-<option value="brilinta">Brilinta / ticagrelor</option>
-<option value="aspirin">Aspirin</option>
-<option value="lovenox">Lovenox / enoxaparin</option>
-<option value="other">Other</option>
-</select>
-
-<label><strong>Recent PCI / coronary stent?</strong></label><br>
-<select id="pwPCI"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-<option value="unknown">Unknown</option>
-</select>
-
-<label><strong>Dual antiplatelet therapy (DAPT)?</strong></label><br>
-<select id="pwDAPT"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-<option value="unknown">Unknown</option>
-</select>
-
-<label><strong>Anticoagulation / antiplatelet hold plan confirmed?</strong></label><br>
-<select id="pwAntithromboticPlan"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="na">N/A</option>
-<option value="yes">Yes</option>
-<option value="no">No</option>
-<option value="unknown">Unknown</option>
-</select>
-
-<label><strong>SGLT2 inhibitor?</strong></label><br>
-<select id="pwSGLT2"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="none">No</option>
-<option value="empagliflozin">Empagliflozin / Jardiance</option>
-<option value="dapagliflozin">Dapagliflozin / Farxiga</option>
-<option value="canagliflozin">Canagliflozin / Invokana</option>
-<option value="ertugliflozin">Ertugliflozin / Steglatro</option>
-</select>
-
-<label><strong>SGLT2 hold confirmed?</strong></label><br>
-<select id="pwSGLT2Plan"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="na">N/A</option>
-<option value="yes">Yes</option>
-<option value="no">No</option>
-<option value="unknown">Unknown</option>
-</select>
-
-<label><strong>GLP-1 medication?</strong></label><br>
-<select id="pwGLP1"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<label><strong>GLP-1 escalation phase or significant GI symptoms?</strong></label><br>
-<select id="pwGLP1Risk"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-<option value="unknown">Unknown</option>
-</select>
-
-<label><strong>Type 1 diabetes?</strong></label><br>
-<select id="pwType1DM"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<label><strong>Insulin pump?</strong></label><br>
-<select id="pwInsulinPump"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<label><strong>Perioperative insulin / pump plan confirmed?</strong></label><br>
-<select id="pwInsulinPlan"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="na">N/A</option>
-<option value="yes">Yes</option>
-<option value="no">No</option>
-<option value="unknown">Unknown</option>
-</select>
-
-<label><strong>Required specialist recommendations reviewed?</strong></label><br>
-<select id="pwSpecialist"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="yes">Yes</option>
-<option value="no">No</option>
-<option value="na">N/A</option>
-</select>
-
-<label><strong>Anesthesia review completed when required?</strong></label><br>
-<select id="pwAnesthesia"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="yes">Yes</option>
-<option value="no">No</option>
-<option value="na">N/A</option>
-</select>
-
-<label><strong>Venue / HLOC determination finalized?</strong></label><br>
-<select id="pwVenue"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="yes">Yes</option>
-<option value="no">No</option>
-<option value="na">N/A</option>
-</select>
-
-</div>
-
-
-<div class="formula-box">
-
-<h3>Postoperative Planning</h3>
-
-<label><strong>Cardiac surveillance plan established if indicated?</strong></label><br>
-<select id="pwCardiacMonitor"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="na">N/A</option>
-<option value="yes">Yes</option>
-<option value="no">No</option>
-</select>
-
-<label><strong>Respiratory / OSA monitoring plan confirmed?</strong></label><br>
-<select id="pwRespMonitor"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="na">N/A</option>
-<option value="yes">Yes</option>
-<option value="no">No</option>
-</select>
-
-<hr>
-
-<h3>Pulmonary / OSA / COPD</h3>
-
-<label><strong>COPD?</strong></label><br>
-<select id="pwCOPD"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<label><strong>FEV1 (% predicted)</strong></label><br>
-<input type="number" step="1" id="pwFEV1"
-placeholder="Leave blank if unavailable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>CAT score</strong></label><br>
-<input type="number" step="1" id="pwCAT"
-placeholder="Leave blank if unavailable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>BODE score</strong></label><br>
-<input type="number" step="1" id="pwBODE"
-placeholder="Leave blank if unavailable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>Arozullah score</strong></label><br>
-<input type="number" step="1" id="pwArozullah"
-placeholder="Leave blank if unavailable"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-
-<label><strong>Continuous / 24-hour oxygen use?</strong></label><br>
-<select id="pwContinuousO2"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<label><strong>Chronic hypercapnic respiratory failure?</strong></label><br>
-<select id="pwHypercapnia"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<label><strong>Idiopathic pulmonary fibrosis / significant ILD?</strong></label><br>
-<select id="pwIPF"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<label><strong>Known OSA?</strong></label><br>
-<select id="pwOSA"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<label><strong>PAP prescribed?</strong></label><br>
-<select id="pwPAP"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="na">N/A</option>
-<option value="yes">Yes</option>
-<option value="no">No</option>
-</select>
-
-<label><strong>PAP tolerated / currently using?</strong></label><br>
-<select id="pwPAPTolerance"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="na">N/A</option>
-<option value="yes">Yes</option>
-<option value="no">No / intolerant</option>
-</select>
-
-<label><strong>Mobility / disposition plan appropriate?</strong></label><br>
-<select id="pwDisposition"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="yes">Yes</option>
-<option value="no">No</option>
-<option value="na">N/A</option>
-</select>
-
-</div>
-
-
-<div class="formula-box">
-
-<h3>Pending Item Closure</h3>
-
-<label><strong>Any clinically meaningful item still pending?</strong></label><br>
-<select id="pwPending"
-style="width:95%;padding:10px;margin:6px 0 14px;">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-
-<label><strong>Pending item / owner / closure plan</strong></label><br>
-<textarea id="pwPendingDetails"
-rows="5"
-placeholder="Example: repeat K pending; owner SPA; cardiology note requested; anesthesia review scheduled..."
-style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
-
-<label><strong>Additional provider comments</strong></label><br>
-<textarea id="pwComments"
-rows="5"
-style="width:95%;padding:10px;margin:6px 0 14px;"></textarea>
-
-</div>
-
-
-<div class="formula-box">
-
-<button type="button" id="pwGenerate"
-style="background:#17324d;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
-Generate Provider Optimization Summary
-</button>
-
-<button type="button" id="pwCopy"
-style="background:#2f6fb0;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
-Copy Summary
-</button>
-
-<button type="button" id="pwPrint"
-style="background:#356f44;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
-Print
-</button>
-<button
-type="button"
-id="pwPatientInstructions"
-style="background:#6b4f9e;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
-Open Patient Instructions
-</button>
-<button
-type="button"
-id="pwClear"
-style="background:#6b7280;color:white;border:none;padding:14px 18px;font-weight:bold;font-size:16px;border-radius:8px;margin:6px;">
-Clear
-</button>
-
-</div>
-
-
-<div id="pwResult"
-class="formula-box"
-style="display:none;margin-top:20px;">
-</div>
-
+</main>
+
+<footer>
+  Preoperative Optimization Handbook Â· Provider decision-support workflow
+</footer>
 
 <script>
+"use strict";
 
-function pwVal(id) {
-  const el = document.getElementById(id);
-  return el ? el.value : "";
+function byId(id){ return document.getElementById(id); }
+function val(id){
+  const el = byId(id);
+  return el ? String(el.value || "").trim() : "";
 }
-// ---------- FREE-TEXT CLINICAL INTAKE ANALYZER ----------
-
-function pwSet(id, value) {
-  const el = document.getElementById(id);
-  if (el && value !== null && value !== undefined && value !== "") {
-    el.value = value;
-  }
+function num(id){
+  const v = parseFloat(val(id));
+  return Number.isFinite(v) ? v : null;
 }
-
-function pwFirstNumber(text, patterns) {
-  for (const pattern of patterns) {
-    const match = text.match(pattern);
-    if (match && match[1] !== undefined) {
-      const value = parseFloat(match[1]);
-      if (!isNaN(value)) return value;
+function yes(id){ return val(id) === "yes"; }
+function setVal(id,value){
+  const el = byId(id);
+  if(el) el.value = value;
+}
+function escapeHtml(text){
+  return String(text ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+function firstNumber(text, patterns){
+  for(const re of patterns){
+    const m = text.match(re);
+    if(m && m[1] !== undefined){
+      const n = parseFloat(m[1]);
+      if(Number.isFinite(n)) return n;
     }
   }
   return null;
 }
+function has(text, patterns){ return patterns.some(re => re.test(text)); }
 
-function pwHas(text, patterns) {
-  return patterns.some(function(pattern) {
-    return pattern.test(text);
-  });
-}
-
-function analyzeProviderFreeText() {
-
-  const source = document.getElementById("pwFreeText");
-  const analysisBox = document.getElementById("pwTextAnalysis");
-
-  if (!source) return;
-
-  const raw = source.value.trim();
-
-  if (!raw) {
-    if (analysisBox) {
-      analysisBox.innerHTML =
-        "<strong>Detected information:</strong> Enter clinical information first.";
-    }
-    return;
-  }
-
+function analyzeProviderFreeText(){
+  const raw = val("pwFreeText");
   const text = raw.toLowerCase();
   const detected = [];
 
-  // ---------- PROCEDURE ----------
-
-  const procedureMatch = raw.match(
-    /(?:for|planned|scheduled for|procedure[:\s]+)\s+([^.\n]+)/i
-  );
-
-  if (procedureMatch) {
-    let procedure = procedureMatch[1].trim();
-
-    procedure = procedure
-      .replace(/\s+with\s+dr\.?.*$/i, "")
-      .replace(/\s+by\s+dr\.?.*$/i, "")
-      .trim();
-
-    if (procedure.length > 2 && procedure.length < 120) {
-      pwSet("pwProcedure", procedure);
-      detected.push("Procedure");
-    }
-  }
-// -------- PATIENT --------
-
-const patientMatch = raw.match(
-  /(?:patient|patient name|name)\s*[:\-]\s*([^\n\r]+)/i
-);
-
-if (patientMatch) {
-  const patientName = patientMatch[1].trim();
-
-  if (patientName) {
-    pwSet("pwPatient", patientName);
-    detected.push("Patient");
-  }
-}
-
-
-// -------- SURGERY DATE --------
-
-const surgeryDateMatch = raw.match(
-  /(?:surgery date|date of service|dos)\s*[:\-]\s*(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/i
-);
-
-if (surgeryDateMatch) {
-
-  const parts = surgeryDateMatch[1].split(/[\/\-]/);
-
-  if (parts.length === 3) {
-    let month = parts[0].padStart(2, "0");
-    let day = parts[1].padStart(2, "0");
-    let year = parts[2];
-
-    if (year.length === 2) {
-      year = "20" + year;
-    }
-
-    pwSet(
-      "pwDOS",
-      year + "-" + month + "-" + day
-    );
-
-    detected.push("Surgery Date");
-  }
-}
-  // ---------- SURGEON ----------
-
-  const surgeonMatch = raw.match(
-    /(?:dr\.?|doctor)\s+([a-z][a-z'-]+)/i
-  );
-
-  if (surgeonMatch) {
-    pwSet("pwSurgeon", surgeonMatch[1]);
-    detected.push("Surgeon");
-  }
-
-  // ---------- EF ----------
-
-  const ef = pwFirstNumber(text, [
-    /\bef\s*[:=]?\s*(\d+(?:\.\d+)?)\s*%?/i,
-    /ejection fraction\s*(?:of|[:=])?\s*(\d+(?:\.\d+)?)\s*%?/i
-  ]);
-
-  if (ef !== null) {
-    pwSet("pwEF", ef);
-    detected.push("EF " + ef + "%");
-  }
-
-  // ---------- NYHA ----------
-
-  const nyhaMatch = raw.match(
-    /\bnyha\s*(?:class)?\s*(i{1,3}|iv|[1-4])\b/i
-  );
-
-  if (nyhaMatch) {
-    const nyhaMap = {
-      "1": "I",
-      "2": "II",
-      "3": "III",
-      "4": "IV",
-      "i": "I",
-      "ii": "II",
-      "iii": "III",
-      "iv": "IV"
-    };
-
-    const nyha = nyhaMap[nyhaMatch[1].toLowerCase()];
-
-    if (nyha) {
-      pwSet("pwNYHA", nyha);
-      detected.push("NYHA " + nyha);
-    }
-  }
-
-  // ---------- BNP / NT-proBNP ----------
-
-  const ntproBNP = pwFirstNumber(text, [
-    /\bnt[-\s]?probnp\s*[:=]?\s*(\d+(?:\.\d+)?)/i
-  ]);
-
-  if (ntproBNP !== null) {
-    pwSet("pwNTproBNP", ntproBNP);
-    pwSet("pwBNP", "completed");
-    detected.push("NT-proBNP " + ntproBNP);
-  }
-
-  const bnp = pwFirstNumber(text, [
-    /(?<!nt[-\s]pro)\bbnp\s*[:=]?\s*(\d+(?:\.\d+)?)/i
-  ]);
-
-  if (bnp !== null) {
-    pwSet("pwBNPValue", bnp);
-    pwSet("pwBNP", "completed");
-    detected.push("BNP " + bnp);
-  }
-
-  // ---------- PULMONARY HYPERTENSION ----------
-
-  const rvsp = pwFirstNumber(text, [
-    /\brvsp\s*[:=]?\s*(\d+(?:\.\d+)?)/i
-  ]);
-
-  if (rvsp !== null) {
-    pwSet("pwRVSP", rvsp);
-    pwSet("pwPH", "yes");
-    detected.push("RVSP " + rvsp);
-  }
-
-  const paPressure = pwFirstNumber(text, [
-    /\b(?:pa pressure|pulmonary artery pressure|pasp)\s*[:=]?\s*(\d+(?:\.\d+)?)/i
-  ]);
-
-  if (paPressure !== null) {
-    pwSet("pwPAPressure", paPressure);
-    pwSet("pwPH", "yes");
-    detected.push("PA pressure " + paPressure);
-  }
-
-  const trVelocity = pwFirstNumber(text, [
-    /\btr velocity\s*[:=]?\s*(\d+(?:\.\d+)?)/i
-  ]);
-
-  if (trVelocity !== null) {
-    pwSet("pwTRVelocity", trVelocity);
-    detected.push("TR velocity " + trVelocity);
-  }
-
-  if (pwHas(text, [
-    /\bpulmonary hypertension\b/i,
-    /\bpulm(?:onary)? htn\b/i
-  ])) {
-    pwSet("pwPH", "yes");
-    detected.push("Pulmonary hypertension");
-  }
-
-  if (pwHas(text, [
-    /\bwho group 1\b/i,
-    /\bgroup 1 pulmonary hypertension\b/i
-  ])) {
-    pwSet("pwWHO1", "yes");
-    pwSet("pwPH", "yes");
-    detected.push("WHO Group 1 PH");
-  }
-
-
-
- if (pwHas(text, [
-  /\bsevere tricuspid regurgitation\b/i,
-  /\bsevere tr\b/i
-])) {
-  pwSet("pwSevereTR", "yes");
-  detected.push("Severe TR");
-}
-
-if (pwHas(text, [
-  /\bmoderate[-\s]to[-\s]severe rv dysfunction\b/i,
-  /\bsevere rv dysfunction\b/i
-])) {
-  pwSet("pwRVDysfunction", "yes");
-  detected.push("RV dysfunction");
-}
-
-  // ---------- VALVES ----------
-
-  const ava = pwFirstNumber(text, [
-    /\bava\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
-    /aortic valve area\s*[:=]?\s*(\d+(?:\.\d+)?)/i
-  ]);
-
-  if (ava !== null) {
-    pwSet("pwAVA", ava);
-    detected.push("AVA " + ava);
-  }
-
-  const gradient = pwFirstNumber(text, [
-    /\bmean gradient\s*[:=]?\s*(\d+(?:\.\d+)?)/i
-  ]);
-
-  if (gradient !== null) {
-    pwSet("pwASGradient", gradient);
-    detected.push("Aortic gradient " + gradient);
-  }
-
-  const vmax = pwFirstNumber(text, [
-    /\bvmax\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
-    /\bpeak velocity\s*[:=]?\s*(\d+(?:\.\d+)?)/i
-  ]);
-
-  if (vmax !== null) {
-    pwSet("pwVmax", vmax);
-    detected.push("Vmax " + vmax);
-  }
-
-  if (pwHas(text, [
-    /\bmoderate[-\s]to[-\s]severe mitral stenosis\b/i,
-    /\bsevere mitral stenosis\b/i
-  ])) {
-    pwSet("pwMitralStenosis", "yes");
-    detected.push("Mitral stenosis");
-  }
-
-  // ---------- CARDIAC SYMPTOMS ----------
-
-  if (pwHas(text, [
-    /\bactive angina\b/i,
-    /\bcurrent angina\b/i,
-    /\bangina at rest\b/i
-  ])) {
-    pwSet("pwAngina", "yes");
-    detected.push("Active angina");
-  }
-
-  if (pwHas(text, [
-    /\bvolume overload\b/i,
-    /\bdecompensated heart failure\b/i,
-    /\bpulmonary edema\b/i
-  ])) {
-    pwSet("pwVolumeOverload", "yes");
-    detected.push("Volume overload");
-  }
-
-  if (pwHas(text, [
-    /\blbbb\b/i,
-    /\bleft bundle branch block\b/i
-  ])) {
-    pwSet("pwLBBB", "yes");
-    detected.push("LBBB");
-  }
-
-  // ---------- LABS ----------
-
-  const sodium = pwFirstNumber(text, [
-    /\b(?:sodium|na)\s*[:=]?\s*(\d+(?:\.\d+)?)/i
-  ]);
-
-  if (sodium !== null) {
-    pwSet("pwSodium", sodium);
-    detected.push("Na " + sodium);
-  }
-
-  const potassium = pwFirstNumber(text, [
-    /\b(?:potassium|k)\s*[:=]?\s*(\d+(?:\.\d+)?)/i
-  ]);
-
-  if (potassium !== null) {
-    pwSet("pwPotassium", potassium);
-    detected.push("K " + potassium);
-  }
-
-  const creatinine = pwFirstNumber(text, [
-    /\b(?:creatinine|cr)\s*[:=]?\s*(\d+(?:\.\d+)?)/i
-  ]);
-
-  if (creatinine !== null) {
-    pwSet("pwCreatinine", creatinine);
-    detected.push("Cr " + creatinine);
-  }
-
-  const egfr = pwFirstNumber(text, [
-    /\begfr\s*[:=]?\s*(\d+(?:\.\d+)?)/i
-  ]);
-
-  if (egfr !== null) {
-    pwSet("pwEGFR", egfr);
-    detected.push("eGFR " + egfr);
-  }
-
-  const bicarb = pwFirstNumber(text, [
-    /\b(?:bicarbonate|bicarb|co2)\s*[:=]?\s*(\d+(?:\.\d+)?)/i
-  ]);
-
-  if (bicarb !== null) {
-    pwSet("pwBicarb", bicarb);
-    detected.push("CO2 " + bicarb);
-  }
-
-  const hgb = pwFirstNumber(text, [
-    /\b(?:hemoglobin|hgb|hb)\s*[:=]?\s*(\d+(?:\.\d+)?)/i
-  ]);
-
-  if (hgb !== null) {
-    pwSet("pwHemoglobin", hgb);
-    detected.push("Hgb " + hgb);
-  }
-
-  const platelets = pwFirstNumber(text, [
-    /\b(?:platelets|plt|plts)\s*[:=]?\s*(\d+(?:\.\d+)?)/i
-  ]);
-
-  if (platelets !== null) {
-    pwSet("pwPlatelets", platelets);
-    detected.push("Platelets " + platelets);
-  }
-
-  const glucose = pwFirstNumber(text, [
-    /\b(?:glucose|glu)\s*[:=]?\s*(\d+(?:\.\d+)?)/i
-  ]);
-
-  if (glucose !== null) {
-    pwSet("pwGlucose", glucose);
-    detected.push("Glucose " + glucose);
-  }
-
-  const a1c = pwFirstNumber(text, [
-    /\b(?:a1c|hba1c)\s*[:=]?\s*(\d+(?:\.\d+)?)/i
-  ]);
-
-  if (a1c !== null) {
-    pwSet("pwA1c", a1c);
-    detected.push("A1c " + a1c);
-  }
-
-  // ---------- COPD / OSA ----------
-
-  if (pwHas(text, [/\bcopd\b/i])) {
-    pwSet("pwCOPD", "yes");
-    detected.push("COPD");
-  }
-
-  const fev1 = pwFirstNumber(text, [
-    /\bfev1\s*[:=]?\s*(\d+(?:\.\d+)?)\s*%?/i
-  ]);
-
-  if (fev1 !== null) {
-    pwSet("pwFEV1", fev1);
-    detected.push("FEV1 " + fev1 + "%");
-  }
-
-  const cat = pwFirstNumber(text, [
-    /\bcat(?: score)?\s*[:=]?\s*(\d+)/i
-  ]);
-
-  if (cat !== null) {
-    pwSet("pwCAT", cat);
-    detected.push("CAT " + cat);
-  }
-
-  const bode = pwFirstNumber(text, [
-    /\bbode(?: score)?\s*[:=]?\s*(\d+)/i
-  ]);
-
-  if (bode !== null) {
-    pwSet("pwBODE", bode);
-    detected.push("BODE " + bode);
-  }
-
-  const arozullah = pwFirstNumber(text, [
-    /\barozullah(?: score)?\s*[:=]?\s*(\d+)/i
-  ]);
-
-  if (arozullah !== null) {
-    pwSet("pwArozullah", arozullah);
-    detected.push("Arozullah " + arozullah);
-  }
-
-  if (pwHas(text, [
-    /\b24[-\s]?hour oxygen\b/i,
-    /\bcontinuous oxygen\b/i,
-    /\bhome oxygen continuously\b/i
-  ])) {
-    pwSet("pwContinuousO2", "yes");
-    detected.push("Continuous oxygen");
-  }
-
-  if (pwHas(text, [
-    /\bchronic hypercapnic respiratory failure\b/i,
-    /\bchronic hypercapnia\b/i
-  ])) {
-    pwSet("pwHypercapnia", "yes");
-    detected.push("Chronic hypercapnia");
-  }
-
-  if (pwHas(text, [
-    /\bidiopathic pulmonary fibrosis\b/i,
-    /\bipf\b/i
-  ])) {
-    pwSet("pwIPF", "yes");
-    detected.push("IPF");
-  }
-
-  if (pwHas(text, [
-    /\bosa\b/i,
-    /\bobstructive sleep apnea\b/i
-  ])) {
-    pwSet("pwOSA", "yes");
-    detected.push("OSA");
-  }
-
-  if (pwHas(text, [
-    /\bcpap\b/i,
-    /\bbipap\b/i,
-    /\bpap therapy\b/i
-  ])) {
-    pwSet("pwPAP", "yes");
-  }
-
-  if (pwHas(text, [
-    /\bcpap intolerant\b/i,
-    /\bpap intolerant\b/i,
-    /\bdoes not tolerate cpap\b/i,
-    /\bnot using cpap\b/i
-  ])) {
-    pwSet("pwPAP", "yes");
-    pwSet("pwPAPTolerance", "no");
-    detected.push("PAP intolerance");
-  } else if (
-    pwHas(text, [
-      /\buses cpap\b/i,
-      /\bcompliant with cpap\b/i,
-      /\busing pap\b/i
-    ])
-  ) {
-    pwSet("pwPAP", "yes");
-    pwSet("pwPAPTolerance", "yes");
-    detected.push("PAP use");
-  }
-
-  // ---------- ANTICOAGULANTS / ANTIPLATELETS ----------
-
-  const medicationMap = [
-    ["eliquis", /\b(?:eliquis|apixaban)\b/i],
-    ["xarelto", /\b(?:xarelto|rivaroxaban)\b/i],
-    ["savaysa", /\b(?:savaysa|edoxaban)\b/i],
-    ["pradaxa", /\b(?:pradaxa|dabigatran)\b/i],
-    ["warfarin", /\b(?:warfarin|coumadin)\b/i],
-    ["plavix", /\b(?:plavix|clopidogrel)\b/i],
-    ["brilinta", /\b(?:brilinta|ticagrelor)\b/i],
-    ["lovenox", /\b(?:lovenox|enoxaparin)\b/i],
-    ["aspirin", /\b(?:aspirin|asa)\b/i]
-  ];
-
-  for (const item of medicationMap) {
-    if (item[1].test(text)) {
-      pwSet("pwAntithrombotic", item[0]);
-      detected.push(item[0]);
-      break;
-    }
-  }
-
-  if (pwHas(text, [
-    /\brecent pci\b/i,
-    /\bcoronary stent\b/i,
-    /\bdrug[-\s]?eluting stent\b/i,
-    /\bbare[-\s]?metal stent\b/i
-  ])) {
-    pwSet("pwPCI", "yes");
-    detected.push("PCI/stent");
-  }
-
-  if (pwHas(text, [
-    /\bdual antiplatelet\b/i,
-    /\bdapt\b/i
-  ])) {
-    pwSet("pwDAPT", "yes");
-    detected.push("DAPT");
-  }
-
-  // ---------- SGLT2 ----------
-
-  const sgltMap = [
-    ["empagliflozin", /\b(?:empagliflozin|jardiance)\b/i],
-    ["dapagliflozin", /\b(?:dapagliflozin|farxiga)\b/i],
-    ["canagliflozin", /\b(?:canagliflozin|invokana)\b/i],
-    ["ertugliflozin", /\b(?:ertugliflozin|steglatro)\b/i]
-  ];
-
-  for (const item of sgltMap) {
-    if (item[1].test(text)) {
-      pwSet("pwSGLT2", item[0]);
-      detected.push("SGLT2 inhibitor");
-      break;
-    }
-  }
-
-  // ---------- GLP-1 ----------
-
-  if (pwHas(text, [
-    /\bsemaglutide\b/i,
-    /\bozempic\b/i,
-    /\bwegovy\b/i,
-    /\brybelsus\b/i,
-    /\btirzepatide\b/i,
-    /\bmounjaro\b/i,
-    /\bzepbound\b/i,
-    /\bdulaglutide\b/i,
-    /\btrulicity\b/i,
-    /\bliraglutide\b/i,
-    /\bvictoza\b/i,
-    /\bsaxenda\b/i
-  ])) {
-    pwSet("pwGLP1", "yes");
-    detected.push("GLP-1 therapy");
-  }
-
-  if (pwHas(text, [
-    /\bdose escalation\b/i,
-    /\bescalation phase\b/i,
-    /\bsignificant nausea\b/i,
-    /\bvomiting\b/i,
-    /\bgastroparesis\b/i,
-    /\bdelayed gastric emptying\b/i
-  ])) {
-    pwSet("pwGLP1Risk", "yes");
-    detected.push("GLP-1 aspiration-risk feature");
-  }
-
-  // ---------- TYPE 1 / INSULIN PUMP ----------
-
-  if (pwHas(text, [
-    /\btype 1 diabetes\b/i,
-    /\btype i diabetes\b/i,
-    /\bt1dm\b/i
-  ])) {
-    pwSet("pwType1DM", "yes");
-    detected.push("Type 1 diabetes");
-  }
-
-  if (pwHas(text, [
-    /\binsulin pump\b/i,
-    /\bcontinuous subcutaneous insulin infusion\b/i,
-    /\bcsii\b/i
-  ])) {
-    pwSet("pwInsulinPump", "yes");
-    detected.push("Insulin pump");
-  }
-
-  // ---------- DIALYSIS ----------
-
-  if (pwHas(text, [
-    /\bhemodialysis\b/i,
-    /\bperitoneal dialysis\b/i,
-    /\bon dialysis\b/i
-  ])) {
-    pwSet("pwDialysis", "yes");
-    detected.push("Dialysis");
-  }
-
-  // ---------- DISPLAY DETECTED ITEMS ----------
-
-  if (analysisBox) {
-    if (detected.length > 0) {
-      analysisBox.innerHTML =
-        "<strong>Detected information:</strong><br>" +
-        detected.map(function(item) {
-          return "• " + item;
-        }).join("<br>") +
-        "<br><br><strong>Next:</strong> Review the populated fields, correct anything needed, then select Generate Provider Optimization Summary.";
-    } else {
-      analysisBox.innerHTML =
-        "<strong>Detected information:</strong> No supported structured values were confidently identified. Review the text and complete the workflow manually.";
-    }
-  }
-}
-
-function clearProviderFreeText() {
-  const source = document.getElementById("pwFreeText");
-  const analysisBox = document.getElementById("pwTextAnalysis");
-
-  if (source) source.value = "";
-
-  if (analysisBox) {
-    analysisBox.innerHTML =
-      "<strong>Detected information:</strong> Nothing analyzed yet.";
-  }
-}
-
-const pwAnalyzeTextButton = document.getElementById("pwAnalyzeText");
-if (pwAnalyzeTextButton) {
-  pwAnalyzeTextButton.addEventListener(
-    "click",
-    analyzeProviderFreeText
-  );
-}
-
-const pwClearTextButton = document.getElementById("pwClearText");
-if (pwClearTextButton) {
-  pwClearTextButton.addEventListener(
-    "click",
-    clearProviderFreeText
-  );
-}
-
-function generateProviderWorkflow() {
-
-  const pending = [];
-  const stop = [];
-  const plan = [];
-  if (pwVal("pwUnstable") === "yes") {
-    stop.push(
-      "Active or unstable medical condition requires evaluation and treatment before elective surgery."
-    );
-  }
-
-  if (pwVal("pwActiveCardiac") === "yes") {
-    pending.push(
-      "Active cardiac problem requires appropriate cardiovascular evaluation before final optimization."
-    );
-  }
-// ---------- PATIENT-SPECIFIC CARDIAC OPTIMIZATION PLAN ----------
-
-const pwNum = function(id) {
-  const value = parseFloat(pwVal(id));
-  return isNaN(value) ? null : value;
-};
-
-const bnp = pwNum("pwBNPValue");
-const ntproBNP = pwNum("pwNTproBNP");
-const ef = pwNum("pwEF");
-const rvsp = pwNum("pwRVSP");
-const paPressure = pwNum("pwPAPressure");
-const trVelocity = pwNum("pwTRVelocity");
-const ava = pwNum("pwAVA");
-const asGradient = pwNum("pwASGradient");
-const vmax = pwNum("pwVmax");
-
-// BNP / NT-proBNP
-if (pwVal("pwBNP") === "yes") {
-  plan.push(
-    "Obtain BNP / NT-proBNP before final optimization when screening is indicated."
-  );
-}
-
-if (
-  (bnp !== null && bnp >= 92) ||
-  (ntproBNP !== null && ntproBNP >= 300)
-) {
-  plan.push(
-    "Elevated perioperative natriuretic peptide: implement the TSJH postoperative cardiac-surveillance protocol with postoperative EKG and daily troponins for 48–72 hours."
-  );
-}
-
-// Heart failure / LV function
-if (ef !== null && ef < 35) {
-  pending.push(
-    "Ejection fraction below 35% meets the TSJH higher-level-of-care threshold."
-  );
-
-  plan.push(
-    "Coordinate anesthesia/cardiology and higher-level-of-care or alternate-venue review because EF is below 35%."
-  );
-}
-
-if (pwVal("pwNYHA") === "III" || pwVal("pwNYHA") === "IV") {
-  pending.push(
-    "NYHA class III–IV symptoms require additional cardiovascular evaluation before final optimization."
-  );
-
-  plan.push(
-    "Obtain cardiovascular assessment and confirm heart-failure stability before elective surgery."
-  );
-}
-
-if (pwVal("pwAngina") === "yes") {
-  pending.push(
-    "Active angina requires cardiovascular evaluation before final optimization."
-  );
-
-  plan.push(
-    "Evaluate active angina and ischemic risk before proceeding with routine elective surgery."
-  );
-}
-
-if (pwVal("pwVolumeOverload") === "yes") {
-  pending.push(
-    "Symptomatic volume overload requires treatment and reassessment before final optimization."
-  );
-
-  plan.push(
-    "Treat volume overload and confirm clinical euvolemia before elective surgery."
-  );
-}
-
-if (
-  pwVal("pwHFHospitalization") === "yes" ||
-  pwVal("pwHFHospitalization") === "unknown"
-) {
-  pending.push(
-    "Recent or uncertain heart-failure hospitalization history requires clarification before final optimization."
-  );
-
-  plan.push(
-    "Confirm no heart-failure hospitalization within the previous 2 years and review current cardiovascular stability."
-  );
-}
-
-if (
-  pwVal("pwGDMT") === "no" ||
-  pwVal("pwGDMT") === "unknown"
-) {
-  pending.push(
-    "Heart-failure guideline-directed therapy is not confirmed as optimized."
-  );
-
-  plan.push(
-    "Review and optimize guideline-directed heart-failure therapy as clinically appropriate."
-  );
-}
-
-// LBBB
-if (pwVal("pwLBBB") === "yes") {
-  pending.push(
-    "LBBB requires cardiology evaluation or pharmacologic nuclear stress testing before final optimization."
-  );
-
-  plan.push(
-    "For LBBB, obtain cardiology evaluation or pharmacologic nuclear stress testing (Lexiscan) as appropriate; exercise ECG alone is not an appropriate ischemic test."
-  );
-}
-
-// Pulmonary hypertension / right heart
-const phHigherLevel =
-  pwVal("pwWHO1") === "yes" ||
-  (rvsp !== null && rvsp > 65) ||
-  pwVal("pwSevereTR") === "yes" ||
-  pwVal("pwRVDysfunction") === "yes" ||
-  pwVal("pwPulmVasodilator") === "yes";
-
-if (phHigherLevel) {
-  pending.push(
-    "Pulmonary-hypertension/right-heart findings meet the TSJH higher-level-of-care review pathway."
-  );
-
-  plan.push(
-    "Coordinate cardiovascular/anesthesia review and determine appropriate surgical venue because pulmonary-hypertension/right-heart higher-level-of-care criteria are present."
-  );
-} else if (
-  (rvsp !== null && rvsp > 50) ||
-  (paPressure !== null && paPressure > 50) ||
-  (trVelocity !== null && trVelocity >= 2.8)
-) {
-  pending.push(
-    "Pulmonary-hypertension/right-heart parameters meet the TSJH cardiovascular-review pathway."
-  );
-
-  plan.push(
-    "Obtain cardiovascular review of pulmonary-hypertension/right-heart findings before final optimization."
-  );
-}
-
-// Aortic stenosis — TSJH institutional thresholds
-const severeAS =
-  (ava !== null && ava < 1.0) ||
-  (asGradient !== null && asGradient > 40) ||
-  (vmax !== null && vmax > 4.0);
-
-if (severeAS) {
-  pending.push(
-    "Aortic stenosis parameters meet the TSJH severe-AS higher-level-of-care threshold."
-  );
-
-  plan.push(
-    "Obtain cardiovascular/anesthesia review and determine an appropriate higher level of care or alternate venue for severe aortic stenosis."
-  );
-}
-
-// Mitral stenosis
-if (
-  pwVal("pwMitralStenosis") === "yes" ||
-  pwVal("pwMitralStenosis") === "unknown"
-) {
-  pending.push(
-    "Moderate-to-severe/severe or uncertain mitral stenosis requires cardiovascular review."
-  );
-
-  plan.push(
-    "Confirm mitral-stenosis severity and current cardiovascular evaluation before final optimization."
-  );
-}
-
-
-
-const sodium = pwNum("pwSodium");
-const potassium = pwNum("pwPotassium");
-const creatinine = pwNum("pwCreatinine");
-const egfr = pwNum("pwEGFR");
-const bicarb = pwNum("pwBicarb");
-const hemoglobin = pwNum("pwHemoglobin");
-const platelets = pwNum("pwPlatelets");
-const glucose = pwNum("pwGlucose");
-const a1c = pwNum("pwA1c");
-
-// Sodium
-if (sodium !== null && sodium <= 130) {
-  pending.push(
-    "Hyponatremia requires repeat assessment and clinical review before final optimization."
-  );
-
-  plan.push(
-    "Repeat sodium on or before the day of surgery as clinically appropriate, assess cause/severity, and confirm stability before final optimization."
-  );
-}
-
-// Potassium
-if (potassium !== null && potassium <= 3.0) {
-  pending.push(
-    "Potassium is 3.0 mEq/L or lower and requires repeat evaluation before surgery."
-  );
-
-  plan.push(
-    "Recheck potassium on the day of surgery and correct clinically significant hypokalemia before proceeding."
-  );
-}
-
-if (potassium !== null && potassium >= 6.0) {
-  stop.push(
-    "Severe hyperkalemia requires treatment and reassessment before elective surgery."
-  );
-
-  plan.push(
-    "Treat hyperkalemia, identify the underlying cause, and confirm an acceptable repeat potassium before elective surgery."
-  );
-}
-
-// Renal function
-if (egfr !== null && egfr < 30) {
-  pending.push(
-    "Advanced renal dysfunction requires perioperative renal/medication review."
-  );
-
-  plan.push(
-    "Review renal function trend, volume status, nephrotoxic medications, perioperative medication dosing, and need for specialty or anesthesia input."
-  );
-}
-
-if (bicarb !== null && bicarb < 18) {
-  pending.push(
-    "Low bicarbonate may represent clinically significant metabolic acidosis and requires evaluation."
-  );
-
-  plan.push(
-    "Assess the cause and clinical significance of low bicarbonate/metabolic acidosis and confirm stability before final optimization."
-  );
-}
-
-// Dialysis
-if (
-  pwVal("pwDialysis") === "yes" &&
-  (pwVal("pwDialysisPlan") === "no" ||
-   pwVal("pwDialysisPlan") === "unknown")
-) {
-  pending.push(
-    "Dialysis timing and perioperative renal plan are not confirmed."
-  );
-
-  plan.push(
-    "Confirm dialysis timing, potassium/volume status, vascular access considerations, and perioperative medication plan before surgery."
-  );
-}
-
-// Hemoglobin / anemia
-if (hemoglobin !== null && hemoglobin < 12) {
-  plan.push(
-    "Anemia is present. Review chronicity, prior hemoglobin, iron studies and other clinically appropriate causes, and determine whether additional optimization is warranted for the planned procedure."
-  );
-}
-
-if (hemoglobin !== null && hemoglobin >= 17.5) {
-  pending.push(
-    "Hemoglobin is 17.5 g/dL or greater and requires evaluation before final optimization."
-  );
-
-  plan.push(
-    "Assess hydration and secondary/polycythemia causes; follow the TSJH pathway to reduce hemoglobin below the institutional perioperative threshold when applicable."
-  );
-}
-
-// Platelets
-if (platelets !== null && platelets < 100) {
-  pending.push(
-    "Platelet count below 100 K/µL requires further evaluation before final optimization."
-  );
-
-  plan.push(
-    "Review platelet trend, bleeding risk, medication contributors, and need for hematology/anesthesia/surgeon input before surgery."
-  );
-}
-
-// Diabetes / glucose
-if (a1c !== null && a1c > 8) {
-  plan.push(
-    "A1c is above 8%. Review current glycemic control and perioperative glucose plan; A1c alone should not automatically determine postponement."
-  );
-}
-
-if (glucose !== null && (glucose < 70 || glucose > 300)) {
-  pending.push(
-    "Current glucose is significantly abnormal and requires reassessment before final optimization."
-  );
-
-  plan.push(
-    "Address significant hypo- or hyperglycemia and confirm a safe perioperative diabetes plan."
-  );
-}
-// ---------- PULMONARY / OSA / COPD PLAN ----------
-
-const fev1 = pwNum("pwFEV1");
-const cat = pwNum("pwCAT");
-const bode = pwNum("pwBODE");
-const arozullah = pwNum("pwArozullah");
-
-// COPD / pulmonary risk triggers
-if (fev1 !== null && fev1 < 50) {
-  pending.push(
-    "FEV1 below 50% predicted meets the TSJH pulmonary-risk escalation pathway."
-  );
-
-  plan.push(
-    "Obtain pulmonary/anesthesia review and reassess surgical venue and postoperative respiratory monitoring because FEV1 is below 50% predicted."
-  );
-}
-
-if (cat !== null && cat > 10) {
-  pending.push(
-    "CAT score above 10 meets the TSJH pulmonary-risk trigger."
-  );
-
-  plan.push(
-    "Review COPD symptom burden and confirm pulmonary optimization and postoperative respiratory plan."
-  );
-}
-
-if (bode !== null && bode >= 5) {
-  pending.push(
-    "BODE score of 5 or greater meets the TSJH pulmonary-risk escalation pathway."
-  );
-
-  plan.push(
-    "Obtain pulmonary/anesthesia review and determine appropriate surgical venue because BODE score is 5 or greater."
-  );
-}
-
-if (arozullah !== null && arozullah >= 4) {
-  pending.push(
-    "Arozullah score of 4 or greater meets the TSJH pulmonary-risk trigger."
-  );
-
-  plan.push(
-    "Review postoperative pulmonary-risk mitigation, anesthesia planning, and need for higher-acuity monitoring."
-  );
-}
-
-// Continuous oxygen
-if (pwVal("pwContinuousO2") === "yes") {
-  pending.push(
-    "Continuous / 24-hour oxygen use requires pulmonary/anesthesia and venue review."
-  );
-
-  plan.push(
-    "Confirm baseline oxygen requirement, pulmonary stability, anesthesia plan, and appropriate postoperative level of care."
-  );
-}
-
-// Chronic hypercapnic respiratory failure
-if (pwVal("pwHypercapnia") === "yes") {
-  pending.push(
-    "Chronic hypercapnic respiratory failure is a higher-risk pulmonary finding requiring further review."
-  );
-
-  plan.push(
-    "Obtain pulmonary/anesthesia review and consider higher-acuity postoperative monitoring or alternate venue as clinically appropriate."
-  );
-}
-
-// IPF / ILD
-if (pwVal("pwIPF") === "yes") {
-  pending.push(
-    "Idiopathic pulmonary fibrosis / significant ILD requires higher-risk pulmonary review."
-  );
-
-  plan.push(
-    "Obtain pulmonary/anesthesia review and determine whether the planned procedure and venue are appropriate given elevated pulmonary risk."
-  );
-}
-
-// OSA / PAP
-if (pwVal("pwOSA") === "yes") {
-  if (pwVal("pwPAP") === "yes" && pwVal("pwPAPTolerance") === "yes") {
-    plan.push(
-      "Use PAP anytime asleep postoperatively; respiratory therapy may assist as needed."
-    );
-  }
-
-  if (
-    pwVal("pwPAP") === "yes" &&
-    pwVal("pwPAPTolerance") === "no"
-  ) {
-    plan.push(
-      "OSA with PAP intolerance: use continuous postoperative pulse oximetry; NIPPV and supplemental oxygen should be available if clinically warranted."
-    );
-  }
-
-  if (pwVal("pwPAP") === "no") {
-    plan.push(
-      "OSA without prescribed PAP: confirm postoperative respiratory monitoring plan and use continuous pulse oximetry when clinically indicated."
-    );
-  }
-}
-
-// STOP-BANG driven recommendation
-const stopBang = pwNum("pwSTOP");
-
-if (stopBang !== null && stopBang >= 5) {
-  plan.push(
-    "High STOP-BANG score: reinforce postoperative OSA precautions and respiratory monitoring."
-  );
-}
-// ---------- MEDICATION / ANTICOAGULATION / DIABETES PLAN ----------
-
-const antithrombotic = pwVal("pwAntithrombotic");
-
-// Anticoagulant / antiplatelet plan
-if (
-  antithrombotic !== "none" &&
-  (pwVal("pwAntithromboticPlan") === "no" ||
-   pwVal("pwAntithromboticPlan") === "unknown")
-) {
-  pending.push(
-    "Anticoagulation / antiplatelet interruption plan is not confirmed."
-  );
-
-  plan.push(
-    "Confirm the perioperative anticoagulation / antiplatelet plan based on medication, indication, procedural bleeding risk, neuraxial considerations, and surgeon/anesthesia guidance."
-  );
-}
-
-if (antithrombotic === "eliquis") {
-  plan.push(
-    "Eliquis / apixaban: TSJH quick reference is approximately 72 hours before surgery; individualize for renal function, bleeding risk, neuraxial considerations, and indication."
-  );
-}
-
-if (antithrombotic === "xarelto") {
-  plan.push(
-    "Xarelto / rivaroxaban: TSJH quick reference is approximately 72 hours before surgery; individualize for renal function, bleeding risk, neuraxial considerations, and indication."
-  );
-}
-
-if (antithrombotic === "savaysa") {
-  plan.push(
-    "Savaysa / edoxaban: TSJH quick reference is approximately 72 hours before surgery; individualize for renal function, bleeding risk, neuraxial considerations, and indication."
-  );
-}
-
-if (antithrombotic === "pradaxa") {
-  plan.push(
-    "Pradaxa / dabigatran: TSJH quick reference is approximately 3–5 days before surgery; renal function materially affects interruption timing."
-  );
-}
-
-if (antithrombotic === "warfarin") {
-  plan.push(
-    "Warfarin: TSJH quick reference is approximately 5–7 days before surgery. Confirm preoperative INR and determine whether bridging is actually indicated based on thromboembolic risk."
-  );
-}
-
-if (antithrombotic === "plavix") {
-  plan.push(
-    "Plavix / clopidogrel: TSJH quick reference is approximately 7 days before surgery. If used after PCI/stent or as part of DAPT, do not interrupt without individualized multidisciplinary review."
-  );
-}
-
-if (antithrombotic === "brilinta") {
-  plan.push(
-    "Brilinta / ticagrelor: TSJH quick reference is approximately 7 days before surgery. If used after PCI/stent or as part of DAPT, obtain individualized multidisciplinary review before interruption."
-  );
-}
-
-if (antithrombotic === "lovenox") {
-  plan.push(
-    "Lovenox / enoxaparin: TSJH quick reference is approximately 24 hours before surgery; confirm dose, indication, renal function, and neuraxial timing."
-  );
-}
-
-if (antithrombotic === "aspirin") {
-  plan.push(
-    "Aspirin management depends on indication and procedure. Follow TSJH procedural guidance and avoid automatic interruption when aspirin is required as part of recent PCI/stent or dual/triple therapy."
-  );
-}
-
-// Recent PCI / DAPT
-if (
-  pwVal("pwPCI") === "yes" ||
-  pwVal("pwDAPT") === "yes"
-) {
-  pending.push(
-    "Recent PCI/stent or required DAPT requires an individualized antiplatelet plan before final optimization."
-  );
-
-  plan.push(
-    "Coordinate cardiology, surgeon, and anesthesia review before interrupting antiplatelet therapy in a patient with recent PCI/stent or required DAPT."
-  );
-}
-
-if (
-  pwVal("pwPCI") === "unknown" ||
-  pwVal("pwDAPT") === "unknown"
-) {
-  pending.push(
-    "PCI/stent or DAPT history is uncertain and requires clarification."
-  );
-
-  plan.push(
-    "Clarify PCI/stent date, indication, stent type, current antiplatelet therapy, and cardiology recommendations before final optimization."
-  );
-}
-
-// SGLT2 inhibitors
-if (pwVal("pwSGLT2") !== "none") {
-  if (
-    pwVal("pwSGLT2Plan") === "no" ||
-    pwVal("pwSGLT2Plan") === "unknown"
-  ) {
-    pending.push(
-      "SGLT2 inhibitor interruption plan is not confirmed."
-    );
-  }
-
-  if (pwVal("pwSGLT2") === "ertugliflozin") {
-    plan.push(
-      "Ertugliflozin / Steglatro: hold 4 days before surgery to reduce perioperative euglycemic ketoacidosis risk."
-    );
-  } else {
-    plan.push(
-      "SGLT2 inhibitor: hold 3 days before surgery to reduce perioperative euglycemic ketoacidosis risk."
-    );
-  }
-}
-
-// GLP-1
-if (pwVal("pwGLP1") === "yes") {
-  if (
-    pwVal("pwGLP1Risk") === "yes" ||
-    pwVal("pwGLP1Risk") === "unknown"
-  ) {
-    pending.push(
-      "GLP-1 perioperative aspiration-risk assessment requires clarification."
-    );
-
-    plan.push(
-      "Review GLP-1 escalation phase, dose, gastrointestinal symptoms, delayed gastric emptying risk, and current anesthesia guidance before final optimization."
-    );
-  } else {
-    plan.push(
-      "GLP-1 therapy appears lower risk based on stable dosing and absence of significant GI symptoms; follow the current anesthesia pathway rather than applying an automatic prolonged hold."
-    );
-  }
-}
-
-// Type 1 diabetes
-if (pwVal("pwType1DM") === "yes") {
-  plan.push(
-    "Type 1 diabetes: basal insulin must not be completely interrupted. Confirm the perioperative basal insulin and glucose-monitoring plan."
-  );
-}
-
-// Insulin pump
-if (pwVal("pwInsulinPump") === "yes") {
-  if (
-    pwVal("pwInsulinPlan") === "no" ||
-    pwVal("pwInsulinPlan") === "unknown" ||
-    pwVal("pwInsulinPlan") === "na"
-  ) {
-    pending.push(
-      "Insulin pump / perioperative insulin plan is not confirmed."
-    );
-
-    plan.push(
-      "Confirm whether the insulin pump will remain in use during the perioperative period or whether alternative basal/IV insulin will be used before interruption."
-    );
-  } else {
-    plan.push(
-      "Insulin pump plan is confirmed; maintain appropriate basal insulin delivery and perioperative glucose monitoring."
-    );
-  }
-}
-  const checks = [
-    ["pwVitals","Vitals require additional review or optimization."],
-    ["pwLabs","Clinically meaningful laboratory abnormality remains unresolved."],
-    ["pwEKG","Required EKG remains incomplete or unreviewed."],
-    ["pwTesting","Required testing remains incomplete or unreviewed."],
-    ["pwMeds","Required perioperative medication hold plan remains unresolved."],
-    ["pwSpecialist","Required specialist recommendation remains outstanding."],
-    ["pwAnesthesia","Required anesthesia review remains incomplete."],
-    ["pwVenue","Venue / higher-level-of-care determination remains unresolved."],
-    ["pwCardiacMonitor","Required postoperative cardiac surveillance plan remains incomplete."],
-    ["pwRespMonitor","Required postoperative respiratory monitoring plan remains incomplete."],
-    ["pwDisposition","Required mobility / disposition planning remains unresolved."]
-  ];
-
-  checks.forEach(function(item) {
-    if (pwVal(item[0]) === "no") {
-      pending.push(item[1]);
-    }
-  });
-
-
-  if (
-    pwVal("pwBNP") === "yes"
-  ) {
-    pending.push(
-      "BNP / NT-proBNP screening is indicated and should be completed/reviewed according to the perioperative cardiac-surveillance pathway."
-    );
-  }
-
-
-  if (
-    pwVal("pwPending") === "yes"
-  ) {
-    pending.push(
-      "One or more clinically meaningful preoperative items remain pending."
-    );
-  }
-
-
-  // ============================================================
-// FINAL STATUS PRIORITY / HIGHER-LEVEL-OF-CARE LOGIC
-// ============================================================
-
-const hlocReasons = [];
-
-if (ef !== null && ef < 35) {
-  hlocReasons.push(
-    "LVEF " + ef + "% is below the TSJH 35% threshold"
-  );
-}
-
-if (rvsp !== null && rvsp > 65) {
-  hlocReasons.push(
-    "RVSP " + rvsp + " mmHg exceeds the TSJH higher-level-of-care threshold"
-  );
-}
-
-if (pwVal("pwWHO1") === "yes") {
-  hlocReasons.push(
-    "WHO Group 1 pulmonary hypertension"
-  );
-}
-
-if (pwVal("pwSevereTR") === "yes") {
-  hlocReasons.push(
-    "severe tricuspid regurgitation"
-  );
-}
-
-if (pwVal("pwRVDysfunction") === "yes") {
-  hlocReasons.push(
-    "significant right ventricular dysfunction"
-  );
-}
-
-let status = "Optimized";
-
-let reason =
-  "No unresolved medical optimization, testing, or specialty review requirements identified.";
-
-if (hlocReasons.length > 0) {
-
-  status = "Not optimized";
-
-  reason =
-    hlocReasons.join("; ") +
-    ". Patient meets TSJH higher-level-of-care criteria and does not meet criteria for routine elective surgery at this facility. " +
-    "Recommend surgeon/anesthesia review and scheduling at an appropriate higher-level-of-care facility.";
-
-} else if (stop.length > 0) {
-
-  status = "Not optimized";
-  reason = stop.join(" ");
-
-} else if (pending.length > 0) {
-
-  status = "Pending";
-  reason = pending.join(" ");
-
-}
-
-
-  let html = "";
-
-  html += "<h2>Provider Optimization Summary</h2>";
-
-  if (pwVal("pwPatient")) {
-    html +=
-      "<strong>Patient:</strong> " +
-      pwVal("pwPatient") +
-      "<br>";
-  }
-
-  if (pwVal("pwProcedure")) {
-    html +=
-      "<strong>Procedure:</strong> " +
-      pwVal("pwProcedure") +
-      "<br>";
-  }
-
-  if (pwVal("pwSurgeon")) {
-    html +=
-      "<strong>Surgeon:</strong> " +
-      pwVal("pwSurgeon") +
-      "<br>";
-  }
-
-  if (pwVal("pwDOS")) {
-    html +=
-      "<strong>Date of Service / Surgery Date:</strong> " +
-      pwVal("pwDOS") +
-      "<br>";
-  }
-
-
-  html +=
-    "<h3>Functional & Risk Screening</h3>";
-
-  html +=
-    "<p>" +
-    "<strong>DASI:</strong> " +
-    (pwVal("pwDASI") || "—") +
-    "<br>" +
-    "<strong>RCRI:</strong> " +
-    (pwVal("pwRCRI") || "—") +
-    "<br>" +
-    "<strong>STOP-BANG:</strong> " +
-    (pwVal("pwSTOP") || "—") +
-    "<br>" +
-    "<strong>CFS:</strong> " +
-    (pwVal("pwCFS") || "—") +
-    "</p>";
-
-// cardiac report ends above here
-
-html +=
-  "<h3>Labs / Renal / Anemia / Electrolytes</h3>";
-
-html +=
-  "<p>" +
-  "<strong>Sodium:</strong> " +
-  (pwVal("pwSodium") || "—") +
-  " mEq/L<br>" +
-
-  "<strong>Potassium:</strong> " +
-  (pwVal("pwPotassium") || "—") +
-  " mEq/L<br>" +
-
-  "<strong>Creatinine:</strong> " +
-  (pwVal("pwCreatinine") || "—") +
-  " mg/dL<br>" +
-
-  "<strong>eGFR:</strong> " +
-  (pwVal("pwEGFR") || "—") +
-  " mL/min/1.73 m²<br>" +
-
-  "<strong>Bicarbonate / CO₂:</strong> " +
-  (pwVal("pwBicarb") || "—") +
-  " mEq/L<br>" +
-
-  "<strong>Hemoglobin:</strong> " +
-  (pwVal("pwHemoglobin") || "—") +
-  " g/dL<br>" +
-
-  "<strong>Platelets:</strong> " +
-  (pwVal("pwPlatelets") || "—") +
-  " K/µL<br>" +
-
-  "<strong>Glucose:</strong> " +
-  (pwVal("pwGlucose") || "—") +
-  " mg/dL<br>" +
-
-  "<strong>A1c:</strong> " +
-  (pwVal("pwA1c") || "—") +
-  "%<br>" +
-
-  "<strong>Dialysis:</strong> " +
-  (pwVal("pwDialysis") === "yes" ? "Yes" : "No") +
-  "<br>" +
-
-  "<strong>Dialysis Plan:</strong> " +
-  (
-    pwVal("pwDialysisPlan") === "yes"
-      ? "Confirmed"
-      : pwVal("pwDialysisPlan") === "no"
-      ? "Not confirmed"
-      : pwVal("pwDialysisPlan") === "unknown"
-      ? "Unknown"
-      : "N/A"
-  ) +
-  "</p>";
-html +=
-  "<h3>Pulmonary / OSA / COPD</h3>";
-
-html +=
-  "<p>" +
-  "<strong>COPD:</strong> " +
-  (pwVal("pwCOPD") === "yes" ? "Yes" : "No") +
-  "<br>" +
-
-  "<strong>FEV1:</strong> " +
-  (pwVal("pwFEV1") || "—") +
-  "% predicted<br>" +
-
-  "<strong>CAT:</strong> " +
-  (pwVal("pwCAT") || "—") +
-  "<br>" +
-
-  "<strong>BODE:</strong> " +
-  (pwVal("pwBODE") || "—") +
-  "<br>" +
-
-  "<strong>Arozullah:</strong> " +
-  (pwVal("pwArozullah") || "—") +
-  "<br>" +
-
-  "<strong>Continuous / 24-hour Oxygen:</strong> " +
-  (pwVal("pwContinuousO2") === "yes" ? "Yes" : "No") +
-  "<br>" +
-
-  "<strong>Chronic Hypercapnic Respiratory Failure:</strong> " +
-  (pwVal("pwHypercapnia") === "yes" ? "Yes" : "No") +
-  "<br>" +
-
-  "<strong>IPF / Significant ILD:</strong> " +
-  (pwVal("pwIPF") === "yes" ? "Yes" : "No") +
-  "<br>" +
-
-  "<strong>OSA:</strong> " +
-  (pwVal("pwOSA") === "yes" ? "Yes" : "No") +
-  "<br>" +
-
-  "<strong>PAP Prescribed:</strong> " +
-  (
-    pwVal("pwPAP") === "yes"
-      ? "Yes"
-      : pwVal("pwPAP") === "no"
-      ? "No"
-      : "N/A"
-  ) +
-  "<br>" +
-
-  "<strong>PAP Tolerated / Using:</strong> " +
-  (
-    pwVal("pwPAPTolerance") === "yes"
-      ? "Yes"
-      : pwVal("pwPAPTolerance") === "no"
-      ? "No / intolerant"
-      : "N/A"
-  ) +
-  "<br>" +
-
-  "<strong>STOP-BANG:</strong> " +
-  (pwVal("pwSTOP") || "—") +
-  "</p>";
-html +=
-  "<h3>Medication / Anticoagulation / Diabetes Plan</h3>";
-
-html +=
-  "<p>" +
-
-  "<strong>Anticoagulant / Antiplatelet:</strong> " +
-  (pwVal("pwAntithrombotic") || "none") +
-  "<br>" +
-
-  "<strong>Recent PCI / Stent:</strong> " +
-  (
-    pwVal("pwPCI") === "yes"
-      ? "Yes"
-      : pwVal("pwPCI") === "unknown"
-      ? "Unknown"
-      : "No"
-  ) +
-  "<br>" +
-
-  "<strong>DAPT:</strong> " +
-  (
-    pwVal("pwDAPT") === "yes"
-      ? "Yes"
-      : pwVal("pwDAPT") === "unknown"
-      ? "Unknown"
-      : "No"
-  ) +
-  "<br>" +
-
-  "<strong>Antithrombotic Plan:</strong> " +
-  (
-    pwVal("pwAntithromboticPlan") === "yes"
-      ? "Confirmed"
-      : pwVal("pwAntithromboticPlan") === "no"
-      ? "Not confirmed"
-      : pwVal("pwAntithromboticPlan") === "unknown"
-      ? "Unknown"
-      : "N/A"
-  ) +
-  "<br>" +
-
-  "<strong>SGLT2:</strong> " +
-  (pwVal("pwSGLT2") || "none") +
-  "<br>" +
-
-  "<strong>SGLT2 Hold Plan:</strong> " +
-  (
-    pwVal("pwSGLT2Plan") === "yes"
-      ? "Confirmed"
-      : pwVal("pwSGLT2Plan") === "no"
-      ? "Not confirmed"
-      : pwVal("pwSGLT2Plan") === "unknown"
-      ? "Unknown"
-      : "N/A"
-  ) +
-  "<br>" +
-
-  "<strong>GLP-1:</strong> " +
-  (pwVal("pwGLP1") === "yes" ? "Yes" : "No") +
-  "<br>" +
-
-  "<strong>GLP-1 Risk:</strong> " +
-  (
-    pwVal("pwGLP1Risk") === "yes"
-      ? "Higher risk"
-      : pwVal("pwGLP1Risk") === "unknown"
-      ? "Unknown"
-      : "Lower risk"
-  ) +
-  "<br>" +
-
-  "<strong>Type 1 Diabetes:</strong> " +
-  (pwVal("pwType1DM") === "yes" ? "Yes" : "No") +
-  "<br>" +
-
-  "<strong>Insulin Pump:</strong> " +
-  (pwVal("pwInsulinPump") === "yes" ? "Yes" : "No") +
-  "<br>" +
-
-  "<strong>Insulin / Pump Plan:</strong> " +
-  (
-    pwVal("pwInsulinPlan") === "yes"
-      ? "Confirmed"
-      : pwVal("pwInsulinPlan") === "no"
-      ? "Not confirmed"
-      : pwVal("pwInsulinPlan") === "unknown"
-      ? "Unknown"
-      : "N/A"
-  ) +
-
-  "</p>";
-  if (stop.length > 0) {
-    html +=
-      "<h3>Active Medical Issue</h3><ul>";
-
-    stop.forEach(function(item) {
-      html += "<li>" + item + "</li>";
-    });
-
-    html += "</ul>";
-  }
-if (plan.length > 0) {
-  html +=
-    "<h3>Patient-Specific Optimization Plan</h3><ol>";
-
-  plan.forEach(function(item) {
-    html += "<li>" + item + "</li>";
-  });
-
-  html += "</ol>";
-}
-
-  if (pending.length > 0) {
-    html +=
-      "<h3>Risk Stratification & Medical Optimization</h3><ol>";
-
-    pending.forEach(function(item) {
-      html += "<li>" + item + "</li>";
-    });
-
-    html += "</ol>";
-  }
-
-
-  if (pwVal("pwPendingDetails")) {
-    html +=
-      "<h3>Pending Item / Owner / Closure Plan</h3><p>" +
-      pwVal("pwPendingDetails") +
-      "</p>";
-  }
-
-
-  if (pwVal("pwComments")) {
-    html +=
-      "<h3>Additional Provider Comments</h3><p>" +
-      pwVal("pwComments") +
-      "</p>";
-  }
-
-
-  html += "<hr>";
-
-  html +=
-    "<h3>FINAL PREOPERATIVE OPTIMIZATION STATUS</h3>";
-
-  html +=
-    "<p><strong>" +
-    status +
-    "</strong></p>";
-
-  html +=
-    "<p><strong>Reason:</strong> " +
-    reason +
-    "</p>";
-
-
-  if (status === "Optimized") {
-
-    html +=
-      "<div class='success-box'>" +
-      "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time." +
-      "</div>";
-
-  }
-
-
-  html += "<hr>";
-
-  html +=
-    "<h3>Copy-Ready Provider Documentation</h3>";
-
-  html +=
-    "<p>Preoperative medical evaluation and optimization reviewed. ";
-
-  html +=
-    "Functional & Risk Screening: DASI " +
-    (pwVal("pwDASI") || "—") +
-    ", RCRI " +
-    (pwVal("pwRCRI") || "—") +
-    ", STOP-BANG " +
-    (pwVal("pwSTOP") || "—") +
-    ", CFS " +
-    (pwVal("pwCFS") || "—") +
-    ". ";
-// ============================================================
-// CLINICAL DIFFERENTIAL / WORKUP / TREATMENT SUPPORT
-// ============================================================
-
-let clinicalSupport = [];
-
-const sodiumValue = parseFloat(pwVal("pwSodium"));
-const potassiumValue = parseFloat(pwVal("pwPotassium"));
-const hemoglobinValue = parseFloat(pwVal("pwHemoglobin"));
-const plateletValue = parseFloat(pwVal("pwPlatelets"));
-const creatinineValue = parseFloat(pwVal("pwCreatinine"));
-const egfrValue = parseFloat(pwVal("pwEGFR"));
-const glucoseValue = parseFloat(pwVal("pwGlucose"));
-const a1cValue = parseFloat(pwVal("pwA1c"));
-
-
-// ---------------- HYPONATREMIA ----------------
-
-if (!isNaN(sodiumValue) && sodiumValue < 135) {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Hyponatremia — Na ${sodiumValue}</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Hyponatremia.</p>
-
-      <p><strong>Differential:</strong>
-      Medication effect including thiazide or other diuretics,
-      hypovolemia, SIADH, heart failure, renal dysfunction,
-      adrenal insufficiency, hypothyroidism, excess free-water
-      intake, or hyperglycemia-associated reduction in measured sodium.</p>
-
-      <p><strong>Further Workup:</strong>
-      Review prior sodium trend, medications and volume status.
-      Repeat BMP. Check glucose. Consider serum osmolality,
-      urine osmolality and urine sodium when the etiology is not
-      evident. Consider TSH and cortisol when clinically indicated.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Treat the underlying cause. Correct medication or volume
-      abnormalities when appropriate. Do not automatically prescribe
-      salt, fluid restriction or increased free-water intake without
-      determining the likely etiology. Symptomatic or severe
-      hyponatremia requires urgent medical management.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Establish stability and repeat sodium when clinically significant,
-      worsening or symptomatic. Follow TSJH electrolyte thresholds and
-      anesthesia/provider review requirements.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- HYPOKALEMIA ----------------
-
-if (!isNaN(potassiumValue) && potassiumValue < 3.5) {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Hypokalemia — K ${potassiumValue}</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Hypokalemia.</p>
-
-      <p><strong>Differential:</strong>
-      Diuretic therapy, gastrointestinal losses, inadequate intake,
-      renal potassium loss, hypomagnesemia, insulin effect,
-      beta-agonist effect or alkalosis.</p>
-
-      <p><strong>Further Workup:</strong>
-      Repeat BMP when appropriate. Review medications and recent
-      vomiting or diarrhea. Consider magnesium level. Review renal
-      function and ECG when potassium is significantly decreased,
-      symptoms are present or arrhythmia risk is increased.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Replace potassium according to severity, renal function and
-      clinical context. Correct magnesium deficiency when present.
-      Address gastrointestinal or medication-related losses.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Recheck potassium according to TSJH perioperative guidance
-      and establish an acceptable/stable value before elective surgery
-      when clinically indicated.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- HYPERKALEMIA ----------------
-
-if (!isNaN(potassiumValue) && potassiumValue > 5.0) {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Hyperkalemia — K ${potassiumValue}</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Hyperkalemia.</p>
-
-      <p><strong>Differential:</strong>
-      Hemolyzed specimen, renal dysfunction, ACE inhibitor or ARB,
-      potassium-sparing diuretic, potassium supplementation,
-      metabolic acidosis, tissue injury or other impaired potassium
-      excretion.</p>
-
-      <p><strong>Further Workup:</strong>
-      Repeat potassium promptly when unexpected or hemolysis is
-      possible. Review renal function and medications. Consider ECG
-      for significant elevation or symptoms.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Stop or adjust contributing medications when clinically
-      appropriate and treat the underlying cause. Significant,
-      rapidly rising or ECG-associated hyperkalemia requires urgent
-      medical management.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Confirm the abnormality and establish an acceptable potassium
-      level before routine elective surgery when clinically significant.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- ANEMIA ----------------
-
-if (!isNaN(hemoglobinValue) && hemoglobinValue < 12) {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Anemia — Hgb ${hemoglobinValue}</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Preoperative anemia.</p>
-
-      <p><strong>Differential:</strong>
-      Iron deficiency, anemia of chronic inflammation,
-      chronic kidney disease, vitamin B12 deficiency, folate deficiency,
-      acute or chronic blood loss, hemolysis or bone marrow disorder.</p>
-
-      <p><strong>Further Workup:</strong>
-      Review CBC indices and prior hemoglobin trend. Consider ferritin,
-      iron, TIBC/transferrin saturation, reticulocyte count,
-      vitamin B12 and folate. Evaluate for clinically relevant blood
-      loss when indicated. Review renal function.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Treat the identified cause. Iron deficiency may require oral or
-      IV iron depending on severity, tolerance and time before surgery.
-      B12 or folate deficiency should be replaced when confirmed.
-      Consider hematology evaluation for unexplained, severe or
-      progressive anemia.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Consider expected surgical blood loss, baseline hemoglobin and
-      ability to optimize before surgery. Escalate significant or
-      unexplained anemia for provider/anesthesia review.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- THROMBOCYTOPENIA ----------------
-
-if (!isNaN(plateletValue) && plateletValue < 100) {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Thrombocytopenia — Platelets ${plateletValue}</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Thrombocytopenia.</p>
-
-      <p><strong>Differential:</strong>
-      Laboratory artifact or platelet clumping, medication effect,
-      infection, liver disease, immune thrombocytopenia,
-      bone marrow disorder or other hematologic disease.</p>
-
-      <p><strong>Further Workup:</strong>
-      Repeat CBC and consider peripheral smear when appropriate.
-      Review prior platelet counts, medications, liver disease and
-      bleeding history.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Treat the underlying cause. Obtain hematology evaluation for
-      unexplained, progressive or clinically significant thrombocytopenia.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Platelet count below the TSJH threshold requires further
-      evaluation before routine elective surgery.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- RENAL DYSFUNCTION ----------------
-
-if (
-  (!isNaN(egfrValue) && egfrValue < 60) ||
-  (!isNaN(creatinineValue) && creatinineValue > 1.5)
-) {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Renal Dysfunction</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Reduced renal function requiring perioperative assessment.</p>
-
-      <p><strong>Differential:</strong>
-      Chronic kidney disease, acute kidney injury, dehydration,
-      medication effect, obstructive uropathy or cardiorenal disease.</p>
-
-      <p><strong>Further Workup:</strong>
-      Compare creatinine/eGFR with baseline. Review BMP, volume status,
-      nephrotoxic medications and recent contrast exposure.
-      Consider repeat renal function testing, urinalysis or specialty
-      evaluation when clinically indicated.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Correct reversible volume abnormalities, avoid unnecessary
-      nephrotoxins and dose medications for renal function.
-      Treat acute kidney injury or obstruction before elective surgery.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Determine whether renal dysfunction is chronic and stable versus
-      acute or progressive. Apply TSJH CKD and dialysis criteria.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- HYPERGLYCEMIA / DIABETES ----------------
-
-if (
-  (!isNaN(glucoseValue) && glucoseValue >= 180) ||
-  (!isNaN(a1cValue) && a1cValue > 8)
-) {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Hyperglycemia / Diabetes Optimization</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Suboptimal perioperative glycemic control.</p>
-
-      <p><strong>Differential:</strong>
-      Known diabetes, stress hyperglycemia, medication nonadherence,
-      steroid effect, infection or previously unrecognized diabetes.</p>
-
-      <p><strong>Further Workup:</strong>
-      Review glucose trend, A1c, diabetes medications and hypoglycemia
-      history. Assess for symptoms of severe hyperglycemia or acute
-      metabolic decompensation when appropriate.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Optimize glucose management with the patient's prescribing
-      clinician when needed. Apply perioperative insulin,
-      SGLT2 inhibitor and GLP-1 medication guidance.
-      A1c alone should not automatically determine cancellation.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Assess current glucose control and presence of acute metabolic
-      instability rather than using A1c as the sole postponement criterion.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- OSA ----------------
-
-if (pwVal("pwOSA") === "yes") {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Obstructive Sleep Apnea</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      OSA with increased postoperative respiratory risk.</p>
-
-      <p><strong>Differential / Contributing Factors:</strong>
-      Obesity, sedative/opioid sensitivity, upper-airway obstruction
-      and untreated or inadequately treated sleep-disordered breathing.</p>
-
-      <p><strong>Further Workup:</strong>
-      Confirm PAP use and tolerance, severity when available,
-      prior anesthesia complications and baseline oxygen requirement.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Continue PAP therapy. Patient should bring PAP equipment when
-      instructed. Use opioid-sparing strategies when feasible.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      PAP anytime asleep and appropriate postoperative respiratory
-      monitoring according to institutional guidance.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- COPD ----------------
-
-if (pwVal("pwCOPD") === "yes") {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>COPD / Chronic Pulmonary Disease</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      COPD with potential increased pulmonary complication risk.</p>
-
-      <p><strong>Differential / Contributing Factors:</strong>
-      Poor baseline disease control, active exacerbation,
-      respiratory infection, bronchospasm, tobacco exposure or
-      chronic hypercapnic respiratory failure.</p>
-
-      <p><strong>Further Workup:</strong>
-      Assess baseline symptoms, recent exacerbations, oxygen use,
-      inhaler adherence and pulmonary testing when indicated.
-      Review FEV1, CAT, BODE and Arozullah values when available.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Continue prescribed maintenance inhalers. Treat active
-      bronchospasm or respiratory infection before elective surgery.
-      Pulmonary consultation may be appropriate for high-risk disease.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Apply TSJH pulmonary exclusion and escalation criteria,
-      including continuous oxygen requirement, severe obstruction
-      and chronic hypercapnic respiratory failure.</p>
-    </div>
-  `);
-}
-// ============================================================
-// CARDIAC / VALVE / PH / MEDICATION DECISION SUPPORT
-// ============================================================
-
-
-// ---------------- HEART FAILURE / REDUCED EF ----------------
-
-const efValue = parseFloat(pwVal("pwEF"));
-const nyhaValue = (pwVal("pwNYHA") || "").toUpperCase();
-
-if (
-  (!isNaN(efValue) && efValue < 50) ||
-  pwVal("pwVolumeOverload") === "yes"
-) {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Heart Failure / Reduced Ejection Fraction</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Reduced left ventricular systolic function and/or clinical heart-failure risk.</p>
-
-      <p><strong>Differential:</strong>
-      Ischemic cardiomyopathy, nonischemic cardiomyopathy,
-      hypertensive heart disease, valvular disease, tachycardia-mediated
-      cardiomyopathy or other structural heart disease.</p>
-
-      <p><strong>Further Workup:</strong>
-      Review most recent echocardiogram, EF trend, NYHA class,
-      recent cardiology evaluation, symptoms, volume status and
-      guideline-directed medical therapy. Consider BNP/NT-proBNP when
-      indicated by the TSJH perioperative cardiac pathway.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Continue or optimize guideline-directed heart-failure therapy
-      when clinically appropriate. Treat decompensated volume overload,
-      active ischemia or other reversible instability before elective surgery.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      EF below 35% falls outside routine TSJH eligibility.
-      For EF 35% or greater, apply TSJH criteria including recent
-      cardiovascular evaluation, acceptable functional status,
-      NYHA I-II, optimized therapy and absence of active decompensation.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- ACTIVE CARDIAC SYMPTOMS ----------------
-
-if (
-  pwVal("pwAngina") === "yes" ||
-  pwVal("pwVolumeOverload") === "yes" ||
-  pwVal("pwActiveCardiac") === "yes"
-) {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Active Cardiac Symptoms / Possible Instability</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Possible active or unstable cardiovascular disease.</p>
-
-      <p><strong>Differential:</strong>
-      Acute coronary syndrome, unstable angina,
-      decompensated heart failure, uncontrolled arrhythmia,
-      severe symptomatic valvular disease or another acute cardiac process.</p>
-
-      <p><strong>Further Workup:</strong>
-      Clarify symptoms, onset and severity. Review ECG, prior cardiac studies
-      and cardiology history. Additional cardiac testing or urgent evaluation
-      should be based on the suspected condition and clinical stability.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Treat the active cardiovascular condition before routine elective surgery.
-      Escalate urgently for suspected ACS, significant decompensated heart failure
-      or other clinically unstable disease.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Active cardiac instability generally requires postponement of routine
-      elective surgery pending appropriate evaluation and treatment.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- AORTIC STENOSIS ----------------
-
-const avaValue = parseFloat(pwVal("pwAVA"));
-const gradientValue = parseFloat(pwVal("pwASGradient"));
-const vmaxValue = parseFloat(pwVal("pwVmax"));
-
-if (
-  (!isNaN(avaValue) && avaValue < 1.5) ||
-  (!isNaN(gradientValue) && gradientValue >= 20) ||
-  (!isNaN(vmaxValue) && vmaxValue >= 3)
-) {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Aortic Stenosis</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Aortic stenosis requiring severity and symptom assessment.</p>
-
-      <p><strong>Differential / Clinical Context:</strong>
-      Mild, moderate or severe calcific aortic stenosis;
-      low-flow/low-gradient disease; bicuspid valve disease;
-      or discordant echocardiographic measurements.</p>
-
-      <p><strong>Further Workup:</strong>
-      Review the most recent echocardiogram including AVA,
-      mean gradient and peak velocity. Determine whether symptoms such as
-      exertional dyspnea, angina, presyncope or syncope are present.
-      Cardiovascular review is appropriate for moderate/severe or symptomatic disease.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Optimize blood pressure and volume status.
-      Severe or symptomatic disease requires cardiology/structural-heart evaluation
-      and treatment planning before elective noncardiac surgery.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      TSJH exclusion criteria include AVA &lt;1.0 cm²,
-      mean gradient &gt;40 mmHg or Vmax &gt;4.0 m/s.
-      Apply the institutional pathway using the exact TSJH thresholds.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- MITRAL STENOSIS ----------------
-
-if (pwVal("pwMitralStenosis") === "yes") {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Mitral Stenosis</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Mitral stenosis requiring assessment of severity and hemodynamic impact.</p>
-
-      <p><strong>Differential / Clinical Context:</strong>
-      Rheumatic mitral stenosis, degenerative calcific disease,
-      mixed mitral valve disease or pulmonary hypertension secondary to valve disease.</p>
-
-      <p><strong>Further Workup:</strong>
-      Review echocardiogram for valve area, mean gradient,
-      pulmonary artery pressure, left atrial enlargement and right-heart effects.
-      Assess for dyspnea, atrial fibrillation and heart-failure symptoms.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Optimize rate control and volume status when applicable.
-      Address atrial fibrillation and anticoagulation appropriately.
-      Moderate-to-severe disease requires cardiovascular review.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Apply TSJH mitral-stenosis criteria and ensure appropriate cardiovascular
-      evaluation before elective surgery when disease is moderate-to-severe or severe.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- PULMONARY HYPERTENSION ----------------
-
-const rvspValue = parseFloat(pwVal("pwRVSP"));
-const paPressureValue = parseFloat(pwVal("pwPAPressure"));
-const trVelocityValue = parseFloat(pwVal("pwTRVelocity"));
-
-if (
-  (!isNaN(rvspValue) && rvspValue > 50) ||
-  (!isNaN(paPressureValue) && paPressureValue > 50) ||
-  (!isNaN(trVelocityValue) && trVelocityValue >= 2.8) ||
-  pwVal("pwWHO1") === "yes" ||
-  pwVal("pwSevereTR") === "yes" ||
-  pwVal("pwRVDysfunction") === "yes"
-) {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Pulmonary Hypertension / Right-Heart Risk</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Pulmonary hypertension and/or right-heart disease increasing perioperative risk.</p>
-
-      <p><strong>Differential:</strong>
-      Left-heart disease, chronic lung disease or hypoxia,
-      chronic thromboembolic disease, WHO Group 1 pulmonary arterial hypertension,
-      sleep-disordered breathing or multifactorial pulmonary hypertension.</p>
-
-      <p><strong>Further Workup:</strong>
-      Review echocardiogram, RVSP, PA pressure, TR velocity,
-      RV size/function and TR severity. Clarify WHO group,
-      symptoms, oxygen requirement and pulmonary vasodilator therapy.
-      Consider cardiology or pulmonary-hypertension specialist review as indicated.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Optimize volume status, oxygenation and underlying pulmonary/cardiac disease.
-      Continue specialized pulmonary vasodilator therapy unless directed otherwise
-      by the treating specialist.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      TSJH cardiovascular review is indicated for RVSP &gt;50,
-      PA pressure &gt;50 or TR velocity ≥2.8.
-      Higher-level-of-care concerns include WHO Group 1 disease,
-      RVSP &gt;65, severe TR, significant RV dysfunction or advanced vasodilator therapy.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- LBBB ----------------
-
-if (pwVal("pwLBBB") === "yes") {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Left Bundle Branch Block</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      LBBB limiting interpretation of conventional exercise ECG ischemia testing.</p>
-
-      <p><strong>Differential / Clinical Context:</strong>
-      Chronic conduction disease, ischemic heart disease,
-      cardiomyopathy, hypertensive structural disease or newly developed conduction abnormality.</p>
-
-      <p><strong>Further Workup:</strong>
-      Determine whether LBBB is new or chronic.
-      Review prior ECGs, symptoms and structural heart evaluation.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Treat underlying cardiac disease when identified.
-      Routine treatment of an asymptomatic chronic LBBB itself is not required.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Per TSJH guidance, use pharmacologic nuclear stress testing such as Lexiscan
-      or obtain cardiology evaluation when ischemic assessment is needed.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- ANTICOAGULANT / ANTIPLATELET ----------------
-
-const antithromboticValue = pwVal("pwAntithrombotic");
-
-if (
-  antithromboticValue &&
-  antithromboticValue !== "none"
-) {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Anticoagulant / Antiplatelet Management</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Perioperative antithrombotic management required for ${antithromboticValue}.</p>
-
-      <p><strong>Differential / Clinical Context:</strong>
-      Indication may include atrial fibrillation, venous thromboembolism,
-      mechanical valve, coronary stent, cerebrovascular disease or peripheral vascular disease.</p>
-
-      <p><strong>Further Workup:</strong>
-      Confirm medication, indication, renal function, last dose,
-      prior thrombosis history and presence/timing of PCI or coronary stent.
-      Determine whether neuraxial, spine, SCS or intrathecal procedures are planned.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Follow TSJH interruption intervals and procedure-specific guidance.
-      Bridging should be individualized based on thromboembolic risk and medication indication.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Do not interrupt required dual antiplatelet therapy after recent PCI
-      without multidisciplinary review. Restart antithrombotic therapy
-      as soon as surgical hemostasis permits.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- SGLT2 INHIBITOR ----------------
-
-const sglt2Value = pwVal("pwSGLT2");
-
-if (
-  sglt2Value &&
-  sglt2Value !== "none"
-) {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>SGLT2 Inhibitor — ${sglt2Value}</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Perioperative risk of euglycemic diabetic ketoacidosis.</p>
-
-      <p><strong>Differential / Clinical Context:</strong>
-      Increased risk may occur with fasting, dehydration,
-      acute illness, insulin deficiency or major surgical stress.</p>
-
-      <p><strong>Further Workup:</strong>
-      Confirm last dose and diabetes type.
-      If symptoms or metabolic concern are present, evaluate glucose,
-      bicarbonate/anion gap and ketones as clinically indicated.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Hold most SGLT2 inhibitors for 3 days before surgery;
-      ertugliflozin requires 4 days.
-      Maintain adequate hydration and appropriate diabetes management.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      If the medication was not held appropriately or there is concern for ketosis,
-      escalate for clinical assessment before proceeding.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- GLP-1 MEDICATION ----------------
-
-if (pwVal("pwGLP1") === "yes") {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>GLP-1 Receptor Agonist</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Potential delayed gastric emptying and aspiration risk.</p>
-
-      <p><strong>Differential / Risk Factors:</strong>
-      Dose-escalation phase, significant nausea or vomiting,
-      gastroparesis symptoms, higher doses or other conditions associated
-      with delayed gastric emptying.</p>
-
-      <p><strong>Further Workup:</strong>
-      Identify medication, dosing schedule, last dose,
-      escalation phase and current gastrointestinal symptoms.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Apply current anesthesia and institutional risk-based guidance.
-      Higher-risk patients may require dietary modification,
-      medication adjustment or additional anesthesia planning.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Do not use medication status alone as the only determinant;
-      assess individualized aspiration risk and coordinate with anesthesia.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- INSULIN PUMP / TYPE 1 DIABETES ----------------
-
-if (pwVal("pwInsulinPump") === "yes") {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Insulin Pump / Insulin-Dependent Diabetes</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Continuous insulin requirement with risk of perioperative hypo-
-      or hyperglycemia and ketosis if basal insulin is interrupted.</p>
-
-      <p><strong>Differential / Clinical Context:</strong>
-      Type 1 diabetes, insulin-dependent Type 2 diabetes,
-      pump therapy or hybrid closed-loop system.</p>
-
-      <p><strong>Further Workup:</strong>
-      Confirm diabetes type, pump model, basal settings,
-      glucose-monitoring method, usual hypoglycemia pattern and
-      perioperative management plan.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Ensure continuous basal insulin coverage.
-      Coordinate pump/CGM management with anesthesia and the diabetes care plan.
-      Avoid prolonged interruption of insulin in Type 1 diabetes.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Establish a clear day-of-surgery insulin and glucose-monitoring plan
-      before proceeding.</p>
-    </div>
-  `);
-}
-
-// ---------------- DISPLAY CLINICAL SUPPORT ----------------
-// ============================================================
-// ADDITIONAL CLINICAL DIFFERENTIAL / WORKUP / TREATMENT SUPPORT
-// Polycythemia, Leukocytosis, UTI, Hypertension,
-// Bicarbonate / Acid-Base, Liver Disease, Anemia Type
-// ============================================================
-
-
-// Helper allows the tool to safely look for alternate field IDs
-function pwFirstValue(ids) {
-  for (const id of ids) {
-    const el = document.getElementById(id);
-    if (el && String(el.value || "").trim() !== "") {
-      return String(el.value).trim();
-    }
-  }
-  return "";
-}
-
-
-// ---------------- POLYCYTHEMIA / ELEVATED HEMOGLOBIN ----------------
-
-const polyHgbValue = parseFloat(pwVal("pwHemoglobin"));
-
-if (!isNaN(polyHgbValue) && polyHgbValue >= 17.5) {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Elevated Hemoglobin / Polycythemia — Hgb ${polyHgbValue}</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Elevated hemoglobin with possible erythrocytosis/polycythemia.</p>
-
-      <p><strong>Differential:</strong>
-      Hemoconcentration or dehydration, tobacco exposure,
-      chronic hypoxemia, obstructive sleep apnea, COPD,
-      testosterone or androgen therapy, secondary erythrocytosis,
-      renal disease or erythropoietin-producing disorder,
-      or primary myeloproliferative disease such as polycythemia vera.</p>
-
-      <p><strong>Further Workup:</strong>
-      Review prior CBC trend and hydration status.
-      Repeat CBC when appropriate. Review oxygen saturation,
-      OSA/COPD history, tobacco use and testosterone/androgen therapy.
-      Persistent unexplained elevation may warrant erythropoietin level,
-      JAK2 testing or hematology evaluation.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Correct dehydration when present and treat the underlying cause.
-      Therapeutic phlebotomy should be directed by the appropriate treating
-      clinician when indicated rather than performed automatically.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      TSJH guidance identifies Hgb 17.5 g/dL or greater for evaluation.
-      Establish the cause and optimize toward Hgb below 17 g/dL when
-      required by the institutional pathway before elective surgery.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- LEUKOCYTOSIS ----------------
-
-const wbcValue = parseFloat(
-  pwFirstValue(["pwWBC", "pwWbc", "pwWhiteBloodCell"])
-);
-
-if (!isNaN(wbcValue) && wbcValue > 11) {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Leukocytosis — WBC ${wbcValue}</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Elevated white blood cell count requiring clinical correlation.</p>
-
-      <p><strong>Differential:</strong>
-      Acute infection, inflammatory response, corticosteroid effect,
-      physiologic stress, smoking, recent surgery or trauma,
-      hematologic disorder or other inflammatory condition.</p>
-
-      <p><strong>Further Workup:</strong>
-      Review CBC differential and prior WBC trend.
-      Assess for fever, respiratory symptoms, urinary symptoms,
-      wound/skin infection, dental infection or other localizing symptoms.
-      Additional testing should be directed by the suspected source.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Treat an identified infection or inflammatory condition.
-      Isolated mild leukocytosis without symptoms should not automatically
-      trigger antibiotic treatment.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Determine whether leukocytosis represents active infection or another
-      unstable process before elective surgery. Escalate clinically significant
-      or unexplained abnormalities for provider review.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- UTI / URINARY ABNORMALITY ----------------
-
-const urinarySymptoms = pwFirstValue([
-  "pwUTISymptoms",
-  "pwUrinarySymptoms",
-  "pwSymptomaticUTI"
-]).toLowerCase();
-
-const urineCulture = pwFirstValue([
-  "pwUrineCulture",
-  "pwCultureResult",
-  "pwUrineResult"
-]).toLowerCase();
-
-const abnormalUA = pwFirstValue([
-  "pwAbnormalUA",
-  "pwUAResult",
-  "pwUrinalysis"
-]).toLowerCase();
-
-if (
-  urinarySymptoms === "yes" ||
-  urinarySymptoms === "positive" ||
-  urineCulture.includes("positive") ||
-  abnormalUA.includes("positive") ||
-  abnormalUA.includes("abnormal")
-) {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Urinary Abnormality / Possible UTI</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Abnormal urinalysis, positive urine culture or urinary symptoms
-      requiring distinction between symptomatic UTI and asymptomatic bacteriuria.</p>
-
-      <p><strong>Differential:</strong>
-      Symptomatic cystitis, pyelonephritis, asymptomatic bacteriuria,
-      specimen contamination, colonization or noninfectious urinary inflammation.</p>
-
-      <p><strong>Further Workup:</strong>
-      Determine whether dysuria, urgency, frequency, suprapubic pain,
-      flank pain, fever or systemic symptoms are present.
-      Review urine culture organism, colony count and susceptibilities when available.
-      Repeat collection when contamination is suspected.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Treat a confirmed symptomatic UTI with culture-directed therapy when possible.
-      Avoid treating an isolated abnormal urinalysis without establishing a clinical
-      indication. Apply procedure-specific and institutional guidance regarding
-      asymptomatic bacteriuria.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Active symptomatic infection should be treated and clinically improved before
-      routine elective surgery. Urinalysis should not be ordered solely as a routine
-      screen when there is no clinical indication.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- HYPERTENSION ----------------
-
-const systolicBP = parseFloat(
-  pwFirstValue(["pwSBP", "pwSystolic", "pwSystolicBP"])
-);
-
-const diastolicBP = parseFloat(
-  pwFirstValue(["pwDBP", "pwDiastolic", "pwDiastolicBP"])
-);
-
-if (
-  (!isNaN(systolicBP) && systolicBP >= 160) ||
-  (!isNaN(diastolicBP) && diastolicBP >= 100)
-) {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Elevated Blood Pressure</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Hypertension requiring confirmation of severity and chronic control.</p>
-
-      <p><strong>Differential:</strong>
-      Chronic essential hypertension, pain or anxiety,
-      medication nonadherence, volume overload, stimulant exposure,
-      renal disease, endocrine disease or secondary hypertension.</p>
-
-      <p><strong>Further Workup:</strong>
-      Repeat blood pressure after appropriate rest and correct cuff sizing.
-      Review home BP trend, antihypertensive regimen, adherence,
-      renal function and symptoms suggesting hypertensive emergency.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Continue chronic antihypertensive therapy according to the perioperative
-      medication plan. Address medication adherence and markedly uncontrolled
-      hypertension with the prescribing clinician.
-      Avoid rapid asymptomatic blood-pressure reduction solely to meet a surgical number.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Assess the overall clinical context and repeat measurements.
-      Severe persistent hypertension or symptoms/signs of acute target-organ injury
-      require further evaluation before routine elective surgery.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- BICARBONATE / ACID-BASE ABNORMALITY ----------------
-
-const bicarbonateValue = parseFloat(
-  pwFirstValue([
-    "pwBicarbonate",
-    "pwCO2",
-    "pwCarbonDioxide"
-  ])
-);
-
-if (
-  !isNaN(bicarbonateValue) &&
-  (bicarbonateValue < 20 || bicarbonateValue > 32)
-) {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Abnormal Bicarbonate / CO₂ — ${bicarbonateValue}</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Abnormal serum bicarbonate suggesting a possible metabolic
-      or respiratory acid-base disorder.</p>
-
-      <p><strong>Differential:</strong>
-      Low bicarbonate may reflect metabolic acidosis from renal disease,
-      ketoacidosis, lactic acidosis, gastrointestinal bicarbonate loss
-      or medication effect. Elevated bicarbonate may occur with metabolic alkalosis,
-      diuretic therapy, vomiting or chronic compensated hypercapnia.</p>
-
-      <p><strong>Further Workup:</strong>
-      Repeat BMP when appropriate. Calculate/review anion gap.
-      Review renal function, glucose, medications and GI losses.
-      Consider ketones, lactate or blood gas when clinically indicated.
-      In COPD or suspected chronic hypercapnia, compare with the patient's baseline.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Treat the underlying acid-base disorder rather than the bicarbonate value alone.
-      Address dehydration, medication effects, uncontrolled diabetes,
-      renal dysfunction or respiratory decompensation as applicable.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Unexplained, acute or clinically significant acid-base abnormalities
-      should be evaluated and stabilized before routine elective surgery.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- LIVER DISEASE / ABNORMAL LIVER TESTS ----------------
-
-const astValue = parseFloat(pwFirstValue(["pwAST"]));
-const altValue = parseFloat(pwFirstValue(["pwALT"]));
-const bilirubinValue = parseFloat(
-  pwFirstValue(["pwBilirubin", "pwTotalBilirubin"])
-);
-
-const knownLiverDisease = pwFirstValue([
-  "pwLiverDisease",
-  "pwCirrhosis"
-]).toLowerCase();
-
-if (
-  knownLiverDisease === "yes" ||
-  (!isNaN(astValue) && astValue > 80) ||
-  (!isNaN(altValue) && altValue > 80) ||
-  (!isNaN(bilirubinValue) && bilirubinValue > 1.5)
-) {
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>Liver Disease / Abnormal Hepatic Testing</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Possible hepatic dysfunction requiring assessment of cause,
-      severity and synthetic function.</p>
-
-      <p><strong>Differential:</strong>
-      Metabolic-associated steatotic liver disease,
-      alcohol-related disease, medication effect,
-      viral hepatitis, biliary obstruction, congestive hepatopathy,
-      acute hepatitis or chronic cirrhosis.</p>
-
-      <p><strong>Further Workup:</strong>
-      Review AST, ALT, alkaline phosphatase, bilirubin,
-      albumin, platelet count and PT/INR.
-      Compare with prior values. Review medications and alcohol history.
-      Additional imaging, hepatitis studies or specialty evaluation should
-      be guided by the pattern and severity of abnormalities.</p>
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Treat reversible causes and avoid unnecessary hepatotoxic medications.
-      Decompensated cirrhosis, acute hepatitis, significant coagulopathy,
-      ascites or hepatic encephalopathy requires specialty evaluation.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Determine whether liver disease is stable/compensated or acute/decompensated.
-      Significant hepatic dysfunction warrants further assessment before elective surgery.</p>
-    </div>
-  `);
-}
-
-
-// ---------------- ANEMIA TYPE INTERPRETATION ----------------
-
-const anemiaHgb = parseFloat(pwVal("pwHemoglobin"));
-
-const mcvValue = parseFloat(
-  pwFirstValue(["pwMCV", "pwMcv"])
-);
-
-const ferritinValue = parseFloat(
-  pwFirstValue(["pwFerritin"])
-);
-
-const tsatValue = parseFloat(
-  pwFirstValue(["pwTSAT", "pwTransferrinSaturation"])
-);
-
-if (
-  !isNaN(anemiaHgb) &&
-  anemiaHgb < 12 &&
-  !isNaN(mcvValue)
-) {
-
-  let anemiaPattern = "";
-  let anemiaDifferential = "";
-  let anemiaWorkup = "";
-
-  if (mcvValue < 80) {
-
-    anemiaPattern = "Microcytic anemia";
-
-    anemiaDifferential =
-      "Iron deficiency, chronic blood loss, thalassemia, " +
-      "anemia of chronic inflammation or less commonly sideroblastic disease.";
-
-    anemiaWorkup =
-      "Review ferritin and transferrin saturation, iron/TIBC, " +
-      "reticulocyte count and bleeding history. Evaluate for clinically " +
-      "appropriate gastrointestinal or other blood loss.";
-
-  } else if (mcvValue > 100) {
-
-    anemiaPattern = "Macrocytic anemia";
-
-    anemiaDifferential =
-      "Vitamin B12 deficiency, folate deficiency, alcohol use, " +
-      "liver disease, hypothyroidism, medication effect, reticulocytosis " +
-      "or bone marrow disease.";
-
-    anemiaWorkup =
-      "Consider vitamin B12, folate, reticulocyte count, TSH, " +
-      "liver tests and peripheral smear when clinically indicated.";
-
-  } else {
-
-    anemiaPattern = "Normocytic anemia";
-
-    anemiaDifferential =
-      "Anemia of chronic inflammation, chronic kidney disease, " +
-      "early iron deficiency, acute or chronic blood loss, hemolysis " +
-      "or bone marrow disease.";
-
-    anemiaWorkup =
-      "Review renal function, ferritin/TSAT, reticulocyte count, " +
-      "blood-loss history and inflammatory/chronic disease context.";
-  }
-
-
-  let ironComment = "";
-
-  if (
-    (!isNaN(ferritinValue) && ferritinValue < 30) ||
-    (!isNaN(tsatValue) && tsatValue < 20)
-  ) {
-    ironComment = `
-      <p><strong>Iron Pattern:</strong>
-      Available iron studies increase concern for iron deficiency.
-      Confirm the complete iron profile and evaluate the source when appropriate.</p>
-    `;
-  }
-
-
-  clinicalSupport.push(`
-    <div class="result-box">
-      <h4>${anemiaPattern}</h4>
-
-      <p><strong>Diagnosis / Problem:</strong>
-      Anemia pattern based on Hgb ${anemiaHgb} and MCV ${mcvValue}.</p>
-
-      <p><strong>Differential:</strong>
-      ${anemiaDifferential}</p>
-
-      <p><strong>Further Workup:</strong>
-      ${anemiaWorkup}</p>
-
-      ${ironComment}
-
-      <p><strong>Recommended Treatment / Optimization:</strong>
-      Treat the confirmed cause rather than the hemoglobin value alone.
-      Replace iron, vitamin B12 or folate when deficiency is established.
-      Address active blood loss or renal/inflammatory contributors.
-      Consider hematology evaluation for unexplained, progressive,
-      severe or mixed-pattern anemia.</p>
-
-      <p><strong>Perioperative Recommendation:</strong>
-      Consider baseline hemoglobin, expected surgical blood loss,
-      urgency and available time for optimization before surgery.</p>
-    </div>
-  `);
-}
-if (clinicalSupport.length > 0) {
-
-  html += `
-    <div class="result-section">
-      <h3>Clinical Differential, Further Workup & Recommended Treatment</h3>
-
-      <p style="font-size:14px;">
-        Clinical decision support only. Differential diagnoses,
-        diagnostic testing and treatment should be individualized
-        to the patient and confirmed by the treating provider.
-      </p>
-
-      ${clinicalSupport.join("")}
-    </div>
-  `;
-}
-  // ============================================================
-// TRUBRIDGE-READY ASSESSMENT & PLAN
-// ============================================================
-
-let apItems = [];
-
-const apPatient = pwVal("pwPatient");
-const apProcedure = pwVal("pwProcedure");
-const apSurgeon = pwVal("pwSurgeon");
-const apDOS = pwVal("pwDOS");
-
-let formattedDOS = apDOS;
-
-if (apDOS && apDOS.includes("-")) {
-  const d = apDOS.split("-");
-  if (d.length === 3) {
-    formattedDOS = d[1] + "/" + d[2] + "/" + d[0];
-  }
-}
-
-
-// -------- A&P #1: SURGICAL DIAGNOSIS / PROCEDURE --------
-
-let surgicalDiagnosis = pwVal("pwDiagnosis");
-
-if (!surgicalDiagnosis) {
-  surgicalDiagnosis = "Surgical condition";
-}
-
-let surgeonDisplay = apSurgeon || "[Surgeon]";
-
-surgeonDisplay = surgeonDisplay
-  .replace(/^dr\.?\s*/i, "")
-  .trim();
-
-apItems.push(
-  "<strong>1. " +
-  surgicalDiagnosis +
-  ".</strong> Planned " +
-  (apProcedure || "[procedure]") +
-  " with Dr. " +
-  surgeonDisplay +
-  " on " +
-  (formattedDOS || "[surgery date]") +
-  ". DVT prophy, PT and analgesia guided by surgeon."
-);
-
-
-// -------- HYPONATREMIA --------
-
-if (!isNaN(sodiumValue) && sodiumValue < 135) {
-
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Hyponatremia.</strong> Sodium " +
-    sodiumValue +
-    ". Review trend, medications and volume status. " +
-    "Repeat BMP as clinically indicated and evaluate underlying etiology. " +
-    "Avoid empiric salt or fluid restriction without determining likely cause."
-  );
-}
-
-
-// -------- HYPOKALEMIA --------
-
-if (!isNaN(potassiumValue) && potassiumValue < 3.5) {
-
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Hypokalemia.</strong> Potassium " +
-    potassiumValue +
-    ". Review medication and GI losses; consider magnesium level. " +
-    "Replace potassium as clinically appropriate and repeat level per perioperative protocol."
-  );
-}
-
-
-// -------- HYPERKALEMIA --------
-
-if (!isNaN(potassiumValue) && potassiumValue > 5.0) {
-
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Hyperkalemia.</strong> Potassium " +
-    potassiumValue +
-    ". Confirm with repeat testing if unexpected or hemolysis is possible. " +
-    "Review renal function and contributing medications; obtain ECG when clinically indicated."
-  );
-}
-
-
-// -------- ANEMIA --------
-
-if (!isNaN(hemoglobinValue) && hemoglobinValue < 12) {
-
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Anemia.</strong> Hemoglobin " +
-    hemoglobinValue +
-    ". Review CBC indices and trend. Consider iron studies, ferritin, TSAT, " +
-    "B12, folate and reticulocyte count as clinically indicated. " +
-    "Treat identified deficiency or underlying cause prior to surgery when feasible."
-  );
-}
-
-
-// -------- POLYCYTHEMIA --------
-
-if (!isNaN(hemoglobinValue) && hemoglobinValue >= 17.5) {
-
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Elevated hemoglobin / erythrocytosis.</strong> Hemoglobin " +
-    hemoglobinValue +
-    ". Assess hydration, hypoxemia, OSA/COPD, tobacco or androgen exposure. " +
-    "Repeat CBC and pursue hematology evaluation when unexplained or persistent. " +
-    "Apply TSJH hemoglobin optimization criteria."
-  );
-}
-
-
-// -------- RENAL DYSFUNCTION --------
-
-if (
-  (!isNaN(egfrValue) && egfrValue < 60) ||
-  (!isNaN(creatinineValue) && creatinineValue > 1.5)
-) {
-
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Renal dysfunction.</strong> Review baseline renal function and determine " +
-    "chronic stable CKD versus acute kidney injury. Avoid unnecessary nephrotoxins, " +
-    "renally dose medications and repeat renal studies when clinically indicated."
-  );
-}
-
-
-// -------- DIABETES / HYPERGLYCEMIA --------
-
-if (
-  (!isNaN(glucoseValue) && glucoseValue >= 180) ||
-  (!isNaN(a1cValue) && a1cValue > 8)
-) {
-
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Diabetes mellitus / hyperglycemia.</strong> Review glucose trend and current regimen. " +
-    "Optimize glycemic control and apply perioperative insulin, SGLT2 and GLP-1 guidance. " +
-    "A1c alone should not be used as the sole reason to postpone surgery."
-  );
-}
-
-
-// -------- OSA --------
-
-if (pwVal("pwOSA") === "yes") {
-
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Obstructive sleep apnea.</strong> Continue PAP therapy. " +
-    "PAP anytime asleep; respiratory therapy assistance and postoperative monitoring as indicated."
-  );
-}
-
-
-// -------- COPD --------
-
-if (pwVal("pwCOPD") === "yes") {
-
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". COPD.</strong> Continue prescribed maintenance inhalers. " +
-    "Assess for active exacerbation, infection, oxygen requirement or hypercapnia. " +
-    "Apply TSJH pulmonary risk criteria and escalate when indicated."
-  );
-}
-
-
-// -------- ANTICOAGULANT / ANTIPLATELET --------
-
-if (
-  antithromboticValue &&
-  antithromboticValue !== "none"
-) {
-
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Chronic antithrombotic therapy.</strong> " +
-    antithromboticValue +
-    ". Confirm indication, renal function, last dose, PCI/stent history and procedural bleeding risk. " +
-    "Follow TSJH interruption guidance and coordinate bridging when clinically indicated."
-  );
-}
-
-
-// -------- HEART FAILURE --------
-
-if (
-  (!isNaN(efValue) && efValue < 50) ||
-  pwVal("pwVolumeOverload") === "yes"
-) {
-
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Heart failure / reduced LV systolic function.</strong> " +
-    (!isNaN(efValue) ? "LVEF " + efValue + "%. " : "") +
-    "Assess NYHA class, volume status, recent cardiovascular evaluation and GDMT. " +
-    "Active decompensation requires treatment before routine elective surgery."
-  );
-}
-
-
-// -------- PULMONARY HYPERTENSION --------
-
-if (
-  (!isNaN(rvspValue) && rvspValue > 50) ||
-  pwVal("pwWHO1") === "yes" ||
-  pwVal("pwSevereTR") === "yes" ||
-  pwVal("pwRVDysfunction") === "yes"
-) {
-
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Pulmonary hypertension / right-heart risk.</strong> " +
-    (!isNaN(rvspValue) ? "RVSP " + rvspValue + " mmHg. " : "") +
-    "Review RV function, TR severity, WHO group, oxygen requirement and vasodilator therapy. " +
-    "Apply TSJH cardiovascular review and higher-level-of-care criteria."
-  );
-}
-
-// -------- THROMBOCYTOPENIA --------
-
-if (!isNaN(plateletValue) && plateletValue < 100) {
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Thrombocytopenia.</strong> Platelets " +
-    plateletValue +
-    ". Review prior trend, medications, liver disease and bleeding history. " +
-    "Repeat CBC and consider peripheral smear. Hematology evaluation as indicated."
-  );
-}
-
-
-// -------- LEUKOCYTOSIS --------
-
-if (!isNaN(wbcValue) && wbcValue > 11) {
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Leukocytosis.</strong> WBC " +
-    wbcValue +
-    ". Assess for infectious or inflammatory source and review CBC differential/trend. " +
-    "Do not treat isolated leukocytosis with antibiotics without a clinical indication."
-  );
-}
-
-
-// -------- UTI / URINARY ABNORMALITY --------
-
-if (
-  urinarySymptoms === "yes" ||
-  urinarySymptoms === "positive" ||
-  urineCulture.includes("positive") ||
-  abnormalUA.includes("positive") ||
-  abnormalUA.includes("abnormal")
-) {
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Urinary abnormality / possible UTI.</strong> Distinguish symptomatic UTI from asymptomatic bacteriuria or contamination. " +
-    "Review urinary symptoms and culture results. Treat symptomatic infection with culture-directed therapy when appropriate."
-  );
-}
-
-
-// -------- HYPERTENSION --------
-
-if (
-  (!isNaN(systolicBP) && systolicBP >= 160) ||
-  (!isNaN(diastolicBP) && diastolicBP >= 100)
-) {
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Hypertension.</strong> Repeat BP after appropriate rest and confirm cuff size. " +
-    "Review home readings, medications and adherence. Severe persistent hypertension or target-organ symptoms require further evaluation."
-  );
-}
-
-
-// -------- AORTIC STENOSIS --------
-
-if (
-  (!isNaN(avaValue) && avaValue < 1.5) ||
-  (!isNaN(gradientValue) && gradientValue >= 20) ||
-  (!isNaN(vmaxValue) && vmaxValue >= 3)
-) {
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Aortic stenosis.</strong> Review AVA, mean gradient, Vmax and symptoms. " +
-    "Moderate/severe or symptomatic disease requires cardiovascular review. " +
-    "Apply exact TSJH exclusion thresholds."
-  );
-}
-
-
-// -------- MITRAL STENOSIS --------
-
-if (pwVal("pwMitralStenosis") === "yes") {
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Mitral stenosis.</strong> Review valve area, mean gradient, pulmonary pressures and symptoms. " +
-    "Moderate-to-severe disease requires cardiovascular review per TSJH guidance."
-  );
-}
-
-
-// -------- LBBB --------
-
-if (pwVal("pwLBBB") === "yes") {
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Left bundle branch block.</strong> Determine whether new or chronic and review prior ECGs. " +
-    "When ischemic evaluation is indicated, obtain cardiology evaluation or pharmacologic nuclear stress testing per TSJH guidance."
-  );
-}
-
-
-// -------- SGLT2 INHIBITOR --------
-
-if (sglt2Value && sglt2Value !== "none") {
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". SGLT2 inhibitor therapy.</strong> " +
-    sglt2Value +
-    ". Hold 3 days before surgery; ertugliflozin 4 days. " +
-    "Assess for ketosis or metabolic acidosis if medication was not appropriately held or symptoms are present."
-  );
-}
-
-
-// -------- GLP-1 --------
-
-if (pwVal("pwGLP1") === "yes") {
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". GLP-1 receptor agonist therapy.</strong> Assess medication, last dose, dose-escalation phase and GI symptoms. " +
-    "Apply current risk-based anesthesia guidance for delayed gastric emptying and aspiration risk."
-  );
-}
-
-
-// -------- INSULIN PUMP --------
-
-if (pwVal("pwInsulinPump") === "yes") {
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Insulin pump / insulin-dependent diabetes.</strong> Establish a clear day-of-surgery insulin and glucose-monitoring plan. " +
-    "Maintain basal insulin coverage and coordinate pump/CGM management with anesthesia."
-  );
-}
-
-
-// -------- PENDING SPECIALTY EVALUATION --------
-
-const pendingSpecialty = pwFirstValue([
-  "pwPendingSpecialty",
-  "pwSpecialtyReferral",
-  "pwPendingReferral"
-]);
-
-if (pendingSpecialty) {
-  apItems.push(
-    "<strong>" + (apItems.length + 1) +
-    ". Pending specialty evaluation.</strong> " +
-    pendingSpecialty +
-    ". Obtain requested evaluation/recommendations and review results before finalizing perioperative optimization status."
-  );
-}
-// ============================================================
-// PENDING ITEMS BEFORE SURGERY
-// ============================================================
-
-let pendingItems = [];
-
-
-// -------- REPEAT LABS --------
-
-if (!isNaN(sodiumValue) && sodiumValue < 130) {
-  pendingItems.push(
-    "Repeat sodium/BMP and confirm stability before surgery."
-  );
-}
-
-if (!isNaN(potassiumValue) && potassiumValue <= 3.0) {
-  pendingItems.push(
-    "Repeat potassium on day of surgery or earlier as clinically indicated per TSJH guidance."
-  );
-}
-
-if (
-  !isNaN(potassiumValue) &&
-  potassiumValue > 5.5
-) {
-  pendingItems.push(
-    "Repeat potassium and evaluate hyperkalemia before routine elective surgery."
-  );
-}
-
-if (
-  !isNaN(hemoglobinValue) &&
-  hemoglobinValue >= 17.5
-) {
-  pendingItems.push(
-    "Repeat CBC and address elevated hemoglobin/erythrocytosis; apply TSJH optimization pathway."
-  );
-}
-
-if (
-  !isNaN(plateletValue) &&
-  plateletValue < 100
-) {
-  pendingItems.push(
-    "Repeat CBC and complete evaluation of thrombocytopenia before surgery."
-  );
-}
-
-
-// -------- CARDIOLOGY / SPECIALTY REVIEW --------
-
-if (
-  (!isNaN(rvspValue) && rvspValue > 50) ||
-  (!isNaN(paPressureValue) && paPressureValue > 50) ||
-  (!isNaN(trVelocityValue) && trVelocityValue >= 2.8)
-) {
-  pendingItems.push(
-    "Cardiovascular review for pulmonary hypertension/right-heart risk."
-  );
-}
-
-if (
-  (!isNaN(avaValue) && avaValue < 1.5) ||
-  (!isNaN(gradientValue) && gradientValue >= 20) ||
-  (!isNaN(vmaxValue) && vmaxValue >= 3)
-) {
-  pendingItems.push(
-    "Review aortic stenosis severity and ensure appropriate cardiovascular evaluation."
-  );
-}
-
-if (pwVal("pwMitralStenosis") === "yes") {
-  pendingItems.push(
-    "Cardiovascular review for mitral stenosis when moderate-to-severe or clinically indicated."
-  );
-}
-
-if (pwVal("pwLBBB") === "yes") {
-  pendingItems.push(
-    "Cardiology evaluation or pharmacologic nuclear ischemic evaluation when indicated for LBBB."
-  );
-}
-
-if (pendingSpecialty) {
-  pendingItems.push(
-    "Complete pending specialty evaluation: " + pendingSpecialty + "."
-  );
-}
-
-
-// -------- MEDICATION HOLDS / PLANS --------
-
-if (
-  antithromboticValue &&
-  antithromboticValue !== "none"
-) {
-  pendingItems.push(
-    "Confirm perioperative plan and last dose for " +
-    antithromboticValue +
-    ", including PCI/stent and bridging considerations when applicable."
-  );
-}
-
-if (
-  sglt2Value &&
-  sglt2Value !== "none"
-) {
-  pendingItems.push(
-    "Confirm SGLT2 inhibitor hold interval before surgery."
-  );
-}
-
-if (pwVal("pwGLP1") === "yes") {
-  pendingItems.push(
-    "Confirm GLP-1 perioperative plan based on current GI symptoms, dosing phase and anesthesia guidance."
-  );
-}
-
-if (pwVal("pwInsulinPump") === "yes") {
-  pendingItems.push(
-    "Establish day-of-surgery insulin pump/CGM and basal insulin plan."
-  );
-}
-
-
-// -------- ACTIVE INFECTION / UTI --------
-
-if (
-  urinarySymptoms === "yes" ||
-  urinarySymptoms === "positive" ||
-  urineCulture.includes("positive")
-) {
-  pendingItems.push(
-    "Treat symptomatic urinary infection and confirm clinical improvement before elective surgery."
-  );
-}
-
-
-// -------- HIGHER LEVEL OF CARE --------
-
-if (
-  (!isNaN(efValue) && efValue < 35) ||
-  (!isNaN(rvspValue) && rvspValue > 65) ||
-  pwVal("pwWHO1") === "yes" ||
-  pwVal("pwSevereTR") === "yes" ||
-  pwVal("pwRVDysfunction") === "yes"
-) {
-  pendingItems.push(
-    "Review higher-level-of-care / alternate-facility requirement based on TSJH criteria."
-  );
-}
-
-
-// -------- DISPLAY PENDING ITEMS --------
-
-if (pendingItems.length > 0) {
-
-  html += `
-    <div class="result-section">
-      <h3>Pending Items Before Surgery</h3>
-
-      <ul>
-        ${pendingItems.map(
-          item => "<li>" + item + "</li>"
-        ).join("")}
-      </ul>
-    </div>
-  `;
-
-} else {
-
-  html += `
-    <div class="result-section">
-      <h3>Pending Items Before Surgery</h3>
-      <p>No unresolved perioperative items identified by this workflow.</p>
-    </div>
-  `;
-}
-// -------- DISPLAY A&P --------
-
-html += `
-  <div class="result-section">
-    <h3>Assessment & Plan</h3>
-
-    ${apItems.map(item =>
-      "<p style='margin-bottom:12px;'>" + item + "</p>"
-    ).join("")}
-  </div>
-`;
-  html +=
-    "<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS: " +
-    status +
-    ".</strong> ";
-
-  if (status === "Optimized") {
-
-    html +=
-      "Patient meets TSJH perioperative consensus guidelines to proceed with elective surgery on scheduled surgery date at this time.";
-
-  } else {
-
-    html +=
-      "Reason: " +
-      reason;
-
-  }
-
-  html += "</p>";
-
-
-  const result =
-    document.getElementById("pwResult");
-
-  result.innerHTML = html;
-  result.style.display = "block";
-
-  result.scrollIntoView({
-    behavior:"smooth",
-    block:"start"
-  });
-}
-
-
-async function copyProviderWorkflow() {
-
-  generateProviderWorkflow();
-
-  const text =
-    document.getElementById("pwResult").innerText;
-
-  try {
-
-    await navigator.clipboard.writeText(text);
-
-    alert("Provider optimization summary copied.");
-
-  } catch (error) {
-
-    const temp =
-      document.createElement("textarea");
-
-    temp.value = text;
-
-    document.body.appendChild(temp);
-
-    temp.select();
-
-    document.execCommand("copy");
-
-    document.body.removeChild(temp);
-
-    alert("Provider optimization summary copied.");
-  }
-}
-
-
-function printProviderWorkflow() {
-
-  generateProviderWorkflow();
-
-  setTimeout(function() {
-    window.print();
-  },150);
-}
-
-
-function clearProviderWorkflow() {
-
-  if (
-    !confirm(
-      "Clear all patient-specific provider workflow information?"
-    )
-  ) {
+  if(!raw){
+    const box = byId("pwDetected");
+    box.style.display = "block";
+    box.innerHTML = "<strong>No text entered.</strong>";
     return;
   }
 
-  document
-    .querySelectorAll(
-      "#providerWorkflowInteractive input, #providerWorkflowInteractive textarea"
-    )
-    .forEach(function(el) {
-      el.value = "";
-    });
+  const ef = firstNumber(text,[/\bef\s*[:=]?\s*(\d+(?:\.\d+)?)/i,/\blvef\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
+  if(ef !== null){ setVal("pwEF",ef); detected.push("EF " + ef + "%"); }
 
-  document
-    .querySelectorAll(
-      "#providerWorkflowInteractive select"
-    )
-    .forEach(function(el) {
-      el.selectedIndex = 0;
-    });
+  const rvsp = firstNumber(text,[/\brvsp\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
+  if(rvsp !== null){ setVal("pwRVSP",rvsp); detected.push("RVSP " + rvsp); }
 
-  const result =
-    document.getElementById("pwResult");
+  const ava = firstNumber(text,[/\bava\s*[:=]?\s*(\d+(?:\.\d+)?)/i,/aortic valve area\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
+  if(ava !== null){ setVal("pwAVA",ava); detected.push("AVA " + ava); }
 
-  result.innerHTML = "";
-  result.style.display = "none";
+  const asg = firstNumber(text,[/mean gradient\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
+  if(asg !== null){ setVal("pwASGradient",asg); detected.push("Aortic mean gradient " + asg); }
+
+  const vmax = firstNumber(text,[/\bvmax\s*[:=]?\s*(\d+(?:\.\d+)?)/i,/peak velocity\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
+  if(vmax !== null){ setVal("pwVmax",vmax); detected.push("Vmax " + vmax); }
+
+  const hgb = firstNumber(text,[/\bhgb\s*[:=]?\s*(\d+(?:\.\d+)?)/i,/\bhemoglobin\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
+  if(hgb !== null){ setVal("pwHemoglobin",hgb); detected.push("Hgb " + hgb); }
+
+  const sodium = firstNumber(text,[/\bna\s*[:=]?\s*(\d+(?:\.\d+)?)/i,/\bsodium\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
+  if(sodium !== null){ setVal("pwSodium",sodium); detected.push("Sodium " + sodium); }
+
+  const potassium = firstNumber(text,[/\bk\s*[:=]?\s*(\d+(?:\.\d+)?)/i,/\bpotassium\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
+  if(potassium !== null){ setVal("pwPotassium",potassium); detected.push("Potassium " + potassium); }
+
+  const creatinine = firstNumber(text,[/\bcreatinine\s*[:=]?\s*(\d+(?:\.\d+)?)/i,/\bcr\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
+  if(creatinine !== null){ setVal("pwCreatinine",creatinine); detected.push("Creatinine " + creatinine); }
+
+  const egfr = firstNumber(text,[/\begfr\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
+  if(egfr !== null){ setVal("pwEGFR",egfr); detected.push("eGFR " + egfr); }
+
+  const a1c = firstNumber(text,[/\ba1c\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
+  if(a1c !== null){ setVal("pwA1c",a1c); detected.push("A1c " + a1c); }
+
+  if(has(text,[/\bsevere tricuspid regurgitation\b/i,/\bsevere tr\b/i])){
+    setVal("pwSevereTR","yes"); detected.push("Severe TR");
+  }
+  if(has(text,[/\bmoderate[-\s]to[-\s]severe rv dysfunction\b/i,/\bsevere rv dysfunction\b/i])){
+    setVal("pwRVDysfunction","yes"); detected.push("RV dysfunction");
+  }
+  if(has(text,[/\bwho group 1\b/i,/\bgroup 1 pulmonary hypertension\b/i])){
+    setVal("pwWHO1","yes"); detected.push("WHO Group 1 PH");
+  }
+  if(has(text,[/\badvanced pulmonary vasodilator\b/i,/\bprostacyclin\b/i,/\bepoprostenol\b/i])){
+    setVal("pwPulmVasodilator","yes"); detected.push("Advanced pulmonary vasodilator therapy");
+  }
+  if(has(text,[/\blbbb\b/i,/\bleft bundle branch block\b/i])){
+    setVal("pwLBBB","yes"); detected.push("LBBB");
+  }
+  if(has(text,[/\bactive cardiac\b/i,/\bdecompensated heart failure\b/i,/\bunstable angina\b/i,/\bacute coronary syndrome\b/i])){
+    setVal("pwActiveCardiac","yes"); detected.push("Active cardiac problem");
+  }
+  if(has(text,[/\b24[-\s]?hour oxygen\b/i,/\bcontinuous home oxygen\b/i])){
+    setVal("pwO2_24h","yes"); detected.push("24-hour oxygen");
+  }
+  if(has(text,[/\bidiopathic pulmonary fibrosis\b/i,/\bipf\b/i])){
+    setVal("pwIPF","yes"); detected.push("IPF");
+  }
+  if(has(text,[/\bhypercapnic respiratory failure\b/i])){
+    setVal("pwHypercapnia","yes"); detected.push("Chronic hypercapnic respiratory failure");
+  }
+
+  const box = byId("pwDetected");
+  box.style.display = "block";
+  box.innerHTML = detected.length
+    ? "<strong>Detected information:</strong> " + escapeHtml(detected.join("; "))
+    : "<strong>No supported findings were automatically detected.</strong> Review and enter findings manually.";
 }
 
-
-const pwGenerateButton = document.getElementById("pwGenerate");
-if (pwGenerateButton) {
-  pwGenerateButton.addEventListener(
-    "click",
-    generateProviderWorkflow
-  );
+function clearProviderFreeText(){
+  byId("pwFreeText").value = "";
+  const box = byId("pwDetected");
+  box.innerHTML = "";
+  box.style.display = "none";
 }
 
-const pwCopyButton = document.getElementById("pwCopy");
-if (pwCopyButton) {
-  pwCopyButton.addEventListener(
-    "click",
-    copyProviderWorkflow
-  );
+function generateProviderWorkflow(){
+  const hloc = [];
+  const stop = [];
+  const pending = [];
+  const plan = [];
+  const support = [];
+
+  const ef = num("pwEF");
+  const rvsp = num("pwRVSP");
+  const ava = num("pwAVA");
+  const asGradient = num("pwASGradient");
+  const vmax = num("pwVmax");
+  const mva = num("pwMVA");
+  const msGradient = num("pwMSGradient");
+  const pasp = num("pwPASP");
+  const fev1 = num("pwFEV1");
+  const bode = num("pwBODE");
+  const cat = num("pwCAT");
+  const aroz = num("pwArozullah");
+  const sodium = num("pwSodium");
+  const potassium = num("pwPotassium");
+  const hgb = num("pwHemoglobin");
+  const platelets = num("pwPlatelets");
+  const egfr = num("pwEGFR");
+  const glucose = num("pwGlucose");
+  const a1c = num("pwA1c");
+  const strokeMonths = num("pwStrokeMonths");
+
+  // Hard stops / unstable
+  if(yes("pwUnstable")) stop.push("Active or unstable medical condition requires evaluation and stabilization.");
+  if(yes("pwActiveCardiac")) stop.push("Active cardiac problem requires appropriate evaluation before elective surgery.");
+  if(yes("pwNewNeuro")) stop.push("New neurologic symptoms require evaluation before elective surgery.");
+  if(yes("pwSymptomaticInfection")) pending.push("Symptomatic infection requires treatment/clinical resolution before final optimization.");
+  if(yes("pwOpenWound")) pending.push("Open/draining wound or cellulitis requires surgical/provider review.");
+
+  // Higher level of care
+  if(ef !== null && ef < 35) hloc.push("LVEF <35%");
+  if(rvsp !== null && rvsp > 65) hloc.push("RVSP >65 mmHg");
+  if(yes("pwWHO1")) hloc.push("WHO Group 1 pulmonary hypertension");
+  if(yes("pwSevereTR")) hloc.push("severe tricuspid regurgitation");
+  if(yes("pwRVDysfunction")) hloc.push("moderate-to-severe RV dysfunction");
+  if(yes("pwPulmVasodilator")) hloc.push("advanced pulmonary vasodilator therapy");
+
+  // Aortic stenosis
+  const severeAS = (ava !== null && ava < 1.0) || (asGradient !== null && asGradient > 40) || (vmax !== null && vmax > 4.0);
+  if(severeAS) hloc.push("severe aortic stenosis threshold met");
+  else if(((ava !== null && ava <= 1.5) || (asGradient !== null && asGradient >= 20) || yes("pwSymptomaticAS")) && val("pwCardiologyCurrent") === "no"){
+    pending.push("Aortic stenosis requires current cardiovascular review.");
+  }
+
+  // Mitral stenosis
+  const significantMS = (mva !== null && mva <= 1.5) || (msGradient !== null && msGradient >= 10) || (pasp !== null && pasp > 50);
+  if(significantMS && val("pwCardiologyCurrent") === "no"){
+    pending.push("Moderate-to-severe mitral stenosis requires cardiovascular review.");
+  }
+
+  if(yes("pwLBBB")) pending.push("LBBB requires cardiology evaluation or pharmacologic nuclear stress testing per facility pathway.");
+  if(yes("pwRecentPCI")) pending.push("Recent PCI/stent with unresolved antiplatelet interruption requires multidisciplinary review.");
+  if(yes("pwCHFAdmission")) pending.push("Recent CHF history requires review of current stability and facility criteria.");
+
+  // Pulmonary site-risk items
+  if((fev1 !== null && fev1 < 50) || (bode !== null && bode >= 5) || (cat !== null && cat > 10) ||
+     (aroz !== null && aroz >= 4) || yes("pwO2_24h") || yes("pwHypercapnia") || yes("pwIPF")){
+    pending.push("Pulmonary higher-risk feature requires deliberate anesthesia/facility review.");
+  }
+
+  // Stroke timing
+  if(yes("pwRecentStroke")){
+    if(strokeMonths === null) pending.push("CVA/TIA timing must be established.");
+    else if(strokeMonths < 8) pending.push("Recent CVA/TIA interval is below preferred elective-surgery timing; anesthesia/surgeon review required.");
+    else if(strokeMonths < 12) pending.push("CVA/TIA occurred within 12 months; anesthesia prefers 1 year and interval should be reviewed.");
+  }
+
+  // Labs
+  if(sodium !== null){
+    if(sodium < 130) pending.push("Hyponatremia requires repeat assessment/optimization before final status.");
+    else if(sodium < 135) support.push("Mild hyponatremia: review trend, volume status, medications, glucose and cause.");
+  }
+  if(potassium !== null){
+    if(potassium < 3.0 || potassium > 5.5) pending.push("Clinically significant potassium abnormality requires correction/recheck.");
+    else if(potassium < 3.5 || potassium > 5.1) support.push("Mild potassium abnormality: review cause and recheck as clinically appropriate.");
+  }
+  if(hgb !== null){
+    if(hgb < 8) pending.push("Severe anemia requires evaluation/optimization before final status.");
+    else if(hgb < 12) support.push("Anemia: classify pattern, review chronicity and expected surgical blood loss, and optimize when appropriate.");
+    else if(hgb >= 17.5) support.push("Elevated hemoglobin/polycythemia: establish cause and assess perioperative thrombotic risk.");
+  }
+  if(platelets !== null && platelets < 100) pending.push("Thrombocytopenia requires procedure-specific review.");
+  if(yes("pwAKI")) pending.push("Active/progressive AKI requires evaluation and stabilization.");
+  if(yes("pwDialysisIssue")) pending.push("Dialysis timing/complexity remains unresolved.");
+  if(egfr !== null && egfr < 30) support.push("Advanced CKD: review renal dosing, volume/electrolytes and perioperative nephrotoxin exposure.");
+  if(glucose !== null && glucose >= 300) pending.push("Marked hyperglycemia requires evaluation/optimization.");
+  if(a1c !== null && a1c >= 9) support.push("Elevated A1c: assess current glucose control, procedure urgency and infection/wound-healing risk.");
+
+  // Medication plans
+  if(val("pwAntithrombotic") !== "none" && val("pwAntithromboticPlan") === "no") pending.push("Anticoagulant/antiplatelet hold and restart plan is unresolved.");
+  if(val("pwSGLT2") === "yes" && val("pwSGLT2Plan") === "no") pending.push("SGLT2 perioperative hold plan is unresolved.");
+  if(yes("pwGLP1") && yes("pwGLP1Concern")) pending.push("GLP-1 aspiration/GI concern requires anesthesia/provider review.");
+  if(yes("pwInsulinPump") && val("pwPumpPlan") === "no") pending.push("Insulin pump perioperative plan is unresolved.");
+
+  // Explicit pending items
+  if(yes("pwRepeatLabs")) pending.push("Repeat laboratory testing pending.");
+  if(yes("pwCardiacTesting")) pending.push("Cardiac testing pending.");
+  if(yes("pwDevice")) pending.push("Device interrogation pending.");
+  if(yes("pwAnesthesiaReview")) pending.push("Anesthesia review pending.");
+  if(yes("pwSpecialistReview")) pending.push("Specialist recommendation pending.");
+  if(val("pwOtherPending")) pending.push(val("pwOtherPending"));
+
+  // Postop planning
+  if(yes("pwOSA")){
+    if(val("pwPAP") === "yes") plan.push("PAP anytime asleep; RT assist as needed.");
+    if(val("pwPAP") === "no") plan.push("PAP-intolerant OSA: continuous oximetry; respiratory support as clinically indicated.");
+  }
+  if((num("pwRCRI") ?? 0) >= 1) plan.push("Apply TSJH BNP/NT-proBNP screening protocol when age/risk criteria are met.");
+
+  // Deduplicate
+  const unique = arr => [...new Set(arr)];
+
+  const hlocU = unique(hloc);
+  const stopU = unique(stop);
+  const pendingU = unique(pending);
+  const planU = unique(plan);
+  const supportU = unique(support);
+
+  let status = "Optimized";
+  let reason = "No unresolved medical optimization, testing, or TSJH higher-level-of-care criteria identified.";
+
+  if(hlocU.length > 0){
+    status = "Not optimized";
+    reason = hlocU.join("; ") + ". Patient meets TSJH higher-level-of-care criteria. Recommend surgeon/anesthesia review and alternate facility/higher level of care as appropriate.";
+  } else if(stopU.length > 0){
+    status = "Not optimized";
+    reason = stopU.join(" ");
+  } else if(pendingU.length > 0){
+    status = "Pending";
+    reason = pendingU.join(" ");
+  }
+
+  const cssClass = status === "Optimized" ? "optimized" : (status === "Pending" ? "pending" : "not-optimized");
+
+  let html = "<h2>Provider Optimization Summary</h2>";
+  if(val("pwPatient")) html += "<p><strong>Patient:</strong> " + escapeHtml(val("pwPatient")) + "</p>";
+  if(val("pwProcedure")) html += "<p><strong>Procedure:</strong> " + escapeHtml(val("pwProcedure")) + "</p>";
+  if(val("pwSurgeon")) html += "<p><strong>Surgeon:</strong> " + escapeHtml(val("pwSurgeon")) + "</p>";
+  if(val("pwDOS")) html += "<p><strong>Date of Service:</strong> " + escapeHtml(val("pwDOS")) + "</p>";
+
+  html += '<div class="status ' + cssClass + '">';
+  html += "<strong>FINAL PREOPERATIVE OPTIMIZATION STATUS: " + escapeHtml(status.toUpperCase()) + "</strong><br><br>";
+  html += "<strong>Reason:</strong> " + escapeHtml(reason);
+  html += "</div>";
+
+  html += "<h3>Functional & Risk Screening</h3><ul>";
+  html += "<li>DASI: " + escapeHtml(val("pwDASI") || "â") + "</li>";
+  html += "<li>STOP-BANG: " + escapeHtml(val("pwSTOPBANG") || "â") + "</li>";
+  html += "<li>CFS: " + escapeHtml(val("pwCFS") || "â") + "</li>";
+  html += "<li>RCRI: " + escapeHtml(val("pwRCRI") || "â") + "</li>";
+  html += "</ul>";
+
+  html += "<h3>Preoperative Cardiac Guidelines Application</h3><ul>";
+  html += "<li>Surgical Risk: " + escapeHtml(val("pwSurgicalRisk") || "â") + "</li>";
+  html += "<li>RCRI: " + escapeHtml(val("pwRCRI") || "â") + "</li>";
+  html += "<li>Active Cardiac Problems: " + (yes("pwActiveCardiac") ? "Yes" : "No") + "</li>";
+  html += "<li>BNP Screening: apply institutional age/RCRI/cardiac-disease criteria</li>";
+  html += "</ul>";
+
+  if(hlocU.length){
+    html += "<h3>Higher-Level-of-Care Criteria</h3><ul>" + hlocU.map(x=>"<li>"+escapeHtml(x)+"</li>").join("") + "</ul>";
+  }
+  if(stopU.length){
+    html += "<h3>Hard Stop / Unstable Findings</h3><ul>" + stopU.map(x=>"<li>"+escapeHtml(x)+"</li>").join("") + "</ul>";
+  }
+  if(pendingU.length){
+    html += "<h3>Pending Items</h3><ul>" + pendingU.map(x=>"<li>"+escapeHtml(x)+"</li>").join("") + "</ul>";
+  }
+  if(supportU.length){
+    html += "<h3>Clinical Support / Optimization</h3><ul>" + supportU.map(x=>"<li>"+escapeHtml(x)+"</li>").join("") + "</ul>";
+  }
+  if(planU.length){
+    html += "<h3>Postoperative / Perioperative Plan</h3><ul>" + planU.map(x=>"<li>"+escapeHtml(x)+"</li>").join("") + "</ul>";
+  }
+
+  const result = byId("pwResult");
+  result.innerHTML = html;
+  result.style.display = "block";
+  result.scrollIntoView({behavior:"smooth",block:"start"});
 }
 
-const pwPrintButton = document.getElementById("pwPrint");
-if (pwPrintButton) {
-  pwPrintButton.addEventListener(
-    "click",
-    printProviderWorkflow
-  );
+async function copyProviderWorkflow(){
+  const result = byId("pwResult");
+  if(!result || result.style.display === "none" || !result.innerText.trim()){
+    generateProviderWorkflow();
+  }
+  const text = byId("pwResult").innerText;
+  try{
+    await navigator.clipboard.writeText(text);
+    alert("Provider optimization summary copied.");
+  }catch(err){
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    ta.remove();
+    alert("Provider optimization summary copied.");
+  }
 }
 
-const pwClearButton = document.getElementById("pwClear");
-if (pwClearButton) {
-  pwClearButton.addEventListener(
-    "click",
-    clearProviderWorkflow
-  );
+function printProviderWorkflow(){
+  if(byId("pwResult").style.display === "none") generateProviderWorkflow();
+  window.print();
 }
 
+function clearProviderWorkflow(){
+  if(!confirm("Clear all patient-specific provider workflow entries?")) return;
+  document.querySelectorAll("#providerWorkflowInteractive input").forEach(el => el.value = "");
+  document.querySelectorAll("#providerWorkflowInteractive select").forEach(el => el.selectedIndex = 0);
+  clearProviderFreeText();
+  byId("pwResult").innerHTML = "";
+  byId("pwResult").style.display = "none";
+}
 
-
-function openPatientInstructions() {
-
+function openPatientInstructions(){
   const params = new URLSearchParams();
-
-  if (pwVal("pwPatient")) {
-    params.set("patient", pwVal("pwPatient"));
-  }
-
-  if (pwVal("pwProcedure")) {
-    params.set("procedure", pwVal("pwProcedure"));
-  }
-
-  if (pwVal("pwSurgeon")) {
-    params.set("surgeon", pwVal("pwSurgeon"));
-  }
-
-  if (pwVal("pwDOS")) {
-    params.set("date", pwVal("pwDOS"));
-  }
-
-  if (pwVal("pwSodium")) {
-    params.set("sodium", pwVal("pwSodium"));
-  }
-
-  if (pwVal("pwPotassium")) {
-    params.set("potassium", pwVal("pwPotassium"));
-  }
-
-  if (pwVal("pwHemoglobin")) {
-    params.set("hgb", pwVal("pwHemoglobin"));
-  }
-
-  if (pwVal("pwA1c")) {
-    params.set("a1c", pwVal("pwA1c"));
-  }
-
-  if (pwVal("pwOSA") === "yes") {
-    params.set("osa", "yes");
-  }
-
-  if (pwVal("pwCOPD") === "yes") {
-    params.set("copd", "yes");
-  }
-
-  if (
-    pwVal("pwAntithrombotic") &&
-    pwVal("pwAntithrombotic") !== "none"
-  ) {
-    params.set(
-      "antithrombotic",
-      pwVal("pwAntithrombotic")
-    );
-  }
-
-  if (
-    pwVal("pwSGLT2") &&
-    pwVal("pwSGLT2") !== "none"
-  ) {
-    params.set("sglt2", pwVal("pwSGLT2"));
-  }
-
-  if (pwVal("pwGLP1") === "yes") {
-    params.set("glp1", "yes");
-  }
-
-  if (pwVal("pwInsulinPump") === "yes") {
-    params.set("pump", "yes");
-  }
-
-  window.location.href =
-    "patient-discharge-education.html?" +
-    params.toString();
+  if(val("pwPatient")) params.set("patient",val("pwPatient"));
+  if(val("pwProcedure")) params.set("procedure",val("pwProcedure"));
+  if(val("pwSurgeon")) params.set("surgeon",val("pwSurgeon"));
+  if(val("pwDOS")) params.set("date",val("pwDOS"));
+  if(val("pwSodium")) params.set("sodium",val("pwSodium"));
+  if(val("pwPotassium")) params.set("potassium",val("pwPotassium"));
+  if(val("pwHemoglobin")) params.set("hgb",val("pwHemoglobin"));
+  if(val("pwA1c")) params.set("a1c",val("pwA1c"));
+  if(yes("pwOSA")) params.set("osa","yes");
+  if(yes("pwCOPD")) params.set("copd","yes");
+  if(val("pwAntithrombotic") !== "none") params.set("antithrombotic",val("pwAntithrombotic"));
+  if(val("pwSGLT2") === "yes") params.set("sglt2","yes");
+  if(yes("pwGLP1")) params.set("glp1","yes");
+  if(yes("pwInsulinPump")) params.set("pump","yes");
+  window.location.href = "patient-discharge-education.html?" + params.toString();
 }
 
-const patientInstructionsButton =
-  document.getElementById("pwPatientInstructions");
-
-if (patientInstructionsButton) {
-  patientInstructionsButton.addEventListener(
-    "click",
-    openPatientInstructions
-  );
+function bind(id,eventName,handler){
+  const el = byId(id);
+  if(el) el.addEventListener(eventName,handler);
 }
 
+document.addEventListener("DOMContentLoaded",function(){
+  bind("pwAnalyzeText","click",analyzeProviderFreeText);
+  bind("pwClearText","click",clearProviderFreeText);
+  bind("pwGenerate","click",generateProviderWorkflow);
+  bind("pwCopy","click",copyProviderWorkflow);
+  bind("pwPrint","click",printProviderWorkflow);
+  bind("pwClear","click",clearProviderWorkflow);
+  bind("pwPatientInstructions","click",openPatientInstructions);
+});
 </script>
-
-</section>
-</main>
-
-<footer>
-Preoperative Optimization Handbook · Provider Optimization Workflow
-</footer>
 
 </body>
 </html>

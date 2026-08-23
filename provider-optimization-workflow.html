@@ -4939,6 +4939,184 @@ if (pendingSpecialty) {
     ". Obtain requested evaluation/recommendations and review results before finalizing perioperative optimization status."
   );
 }
+// ============================================================
+// PENDING ITEMS BEFORE SURGERY
+// ============================================================
+
+let pendingItems = [];
+
+
+// -------- REPEAT LABS --------
+
+if (!isNaN(sodiumValue) && sodiumValue < 130) {
+  pendingItems.push(
+    "Repeat sodium/BMP and confirm stability before surgery."
+  );
+}
+
+if (!isNaN(potassiumValue) && potassiumValue <= 3.0) {
+  pendingItems.push(
+    "Repeat potassium on day of surgery or earlier as clinically indicated per TSJH guidance."
+  );
+}
+
+if (
+  !isNaN(potassiumValue) &&
+  potassiumValue > 5.5
+) {
+  pendingItems.push(
+    "Repeat potassium and evaluate hyperkalemia before routine elective surgery."
+  );
+}
+
+if (
+  !isNaN(hemoglobinValue) &&
+  hemoglobinValue >= 17.5
+) {
+  pendingItems.push(
+    "Repeat CBC and address elevated hemoglobin/erythrocytosis; apply TSJH optimization pathway."
+  );
+}
+
+if (
+  !isNaN(plateletValue) &&
+  plateletValue < 100
+) {
+  pendingItems.push(
+    "Repeat CBC and complete evaluation of thrombocytopenia before surgery."
+  );
+}
+
+
+// -------- CARDIOLOGY / SPECIALTY REVIEW --------
+
+if (
+  (!isNaN(rvspValue) && rvspValue > 50) ||
+  (!isNaN(paPressureValue) && paPressureValue > 50) ||
+  (!isNaN(trVelocityValue) && trVelocityValue >= 2.8)
+) {
+  pendingItems.push(
+    "Cardiovascular review for pulmonary hypertension/right-heart risk."
+  );
+}
+
+if (
+  (!isNaN(avaValue) && avaValue < 1.5) ||
+  (!isNaN(gradientValue) && gradientValue >= 20) ||
+  (!isNaN(vmaxValue) && vmaxValue >= 3)
+) {
+  pendingItems.push(
+    "Review aortic stenosis severity and ensure appropriate cardiovascular evaluation."
+  );
+}
+
+if (pwVal("pwMitralStenosis") === "yes") {
+  pendingItems.push(
+    "Cardiovascular review for mitral stenosis when moderate-to-severe or clinically indicated."
+  );
+}
+
+if (pwVal("pwLBBB") === "yes") {
+  pendingItems.push(
+    "Cardiology evaluation or pharmacologic nuclear ischemic evaluation when indicated for LBBB."
+  );
+}
+
+if (pendingSpecialty) {
+  pendingItems.push(
+    "Complete pending specialty evaluation: " + pendingSpecialty + "."
+  );
+}
+
+
+// -------- MEDICATION HOLDS / PLANS --------
+
+if (
+  antithromboticValue &&
+  antithromboticValue !== "none"
+) {
+  pendingItems.push(
+    "Confirm perioperative plan and last dose for " +
+    antithromboticValue +
+    ", including PCI/stent and bridging considerations when applicable."
+  );
+}
+
+if (
+  sglt2Value &&
+  sglt2Value !== "none"
+) {
+  pendingItems.push(
+    "Confirm SGLT2 inhibitor hold interval before surgery."
+  );
+}
+
+if (pwVal("pwGLP1") === "yes") {
+  pendingItems.push(
+    "Confirm GLP-1 perioperative plan based on current GI symptoms, dosing phase and anesthesia guidance."
+  );
+}
+
+if (pwVal("pwInsulinPump") === "yes") {
+  pendingItems.push(
+    "Establish day-of-surgery insulin pump/CGM and basal insulin plan."
+  );
+}
+
+
+// -------- ACTIVE INFECTION / UTI --------
+
+if (
+  urinarySymptoms === "yes" ||
+  urinarySymptoms === "positive" ||
+  urineCulture.includes("positive")
+) {
+  pendingItems.push(
+    "Treat symptomatic urinary infection and confirm clinical improvement before elective surgery."
+  );
+}
+
+
+// -------- HIGHER LEVEL OF CARE --------
+
+if (
+  (!isNaN(efValue) && efValue < 35) ||
+  (!isNaN(rvspValue) && rvspValue > 65) ||
+  pwVal("pwWHO1") === "yes" ||
+  pwVal("pwSevereTR") === "yes" ||
+  pwVal("pwRVDysfunction") === "yes"
+) {
+  pendingItems.push(
+    "Review higher-level-of-care / alternate-facility requirement based on TSJH criteria."
+  );
+}
+
+
+// -------- DISPLAY PENDING ITEMS --------
+
+if (pendingItems.length > 0) {
+
+  html += `
+    <div class="result-section">
+      <h3>Pending Items Before Surgery</h3>
+
+      <ul>
+        ${pendingItems.map(
+          item => "<li>" + item + "</li>"
+        ).join("")}
+      </ul>
+    </div>
+  `;
+
+} else {
+
+  html += `
+    <div class="result-section">
+      <h3>Pending Items Before Surgery</h3>
+      <p>No unresolved perioperative items identified by this workflow.</p>
+    </div>
+  `;
+}
 // -------- DISPLAY A&P --------
 
 html += `

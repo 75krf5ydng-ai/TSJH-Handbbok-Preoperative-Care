@@ -5277,33 +5277,37 @@ function clearProviderWorkflow() {
 }
 
 
-document
-  .getElementById("pwGenerate")
-  .addEventListener(
+const pwGenerateButton = document.getElementById("pwGenerate");
+if (pwGenerateButton) {
+  pwGenerateButton.addEventListener(
     "click",
     generateProviderWorkflow
   );
+}
 
-document
-  .getElementById("pwCopy")
-  .addEventListener(
+const pwCopyButton = document.getElementById("pwCopy");
+if (pwCopyButton) {
+  pwCopyButton.addEventListener(
     "click",
     copyProviderWorkflow
   );
+}
 
-document
-  .getElementById("pwPrint")
-  .addEventListener(
+const pwPrintButton = document.getElementById("pwPrint");
+if (pwPrintButton) {
+  pwPrintButton.addEventListener(
     "click",
     printProviderWorkflow
   );
+}
 
-document
-  .getElementById("pwClear")
-  .addEventListener(
+const pwClearButton = document.getElementById("pwClear");
+if (pwClearButton) {
+  pwClearButton.addEventListener(
     "click",
     clearProviderWorkflow
   );
+}
 
 
 

@@ -3035,18 +3035,67 @@ if (pwVal("pwInsulinPump") === "yes") {
   }
 
 
-  let status = "Optimized";
-  let reason =
-    "No unresolved medical optimization, testing, medication, specialist, anesthesia, venue, monitoring, or disposition issue identified.";
+  // ============================================================
+// FINAL STATUS PRIORITY / HIGHER-LEVEL-OF-CARE LOGIC
+// ============================================================
 
-  if (stop.length > 0) {
-    status = "Not optimized";
-    reason = stop.join(" ");
-  }
-  else if (pending.length > 0) {
-    status = "Pending";
-    reason = pending.join(" ");
-  }
+const hlocReasons = [];
+
+if (ef !== null && ef < 35) {
+  hlocReasons.push(
+    "LVEF " + ef + "% is below the TSJH 35% threshold"
+  );
+}
+
+if (rvsp !== null && rvsp > 65) {
+  hlocReasons.push(
+    "RVSP " + rvsp + " mmHg exceeds the TSJH higher-level-of-care threshold"
+  );
+}
+
+if (pwVal("pwWHO1") === "yes") {
+  hlocReasons.push(
+    "WHO Group 1 pulmonary hypertension"
+  );
+}
+
+if (pwVal("pwSevereTR") === "yes") {
+  hlocReasons.push(
+    "severe tricuspid regurgitation"
+  );
+}
+
+if (pwVal("pwRVDysfunction") === "yes") {
+  hlocReasons.push(
+    "significant right ventricular dysfunction"
+  );
+}
+
+let status = "Optimized";
+
+let reason =
+  "No unresolved medical optimization, testing, or specialty review requirements identified.";
+
+if (hlocReasons.length > 0) {
+
+  status = "Not optimized";
+
+  reason =
+    hlocReasons.join("; ") +
+    ". Patient meets TSJH higher-level-of-care criteria and does not meet criteria for routine elective surgery at this facility. " +
+    "Recommend surgeon/anesthesia review and scheduling at an appropriate higher-level-of-care facility.";
+
+} else if (stop.length > 0) {
+
+  status = "Not optimized";
+  reason = stop.join(" ");
+
+} else if (pending.length > 0) {
+
+  status = "Pending";
+  reason = pending.join(" ");
+
+}
 
 
   let html = "";

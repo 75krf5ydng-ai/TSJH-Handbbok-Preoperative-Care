@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Patient-Specific Preoperative Summary | TSJH Handbook</title>
+<style>
+:root{--navy:#17324d;--bg:#f4f7f9;--line:#d9e2ec;--text:#1f2933;--muted:#52606d;--green:#2f7d46;--yellow:#996515;--red:#b42318}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.45}
+header{background:var(--navy);color:#fff;padding:28px 18px;text-align:center}
+main{max-width:980px;margin:auto;padding:18px}
+section{background:#fff;padding:20px;margin:16px 0;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+h2{color:var(--navy);border-bottom:2px solid var(--line);padding-bottom:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:block;font-weight:bold;margin:5px 0}
+input,select,textarea{width:100%;padding:11px;border:1px solid #b8c5d1;border-radius:7px;font:inherit}
+textarea{min-height:90px;resize:vertical}
+button{border:0;border-radius:7px;padding:11px 14px;font-weight:bold;cursor:pointer;margin:5px;background:var(--navy);color:#fff}
+.secondary{background:#e9eef3;color:var(--navy)}
+.status{padding:14px;border-radius:8px;font-weight:bold;margin:12px 0}
+.optimized{background:#eef9f1;border:2px solid var(--green)}
+.pending{background:#fff8e7;border:2px solid var(--yellow)}
+.notopt{background:#fff3f1;border:2px solid var(--red)}
+.summary p{margin:5px 0}.small{font-size:.9rem;color:var(--muted)}a{color:var(--navy);font-weight:bold}
+@media(max-width:720px){.grid{grid-template-columns:1fr}}
+@media print{header,.no-print{display:none!important}body{background:#fff}section{box-shadow:none;margin:0;padding:10px}.summary{font-size:11pt}}
+</style>
+</head>
+<body>
+<header><h1>Patient-Specific Preoperative Summary</h1><p>Create a concise printable provider summary for charting, handoff, or discussion</p></header>
+<main>
+<section class="no-print">
+<p><a href="index.html">Home</a> Â· <a href="provider-optimization-workflow.html">Optimization Workflow</a> Â· <a href="provider-quick-reference.html">Quick Reference</a></p>
+<h2>Patient / Procedure</h2>
+<div class="grid">
+<div><label>Patient</label><input id="patient"></div>
+<div><label>Date of Service</label><input id="dos" type="date"></div>
+<div><label>Procedure</label><input id="procedure"></div>
+<div><label>Surgeon</label><input id="surgeon"></div>
+</div>
+</section>
+
+<section class="no-print">
+<h2>Risk / Screening</h2>
+<div class="grid">
+<div><label>DASI</label><input id="dasi" type="number" step="0.1"></div>
+<div><label>STOP-BANG</label><input id="stopbang" type="number"></div>
+<div><label>CFS</label><input id="cfs" type="number"></div>
+<div><label>RCRI</label><input id="rcri" type="number"></div>
+<div><label>Surgical Risk</label><select id="surgRisk"><option value="">Select</option><option>Low</option><option>Intermediate</option><option>High</option></select></div>
+<div><label>BNP Screening</label><select id="bnp"><option value="No">No</option><option value="Yes">Yes</option></select></div>
+</div>
+</section>
+
+<section class="no-print">
+<h2>Key Findings</h2>
+<div class="grid">
+<div><label>Active cardiac problem</label><select id="activeCardiac"><option>No</option><option>Yes</option></select></div>
+<div><label>HLOC criterion present</label><select id="hloc"><option>No</option><option>Yes</option></select></div>
+<div><label>Pending testing/review</label><select id="pending"><option>No</option><option>Yes</option></select></div>
+<div><label>Status</label><select id="status"><option>Optimized</option><option>Pending</option><option>Not optimized</option></select></div>
+</div>
+<label style="margin-top:12px">Reason / Key Issues</label><textarea id="reason" placeholder="Example: Severe TR meets TSJH HLOC criteria; surgeon/anesthesia review recommended."></textarea>
+<label>Abnormal Labs / Diagnostics</label><textarea id="abnormals"></textarea>
+<label>Medication Issues / Holds</label><textarea id="meds"></textarea>
+<label>Perioperative / Postoperative Plan</label><textarea id="plan"></textarea>
+</section>
+
+<section class="no-print">
+<h2>Generate Summary</h2>
+<button id="generate">Generate Summary</button>
+<button id="copy" class="secondary">Copy</button>
+<button id="print" class="secondary">Print</button>
+<button id="clear" class="secondary">Clear</button>
+</section>
+
+<section id="resultSection" style="display:none">
+<div id="result" class="summary"></div>
+</section>
+</main>
+
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const v=id=>$(id).value.trim();
+const esc=s=>String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;');
+
+function makeSummary(){
+ let st=v("status"), cls=st==="Optimized"?"optimized":st==="Pending"?"pending":"notopt";
+ let html="<h2>Preoperative Provider Summary</h2>";
+ if(v("patient")) html+=`<p><strong>Patient:</strong> ${esc(v("patient"))}</p>`;
+ if(v("dos")) html+=`<p><strong>Date of Service:</strong> ${esc(v("dos"))}</p>`;
+ if(v("procedure")) html+=`<p><strong>Procedure:</strong> ${esc(v("procedure"))}</p>`;
+ if(v("surgeon")) html+=`<p><strong>Surgeon:</strong> ${esc(v("surgeon"))}</p>`;
+ html+=`<div class="status ${cls}">FINAL PREOPERATIVE OPTIMIZATION STATUS: ${esc(st.toUpperCase())}</div>`;
+ if(v("reason")) html+=`<p><strong>Reason:</strong> ${esc(v("reason"))}</p>`;
+ html+="<h3>Functional & Risk Screening</h3>";
+ html+=`<p>DASI: ${esc(v("dasi")||"â")} &nbsp; | &nbsp; STOP-BANG: ${esc(v("stopbang")||"â")} &nbsp; | &nbsp; CFS: ${esc(v("cfs")||"â")} &nbsp; | &nbsp; RCRI: ${esc(v("rcri")||"â")}</p>`;
+ html+="<h3>Preoperative Cardiac Guidelines Application</h3>";
+ html+=`<p>Surgical Risk: ${esc(v("surgRisk")||"â")}<br>RCRI: ${esc(v("rcri")||"â")}<br>Active Cardiac Problems: ${esc(v("activeCardiac"))}<br>BNP Screening: ${esc(v("bnp"))}</p>`;
+ if(v("abnormals")) html+=`<h3>Abnormal Labs / Diagnostics</h3><p>${esc(v("abnormals"))}</p>`;
+ if(v("meds")) html+=`<h3>Medication Issues / Holds</h3><p>${esc(v("meds"))}</p>`;
+ if(v("plan")) html+=`<h3>Perioperative / Postoperative Plan</h3><p>${esc(v("plan"))}</p>`;
+ html+=`<h3>Disposition / Escalation</h3><p>Higher-level-of-care criterion present: ${esc(v("hloc"))}<br>Pending testing/review: ${esc(v("pending"))}</p>`;
+ html+=`<p class="small">Clinical decision support summary. Final perioperative decisions remain patient-specific and should reflect current TSJH policy, anesthesia/surgeon review, and applicable specialty guidance.</p>`;
+ $("result").innerHTML=html;$("resultSection").style.display="block";$("resultSection").scrollIntoView({behavior:"smooth"});
+}
+$("generate").addEventListener("click",makeSummary);
+$("print").addEventListener("click",()=>{if($("resultSection").style.display==="none")makeSummary();window.print()});
+$("copy").addEventListener("click",async()=>{if($("resultSection").style.display==="none")makeSummary();let t=$("result").innerText;try{await navigator.clipboard.writeText(t);alert("Summary copied.");}catch(e){alert("Copy not available in this browser. Select the generated text manually.");}});
+$("clear").addEventListener("click",()=>{document.querySelectorAll("input,textarea").forEach(x=>x.value="");document.querySelectorAll("select").forEach(x=>x.selectedIndex=0);$("result").innerHTML="";$("resultSection").style.display="none";});
+</script>
+</body>
+</html>

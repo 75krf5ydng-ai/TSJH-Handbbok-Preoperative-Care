@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinical Problem Search | TSJH Preoperative Handbook</title>
+<style>
+:root{
+  --navy:#17324d;
+  --blue:#2a5778;
+  --bg:#f4f7f9;
+  --card:#ffffff;
+  --line:#d9e2ec;
+  --text:#1f2933;
+  --muted:#5b6773;
+  --green:#2f7d46;
+  --green-bg:#eef9f1;
+  --yellow:#996515;
+  --yellow-bg:#fff8e7;
+  --red:#b42318;
+  --red-bg:#fff3f1;
+  --info:#2f6f9f;
+  --info-bg:#edf6fb;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.52;
+}
+header{
+  background:var(--navy);
+  color:#fff;
+  padding:28px 18px;
+  text-align:center;
+}
+header h1{margin:0 0 7px;font-size:1.9rem}
+header p{margin:0;opacity:.95}
+nav{
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  padding:10px;
+  text-align:center;
+}
+nav a{
+  display:inline-block;
+  color:var(--navy);
+  text-decoration:none;
+  font-weight:bold;
+  margin:3px 6px;
+}
+main{
+  max-width:1100px;
+  margin:22px auto;
+  padding:0 14px 40px;
+}
+section{
+  background:var(--card);
+  border-radius:10px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+h2{
+  margin-top:0;
+  color:var(--navy);
+  border-bottom:2px solid var(--line);
+  padding-bottom:8px;
+}
+h3{color:var(--blue);margin-bottom:6px}
+.search-wrap{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+}
+input[type="search"]{
+  width:100%;
+  padding:13px;
+  border:1px solid #b8c5d1;
+  border-radius:7px;
+  font-size:1rem;
+}
+button{
+  border:0;
+  border-radius:7px;
+  padding:11px 14px;
+  font:inherit;
+  font-weight:bold;
+  cursor:pointer;
+}
+.primary{background:var(--navy);color:#fff}
+.secondary{background:#e9eef3;color:var(--navy)}
+.suggestions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:12px;
+}
+.suggestions button{
+  padding:7px 9px;
+  font-size:.9rem;
+}
+.box{
+  border-left:5px solid;
+  border-radius:5px;
+  padding:13px 14px;
+  margin:12px 0;
+}
+.info{background:var(--info-bg);border-color:var(--info)}
+.good{background:var(--green-bg);border-color:var(--green)}
+.warn{background:var(--yellow-bg);border-color:var(--yellow)}
+.danger{background:var(--red-bg);border-color:var(--red)}
+.result-card{
+  border:1px solid var(--line);
+  border-radius:9px;
+  padding:16px;
+  margin:14px 0;
+  background:#fff;
+}
+.badge{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:999px;
+  font-size:.82rem;
+  font-weight:bold;
+  margin-right:6px;
+  margin-bottom:6px;
+  background:#eef3f7;
+  color:var(--navy);
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.card{
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:13px;
+}
+.small{font-size:.9rem;color:var(--muted)}
+.hidden{display:none}
+ul{margin-top:6px}
+footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:.9rem;
+  padding:24px 14px;
+}
+@media(max-width:760px){
+  .search-wrap{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr}
+  header h1{font-size:1.5rem}
+}
+@media print{
+  nav,.no-print,#popularProblems{display:none!important}
+  body{background:#fff}
+  section{box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Clinical Problem Search</h1>
+  <p>Preoperative differential, workup, optimization considerations, and TSJH-oriented next steps</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="provider-optimization-workflow.html">Optimization Workflow</a>
+  <a href="tsjh-guidelines.html">TSJH Guidelines</a>
+  <a href="clinical-calculators-resources.html">Calculators</a>
+  <a href="references.html">References</a>
+</nav>
+
+<main>
+<section>
+  <h2>Search a Clinical Finding or Problem</h2>
+  <p class="small">Examples: low sodium, elevated platelets, abnormal EKG, bradycardia, creatinine 2.1, positive UA, anemia, leukocytosis, severe TR, shortness of breath.</p>
+  <div class="search-wrap">
+    <input id="problemSearch" type="search" placeholder="Type a finding, symptom, lab abnormality, or perioperative problem...">
+    <button id="searchButton" class="primary" type="button">Search</button>
+  </div>
+  <div class="suggestions no-print" id="popularProblems">
+    <button class="secondary quick" data-q="anemia">Anemia</button>
+    <button class="secondary quick" data-q="hyponatremia">Low sodium</button>
+    <button class="secondary quick" data-q="hyperkalemia">High potassium</button>
+    <button class="secondary quick" data-q="thrombocytosis">High platelets</button>
+    <button class="secondary quick" data-q="positive urinalysis">Positive UA</button>
+    <button class="secondary quick" data-q="leukocytosis">High WBC</button>
+    <button class="secondary quick" data-q="abnormal EKG">Abnormal EKG</button>
+    <button class="secondary quick" data-q="shortness of breath">Shortness of breath</button>
+    <button class="secondary quick" data-q="elevated creatinine">Elevated creatinine</button>
+    <button class="secondary quick" data-q="severe tricuspid regurgitation">Severe TR</button>
+  </div>
+  <div class="box info">
+    <strong>Clinical decision support only.</strong> Results are designed for preoperative evaluation and should be integrated with history, exam, trends, procedure risk, anesthesia/surgeon input, current TSJH policy, and specialty guidance.
+  </div>
+</section>
+
+<section id="resultsSection" class="hidden">
+  <h2>Search Results</h2>
+  <div id="results"></div>
+</section>
+
+<section>
+  <h2>How Results Are Organized</h2>
+  <div class="grid">
+    <div class="card"><strong>Possible Differential</strong><br><span class="small">Common and perioperatively important causes to consider.</span></div>
+    <div class="card"><strong>Suggested Workup</strong><br><span class="small">Reasonable next tests, records, trends, and focused evaluation.</span></div>
+    <div class="card"><strong>Optimization / Treatment Considerations</strong><br><span class="small">General management priorities before elective surgery.</span></div>
+    <div class="card"><strong>Preoperative / TSJH Next Step</strong><br><span class="small">Whether a finding is usually optimized, pending, not optimized, or needs HLOC review.</span></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  TSJH Preoperative Handbook Â· Clinical Problem Search
+</footer>
+
+<script>
+"use strict";
+
+const problems = [
+{
+  title:"Anemia",
+  aliases:["anemia","low hemoglobin","low hgb","low hematocrit","low hct"],
+  tags:["CBC","Hematology","Labs"],
+  differential:[
+    "Iron deficiency / chronic blood loss",
+    "Anemia of chronic disease or inflammation",
+    "Chronic kidney disease / reduced erythropoietin",
+    "B12 or folate deficiency",
+    "Hemolysis",
+    "Bone marrow disease or medication effect",
+    "Acute or occult bleeding"
+  ],
+  workup:[
+    "Review prior CBC trend and MCV/RDW",
+    "Ferritin, iron, TIBC/transferrin saturation when iron deficiency is possible",
+    "B12/folate when macrocytosis or nutritional risk is present",
+    "Reticulocyte count, hemolysis studies, renal function, and bleeding evaluation as clinically indicated",
+    "Assess expected surgical blood loss and procedure urgency"
+  ],
+  optimize:[
+    "Treat reversible cause when time permits",
+    "Iron replacement for confirmed/suspected deficiency when appropriate",
+    "Escalate severe or symptomatic anemia; consider transfusion only when clinically indicated",
+    "Coordinate with surgeon/anesthesia when anemia materially increases blood-loss or transfusion risk"
+  ],
+  next:"Usually Pending when clinically significant anemia remains unexplained or untreated. Severe/symptomatic anemia or active bleeding may be Not optimized until stabilized."
+},
+{
+  title:"Polycythemia / Elevated Hemoglobin",
+  aliases:["polycythemia","high hemoglobin","high hgb","elevated hemoglobin","elevated hematocrit","high hematocrit"],
+  tags:["CBC","Hematology","Thrombosis"],
+  differential:[
+    "Dehydration / hemoconcentration",
+    "Hypoxemia from OSA, COPD, smoking, or chronic lung disease",
+    "Testosterone or androgen therapy",
+    "Renal/EPO-mediated causes",
+    "Primary myeloproliferative disease such as polycythemia vera"
+  ],
+  workup:[
+    "Repeat CBC when dehydration is possible",
+    "Review oxygen saturation, OSA/COPD history, smoking, and testosterone use",
+    "Consider EPO level, JAK2 testing, or hematology evaluation if persistent and unexplained"
+  ],
+  optimize:[
+    "Correct dehydration when present",
+    "Address hypoxemia and confirm appropriate OSA/COPD treatment",
+    "Persistent marked erythrocytosis may require hematology-directed management"
+  ],
+  next:"Often Pending if markedly elevated or unexplained because of potential thrombotic risk. Mild stable elevation may proceed after clinical review."
+},
+{
+  title:"Hyponatremia",
+  aliases:["hyponatremia","low sodium","sodium low","na low"],
+  tags:["Electrolytes","BMP","Neurologic"],
+  differential:[
+    "Hypovolemia / dehydration",
+    "Thiazide or other medication effect",
+    "SIADH",
+    "Heart failure, cirrhosis, or renal disease",
+    "Hyperglycemia-associated translocational hyponatremia",
+    "Adrenal or thyroid disease",
+    "Excess free-water intake"
+  ],
+  workup:[
+    "Repeat sodium and review trend/chronicity",
+    "Check glucose and correct sodium interpretation when hyperglycemic",
+    "Assess volume status and medication list",
+    "Serum osmolality, urine osmolality, urine sodium when cause is unclear",
+    "TSH/cortisol when clinically indicated"
+  ],
+  optimize:[
+    "Treat underlying cause and avoid overly rapid correction",
+    "Symptomatic or severe hyponatremia requires urgent evaluation",
+    "Mild chronic hyponatremia should still be understood and trended before major elective surgery"
+  ],
+  next:"Usually Pending when sodium is meaningfully low, falling, symptomatic, or unexplained. Severe/symptomatic hyponatremia is Not optimized."
+},
+{
+  title:"Hypernatremia",
+  aliases:["hypernatremia","high sodium","sodium high"],
+  tags:["Electrolytes","BMP","Volume"],
+  differential:[
+    "Free-water deficit / dehydration",
+    "Diabetes insipidus",
+    "Osmotic diuresis",
+    "Impaired thirst/access to water",
+    "Iatrogenic sodium load"
+  ],
+  workup:[
+    "Repeat sodium and assess chronicity",
+    "Review volume status, intake/output, glucose, renal function",
+    "Urine osmolality and sodium when etiology is unclear"
+  ],
+  optimize:[
+    "Correct free-water deficit carefully",
+    "Address underlying cause and avoid rapid correction of chronic hypernatremia"
+  ],
+  next:"Pending when clinically significant or unexplained; severe or symptomatic hypernatremia is Not optimized."
+},
+{
+  title:"Hypokalemia",
+  aliases:["hypokalemia","low potassium","potassium low","k low"],
+  tags:["Electrolytes","Arrhythmia","BMP"],
+  differential:[
+    "Diuretic effect",
+    "GI losses",
+    "Poor intake",
+    "Intracellular shift",
+    "Hyperaldosteronism or renal potassium wasting",
+    "Hypomagnesemia"
+  ],
+  workup:[
+    "Repeat potassium when result is unexpected",
+    "Check magnesium",
+    "Review diuretics, GI losses, renal function and ECG when clinically significant"
+  ],
+  optimize:[
+    "Replace potassium and magnesium when appropriate",
+    "Treat underlying cause",
+    "More aggressive evaluation is warranted with arrhythmia, weakness, digoxin use, or marked hypokalemia"
+  ],
+  next:"Pending when clinically significant or not corrected. Marked hypokalemia with symptoms/ECG changes is Not optimized."
+},
+{
+  title:"Hyperkalemia",
+  aliases:["hyperkalemia","high potassium","potassium high","k high"],
+  tags:["Electrolytes","Arrhythmia","Renal"],
+  differential:[
+    "Renal failure / AKI",
+    "Medication effect (ACE-I/ARB, potassium-sparing agents, supplements)",
+    "Metabolic acidosis",
+    "Cellular injury",
+    "Pseudohyperkalemia from hemolysis or thrombocytosis"
+  ],
+  workup:[
+    "Repeat nonhemolyzed potassium when appropriate",
+    "Check renal function and bicarbonate",
+    "Review medications",
+    "Obtain ECG for clinically significant elevation or symptoms"
+  ],
+  optimize:[
+    "Treat true significant hyperkalemia promptly",
+    "Address renal or medication cause",
+    "Do not rely on a hemolyzed sample when the clinical picture is discordant"
+  ],
+  next:"Pending until clarified/corrected. Significant hyperkalemia or ECG changes are Not optimized."
+},
+{
+  title:"Elevated Creatinine / Reduced eGFR",
+  aliases:["elevated creatinine","high creatinine","renal insufficiency","low egfr","ckd","kidney disease","aki"],
+  tags:["Renal","BMP","Medication dosing"],
+  differential:[
+    "Chronic kidney disease",
+    "Pre-renal volume depletion",
+    "Acute kidney injury",
+    "Medication or nephrotoxin effect",
+    "Obstruction",
+    "Cardiorenal physiology"
+  ],
+  workup:[
+    "Compare with baseline creatinine/eGFR",
+    "Repeat BMP when acute change is possible",
+    "Review volume status, medications, NSAIDs, ACE-I/ARB/diuretics and contrast exposure",
+    "Urinalysis, bladder scan/renal imaging, or nephrology review when indicated"
+  ],
+  optimize:[
+    "Correct reversible volume depletion or medication-related injury",
+    "Renally dose medications",
+    "Clarify dialysis timing in ESRD",
+    "Avoid perioperative nephrotoxins when possible"
+  ],
+  next:"Stable CKD may be Optimized with an appropriate plan. Active/progressive AKI or unresolved dialysis/electrolyte issues are Pending or Not optimized depending on severity."
+},
+{
+  title:"Leukocytosis",
+  aliases:["leukocytosis","high wbc","elevated wbc","white count high","high white blood cell count"],
+  tags:["CBC","Infection","Inflammation"],
+  differential:[
+    "Infection",
+    "Stress response",
+    "Steroid effect",
+    "Smoking",
+    "Inflammatory disease",
+    "Hematologic disorder"
+  ],
+  workup:[
+    "Review differential and trend",
+    "Assess fever, symptoms, exam and recent steroid use",
+    "Targeted cultures/imaging only when clinically indicated",
+    "Consider repeat CBC if unexpected or rising"
+  ],
+  optimize:[
+    "Treat active infection when present",
+    "Avoid cancelling elective surgery based on isolated mild leukocytosis without clinical context"
+  ],
+  next:"Mild stable leukocytosis without symptoms may not delay surgery. Symptomatic infection, sepsis, or unexplained significant rise is Pending/Not optimized."
+},
+{
+  title:"Thrombocytosis",
+  aliases:["thrombocytosis","high platelets","elevated platelets","platelets high"],
+  tags:["CBC","Hematology","Thrombosis"],
+  differential:[
+    "Reactive inflammation or infection",
+    "Iron deficiency",
+    "Recent surgery or tissue injury",
+    "Malignancy",
+    "Postsplenectomy state",
+    "Myeloproliferative neoplasm"
+  ],
+  workup:[
+    "Review trend and degree of elevation",
+    "Ferritin/iron studies if iron deficiency is plausible",
+    "Look for infection/inflammation",
+    "Consider hematology evaluation for marked persistent unexplained thrombocytosis"
+  ],
+  optimize:[
+    "Treat underlying cause",
+    "Assess thrombosis/bleeding history when very high or persistent"
+  ],
+  next:"Mild reactive thrombocytosis is often not a reason to delay. Marked unexplained elevation may be Pending for further evaluation."
+},
+{
+  title:"Thrombocytopenia",
+  aliases:["thrombocytopenia","low platelets","platelets low"],
+  tags:["CBC","Bleeding","Hematology"],
+  differential:[
+    "Medication effect",
+    "Liver disease / splenic sequestration",
+    "Immune thrombocytopenia",
+    "Bone marrow disease",
+    "Consumption/sepsis",
+    "Pseudothrombocytopenia"
+  ],
+  workup:[
+    "Repeat CBC/peripheral smear when pseudothrombocytopenia is possible",
+    "Review prior platelet counts, medications, liver function and bleeding history",
+    "Procedure-specific platelet requirement and anesthesia plan"
+  ],
+  optimize:[
+    "Treat reversible cause",
+    "Coordinate with surgery/anesthesia/hematology for significant thrombocytopenia"
+  ],
+  next:"Pending when platelet count is below the procedure/anesthesia threshold or unexplained. Significant bleeding risk may be Not optimized."
+},
+{
+  title:"Positive Urinalysis / Bacteriuria",
+  aliases:["positive ua","positive urinalysis","bacteriuria","urine culture positive","uti","abnormal ua"],
+  tags:["Urine","Infection","Antibiotic stewardship"],
+  differential:[
+    "Symptomatic urinary tract infection",
+    "Asymptomatic bacteriuria",
+    "Contamination",
+    "Sterile pyuria",
+    "Hematuria from noninfectious urinary pathology"
+  ],
+  workup:[
+    "Ask specifically about dysuria, urgency, frequency, suprapubic pain, fever, flank pain, and systemic symptoms",
+    "Use urine culture when symptoms or clinical context support infection",
+    "Avoid assuming pyuria or bacteriuria alone equals symptomatic UTI"
+  ],
+  optimize:[
+    "Treat symptomatic infection based on culture and clinical context",
+    "Avoid unnecessary antibiotics for asymptomatic bacteriuria except in settings where current guideline indications apply",
+    "For joint/spine implant cases, follow current facility policy and surgeon-specific requirements"
+  ],
+  next:"Symptomatic UTI is generally Pending until treated/clinically improved. Asymptomatic bacteriuria alone does not automatically mean Not optimized."
+},
+{
+  title:"Hyperglycemia / Elevated A1c",
+  aliases:["hyperglycemia","high glucose","elevated glucose","high a1c","elevated a1c","diabetes uncontrolled"],
+  tags:["Diabetes","Glucose","Infection risk"],
+  differential:[
+    "Known diabetes with suboptimal control",
+    "Stress hyperglycemia",
+    "Steroid effect",
+    "Medication nonadherence",
+    "Acute infection"
+  ],
+  workup:[
+    "Review fasting/random glucose trend and A1c",
+    "Assess symptoms, ketones/anion gap when clinically indicated",
+    "Review diabetes medications and perioperative hold plan"
+  ],
+  optimize:[
+    "Address marked hyperglycemia and ensure perioperative insulin/medication plan",
+    "SGLT2 inhibitors require an appropriate preoperative hold plan",
+    "GLP-1 therapy should be evaluated using current anesthesia guidance and GI symptom/aspiration-risk context"
+  ],
+  next:"Marked symptomatic hyperglycemia, DKA/HHS, or uncontrolled acute metabolic disease is Not optimized. Less severe chronic elevation may be Pending or Optimized with an appropriate plan."
+},
+{
+  title:"Bradycardia",
+  aliases:["bradycardia","low heart rate","slow heart rate","hr low"],
+  tags:["Cardiac","Rhythm","EKG"],
+  differential:[
+    "Medication effect (beta blocker, calcium-channel blocker, digoxin)",
+    "Sinus node dysfunction",
+    "AV block",
+    "Athletic baseline",
+    "Hypothyroidism",
+    "Electrolyte abnormality"
+  ],
+  workup:[
+    "Assess symptoms, baseline heart rate and medication list",
+    "12-lead ECG",
+    "Electrolytes/TSH when indicated",
+    "Cardiology evaluation for symptomatic or high-grade conduction disease"
+  ],
+  optimize:[
+    "Treat reversible causes",
+    "Do not stop indicated beta-blocker therapy reflexively without clinical review"
+  ],
+  next:"Asymptomatic stable sinus bradycardia may be Optimized. Symptomatic bradycardia, high-grade AV block, or unstable conduction disease is Not optimized/Pending specialist review."
+},
+{
+  title:"Tachycardia",
+  aliases:["tachycardia","high heart rate","fast heart rate","hr high"],
+  tags:["Cardiac","Rhythm","Systemic illness"],
+  differential:[
+    "Pain/anxiety",
+    "Dehydration",
+    "Anemia",
+    "Infection",
+    "Arrhythmia",
+    "Hyperthyroidism",
+    "Pulmonary embolism or cardiopulmonary disease"
+  ],
+  workup:[
+    "Repeat vitals and assess rhythm",
+    "12-lead ECG when persistent",
+    "CBC, BMP, volume status, infection evaluation and thyroid testing as indicated"
+  ],
+  optimize:[
+    "Treat underlying cause",
+    "Persistent unexplained tachycardia should not be dismissed as anxiety"
+  ],
+  next:"Persistent or symptomatic unexplained tachycardia is Pending. Unstable arrhythmia or cardiopulmonary disease is Not optimized."
+},
+{
+  title:"Abnormal EKG",
+  aliases:["abnormal ekg","abnormal ecg","ekg abnormal","ecg abnormal","electrocardiogram abnormal"],
+  tags:["Cardiac","EKG","Testing"],
+  differential:[
+    "Normal variant or artifact",
+    "Ischemic change",
+    "Conduction disease",
+    "Atrial or ventricular arrhythmia",
+    "Hypertrophy",
+    "Prior infarct pattern",
+    "Electrolyte or medication effect"
+  ],
+  workup:[
+    "Compare with prior ECG",
+    "Confirm rate, rhythm, intervals, axis and ST-T changes",
+    "Correlate with symptoms and cardiac history",
+    "Escalate new ischemic change, high-grade block, significant arrhythmia, or LBBB per facility pathway"
+  ],
+  optimize:[
+    "Do not order stress testing solely because an ECG is labeled abnormal; testing should follow clinical risk and current guideline indications",
+    "LBBB requires cardiology evaluation or pharmacologic nuclear stress pathway under TSJH guidance"
+  ],
+  next:"Minor chronic abnormalities may still be Optimized. New ischemic changes, unstable rhythm, or unresolved LBBB pathway make status Pending or Not optimized."
+},
+{
+  title:"Shortness of Breath / Dyspnea",
+  aliases:["shortness of breath","dyspnea","sob","difficulty breathing"],
+  tags:["Pulmonary","Cardiac","Symptoms"],
+  differential:[
+    "Heart failure",
+    "COPD/asthma",
+    "Pneumonia or respiratory infection",
+    "Pulmonary embolism",
+    "Anemia",
+    "Deconditioning",
+    "Pulmonary hypertension or valvular disease"
+  ],
+  workup:[
+    "Assess acuity, oxygen saturation, exam and exertional symptoms",
+    "ECG, chest imaging, CBC, BNP/NT-proBNP, echocardiography or pulmonary testing as clinically indicated",
+    "Identify new vs chronic baseline symptoms"
+  ],
+  optimize:[
+    "New or worsening unexplained dyspnea requires evaluation before elective surgery",
+    "Optimize HF/COPD/asthma and treat infection when present"
+  ],
+  next:"New or worsening dyspnea is generally Pending; hypoxemia, decompensated HF, severe PH, or unstable cardiopulmonary disease may be Not optimized/HLOC."
+},
+{
+  title:"Severe Tricuspid Regurgitation",
+  aliases:["severe tr","severe tricuspid regurgitation","tricuspid regurgitation severe"],
+  tags:["Valve","Pulmonary HTN","HLOC"],
+  differential:[
+    "Pulmonary hypertension",
+    "RV dilation/dysfunction",
+    "Left-sided heart disease",
+    "Primary tricuspid valve disease",
+    "Device-lead related regurgitation"
+  ],
+  workup:[
+    "Review most recent echocardiogram",
+    "Assess RV size/function and RVSP/PASP",
+    "Review pulmonary hypertension diagnosis, symptoms and vasodilator therapy",
+    "Cardiology/pulmonary hypertension review when appropriate"
+  ],
+  optimize:[
+    "Assess volume status and right-heart function",
+    "Do not interpret severe TR in isolation from RV function and pulmonary hypertension context"
+  ],
+  next:"Under the TSJH HLOC pathway used in this handbook, severe TR is a higher-level-of-care red flag and should trigger surgeon/anesthesia review and alternate-setting consideration."
+},
+{
+  title:"Pulmonary Hypertension",
+  aliases:["pulmonary hypertension","pulmonary htn","high rvsp","rvsp elevated","who group 1"],
+  tags:["Pulmonary HTN","Right heart","HLOC"],
+  differential:[
+    "WHO Group 1 pulmonary arterial hypertension",
+    "Left-heart disease",
+    "Chronic lung disease/hypoxia",
+    "Chronic thromboembolic disease",
+    "Multifactorial pulmonary hypertension"
+  ],
+  workup:[
+    "Review most recent echocardiogram and RVSP",
+    "Assess RV function and severe TR",
+    "Identify WHO group when known",
+    "Review pulmonary vasodilator therapy and specialist notes"
+  ],
+  optimize:[
+    "Maintain specialist-directed pulmonary hypertension therapy",
+    "Escalate significant right-heart dysfunction or high-risk PH"
+  ],
+  next:"TSJH HLOC red flags include WHO Group 1 PH, RVSP >65 mmHg, severe TR, moderate-to-severe RV dysfunction, or advanced pulmonary vasodilator therapy."
+},
+{
+  title:"Reduced Ejection Fraction / Heart Failure",
+  aliases:["low ef","reduced ef","ef low","heart failure","chf","hfrEF","lvef low"],
+  tags:["Heart failure","Cardiac","HLOC"],
+  differential:[
+    "Ischemic cardiomyopathy",
+    "Nonischemic cardiomyopathy",
+    "Valvular disease",
+    "Tachycardia-mediated dysfunction",
+    "Hypertensive cardiomyopathy"
+  ],
+  workup:[
+    "Verify recent LVEF and symptoms",
+    "Assess NYHA class, volume status, recent HF admissions and GDMT",
+    "Review ECG and cardiology evaluation"
+  ],
+  optimize:[
+    "Optimize volume status and guideline-directed therapy",
+    "Avoid elective surgery during decompensated HF"
+  ],
+  next:"LVEF <35% is a TSJH higher-level-of-care trigger in this handbook. EF â¥35% may proceed when facility criteria for stability are satisfied."
+},
+{
+  title:"Aortic Stenosis",
+  aliases:["aortic stenosis","severe as","aortic valve stenosis","low ava","high aortic gradient"],
+  tags:["Valve","Cardiac","HLOC"],
+  differential:[
+    "Calcific aortic stenosis",
+    "Bicuspid aortic valve disease",
+    "Low-flow/low-gradient physiology"
+  ],
+  workup:[
+    "Review AVA, mean gradient, Vmax, symptoms and LV function",
+    "Confirm echocardiogram recency",
+    "Cardiovascular review for moderate/severe or symptomatic disease"
+  ],
+  optimize:[
+    "Do not proceed routinely with severe symptomatic or high-risk AS without escalation",
+    "Coordinate anesthesia/cardiology/surgeon planning"
+  ],
+  next:"TSJH severe-AS red flags used here: AVA <1.0 cmÂ², mean gradient >40 mmHg, or Vmax >4.0 m/s. Severe AS should trigger higher-level-of-care review."
+},
+{
+  title:"Hypertension",
+  aliases:["hypertension","high blood pressure","elevated bp","bp high"],
+  tags:["Blood pressure","Cardiac","Medication"],
+  differential:[
+    "Chronic essential hypertension",
+    "Pain/anxiety",
+    "Medication omission",
+    "Secondary hypertension",
+    "Acute end-organ process"
+  ],
+  workup:[
+    "Repeat BP with correct cuff and after rest",
+    "Review home readings and antihypertensive adherence",
+    "Assess for chest pain, neurologic symptoms, pulmonary edema, AKI or other end-organ injury when severe"
+  ],
+  optimize:[
+    "Treat chronic hypertension longitudinally",
+    "Avoid unnecessary cancellation based on a single mildly elevated office value",
+    "Acute severe hypertension with end-organ symptoms requires urgent evaluation"
+  ],
+  next:"Usually Optimized if chronic and stable. Severe symptomatic hypertension or hypertensive emergency is Not optimized; markedly uncontrolled BP may be Pending anesthesia review."
+},
+{
+  title:"Hypotension",
+  aliases:["hypotension","low blood pressure","bp low"],
+  tags:["Blood pressure","Volume","Cardiac"],
+  differential:[
+    "Volume depletion",
+    "Medication effect",
+    "Sepsis",
+    "Bleeding",
+    "Cardiac dysfunction",
+    "Autonomic dysfunction"
+  ],
+  workup:[
+    "Repeat BP and assess symptoms/orthostasis",
+    "Review medications and hydration",
+    "CBC/BMP/ECG and targeted evaluation based on suspected cause"
+  ],
+  optimize:[
+    "Correct reversible volume or medication causes",
+    "Investigate persistent symptomatic hypotension"
+  ],
+  next:"Persistent symptomatic or unexplained hypotension is Pending or Not optimized depending on severity."
+},
+{
+  title:"Elevated INR / Coagulopathy",
+  aliases:["elevated inr","high inr","coagulopathy","prolonged pt","prolonged ptt"],
+  tags:["Coagulation","Bleeding","Anticoagulation"],
+  differential:[
+    "Warfarin effect",
+    "Liver dysfunction",
+    "Vitamin K deficiency",
+    "Consumptive coagulopathy",
+    "Laboratory artifact"
+  ],
+  workup:[
+    "Review anticoagulants and indication",
+    "Repeat coagulation testing when unexpected",
+    "Assess liver function, bleeding history and platelet count"
+  ],
+  optimize:[
+    "Follow procedure-specific anticoagulation interruption plan",
+    "Avoid empiric reversal unless clinically indicated",
+    "Use specialist/anticoagulation resources for complex bridging decisions"
+  ],
+  next:"Pending until an appropriate perioperative anticoagulation plan and acceptable coagulation status are established."
+}
+];
+
+function normalize(s){
+  return String(s || "").toLowerCase().replace(/[^\w\s%./-]/g," ").replace(/\s+/g," ").trim();
+}
+
+function scoreProblem(problem, q){
+  const nq = normalize(q);
+  if(!nq) return 0;
+  let score = 0;
+  const title = normalize(problem.title);
+  if(title === nq) score += 100;
+  if(title.includes(nq) || nq.includes(title)) score += 40;
+  for(const a of problem.aliases){
+    const na = normalize(a);
+    if(na === nq) score += 90;
+    else if(na.includes(nq) || nq.includes(na)) score += 30;
+    const words = nq.split(" ").filter(Boolean);
+    for(const w of words){
+      if(w.length > 2 && na.includes(w)) score += 4;
+    }
+  }
+  const all = normalize([problem.title, ...problem.aliases, ...problem.tags].join(" "));
+  for(const w of nq.split(" ").filter(Boolean)){
+    if(w.length > 2 && all.includes(w)) score += 3;
+  }
+  return score;
+}
+
+function renderList(items){
+  return "<ul>" + items.map(x => "<li>" + escapeHtml(x) + "</li>").join("") + "</ul>";
+}
+
+function escapeHtml(text){
+  return String(text ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+function renderProblem(p){
+  return `
+    <div class="result-card">
+      <h3>${escapeHtml(p.title)}</h3>
+      <div>${p.tags.map(t=>`<span class="badge">${escapeHtml(t)}</span>`).join("")}</div>
+      <div class="grid" style="margin-top:10px">
+        <div class="card"><strong>Possible Differential</strong>${renderList(p.differential)}</div>
+        <div class="card"><strong>Suggested Workup</strong>${renderList(p.workup)}</div>
+        <div class="card"><strong>Optimization / Treatment Considerations</strong>${renderList(p.optimize)}</div>
+        <div class="card"><strong>Preoperative / TSJH Next Step</strong><p>${escapeHtml(p.next)}</p></div>
+      </div>
+    </div>`;
+}
+
+function searchProblems(){
+  const q = document.getElementById("problemSearch").value.trim();
+  const out = document.getElementById("results");
+  const section = document.getElementById("resultsSection");
+  section.classList.remove("hidden");
+
+  if(!q){
+    out.innerHTML = '<div class="box warn"><strong>Enter a clinical problem or finding to search.</strong></div>';
+    return;
+  }
+
+  const ranked = problems
+    .map(p=>({p,score:scoreProblem(p,q)}))
+    .filter(x=>x.score>0)
+    .sort((a,b)=>b.score-a.score)
+    .slice(0,5);
+
+  if(!ranked.length){
+    out.innerHTML = `
+      <div class="box warn">
+        <strong>No close match found for â${escapeHtml(q)}â.</strong><br>
+        Try a broader term such as anemia, sodium, potassium, creatinine, platelets, EKG, dyspnea, pulmonary hypertension, heart failure, or positive UA.
+      </div>`;
+    return;
+  }
+
+  out.innerHTML = ranked.map(x=>renderProblem(x.p)).join("");
+  section.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+  document.getElementById("searchButton").addEventListener("click",searchProblems);
+  document.getElementById("problemSearch").addEventListener("keydown",e=>{
+    if(e.key==="Enter") searchProblems();
+  });
+  document.querySelectorAll(".quick").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      document.getElementById("problemSearch").value = btn.dataset.q;
+      searchProblems();
+    });
+  });
+});
+</script>
+</body>
+</html>

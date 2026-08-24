@@ -343,15 +343,34 @@ risk assessment and postoperative planning.
 
 </header>
 
-<div class="search-wrap">
-  <input
-    type="search"
-    id="chapterSearchTop"
-    placeholder="Search the Preoperative Optimization Handbook..."
-    aria-label="Search handbook"
-    oninput="searchChaptersTop()"
-  >
-  <div id="searchMessage"></div>
+<div class="search-wrap" style="max-width:900px;margin:18px auto;padding:0 18px;">
+
+<input
+type="search"
+id="chapterSearchTop"
+placeholder="Search the handbook: lab, medication, cardiac finding, guideline..."
+aria-label="Search handbook"
+oninput="searchChaptersTop()"
+style="
+width:100%;
+display:block;
+font-size:17px;
+padding:15px 16px;
+border:2px solid #d9e2ec;
+border-radius:10px;
+background:white;
+color:#1f2933;
+box-shadow:0 2px 6px rgba(0,0,0,.06);
+-webkit-appearance:none;
+appearance:none;
+"
+>
+
+<div
+id="searchMessage"
+style="margin-top:8px;font-size:14px;color:#52606d;">
+</div>
+
 </div>
 
 

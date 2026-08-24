@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Preoperative Clinical Dashboard | TSJH</title>
+<style>
+:root{--navy:#17324d;--blue:#2b5878;--bg:#f4f7f9;--card:#fff;--line:#d9e2ec;--text:#1f2933;--muted:#52606d}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.45}
+header{background:var(--navy);color:#fff;padding:30px 18px;text-align:center}
+header h1{margin:0 0 7px}
+main{max-width:1100px;margin:auto;padding:18px}
+section{background:#fff;padding:20px;margin:16px 0;border-radius:11px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+h2{color:var(--navy);border-bottom:2px solid var(--line);padding-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{border:1px solid var(--line);border-radius:10px;padding:17px;background:#fff}
+.card h3{margin:0 0 8px;color:var(--navy)}
+.card p{color:var(--muted);min-height:44px}
+.button{display:inline-block;background:var(--navy);color:#fff;text-decoration:none;font-weight:bold;padding:10px 12px;border-radius:7px}
+.primary{border:2px solid var(--blue);background:#f3f8fb}
+.start{background:#eef6fb;border-left:5px solid #3178a8;padding:14px;border-radius:6px}
+footer{text-align:center;color:var(--muted);padding:20px}
+@media(max-width:720px){.grid{grid-template-columns:1fr}.card p{min-height:auto}}
+</style>
+</head>
+<body>
+<header>
+<h1>TSJH Preoperative Clinical Dashboard</h1>
+<p>One starting point for patient evaluation, interpretation, optimization, and documentation</p>
+</header>
+
+<main>
+<section>
+<p><a href="index.html"><strong>â Handbook Home</strong></a></p>
+<div class="start">
+<strong>Suggested workflow:</strong> Start with Provider Optimization â investigate abnormalities with the clinical tools â send relevant findings to the Patient-Specific Summary â print/copy the final summary.
+</div>
+</section>
+
+<section>
+<h2>Start Here</h2>
+<div class="grid">
+<div class="card primary">
+<h3>Provider Optimization Workflow</h3>
+<p>Complete the core preoperative assessment and determine Optimized, Pending, or Not Optimized / higher-level-of-care status.</p>
+<a class="button" href="provider-optimization-workflow.html">Start Optimization</a>
+</div>
+
+<div class="card primary">
+<h3>Patient-Specific Preoperative Summary</h3>
+<p>Build the printable patient summary with risk screening, abnormal findings, treatment recommendations, medication issues, and final status.</p>
+<a class="button" href="patient-specific-preop-summary.html">Open Patient Summary</a>
+</div>
+</div>
+</section>
+
+<section>
+<h2>Interpret & Optimize</h2>
+<div class="grid">
+<div class="card">
+<h3>Abnormal Lab Interpretation</h3>
+<p>Interpret abnormal labs and receive possible causes, recommended workup, treatment/optimization guidance, and a preoperative next step.</p>
+<a class="button" href="abnormal-lab-interpretation.html">Interpret Labs</a>
+</div>
+
+<div class="card">
+<h3>EKG Interpretation Analyzer</h3>
+<p>Use entered findings or the EKG image workflow for structured preoperative interpretation and next-step guidance.</p>
+<a class="button" href="ekg-interpretation-analyzer.html">Open EKG Analyzer</a>
+</div>
+
+<div class="card">
+<h3>Medication Perioperative Search</h3>
+<p>Review hold/continue timing, perioperative considerations, restart guidance, and important medication cautions.</p>
+<a class="button" href="medication-perioperative-search.html">Search Medications</a>
+</div>
+
+<div class="card">
+<h3>Clinical Problem Search</h3>
+<p>Enter a clinical finding or problem for differential considerations, workup, optimization, and perioperative next steps.</p>
+<a class="button" href="clinical-problem-search.html">Search Clinical Problem</a>
+</div>
+</div>
+</section>
+
+<section>
+<h2>Testing & Decision Support</h2>
+<div class="grid">
+<div class="card">
+<h3>Testing & Surveillance Checker</h3>
+<p>Review testing age, TSJH requirements, and society surveillance guidance without treating every test as having a generic expiration date.</p>
+<a class="button" href="testing-recency-checker.html">Check Testing</a>
+</div>
+
+<div class="card">
+<h3>Provider Quick Reference</h3>
+<p>Rapid access to cardiac, pulmonary, BNP/troponin, HLOC, anticoagulant/antiplatelet, and other high-yield thresholds.</p>
+<a class="button" href="provider-quick-reference.html">Open Quick Reference</a>
+</div>
+
+<div class="card">
+<h3>TSJH Perioperative Guidelines</h3>
+<p>Open the central TSJH guideline resource for facility-specific thresholds, escalation criteria, and optimization pathways.</p>
+<a class="button" href="tsjh-guidelines.html">Open TSJH Guidelines</a>
+</div>
+
+<div class="card">
+<h3>Clinical Calculators & Resources</h3>
+<p>Access the handbook's calculator and external clinical-resource collection.</p>
+<a class="button" href="clinical-calculators-resources.html">Open Calculators</a>
+</div>
+</div>
+</section>
+
+<section>
+<h2>Provider Workflow</h2>
+<p><strong>1.</strong> Assess the patient in Provider Optimization. &nbsp; <strong>2.</strong> Investigate abnormal findings using Labs, EKG, Medication, Problem Search, or Testing Checker. &nbsp; <strong>3.</strong> Apply TSJH criteria and escalation thresholds. &nbsp; <strong>4.</strong> Consolidate relevant findings in Patient Summary. &nbsp; <strong>5.</strong> Copy or print the final patient-specific output.</p>
+</section>
+</main>
+
+<footer>TSJH Preoperative Handbook Â· Clinical decision support</footer>
+</body>
+</html>

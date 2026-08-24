@@ -1,17 +1,466 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Abnormal Lab Tool</title>
-<style>body{font-family:Arial;margin:0;background:#f4f7f9;color:#1f2933}header{background:#17324d;color:#fff;padding:28px;text-align:center}main{max-width:900px;margin:auto;padding:18px}section{background:#fff;padding:20px;margin:16px 0;border-radius:10px}select,input{width:100%;padding:11px;margin:5px 0;box-sizing:border-box}button{padding:11px;border:0;border-radius:7px;background:#17324d;color:#fff;font-weight:bold;margin:5px}.secondary{background:#e9eef3;color:#17324d}.card{border:1px solid #d9e2ec;padding:13px;margin:10px 0;border-radius:8px}</style></head><body>
-<header><h1>Abnormal Lab Interpretation & Treatment Guidance</h1></header><main><section><p><a href="index.html">Home</a></p>
-<select id="lab"><option value="">Select lab</option><option value="sodium">Sodium</option><option value="potassium">Potassium</option><option value="hemoglobin">Hemoglobin</option><option value="creatinine">Creatinine</option><option value="glucose">Glucose</option></select>
-<input id="value" type="number" step="0.01" placeholder="Value"><button id="analyze">Interpret & Guide</button><button id="add" class="secondary">Add to Patient Summary</button></section>
-<section id="res" style="display:none"><div id="out"></div></section></main>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Abnormal Lab Interpretation & Treatment Guidance | TSJH</title>
+<style>
+:root{
+  --navy:#17324d;--bg:#f4f7f9;--card:#fff;--line:#d9e2ec;--text:#1f2933;
+  --muted:#52606d;--green:#2f7d46;--yellow:#996515;--red:#b42318;--info:#3178a8
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+header{background:var(--navy);color:#fff;padding:28px 18px;text-align:center}
+main{max-width:1000px;margin:auto;padding:18px}
+section{background:var(--card);padding:20px;margin:16px 0;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+h2{color:var(--navy);border-bottom:2px solid var(--line);padding-bottom:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{font-weight:bold;display:block;margin:5px 0}
+select,input{width:100%;padding:11px;border:1px solid #b8c5d1;border-radius:7px;font:inherit}
+button{border:0;border-radius:7px;padding:11px 14px;background:var(--navy);color:#fff;font-weight:bold;cursor:pointer;margin-top:12px}
+.box{border-left:5px solid;border-radius:5px;padding:13px 14px;margin:10px 0}
+.good{background:#eef9f1;border-color:var(--green)}
+.warn{background:#fff8e7;border-color:var(--yellow)}
+.danger{background:#fff3f1;border-color:var(--red)}
+.info{background:#eef6fb;border-color:var(--info)}
+.card{border:1px solid var(--line);border-radius:8px;padding:13px;margin:10px 0}
+.small{font-size:.9rem;color:var(--muted)}
+a{color:var(--navy);font-weight:bold}
+@media(max-width:720px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+<header>
+  <h1>Abnormal Lab Interpretation & Treatment Guidance</h1>
+  <p>Preoperative interpretation, likely causes, workup, treatment considerations, and next steps</p>
+</header>
+
+<main>
+<section>
+  <p>
+    <a href="index.html">Home</a> Â·
+    <a href="clinical-problem-search.html">Problem Search</a> Â·
+    <a href="tsjh-guidelines.html">TSJH Guidelines</a>
+  </p>
+
+  <h2>Enter Lab Result</h2>
+
+  <div class="grid">
+    <div>
+      <label for="lab">Lab</label>
+      <select id="lab">
+        <option value="">Select</option>
+        <option value="sodium">Sodium</option>
+        <option value="potassium">Potassium</option>
+        <option value="hemoglobin">Hemoglobin</option>
+        <option value="platelets">Platelets</option>
+        <option value="wbc">WBC</option>
+        <option value="creatinine">Creatinine</option>
+        <option value="egfr">eGFR</option>
+        <option value="glucose">Glucose</option>
+        <option value="a1c">A1c</option>
+        <option value="ast">AST</option>
+        <option value="alt">ALT</option>
+        <option value="bilirubin">Total bilirubin</option>
+        <option value="albumin">Albumin</option>
+        <option value="inr">INR</option>
+        <option value="tsh">TSH</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="value">Value</label>
+      <input id="value" type="number" step="0.01">
+    </div>
+
+    <div>
+      <label for="acute">Symptoms / acute illness present?</label>
+      <select id="acute">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="chronic">Known stable chronic abnormality?</label>
+      <select id="chronic">
+        <option value="no">No / unknown</option>
+        <option value="yes">Yes</option>
+      </select>
+    </div>
+  </div>
+
+  <button id="analyze" type="button">Interpret & Guide</button>
+<button id="addSummary" type="button" style="background:#e9eef3;color:#17324d;margin-left:6px">Add to Patient Summary</button>
+
+  <div class="box info">
+    <strong>Clinical decision support only.</strong> Treatment guidance is general and should be adapted to symptoms, cause, chronicity, renal/hepatic function, medications, procedure risk, and current TSJH/anesthesia/surgeon policy.
+  </div>
+</section>
+
+<section id="resultsSection" style="display:none">
+  <h2>Interpretation</h2>
+  <div id="results"></div>
+</section>
+
+<section>
+  <h2>Safety</h2>
+  <div class="box danger">
+    <strong>Urgent/critical abnormalities</strong> such as severe electrolyte derangement, active bleeding, symptomatic severe anemia, DKA/HHS, unstable AKI, sepsis, acute hepatic failure, or significant coagulopathy with bleeding require direct clinical evaluation rather than routine elective preoperative optimization.
+  </div>
+</section>
+</main>
+
 <script>
-const G={
-sodium:{n:"Sodium",u:"mmol/L",i:v=>v<130?"Hyponatremia":v>145?"Hypernatremia":"No major sodium abnormality",w:"Repeat sodium, review trend, glucose, volume status, medications; consider osmolality/urine studies when indicated.",t:v=>v<130?"Treat underlying cause; correct hypovolemia when present; use fluid restriction only when appropriate; avoid overly rapid correction.":"Replace free-water deficit carefully and treat the cause.",s:v=>v<125?"Not optimized":v<130||v>145?"Pending":"Optimized"},
-potassium:{n:"Potassium",u:"mmol/L",i:v=>v<3.5?"Hypokalemia":v>5.1?"Hyperkalemia":"No major potassium abnormality",w:"Repeat if unexpected, check magnesium and renal function, review medications; obtain ECG for significant elevation or symptoms.",t:v=>v<3.5?"Replace potassium and magnesium as appropriate; treat cause.":"Confirm true hyperkalemia; review potassium-raising agents; treat significant/ECG-associated hyperkalemia urgently.",s:v=>v<3||v>5.5?"Not optimized":v<3.5||v>5.1?"Pending":"Optimized"},
-hemoglobin:{n:"Hemoglobin",u:"g/dL",i:v=>v<10?"Anemia":v>=17.5?"Elevated hemoglobin / polycythemia":"No major hemoglobin abnormality",w:"Review CBC trend, MCV/RDW, iron studies when indicated, renal function and bleeding history.",t:v=>v<10?"Treat reversible cause; replace iron/B12/folate when deficient; transfuse only when clinically indicated.":"Correct dehydration, assess hypoxemia/OSA/COPD and consider hematology evaluation if persistent.",s:v=>v<8?"Not optimized":v<10||v>=17.5?"Pending":"Optimized"},
-creatinine:{n:"Creatinine",u:"mg/dL",i:v=>v>=1.5?"Elevated creatinine":"Interpret against baseline",w:"Compare baseline/eGFR, repeat BMP if acute change possible, assess volume and nephrotoxins.",t:v=>v>=1.5?"Correct reversible volume depletion; renally dose medications; avoid nephrotoxins; evaluate AKI/obstruction as indicated.":"Use baseline and overall renal context.",s:v=>v>=3?"Pending":"Optimized"},
-glucose:{n:"Glucose",u:"mg/dL",i:v=>v>=300?"Marked hyperglycemia":v>=200?"Hyperglycemia":v<60?"Hypoglycemia":"No major acute glucose red flag",w:"Review diabetes history, symptoms, medication plan; check ketones/anion gap if DKA risk.",t:v=>v>=200?"Correct hyperglycemia; use insulin per protocol when needed; manage SGLT2 risk appropriately.":v<60?"Treat hypoglycemia promptly.":"Continue appropriate diabetes plan.",s:v=>v>=300||v<60?"Not optimized":v>=200?"Pending":"Optimized"}};
-const $=id=>document.getElementById(id);let last=null;
-function analyze(){let k=$("lab").value,v=parseFloat($("value").value);if(!k||!Number.isFinite(v)){alert("Select a lab and enter a valid value.");return}let g=G[k],interp=g.i(v),status=g.s(v);last={finding:`${g.n}: ${v} ${g.u} â ${interp}`,workupTreatment:`Recommended workup: ${g.w} Treatment/optimization: ${g.t(v)}`,reason:`Preoperative status based on this lab: ${status}.`,status};$("out").innerHTML=`<div class="card"><h3>${last.finding}</h3><p><b>Recommended workup:</b> ${g.w}</p><p><b>Treatment / optimization:</b> ${g.t(v)}</p><p><b>Preoperative status:</b> ${status}</p></div>`;$("res").style.display="block"}
-$("analyze").onclick=analyze;$("add").onclick=()=>{if(!last)analyze();if(!last)return;localStorage.setItem("tsjhLabSummary",JSON.stringify(last));window.location.href="patient-specific-preop-summary.html"};
-</script></body></html>
+"use strict";
+
+const LABS = {
+  sodium: {
+    name:"Sodium", unit:"mmol/L",
+    classify(v){
+      if(v < 125) return ["Severe hyponatremia","danger"];
+      if(v < 130) return ["Moderate hyponatremia","warn"];
+      if(v < 135) return ["Mild hyponatremia","warn"];
+      if(v > 150) return ["Severe hypernatremia","danger"];
+      if(v > 145) return ["Hypernatremia","warn"];
+      return ["Within common reference range","good"];
+    },
+    causes(v){
+      return v < 135
+        ? ["Hypovolemia/dehydration","Thiazide or other medication effect","SIADH","Heart failure/cirrhosis/renal disease","Hyperglycemia-associated hyponatremia","Adrenal or thyroid disease","Excess free-water intake"]
+        : ["Free-water deficit/dehydration","Diabetes insipidus","Osmotic diuresis","Impaired access to water","Iatrogenic sodium load"];
+    },
+    workup:["Repeat sodium and review trend/chronicity","Check glucose and volume status","Review medications","Serum/urine osmolality and urine sodium when cause is unclear","TSH/cortisol when clinically indicated"],
+    treatment(v){
+      return v < 135
+        ? ["Treat the underlying cause","Correct hypovolemia when present","Use fluid restriction only when appropriate to the etiology","Avoid overly rapid correction of chronic hyponatremia","Symptomatic/severe hyponatremia requires urgent medical management"]
+        : ["Replace free-water deficit carefully","Treat osmotic diuresis/DI or other cause","Avoid overly rapid correction of chronic hypernatremia"];
+    },
+    next(v){
+      if(v < 125 || v > 150) return "Not optimized until urgently evaluated and stabilized.";
+      if(v < 130 || v > 145) return "Usually Pending until the cause is clarified and trend/response is acceptable.";
+      return "Mild stable abnormality may proceed after clinical review.";
+    }
+  },
+
+  potassium: {
+    name:"Potassium", unit:"mmol/L",
+    classify(v){
+      if(v < 3.0) return ["Significant hypokalemia","danger"];
+      if(v < 3.5) return ["Mild hypokalemia","warn"];
+      if(v > 6.0) return ["Severe hyperkalemia","danger"];
+      if(v > 5.5) return ["Significant hyperkalemia","danger"];
+      if(v > 5.1) return ["Mild hyperkalemia","warn"];
+      return ["Within common reference range","good"];
+    },
+    causes(v){
+      return v < 3.5
+        ? ["Diuretics","GI losses","Poor intake","Intracellular shift","Renal potassium wasting","Hypomagnesemia"]
+        : ["AKI/CKD","ACE-I/ARB or potassium-sparing therapy","Potassium supplements","Acidosis","Cellular injury","Pseudohyperkalemia from hemolysis or thrombocytosis"];
+    },
+    workup:["Repeat nonhemolyzed potassium when unexpected","Check magnesium and renal function","Review medications and GI losses","Obtain ECG for significant elevation or symptoms"],
+    treatment(v){
+      return v < 3.5
+        ? ["Replace potassium","Correct magnesium when low","Treat diuretic/GI or other cause","Use oral vs IV replacement according to severity and clinical setting"]
+        : ["Confirm true hyperkalemia if sample is hemolyzed","Review/hold contributing potassium-raising agents when appropriate","Use urgent hyperkalemia treatment for significant or ECG-associated elevation","Treat acidosis/renal cause as indicated"];
+    },
+    next(v){
+      if(v < 3.0 || v > 5.5) return "Not optimized until corrected and clinically stabilized.";
+      if(v < 3.5 || v > 5.1) return "Pending correction and recheck.";
+      return "No delay solely on potassium if clinically stable.";
+    }
+  },
+
+  hemoglobin: {
+    name:"Hemoglobin", unit:"g/dL",
+    classify(v){
+      if(v < 8) return ["Severe anemia","danger"];
+      if(v < 10) return ["Moderate anemia","warn"];
+      if(v < 12) return ["Mild anemia","warn"];
+      if(v >= 17.5) return ["Elevated hemoglobin / polycythemia","warn"];
+      return ["Within common perioperative range","good"];
+    },
+    causes(v){
+      return v >= 17.5
+        ? ["Dehydration/hemoconcentration","OSA/COPD/chronic hypoxemia","Smoking","Testosterone/androgen therapy","Renal/EPO-mediated causes","Myeloproliferative disease"]
+        : ["Iron deficiency/chronic blood loss","Anemia of chronic disease/inflammation","CKD","B12/folate deficiency","Hemolysis","Bone marrow disease","Acute/occult bleeding"];
+    },
+    workup:["Review CBC trend, MCV and RDW","Ferritin/iron/TIBC when iron deficiency is possible","B12/folate when macrocytosis or nutritional risk is present","Reticulocyte/hemolysis studies, renal function, and bleeding evaluation as indicated","Consider expected surgical blood loss"],
+    treatment(v){
+      return v >= 17.5
+        ? ["Correct dehydration","Address hypoxemia/OSA/COPD","Review testosterone/androgen exposure","Persistent unexplained elevation may need EPO/JAK2 testing or hematology review"]
+        : ["Treat reversible cause","Iron replacement for confirmed/suspected deficiency","B12/folate replacement when deficient","Manage CKD-related anemia with appropriate specialty input","Transfusion only when clinically indicated by severity, symptoms, and context"];
+    },
+    next(v){
+      if(v < 8) return "Not optimized or urgent medical/specialty review depending on symptoms and procedure.";
+      if(v < 10) return "Usually Pending for optimization, especially when meaningful blood loss is expected.";
+      if(v >= 17.5) return "Pending if persistent or unexplained because of thrombotic risk.";
+      return "Mild stable anemia may proceed after cause and procedure-risk review.";
+    }
+  },
+
+  platelets: {
+    name:"Platelets", unit:"K/ÂµL",
+    classify(v){
+      if(v < 50) return ["Severe thrombocytopenia","danger"];
+      if(v < 100) return ["Thrombocytopenia","warn"];
+      if(v > 1000) return ["Extreme thrombocytosis","danger"];
+      if(v > 450) return ["Thrombocytosis","warn"];
+      return ["Within common reference range","good"];
+    },
+    causes(v){
+      return v < 100
+        ? ["Medication effect","Liver disease/splenic sequestration","ITP","Bone marrow disease","Sepsis/consumption","Pseudothrombocytopenia"]
+        : ["Reactive inflammation/infection","Iron deficiency","Recent surgery/tissue injury","Malignancy","Postsplenectomy state","Myeloproliferative neoplasm"];
+    },
+    workup:["Repeat CBC/peripheral smear when unexpected","Review prior counts, medications, liver disease, bleeding/thrombosis history","Ferritin/iron studies when thrombocytosis may be iron-deficiency related","Hematology review for severe or persistent unexplained abnormalities"],
+    treatment(v){
+      return v < 100
+        ? ["Treat the cause","Avoid platelet-impairing medications when appropriate","Use procedure-specific platelet targets","Transfusion decisions should follow anesthesia/surgical/hematology guidance"]
+        : ["Treat underlying reactive cause","Correct iron deficiency when present","Use hematology-directed therapy for myeloproliferative disease or very high thrombotic risk"];
+    },
+    next(v){
+      if(v < 50 || v > 1000) return "Not optimized or urgent specialty review depending on context.";
+      if(v < 100 || v > 450) return "Pending if below procedure threshold or markedly/persistently abnormal.";
+      return "No delay solely on platelet count if stable and clinically appropriate.";
+    }
+  },
+
+  wbc: {
+    name:"WBC", unit:"K/ÂµL",
+    classify(v){
+      if(v > 20) return ["Marked leukocytosis","warn"];
+      if(v > 11) return ["Leukocytosis","warn"];
+      if(v < 3) return ["Leukopenia","warn"];
+      return ["Within common reference range","good"];
+    },
+    causes(){return ["Infection","Stress response","Steroid effect","Smoking","Inflammatory disease","Hematologic disorder"];},
+    workup:["Review differential and trend","Assess fever, symptoms, exam, and recent steroid use","Use targeted cultures/imaging only when clinically indicated","Repeat CBC if unexpected or changing"],
+    treatment(){return ["Treat active infection when present","Address steroid/stress/reactive cause as appropriate","Consider hematology evaluation for persistent unexplained leukocytosis or leukopenia"];},
+    next(){return "Mild stable leukocytosis alone may not delay surgery. Symptomatic infection, sepsis, or unexplained marked change is Pending or Not optimized.";}
+  },
+
+  creatinine: {
+    name:"Creatinine", unit:"mg/dL",
+    classify(v){
+      if(v >= 3) return ["Marked renal dysfunction","warn"];
+      if(v >= 1.5) return ["Elevated creatinine","warn"];
+      return ["Interpret against patient baseline","info"];
+    },
+    causes(){return ["Chronic kidney disease","Pre-renal volume depletion","Acute kidney injury","Medication/nephrotoxin effect","Obstruction","Cardiorenal physiology"];},
+    workup:["Compare with baseline creatinine/eGFR","Repeat BMP if acute change is possible","Assess volume status and nephrotoxins","Review NSAIDs, ACE-I/ARB/diuretics, and contrast exposure","UA/renal imaging or nephrology review when indicated"],
+    treatment(){return ["Correct volume depletion when present","Stop/adjust nephrotoxic or renally cleared medications when appropriate","Renally dose medications","Treat obstruction or other identified cause","Clarify dialysis timing in ESRD"];},
+    next(){return "Stable CKD may be Optimized with an appropriate plan. Active/progressive AKI is Pending or Not optimized depending on severity.";}
+  },
+
+  egfr: {
+    name:"eGFR", unit:"mL/min/1.73mÂ²",
+    classify(v){
+      if(v < 15) return ["Severe kidney failure","danger"];
+      if(v < 30) return ["Advanced CKD","warn"];
+      if(v < 60) return ["CKD range","warn"];
+      return ["Preserved or mildly reduced kidney function","good"];
+    },
+    causes(){return ["Chronic kidney disease","Acute kidney injury","Volume depletion","Medication effect","Obstruction"];},
+    workup:["Review chronicity and creatinine baseline","Assess electrolytes, volume status, and dialysis needs","Review medication dosing and nephrotoxin exposure"],
+    treatment(){return ["Renally dose medications","Optimize volume and electrolytes","Avoid unnecessary nephrotoxins","Use nephrology input for advanced or unstable disease"];},
+    next(v){
+      if(v < 15) return "Pending or Not optimized if dialysis, volume, or electrolyte issues are unresolved.";
+      if(v < 30) return "Needs deliberate perioperative renal planning.";
+      return "Stable CKD may proceed if clinically optimized.";
+    }
+  },
+
+  glucose: {
+    name:"Glucose", unit:"mg/dL",
+    classify(v){
+      if(v >= 400) return ["Severe hyperglycemia","danger"];
+      if(v >= 300) return ["Marked hyperglycemia","danger"];
+      if(v >= 200) return ["Hyperglycemia","warn"];
+      if(v < 60) return ["Hypoglycemia","danger"];
+      return ["No major acute glucose red flag","good"];
+    },
+    causes(){return ["Known diabetes","Stress hyperglycemia","Steroid effect","Medication nonadherence","Acute infection"];},
+    workup:["Review symptoms and diabetes history","Check ketones/anion gap if DKA or euglycemic DKA is possible","Assess infection/steroid effect and medication adherence","Review perioperative diabetes medication plan"],
+    treatment(){return ["Treat hypoglycemia promptly","Correct marked hyperglycemia","Use insulin per facility protocol when needed","Hold SGLT2 inhibitors according to current guidance and assess ketoacidosis risk when indicated"];},
+    next(v){
+      if(v >= 300 || v < 60) return "Not optimized until the acute metabolic issue is addressed.";
+      if(v >= 200) return "Pending or optimize depending on symptoms and trend.";
+      return "May proceed with an appropriate diabetes plan.";
+    }
+  },
+
+  a1c: {
+    name:"A1c", unit:"%",
+    classify(v){
+      if(v >= 10) return ["Markedly elevated A1c","warn"];
+      if(v >= 9) return ["Elevated A1c","warn"];
+      if(v >= 8) return ["Suboptimal chronic control","warn"];
+      return ["Reasonable chronic control by this isolated marker","good"];
+    },
+    causes(){return ["Chronic hyperglycemia","Medication nonadherence or under-treatment","Dietary factors","Steroid effect","Progressive diabetes"];},
+    workup:["Review current glucose pattern and medications","Assess infection/wound-healing risk and procedure urgency","Do not use A1c alone without current glucose context"],
+    treatment(){return ["Optimize diabetes longitudinally","Ensure perioperative insulin/medication plan","Address marked current hyperglycemia separately"];},
+    next(){return "A1c alone does not automatically determine surgical readiness; combine with current glucose, symptoms, procedure risk, and facility/surgeon policy.";}
+  },
+
+  ast: {
+    name:"AST", unit:"U/L",
+    classify(v){
+      if(v > 200) return ["Marked AST elevation","warn"];
+      if(v > 40) return ["AST elevation","warn"];
+      return ["Within common reference range","good"];
+    },
+    causes(){return ["Fatty liver disease","Alcohol-related injury","Medication effect","Viral hepatitis","Congestive/ischemic hepatopathy","Muscle injury"];},
+    workup:["Review ALT, bilirubin, alkaline phosphatase, and trend","Review alcohol/medications and muscle injury","Assess synthetic function when liver disease is suspected"],
+    treatment(){return ["Treat underlying hepatic or nonhepatic cause","Review hepatotoxic medications when appropriate","Urgent evaluation if acute liver failure features are present"];},
+    next(){return "Mild stable elevation may not delay. Marked acute elevation or impaired synthetic function is Pending or Not optimized.";}
+  },
+
+  alt: {
+    name:"ALT", unit:"U/L",
+    classify(v){
+      if(v > 200) return ["Marked ALT elevation","warn"];
+      if(v > 40) return ["ALT elevation","warn"];
+      return ["Within common reference range","good"];
+    },
+    causes(){return ["Fatty liver disease","Medication effect","Alcohol-related injury","Viral hepatitis","Ischemic/congestive hepatopathy"];},
+    workup:["Review AST, bilirubin, alkaline phosphatase, and prior trend","Review medication/alcohol/hepatitis risk","Consider imaging when cholestatic or structural disease is suspected"],
+    treatment(){return ["Treat underlying cause","Review/stop offending agents when clinically appropriate","Urgent evaluation for acute liver failure signs"];},
+    next(){return "Mild stable elevation may proceed. Acute marked transaminitis requires evaluation.";}
+  },
+
+  bilirubin: {
+    name:"Total bilirubin", unit:"mg/dL",
+    classify(v){
+      if(v >= 3) return ["Marked hyperbilirubinemia","warn"];
+      if(v > 1.2) return ["Elevated bilirubin","warn"];
+      return ["Within common reference range","good"];
+    },
+    causes(){return ["Biliary obstruction","Hemolysis","Hepatocellular disease","Gilbert syndrome","Medication-related cholestasis"];},
+    workup:["Fractionate bilirubin when useful","Review AST/ALT/alk phos and CBC/hemolysis context","Assess jaundice, RUQ symptoms, and need for imaging"],
+    treatment(){return ["Treat obstruction, infection, hemolysis, or other cause","Gilbert syndrome generally needs no treatment"];},
+    next(){return "New jaundice or significant unexplained bilirubin elevation is Pending. Cholangitis or acute hepatic decompensation is Not optimized.";}
+  },
+
+  albumin: {
+    name:"Albumin", unit:"g/dL",
+    classify(v){
+      if(v < 2.5) return ["Severe hypoalbuminemia","warn"];
+      if(v < 3.5) return ["Hypoalbuminemia","warn"];
+      return ["Within common reference range","good"];
+    },
+    causes(){return ["Malnutrition","Chronic inflammation","Liver disease","Nephrotic protein loss","Protein-losing enteropathy"];},
+    workup:["Review nutrition, liver/renal disease, edema, and chronic inflammation","Consider nutrition assessment"],
+    treatment(){return ["Address nutritional deficits when possible","Treat underlying liver, renal, or inflammatory cause"];},
+    next(){return "Usually a risk marker rather than an isolated cancellation criterion. Severe unexplained hypoalbuminemia may be Pending.";}
+  },
+
+  inr: {
+    name:"INR", unit:"",
+    classify(v){
+      if(v >= 3) return ["Markedly elevated INR","danger"];
+      if(v > 1.5) return ["Elevated INR","warn"];
+      return ["No major INR red flag by this isolated value","good"];
+    },
+    causes(){return ["Warfarin effect","Liver dysfunction","Vitamin K deficiency","Consumptive coagulopathy","Laboratory artifact"];},
+    workup:["Review anticoagulants and indication","Repeat if unexpected","Assess liver disease, bleeding history, and platelet count"],
+    treatment(){return ["Follow anticoagulation interruption/reversal plan","Use vitamin K or reversal products only when clinically indicated","Use specialist/anticoagulation guidance for complex bridging or high thrombotic risk"];},
+    next(){return "Pending until INR and anticoagulation plan are acceptable for the procedure/anesthesia plan.";}
+  },
+
+  tsh: {
+    name:"TSH", unit:"mIU/L",
+    classify(v){
+      if(v > 10) return ["Markedly elevated TSH","warn"];
+      if(v < 0.1) return ["Suppressed TSH","warn"];
+      return ["Interpret with free T4 and symptoms","info"];
+    },
+    causes(){return ["Hypothyroidism","Hyperthyroidism","Medication dosing issue","Non-thyroidal illness"];},
+    workup:["Check free T4 and symptoms","Review thyroid medication adherence and recent dose changes"],
+    treatment(){return ["Adjust thyroid therapy based on diagnosis and clinician guidance","Treat overt uncontrolled hyperthyroidism or severe hypothyroidism before elective surgery"];},
+    next(){return "Stable treated thyroid disease is usually Optimized. Overt symptomatic uncontrolled disease is Pending or Not optimized.";}
+  }
+};
+
+function esc(s){
+  return String(s ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+function list(items){
+  return "<ul>" + items.map(x => "<li>" + esc(x) + "</li>").join("") + "</ul>";
+}
+
+let lastLabSummary = null;
+
+document.getElementById("analyze").addEventListener("click", function(){
+  const key = document.getElementById("lab").value;
+  const value = parseFloat(document.getElementById("value").value);
+  const acute = document.getElementById("acute").value === "yes";
+  const chronic = document.getElementById("chronic").value === "yes";
+  const resultsSection = document.getElementById("resultsSection");
+  const results = document.getElementById("results");
+
+  resultsSection.style.display = "block";
+
+  if(!key || !Number.isFinite(value)){
+    results.innerHTML = '<div class="box warn"><strong>Select a lab and enter a valid value.</strong></div>';
+    return;
+  }
+
+  const g = LABS[key];
+  const severity = g.classify(value);
+  const causes = g.causes(value);
+  const workup = g.workup;
+  const treatment = g.treatment(value);
+  const next = g.next(value);
+
+  let summaryStatus = "Optimized";
+  const nextLower = String(next).toLowerCase();
+  if(nextLower.includes("not optimized")) summaryStatus = "Not optimized";
+  else if(nextLower.includes("pending")) summaryStatus = "Pending";
+
+  lastLabSummary = {
+    finding: g.name + ": " + value + " " + g.unit + " â " + severity[0] + ". Possible causes: " + causes.join("; "),
+    workupTreatment: "Recommended workup: " + workup.join("; ") + ". Treatment/optimization: " + treatment.join("; "),
+    reason: next,
+    status: summaryStatus
+  };
+
+  let html = `
+    <div class="box ${severity[1]}">
+      <h3>${esc(g.name)}: ${esc(value)} ${esc(g.unit)}</h3>
+      <strong>${esc(severity[0])}</strong>
+      ${acute ? '<p><strong>Clinical override:</strong> symptoms or acute illness increase urgency and may require direct evaluation.</p>' : ''}
+      ${chronic ? '<p><strong>Baseline note:</strong> known chronic stability lowers concern only if the current value and clinical status remain consistent with baseline.</p>' : ''}
+    </div>
+  `;
+
+  html += `<div class="card"><h3>Possible Causes</h3>${list(causes)}</div>`;
+  html += `<div class="card"><h3>Recommended Workup</h3>${list(workup)}</div>`;
+  html += `<div class="card"><h3>Treatment / Optimization Guidance</h3>${list(treatment)}</div>`;
+  html += `<div class="box info"><h3>Preoperative Next Step</h3><p>${esc(next)}</p></div>`;
+
+  results.innerHTML = html;
+  resultsSection.scrollIntoView({behavior:"smooth",block:"start"});
+});
+
+document.getElementById("addSummary").addEventListener("click", function(){
+  if(!lastLabSummary){
+    document.getElementById("analyze").click();
+  }
+  if(!lastLabSummary) return;
+  localStorage.setItem("tsjhLabSummary", JSON.stringify(lastLabSummary));
+  window.location.href = "patient-specific-preop-summary.html";
+});
+
+</script>
+</body>
+</html>

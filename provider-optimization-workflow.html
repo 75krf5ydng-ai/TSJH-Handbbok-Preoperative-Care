@@ -536,14 +536,54 @@ function generateProviderWorkflow(){
   const bode = num("pwBODE");
   const cat = num("pwCAT");
   const aroz = num("pwArozullah");
-  const sodium = num("pwSodium");
-  const potassium = num("pwPotassium");
-  const hgb = num("pwHemoglobin");
-  const platelets = num("pwPlatelets");
-  const egfr = num("pwEGFR");
-  const glucose = num("pwGlucose");
-  const a1c = num("pwA1c");
-  const strokeMonths = num("pwStrokeMonths");
+  // Laboratory values - CBC with differential
+const wbc = num("pwWBC");
+const rbc = num("pwRBC");
+const hgb = num("pwHemoglobin");
+const hct = num("pwHematocrit");
+const mcv = num("pwMCV");
+const mch = num("pwMCH");
+const mchc = num("pwMCHC");
+const rdw = num("pwRDW");
+const platelets = num("pwPlatelets");
+const neutrophils = num("pwNeutrophils");
+const anc = num("pwANC");
+const lymphocytes = num("pwLymphocytes");
+const monocytes = num("pwMonocytes");
+const eosinophils = num("pwEosinophils");
+const basophils = num("pwBasophils");
+
+// Comprehensive metabolic panel
+const sodium = num("pwSodium");
+const potassium = num("pwPotassium");
+const chloride = num("pwChloride");
+const co2 = num("pwCO2");
+const bun = num("pwBUN");
+const creatinine = num("pwCreatinine");
+const egfr = num("pwEGFR");
+const glucose = num("pwGlucose");
+const calcium = num("pwCalcium");
+const totalProtein = num("pwTotalProtein");
+const albumin = num("pwAlbumin");
+const totalBilirubin = num("pwTotalBilirubin");
+const alkPhos = num("pwAlkPhos");
+const ast = num("pwAST");
+const alt = num("pwALT");
+const a1c = num("pwA1c");
+
+// Coagulation
+const pt = num("pwPT");
+const inr = num("pwINR");
+const ptt = num("pwPTT");
+
+// Cardiac biomarkers
+const bnp = num("pwBNP");
+const ntproBNP = num("pwNTproBNP");
+
+// Inflammatory markers
+const esr = num("pwESR");
+const crp = num("pwCRP");
+const strokeMonths = num("pwStrokeMonths");
 
   // Hard stops / unstable
   if(yes("pwUnstable")) stop.push("Active or unstable medical condition requires evaluation and stabilization.");

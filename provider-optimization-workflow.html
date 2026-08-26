@@ -261,19 +261,85 @@
   </div>
 </section>
 
-<section>
-  <h2>Labs / Metabolic</h2>
+<section id="pwLaboratorySection">
+  <h2>Laboratory Results</h2>
+  <p class="small">Enter available preoperative laboratory values. Leave unavailable values blank.</p>
+
+  <h3>CBC with Differential</h3>
   <div class="grid">
-    <div><label for="pwSodium">Sodium</label><input id="pwSodium" type="number" step="0.1"></div>
-    <div><label for="pwPotassium">Potassium</label><input id="pwPotassium" type="number" step="0.1"></div>
-    <div><label for="pwHemoglobin">Hemoglobin</label><input id="pwHemoglobin" type="number" step="0.1"></div>
-    <div><label for="pwPlatelets">Platelets (K/ÂµL)</label><input id="pwPlatelets" type="number" step="1"></div>
-    <div><label for="pwCreatinine">Creatinine</label><input id="pwCreatinine" type="number" step="0.01"></div>
+    <div><label for="pwWBC">WBC (K/uL)</label><input id="pwWBC" type="number" step="0.01"></div>
+    <div><label for="pwRBC">RBC (M/uL)</label><input id="pwRBC" type="number" step="0.01"></div>
+    <div><label for="pwHemoglobin">Hemoglobin (g/dL)</label><input id="pwHemoglobin" type="number" step="0.1"></div>
+    <div><label for="pwHematocrit">Hematocrit (%)</label><input id="pwHematocrit" type="number" step="0.1"></div>
+    <div><label for="pwMCV">MCV (fL)</label><input id="pwMCV" type="number" step="0.1"></div>
+    <div><label for="pwMCH">MCH (pg)</label><input id="pwMCH" type="number" step="0.1"></div>
+    <div><label for="pwMCHC">MCHC (g/dL)</label><input id="pwMCHC" type="number" step="0.1"></div>
+    <div><label for="pwRDW">RDW (%)</label><input id="pwRDW" type="number" step="0.1"></div>
+    <div><label for="pwPlatelets">Platelets (K/uL)</label><input id="pwPlatelets" type="number" step="1"></div>
+    <div><label for="pwNeutrophils">Neutrophils (%)</label><input id="pwNeutrophils" type="number" step="0.1"></div>
+    <div><label for="pwANC">ANC (K/uL)</label><input id="pwANC" type="number" step="0.01"></div>
+    <div><label for="pwLymphocytes">Lymphocytes (%)</label><input id="pwLymphocytes" type="number" step="0.1"></div>
+    <div><label for="pwMonocytes">Monocytes (%)</label><input id="pwMonocytes" type="number" step="0.1"></div>
+    <div><label for="pwEosinophils">Eosinophils (%)</label><input id="pwEosinophils" type="number" step="0.1"></div>
+    <div><label for="pwBasophils">Basophils (%)</label><input id="pwBasophils" type="number" step="0.1"></div>
+  </div>
+
+  <h3>Comprehensive Metabolic Panel</h3>
+  <div class="grid">
+    <div><label for="pwSodium">Sodium (mmol/L)</label><input id="pwSodium" type="number" step="0.1"></div>
+    <div><label for="pwPotassium">Potassium (mmol/L)</label><input id="pwPotassium" type="number" step="0.1"></div>
+    <div><label for="pwChloride">Chloride (mmol/L)</label><input id="pwChloride" type="number" step="0.1"></div>
+    <div><label for="pwCO2">CO2 / Bicarbonate</label><input id="pwCO2" type="number" step="0.1"></div>
+    <div><label for="pwBUN">BUN (mg/dL)</label><input id="pwBUN" type="number" step="0.1"></div>
+    <div><label for="pwCreatinine">Creatinine (mg/dL)</label><input id="pwCreatinine" type="number" step="0.01"></div>
     <div><label for="pwEGFR">eGFR</label><input id="pwEGFR" type="number" step="1"></div>
-    <div><label for="pwGlucose">Glucose</label><input id="pwGlucose" type="number" step="1"></div>
-    <div><label for="pwA1c">A1c (%)</label><input id="pwA1c" type="number" step="0.1"></div>
-    <div><label for="pwAKI">Active/progressive AKI</label><select id="pwAKI"><option value="no">No</option><option value="yes">Yes</option></select></div>
-    <div><label for="pwDialysisIssue">Unresolved dialysis timing/complexity</label><select id="pwDialysisIssue"><option value="no">No</option><option value="yes">Yes</option></select></div>
+    <div><label for="pwGlucose">Glucose (mg/dL)</label><input id="pwGlucose" type="number" step="1"></div>
+    <div><label for="pwCalcium">Calcium (mg/dL)</label><input id="pwCalcium" type="number" step="0.1"></div>
+    <div><label for="pwTotalProtein">Total Protein (g/dL)</label><input id="pwTotalProtein" type="number" step="0.1"></div>
+    <div><label for="pwAlbumin">Albumin (g/dL)</label><input id="pwAlbumin" type="number" step="0.1"></div>
+    <div><label for="pwTotalBilirubin">Total Bilirubin (mg/dL)</label><input id="pwTotalBilirubin" type="number" step="0.1"></div>
+    <div><label for="pwAlkPhos">Alkaline Phosphatase (U/L)</label><input id="pwAlkPhos" type="number" step="1"></div>
+    <div><label for="pwAST">AST (U/L)</label><input id="pwAST" type="number" step="1"></div>
+    <div><label for="pwALT">ALT (U/L)</label><input id="pwALT" type="number" step="1"></div>
+    <div><label for="pwA1c">Hemoglobin A1c (%)</label><input id="pwA1c" type="number" step="0.1"></div>
+  </div>
+
+  <h3>Coagulation</h3>
+  <div class="grid">
+    <div><label for="pwPT">PT (sec)</label><input id="pwPT" type="number" step="0.1"></div>
+    <div><label for="pwINR">INR</label><input id="pwINR" type="number" step="0.01"></div>
+    <div><label for="pwPTT">PTT (sec)</label><input id="pwPTT" type="number" step="0.1"></div>
+  </div>
+
+  <h3>Cardiac Biomarkers</h3>
+  <div class="grid">
+    <div><label for="pwBNP">BNP (pg/mL)</label><input id="pwBNP" type="number" step="1"></div>
+    <div><label for="pwNTproBNP">NT-proBNP (ng/L)</label><input id="pwNTproBNP" type="number" step="1"></div>
+  </div>
+
+  <h3>Inflammatory Markers</h3>
+  <div class="grid">
+    <div><label for="pwESR">ESR (mm/hr)</label><input id="pwESR" type="number" step="1"></div>
+    <div><label for="pwCRP">CRP (mg/L)</label><input id="pwCRP" type="number" step="0.1"></div>
+  </div>
+
+  <h3>Renal / Additional Clinical Flags</h3>
+  <div class="grid">
+    <div>
+      <label for="pwAKI">Active / Progressive AKI</label>
+      <select id="pwAKI">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="pwDialysisIssue">Unresolved Dialysis Issue</label>
+      <select id="pwDialysisIssue">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+    </div>
   </div>
 </section>
 

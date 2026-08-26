@@ -631,25 +631,6 @@ const strokeMonths = num("pwStrokeMonths");
   }
 
   // Labs
-  if(sodium !== null){
-    if(sodium < 130) pending.push("Hyponatremia requires repeat assessment/optimization before final status.");
-    else if(sodium < 135) support.push("Mild hyponatremia: review trend, volume status, medications, glucose and cause.");
-  }
-  if(potassium !== null){
-    if(potassium < 3.0 || potassium > 5.5) pending.push("Clinically significant potassium abnormality requires correction/recheck.");
-    else if(potassium < 3.5 || potassium > 5.1) support.push("Mild potassium abnormality: review cause and recheck as clinically appropriate.");
-  }
-  if(hgb !== null){
-    if(hgb < 8) pending.push("Severe anemia requires evaluation/optimization before final status.");
-    else if(hgb < 12) support.push("Anemia: classify pattern, review chronicity and expected surgical blood loss, and optimize when appropriate.");
-    else if(hgb >= 17.5) support.push("Elevated hemoglobin/polycythemia: establish cause and assess perioperative thrombotic risk.");
-  }
-  if(platelets !== null && platelets < 100) pending.push("Thrombocytopenia requires procedure-specific review.");
-  if(yes("pwAKI")) pending.push("Active/progressive AKI requires evaluation and stabilization.");
-  if(yes("pwDialysisIssue")) pending.push("Dialysis timing/complexity remains unresolved.");
-  if(egfr !== null && egfr < 30) support.push("Advanced CKD: review renal dosing, volume/electrolytes and perioperative nephrotoxin exposure.");
-  if(glucose !== null && glucose >= 300) pending.push("Marked hyperglycemia requires evaluation/optimization.");
-  if(a1c !== null && a1c >= 9) support.push("Elevated A1c: assess current glucose control, procedure urgency and infection/wound-healing risk.");
 
   // Medication plans
   if(val("pwAntithrombotic") !== "none" && val("pwAntithromboticPlan") === "no") pending.push("Anticoagulant/antiplatelet hold and restart plan is unresolved.");

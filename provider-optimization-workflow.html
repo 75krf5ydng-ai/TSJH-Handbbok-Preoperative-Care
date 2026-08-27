@@ -457,23 +457,336 @@ function analyzeProviderFreeText(){
   const vmax = firstNumber(text,[/\bvmax\s*[:=]?\s*(\d+(?:\.\d+)?)/i,/peak velocity\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
   if(vmax !== null){ setVal("pwVmax",vmax); detected.push("Vmax " + vmax); }
 
-  const hgb = firstNumber(text,[/\bhgb\s*[:=]?\s*(\d+(?:\.\d+)?)/i,/\bhemoglobin\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
-  if(hgb !== null){ setVal("pwHemoglobin",hgb); detected.push("Hgb " + hgb); }
+  // ----------------------------------------------------
+// FREE-TEXT LAB EXTRACTION
+// ----------------------------------------------------
 
-  const sodium = firstNumber(text,[/\bna\s*[:=]?\s*(\d+(?:\.\d+)?)/i,/\bsodium\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
-  if(sodium !== null){ setVal("pwSodium",sodium); detected.push("Sodium " + sodium); }
+// CBC WITH DIFFERENTIAL
+const wbc = firstNumber(text,[
+  /\bwbc\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bwhite blood cell(?: count)?\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(wbc !== null){
+  setVal("pwWBC",wbc);
+  detected.push("WBC " + wbc);
+}
 
-  const potassium = firstNumber(text,[/\bk\s*[:=]?\s*(\d+(?:\.\d+)?)/i,/\bpotassium\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
-  if(potassium !== null){ setVal("pwPotassium",potassium); detected.push("Potassium " + potassium); }
+const rbc = firstNumber(text,[
+  /\brbc\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bred blood cell(?: count)?\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(rbc !== null){
+  setVal("pwRBC",rbc);
+  detected.push("RBC " + rbc);
+}
 
-  const creatinine = firstNumber(text,[/\bcreatinine\s*[:=]?\s*(\d+(?:\.\d+)?)/i,/\bcr\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
-  if(creatinine !== null){ setVal("pwCreatinine",creatinine); detected.push("Creatinine " + creatinine); }
+const hgb = firstNumber(text,[
+  /\bhgb\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bhemoglobin\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(hgb !== null){
+  setVal("pwHemoglobin",hgb);
+  detected.push("Hgb " + hgb);
+}
 
-  const egfr = firstNumber(text,[/\begfr\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
-  if(egfr !== null){ setVal("pwEGFR",egfr); detected.push("eGFR " + egfr); }
+const hct = firstNumber(text,[
+  /\bhct\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bhematocrit\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(hct !== null){
+  setVal("pwHematocrit",hct);
+  detected.push("Hct " + hct);
+}
 
-  const a1c = firstNumber(text,[/\ba1c\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
-  if(a1c !== null){ setVal("pwA1c",a1c); detected.push("A1c " + a1c); }
+const mcv = firstNumber(text,[/\bmcv\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
+if(mcv !== null){
+  setVal("pwMCV",mcv);
+  detected.push("MCV " + mcv);
+}
+
+const mch = firstNumber(text,[/\bmch\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
+if(mch !== null){
+  setVal("pwMCH",mch);
+  detected.push("MCH " + mch);
+}
+
+const mchc = firstNumber(text,[/\bmchc\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
+if(mchc !== null){
+  setVal("pwMCHC",mchc);
+  detected.push("MCHC " + mchc);
+}
+
+const rdw = firstNumber(text,[/\brdw\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
+if(rdw !== null){
+  setVal("pwRDW",rdw);
+  detected.push("RDW " + rdw);
+}
+
+const platelets = firstNumber(text,[
+  /\bplt\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bplatelets?\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(platelets !== null){
+  setVal("pwPlatelets",platelets);
+  detected.push("Platelets " + platelets);
+}
+
+const neutrophils = firstNumber(text,[
+  /\bneutrophils?\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bneut\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(neutrophils !== null){
+  setVal("pwNeutrophils",neutrophils);
+  detected.push("Neutrophils " + neutrophils);
+}
+
+const anc = firstNumber(text,[
+  /\banc\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\babsolute neutrophil count\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(anc !== null){
+  setVal("pwANC",anc);
+  detected.push("ANC " + anc);
+}
+
+const lymphocytes = firstNumber(text,[
+  /\blymphocytes?\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\blymphs?\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(lymphocytes !== null){
+  setVal("pwLymphocytes",lymphocytes);
+  detected.push("Lymphocytes " + lymphocytes);
+}
+
+const monocytes = firstNumber(text,[
+  /\bmonocytes?\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bmonos?\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(monocytes !== null){
+  setVal("pwMonocytes",monocytes);
+  detected.push("Monocytes " + monocytes);
+}
+
+const eosinophils = firstNumber(text,[
+  /\beosinophils?\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\beos\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(eosinophils !== null){
+  setVal("pwEosinophils",eosinophils);
+  detected.push("Eosinophils " + eosinophils);
+}
+
+const basophils = firstNumber(text,[
+  /\bbasophils?\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bbaso\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(basophils !== null){
+  setVal("pwBasophils",basophils);
+  detected.push("Basophils " + basophils);
+}
+
+
+// COMPREHENSIVE METABOLIC PANEL
+const sodium = firstNumber(text,[
+  /\bna\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bsodium\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(sodium !== null){
+  setVal("pwSodium",sodium);
+  detected.push("Sodium " + sodium);
+}
+
+const potassium = firstNumber(text,[
+  /\bk\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bpotassium\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(potassium !== null){
+  setVal("pwPotassium",potassium);
+  detected.push("Potassium " + potassium);
+}
+
+const chloride = firstNumber(text,[
+  /\bcl\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bchloride\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(chloride !== null){
+  setVal("pwChloride",chloride);
+  detected.push("Chloride " + chloride);
+}
+
+const co2 = firstNumber(text,[
+  /\bco2\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bbicarbonate\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(co2 !== null){
+  setVal("pwCO2",co2);
+  detected.push("CO2 " + co2);
+}
+
+const bun = firstNumber(text,[
+  /\bbun\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bblood urea nitrogen\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(bun !== null){
+  setVal("pwBUN",bun);
+  detected.push("BUN " + bun);
+}
+
+const creatinine = firstNumber(text,[
+  /\bcreatinine\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bcr\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(creatinine !== null){
+  setVal("pwCreatinine",creatinine);
+  detected.push("Creatinine " + creatinine);
+}
+
+const egfr = firstNumber(text,[
+  /\begfr\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bgfr\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(egfr !== null){
+  setVal("pwEGFR",egfr);
+  detected.push("eGFR " + egfr);
+}
+
+const glucose = firstNumber(text,[
+  /\bglucose\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bglu\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(glucose !== null){
+  setVal("pwGlucose",glucose);
+  detected.push("Glucose " + glucose);
+}
+
+const calcium = firstNumber(text,[
+  /\bcalcium\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bca\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(calcium !== null){
+  setVal("pwCalcium",calcium);
+  detected.push("Calcium " + calcium);
+}
+
+const totalProtein = firstNumber(text,[
+  /\btotal protein\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(totalProtein !== null){
+  setVal("pwTotalProtein",totalProtein);
+  detected.push("Total protein " + totalProtein);
+}
+
+const albumin = firstNumber(text,[
+  /\balbumin\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\balb\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(albumin !== null){
+  setVal("pwAlbumin",albumin);
+  detected.push("Albumin " + albumin);
+}
+
+const totalBilirubin = firstNumber(text,[
+  /\btotal bilirubin\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bbilirubin\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bt bili\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(totalBilirubin !== null){
+  setVal("pwTotalBilirubin",totalBilirubin);
+  detected.push("Total bilirubin " + totalBilirubin);
+}
+
+const alkPhos = firstNumber(text,[
+  /\balkaline phosphatase\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\balk phos\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\balp\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(alkPhos !== null){
+  setVal("pwAlkPhos",alkPhos);
+  detected.push("Alkaline phosphatase " + alkPhos);
+}
+
+const ast = firstNumber(text,[/\bast\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
+if(ast !== null){
+  setVal("pwAST",ast);
+  detected.push("AST " + ast);
+}
+
+const alt = firstNumber(text,[/\balt\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
+if(alt !== null){
+  setVal("pwALT",alt);
+  detected.push("ALT " + alt);
+}
+
+const a1c = firstNumber(text,[
+  /\ba1c\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bhgb\s*a1c\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bhemoglobin a1c\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(a1c !== null){
+  setVal("pwA1c",a1c);
+  detected.push("A1c " + a1c);
+}
+
+
+// COAGULATION
+const pt = firstNumber(text,[/\bpt\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
+if(pt !== null){
+  setVal("pwPT",pt);
+  detected.push("PT " + pt);
+}
+
+const inr = firstNumber(text,[/\binr\s*[:=]?\s*(\d+(?:\.\d+)?)/i]);
+if(inr !== null){
+  setVal("pwINR",inr);
+  detected.push("INR " + inr);
+}
+
+const ptt = firstNumber(text,[
+  /\bptt\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\baptt\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(ptt !== null){
+  setVal("pwPTT",ptt);
+  detected.push("PTT " + ptt);
+}
+
+
+// BNP / NT-proBNP
+const ntproBNP = firstNumber(text,[
+  /\bnt[-\s]?pro[-\s]?bnp\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(ntproBNP !== null){
+  setVal("pwNTproBNP",ntproBNP);
+  detected.push("NT-proBNP " + ntproBNP);
+}
+
+const bnp = firstNumber(text,[
+  /\bbnp\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(bnp !== null && ntproBNP === null){
+  setVal("pwBNP",bnp);
+  detected.push("BNP " + bnp);
+}
+
+
+// INFLAMMATORY MARKERS
+const esr = firstNumber(text,[
+  /\besr\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bsed(?:imentation)? rate\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(esr !== null){
+  setVal("pwESR",esr);
+  detected.push("ESR " + esr);
+}
+
+const crp = firstNumber(text,[
+  /\bcrp\s*[:=]?\s*(\d+(?:\.\d+)?)/i,
+  /\bc[-\s]?reactive protein\s*[:=]?\s*(\d+(?:\.\d+)?)/i
+]);
+if(crp !== null){
+  setVal("pwCRP",crp);
+  detected.push("CRP " + crp);
+}
 
   if(has(text,[/\bsevere tricuspid regurgitation\b/i,/\bsevere tr\b/i])){
     setVal("pwSevereTR","yes"); detected.push("Severe TR");

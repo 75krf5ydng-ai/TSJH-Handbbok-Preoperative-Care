@@ -822,7 +822,7 @@ if(crp !== null){
     ? "<strong>Detected information:</strong> " + escapeHtml(detected.join("; "))
     : "<strong>No supported findings were automatically detected.</strong> Review and enter findings manually.";
 }
-
+generateProviderWorkflow();
 function clearProviderFreeText(){
   byId("pwFreeText").value = "";
   const box = byId("pwDetected");

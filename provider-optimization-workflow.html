@@ -171,6 +171,7 @@
   <h2>Patient / Procedure</h2>
   <div class="grid">
     <div><label for="pwPatient">Patient</label><input id="pwPatient" type="text"></div>
+    <div><label for="pwAge">Age</label><input id="pwAge" type="number" min="0" max="120" inputmode="numeric" placeholder="Age"></div>
     <div><label for="pwDOS">Date of Service / Surgery Date</label><input id="pwDOS" type="date"></div>
     <div><label for="pwProcedure">Procedure</label><input id="pwProcedure" type="text"></div>
     <div><label for="pwSurgeon">Surgeon</label><input id="pwSurgeon" type="text"></div>
@@ -1019,11 +1020,15 @@ const activeCardiacText = yes("pwActiveCardiac")
 
 html += "<li>Active Cardiac Problems: " + activeCardiacText + "</li>";
 
+const ageForBNP = num("pwAge");
 const rcriForBNP = num("pwRCRI");
 
 let bnpScreeningText = "No";
 
-if(rcriForBNP !== null && rcriForBNP >= 1){
+if(
+  (ageForBNP !== null && ageForBNP >= 65) ||
+  (rcriForBNP !== null && rcriForBNP >= 1)
+){
   bnpScreeningText = "Yes";
 }
 

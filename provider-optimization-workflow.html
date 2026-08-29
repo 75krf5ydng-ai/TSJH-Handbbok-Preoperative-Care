@@ -1002,20 +1002,33 @@ const strokeMonths = num("pwStrokeMonths");
   html += "<strong>Reason:</strong> " + escapeHtml(reason);
   html += "</div>";
 
-  html += "<h3>Functional & Risk Screening</h3><ul>";
-  html += "<li>DASI: " + escapeHtml(val("pwDASI") || "â") + "</li>";
-  html += "<li>STOP-BANG: " + escapeHtml(val("pwSTOPBANG") || "â") + "</li>";
-  html += "<li>CFS: " + escapeHtml(val("pwCFS") || "â") + "</li>";
-  html += "<li>RCRI: " + escapeHtml(val("pwRCRI") || "â") + "</li>";
-  html += "</ul>";
+html += "<h3>Functional & Risk Screening</h3><ul>";
+html += "<li>DASI: " + escapeHtml(val("pwDASI") || "-") + "</li>";
+html += "<li>STOP-BANG: " + escapeHtml(val("pwSTOPBANG") || "-") + "</li>";
+html += "<li>CFS: " + escapeHtml(val("pwCFS") || "-") + "</li>";
+html += "<li>RCRI: " + escapeHtml(val("pwRCRI") || "-") + "</li>";
+html += "</ul>";
 
-  html += "<h3>Preoperative Cardiac Guidelines Application</h3><ul>";
-  html += "<li>Surgical Risk: " + escapeHtml(val("pwSurgicalRisk") || "â") + "</li>";
-  html += "<li>RCRI: " + escapeHtml(val("pwRCRI") || "â") + "</li>";
-  html += "<li>Active Cardiac Problems: " + (yes("pwActiveCardiac") ? "Yes" : "No") + "</li>";
-  html += "<li>BNP Screening: apply institutional age/RCRI/cardiac-disease criteria</li>";
-  html += "</ul>";
+html += "<h3>Preoperative Cardiac Guidelines Application</h3><ul>";
+html += "<li>Surgical Risk: " + escapeHtml(val("pwSurgicalRisk") || "-") + "</li>";
+html += "<li>RCRI: " + escapeHtml(val("pwRCRI") || "-") + "</li>";
 
+const activeCardiacText = yes("pwActiveCardiac")
+  ? "Yes"
+  : "No";
+
+html += "<li>Active Cardiac Problems: " + activeCardiacText + "</li>";
+
+const rcriForBNP = num("pwRCRI");
+
+let bnpScreeningText = "No";
+
+if(rcriForBNP !== null && rcriForBNP >= 1){
+  bnpScreeningText = "Yes";
+}
+
+html += "<li>BNP Screening: " + bnpScreeningText + "</li>";
+html += "</ul>";
   if(hlocU.length){
     html += "<h3>Higher-Level-of-Care Criteria</h3><ul>" + hlocU.map(x=>"<li>"+escapeHtml(x)+"</li>").join("") + "</ul>";
   }

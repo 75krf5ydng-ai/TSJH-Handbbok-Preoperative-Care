@@ -505,9 +505,10 @@ style="margin-top:8px;font-size:14px;color:#52606d;">
 
 
 
-<section>
+<details class="home-dropdown">
+  <summary>Core Preoperative Evaluation</summary>
 
-<h2>Core Preoperative Evaluation</h2>
+  <div class="dropdown-content">
 
 <div class="chapter-grid">
 
@@ -547,13 +548,13 @@ style="margin-top:8px;font-size:14px;color:#52606d;">
 <a class="button" href="surgery-risk-taxonomy.html">Open</a>
 </div>
 
-</div>
-</section>
+  </div>
+</details>
 
 
 <section id="cardiac">
 
-<details class="browse-section">
+<details class="home-dropdown">
 <summary style="cursor:pointer;font-size:1.3rem;font-weight:bold;color:#17324d;padding:8px 0;">
 Cardiovascular Evaluation
 </summary>
@@ -611,7 +612,7 @@ for 48–72 hours under the applicable protocol.
 
 <section id="pulmonary">
 
-<details class="browse-section">
+<details class="home-dropdown">
 <summary style="cursor:pointer;font-size:1.3rem;font-weight:bold;color:#17324d;padding:8px 0;">
 Pulmonary, OSA &amp; PFT Evaluation
 </summary>
@@ -651,7 +652,7 @@ Pulmonary, OSA &amp; PFT Evaluation
 
 <section id="labs">
 
-<details class="browse-section">
+<details class="home-dropdown">
 <summary style="cursor:pointer;font-size:1.3rem;font-weight:bold;color:#17324d;padding:8px 0;">
 Laboratory Interpretation &amp; Medical Optimization
 </summary>
@@ -691,7 +692,7 @@ Laboratory Interpretation &amp; Medical Optimization
 
 <section id="medications">
 
-<details class="browse-section">
+<details class="home-dropdown">
 <summary style="cursor:pointer;font-size:1.3rem;font-weight:bold;color:#17324d;padding:8px 0;">
 Perioperative Medication Management
 </summary>
@@ -814,7 +815,7 @@ Open MDCalc
 
 <section id="workflow">
 
-<details class="browse-section">
+<details class="home-dropdown">
 <summary style="cursor:pointer;font-size:1.3rem;font-weight:bold;color:#17324d;padding:8px 0;">
 Preoperative Workflow &amp; Operations
 </summary>
@@ -872,7 +873,7 @@ Preoperative Workflow &amp; Operations
 
 <section id="functional-capacity">
 
-<details class="browse-section">
+<details class="home-dropdown">
 <summary style="cursor:pointer;font-size:1.3rem;font-weight:bold;color:#17324d;padding:8px 0;">
 Functional Capacity &amp; Frailty
 </summary>
@@ -898,7 +899,7 @@ preoperative documentation.
 
 <section id="forms">
 
-<details class="browse-section">
+<details class="home-dropdown">
 <summary style="cursor:pointer;font-size:1.3rem;font-weight:bold;color:#17324d;padding:8px 0;">
 Forms &amp; Documentation
 </summary>
@@ -950,7 +951,7 @@ Forms &amp; Documentation
 
 <section id="tools">
 
-<details class="browse-section">
+<details class="home-dropdown">
 <summary style="cursor:pointer;font-size:1.3rem;font-weight:bold;color:#17324d;padding:8px 0;">
 Clinical Calculators &amp; Evidence Resources
 </summary>
@@ -1026,7 +1027,7 @@ document.addEventListener("DOMContentLoaded", function () {
     searchBox.addEventListener("input", function () {
       const hasSearch = searchBox.value.trim() !== "";
 
-      document.querySelectorAll("details.browse-section").forEach(function (item) {
+ document.querySelectorAll("details.home-dropdown")
         item.open = hasSearch;
       });
     });

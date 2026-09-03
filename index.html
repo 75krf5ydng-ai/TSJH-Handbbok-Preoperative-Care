@@ -1040,9 +1040,9 @@ document.addEventListener("DOMContentLoaded", function () {
     searchBox.addEventListener("input", function () {
       const hasSearch = searchBox.value.trim() !== "";
 
- document.querySelectorAll("details.home-dropdown")
-        item.open = hasSearch;
-      });
+ document.querySelectorAll("details.home-dropdown").forEach(function(item) {
+    item.open = hasSearch;
+});
     });
   }
 });

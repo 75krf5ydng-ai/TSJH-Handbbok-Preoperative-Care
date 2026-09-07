@@ -1121,9 +1121,17 @@ function searchChaptersTop() {
     const cards = section.querySelectorAll(".searchable");
 
     if (cards.length === 0) {
-      section.style.display = "";
-      return;
-    }
+  const sectionText = section.innerText.toLowerCase();
+  const sectionMatch = input === "" || sectionText.includes(input);
+
+  section.style.display = sectionMatch ? "" : "none";
+
+  if (input !== "" && sectionMatch) {
+    found++;
+  }
+
+  return;
+}
 
     let sectionMatches = 0;
 

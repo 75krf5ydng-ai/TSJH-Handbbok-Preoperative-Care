@@ -209,6 +209,7 @@ hr {
 
 </style>
 
+<link rel="stylesheet" href="calm-clinical.css">
 </head>
 
 <body>
@@ -1493,14 +1494,23 @@ function clearForm() {
     .style.display = "none";
 }
 function loadProviderInformation() {
+  let transfer = {};
+  try {
+    transfer = JSON.parse(sessionStorage.getItem("tsjhPatientInstructions") || "{}");
+    sessionStorage.removeItem("tsjhPatientInstructions");
+  } catch (error) {
+    transfer = {};
+  }
 
-  const params = new URLSearchParams(window.location.search);
+  function getValue(name) {
+    const value = transfer[name];
+    return value === undefined || value === null ? "" : String(value);
+  }
 
-  function setValue(id, param) {
+  function setValue(id, name) {
     const el = document.getElementById(id);
-    const value = params.get(param);
-
-    if (el && value !== null && value !== "") {
+    const value = getValue(name);
+    if (el && value !== "") {
       el.value = value;
       el.dispatchEvent(new Event("input", { bubbles: true }));
       el.dispatchEvent(new Event("change", { bubbles: true }));
@@ -1509,80 +1519,48 @@ function loadProviderInformation() {
 
   function checkBox(id) {
     const el = document.getElementById(id);
-
     if (el) {
       el.checked = true;
       el.dispatchEvent(new Event("change", { bubbles: true }));
     }
   }
 
-  // Patient / procedure information
   setValue("piPatient", "patient");
   setValue("piProcedure", "procedure");
   setValue("piSurgeon", "surgeon");
   setValue("piDate", "date");
 
-  // OSA
-  if (params.get("osa") === "yes") {
-    checkBox("piOSA");
-  }
+  if (getValue("osa") === "yes") checkBox("piOSA");
+  if (getValue("copd") === "yes") checkBox("piCOPD");
 
-  // COPD
-  if (params.get("copd") === "yes") {
-    checkBox("piCOPD");
-  }
-
-  // Anticoagulant / antiplatelet
-  const antithrombotic = params.get("antithrombotic");
-
+  const antithrombotic = getValue("antithrombotic");
   if (antithrombotic) {
     checkBox("piAnticoag");
-
     const med = document.getElementById("piMedicationName");
-
-    if (med && !med.value) {
-      med.value = antithrombotic;
-    }
+    if (med && !med.value) med.value = antithrombotic;
   }
 
-  // Diabetes medication education
-  if (
-    params.get("glp1") === "yes" ||
-    params.get("sglt2") ||
-    params.get("pump") === "yes"
-  ) {
+  if (getValue("glp1") === "yes" || getValue("sglt2") === "yes" || getValue("pump") === "yes") {
     checkBox("piDiabetesMeds");
   }
 
-  // Sodium
-  const sodium = parseFloat(params.get("sodium"));
-
+  const sodium = parseFloat(getValue("sodium"));
   if (!isNaN(sodium) && sodium < 130) {
     checkBox("piHyponatremia");
     checkBox("piRepeatLabs");
   }
 
-  // Potassium
-  const potassium = parseFloat(params.get("potassium"));
-
+  const potassium = parseFloat(getValue("potassium"));
   if (!isNaN(potassium)) {
-
     if (potassium < 3.2) {
       checkBox("piHypokalemia");
       checkBox("piRepeatLabs");
     }
-
     if (potassium > 5.5) {
       checkBox("piHyperkalemia");
       checkBox("piRepeatLabs");
     }
   }
-
-  // Helpful test message in browser console
-  console.log(
-    "Provider information loaded:",
-    Object.fromEntries(params.entries())
-  );
 }
 
 window.addEventListener(

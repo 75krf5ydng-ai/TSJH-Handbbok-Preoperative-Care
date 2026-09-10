@@ -166,19 +166,20 @@
     section{box-shadow:none}
   }
 </style>
+<link rel="stylesheet" href="calm-clinical.css">
 </head>
 <body>
 
 <header>
   <h1>Provider Preoperative Optimization Workflow</h1>
-  <p>TSJH-oriented clinical decision support for preoperative medical optimization</p>
+  <p>Quick intake first, followed by focused review and a concise final optimization status.</p>
 </header>
 
 <nav>
   <a href="index.html">Home</a>
   <a href="evaluation.html">Evaluation</a>
   <a href="preop-red-flags.html">Red Flags</a>
-  <a href="provider-resources.html">Resources</a>
+  <a href="resource-hub.html">Resource Hub</a>
 </nav>
 
 <main id="providerWorkflowInteractive">
@@ -1172,22 +1173,24 @@ function clearProviderWorkflow(){
 }
 
 function openPatientInstructions(){
-  const params = new URLSearchParams();
-  if(val("pwPatient")) params.set("patient",val("pwPatient"));
-  if(val("pwProcedure")) params.set("procedure",val("pwProcedure"));
-  if(val("pwSurgeon")) params.set("surgeon",val("pwSurgeon"));
-  if(val("pwDOS")) params.set("date",val("pwDOS"));
-  if(val("pwSodium")) params.set("sodium",val("pwSodium"));
-  if(val("pwPotassium")) params.set("potassium",val("pwPotassium"));
-  if(val("pwHemoglobin")) params.set("hgb",val("pwHemoglobin"));
-  if(val("pwA1c")) params.set("a1c",val("pwA1c"));
-  if(yes("pwOSA")) params.set("osa","yes");
-  if(yes("pwCOPD")) params.set("copd","yes");
-  if(val("pwAntithrombotic") !== "none") params.set("antithrombotic",val("pwAntithrombotic"));
-  if(val("pwSGLT2") === "yes") params.set("sglt2","yes");
-  if(yes("pwGLP1")) params.set("glp1","yes");
-  if(yes("pwInsulinPump")) params.set("pump","yes");
-  window.location.href = "patient-discharge-education.html?" + params.toString();
+  const transfer = {
+    patient: val("pwPatient"),
+    procedure: val("pwProcedure"),
+    surgeon: val("pwSurgeon"),
+    date: val("pwDOS"),
+    sodium: val("pwSodium"),
+    potassium: val("pwPotassium"),
+    hgb: val("pwHemoglobin"),
+    a1c: val("pwA1c"),
+    osa: yes("pwOSA") ? "yes" : "no",
+    copd: yes("pwCOPD") ? "yes" : "no",
+    antithrombotic: val("pwAntithrombotic") !== "none" ? val("pwAntithrombotic") : "",
+    sglt2: val("pwSGLT2") === "yes" ? "yes" : "no",
+    glp1: yes("pwGLP1") ? "yes" : "no",
+    pump: yes("pwInsulinPump") ? "yes" : "no"
+  };
+  sessionStorage.setItem("tsjhPatientInstructions", JSON.stringify(transfer));
+  window.location.href = "patient-discharge-education.html";
 }
 
 function bind(id,eventName,handler){

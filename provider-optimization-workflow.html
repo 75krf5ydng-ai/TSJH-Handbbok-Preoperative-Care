@@ -88,7 +88,7 @@
     border-radius:6px;
     background:#fff;
   }
-  textarea{min-height:150px;resize:vertical}
+  textarea{min-height:110px;resize:vertical}
   button{
     border:0;
     border-radius:7px;
@@ -127,6 +127,33 @@
   .status.not-optimized{background:var(--red-bg);border:2px solid var(--red)}
   ul{margin-top:6px}
   .small{font-size:.9rem;color:#52606d}
+  .workflow-controls{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:0 0 14px;
+  }
+  .workflow-controls button{width:auto;padding:9px 14px}
+  .workflow-collapsible{padding:0;overflow:hidden}
+  .workflow-collapsible h2{margin:0;border:0;padding:0}
+  .section-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    padding:17px 20px;
+    border-radius:0;
+    background:#fff;
+    color:var(--navy);
+    text-align:left;
+    font-size:1.08rem;
+  }
+  .section-toggle::after{content:"+";font-size:1.45rem;line-height:1}
+  .section-toggle[aria-expanded="true"]::after{content:"−"}
+  .section-toggle:hover,.section-toggle:focus-visible{background:#f7fafc}
+  .section-body{padding:0 20px 20px;border-top:1px solid var(--line)}
+  .section-body[hidden]{display:none}
+  .field-count{font-size:.82rem;font-weight:normal;color:#52606d;margin-left:auto;margin-right:14px}
   footer{text-align:center;padding:24px;color:#52606d;font-size:.9rem}
   @media(max-width:760px){
     .grid{grid-template-columns:1fr}
@@ -157,8 +184,9 @@
 <main id="providerWorkflowInteractive">
 
 <section id="freeTextSection">
-  <h2>Provider Free-Text Analyzer</h2>
-  <p class="small">Paste or type clinically relevant findings. The analyzer will populate supported fields below. Review all populated values before generating the final status.</p>
+  <h2>Quick Clinical Intake</h2>
+  <p class="small">Paste or type the important findings once. The analyzer fills supported fields, opens only the relevant sections, and refreshes the preliminary status. Review the populated values before using the result.</p>
+  <label for="pwFreeText">Clinical findings</label>
   <textarea id="pwFreeText" placeholder="Example: EF 30%, RVSP 70 mmHg, severe TR, WHO Group 1 pulmonary hypertension, Hgb 9.1, sodium 128..."></textarea>
   <div class="buttons">
     <button type="button" class="btn-primary" id="pwAnalyzeText">Analyze Findings</button>
@@ -166,6 +194,11 @@
   </div>
   <div id="pwDetected" class="box info" style="display:none"></div>
 </section>
+
+<div class="workflow-controls no-print" aria-label="Workflow display controls">
+  <button type="button" class="btn-secondary" id="pwShowAll">Show all sections</button>
+  <button type="button" class="btn-secondary" id="pwCollapseOptional">Collapse optional sections</button>
+</div>
 
 <section>
   <h2>Patient / Procedure</h2>
@@ -212,11 +245,11 @@
 <section>
   <h2>Valvular Disease</h2>
   <div class="grid">
-    <div><label for="pwAVA">Aortic Valve Area (cmÂ²)</label><input id="pwAVA" type="number" step="0.1"></div>
+    <div><label for="pwAVA">Aortic Valve Area (cm²)</label><input id="pwAVA" type="number" step="0.1"></div>
     <div><label for="pwASGradient">Aortic Mean Gradient (mmHg)</label><input id="pwASGradient" type="number" step="1"></div>
     <div><label for="pwVmax">Aortic Vmax (m/s)</label><input id="pwVmax" type="number" step="0.1"></div>
     <div><label for="pwSymptomaticAS">Symptomatic aortic stenosis</label><select id="pwSymptomaticAS"><option value="no">No</option><option value="yes">Yes</option></select></div>
-    <div><label for="pwMVA">Mitral Valve Area (cmÂ²)</label><input id="pwMVA" type="number" step="0.1"></div>
+    <div><label for="pwMVA">Mitral Valve Area (cm²)</label><input id="pwMVA" type="number" step="0.1"></div>
     <div><label for="pwMSGradient">Mitral Mean Gradient (mmHg)</label><input id="pwMSGradient" type="number" step="1"></div>
     <div><label for="pwPASP">PASP (mmHg)</label><input id="pwPASP" type="number" step="1"></div>
     <div><label for="pwCardiologyCurrent">Required cardiology review available/current</label><select id="pwCardiologyCurrent"><option value="yes">Yes</option><option value="no">No</option></select></div>
@@ -391,7 +424,7 @@
 </main>
 
 <footer>
-  Preoperative Optimization Handbook Â· Provider decision-support workflow
+  Preoperative Optimization Handbook · Provider decision-support workflow
 </footer>
 
 <script>
@@ -822,8 +855,9 @@ if(crp !== null){
   box.innerHTML = detected.length
     ? "<strong>Detected information:</strong> " + escapeHtml(detected.join("; "))
     : "<strong>No supported findings were automatically detected.</strong> Review and enter findings manually.";
+  openPopulatedSections();
+  generateProviderWorkflow(false);
 }
-generateProviderWorkflow();
 function clearProviderFreeText(){
   byId("pwFreeText").value = "";
   const box = byId("pwDetected");
@@ -831,7 +865,7 @@ function clearProviderFreeText(){
   box.style.display = "none";
 }
 
-function generateProviderWorkflow(){
+function generateProviderWorkflow(shouldScroll = true){
   const hloc = [];
   const stop = [];
   const pending = [];
@@ -1053,7 +1087,54 @@ html += "</ul>";
   const result = byId("pwResult");
   result.innerHTML = html;
   result.style.display = "block";
-  result.scrollIntoView({behavior:"smooth",block:"start"});
+  if(shouldScroll) result.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function setSectionOpen(section,open){
+  const button = section.querySelector(".section-toggle");
+  const body = section.querySelector(".section-body");
+  if(!button || !body) return;
+  button.setAttribute("aria-expanded",String(open));
+  body.hidden = !open;
+}
+
+function prepareCompactWorkflow(){
+  const sections = document.querySelectorAll("#providerWorkflowInteractive > section:not(#freeTextSection)");
+  sections.forEach(function(section,index){
+    if(section.querySelector("#pwResult")) return;
+    const heading = section.querySelector(":scope > h2");
+    if(!heading) return;
+    const body = document.createElement("div");
+    body.className = "section-body";
+    while(heading.nextSibling) body.appendChild(heading.nextSibling);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "section-toggle";
+    button.setAttribute("aria-expanded",String(index < 2));
+    button.innerHTML = "<span>" + escapeHtml(heading.textContent) + "</span>";
+    heading.textContent = "";
+    heading.appendChild(button);
+    section.appendChild(body);
+    section.classList.add("workflow-collapsible");
+    body.hidden = index >= 2;
+    button.addEventListener("click",function(){
+      setSectionOpen(section,button.getAttribute("aria-expanded") !== "true");
+    });
+  });
+}
+
+function openPopulatedSections(){
+  document.querySelectorAll(".workflow-collapsible").forEach(function(section){
+    const populated = Array.from(section.querySelectorAll("input,select")).some(function(el){
+      if(el.tagName === "SELECT") return el.selectedIndex > 0;
+      return String(el.value || "").trim() !== "";
+    });
+    if(populated) setSectionOpen(section,true);
+  });
+}
+
+function setAllWorkflowSections(open){
+  document.querySelectorAll(".workflow-collapsible").forEach(section=>setSectionOpen(section,open));
 }
 
 async function copyProviderWorkflow(){
@@ -1115,6 +1196,7 @@ function bind(id,eventName,handler){
 }
 
 document.addEventListener("DOMContentLoaded",function(){
+  prepareCompactWorkflow();
   bind("pwAnalyzeText","click",analyzeProviderFreeText);
   bind("pwClearText","click",clearProviderFreeText);
   bind("pwGenerate","click",generateProviderWorkflow);
@@ -1122,6 +1204,13 @@ document.addEventListener("DOMContentLoaded",function(){
   bind("pwPrint","click",printProviderWorkflow);
   bind("pwClear","click",clearProviderWorkflow);
   bind("pwPatientInstructions","click",openPatientInstructions);
+  bind("pwShowAll","click",function(){ setAllWorkflowSections(true); });
+  bind("pwCollapseOptional","click",function(){
+    setAllWorkflowSections(false);
+    document.querySelectorAll(".workflow-collapsible").forEach(function(section,index){
+      if(index < 2) setSectionOpen(section,true);
+    });
+  });
 });
 </script>
 

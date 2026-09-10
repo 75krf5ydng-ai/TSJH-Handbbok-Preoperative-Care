@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Preoperative Patient Screening Packet</title>
+<style>
+:root{--navy:#17324d;--blue:#3178a8;--green:#2d7a46;--gold:#a66c00;--red:#b42318;--bg:#f4f7f9;--line:#d9e2ec;--text:#1f2933;--muted:#52606d}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+header{background:var(--navy);color:#fff;text-align:center;padding:30px 18px}header h1{margin:0 0 7px;font-size:1.8rem}header p{margin:0 auto;max-width:760px}
+nav{background:#fff;text-align:center;border-bottom:1px solid var(--line);padding:10px}nav a{color:var(--navy);font-weight:700;text-decoration:none;margin:0 8px}
+main{max-width:900px;margin:20px auto;padding:0 14px 44px}.notice,.screen,.summary{background:#fff;border:1px solid var(--line);border-radius:13px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.privacy{background:#eef6fb;border-left:5px solid var(--blue)}.warning{background:#fff9e8;border-left:5px solid #d7a600}.screen{padding:0;overflow:hidden}
+.screen summary{cursor:pointer;list-style:none;padding:18px 20px;color:var(--navy);font-size:1.15rem;font-weight:700;display:flex;justify-content:space-between;align-items:center}.screen summary::-webkit-details-marker{display:none}.screen summary::after{content:"+";font-size:1.5rem}.screen[open] summary::after{content:"−"}.body{border-top:1px solid var(--line);padding:20px}
+.question{border-bottom:1px solid #e9eef2;padding:14px 0}.question:last-child{border-bottom:0}.question p{margin:0 0 9px;font-weight:700}.options{display:flex;flex-wrap:wrap;gap:8px}.options label{border:1px solid #b8c5d1;border-radius:8px;padding:9px 11px;cursor:pointer;background:#fff}.options label:has(input:checked){background:#eaf3f9;border-color:var(--blue)}input[type=radio]{margin-right:5px}.score{background:#eef9f0;border-left:5px solid var(--green);padding:13px;margin-top:15px}.clinician{background:#fff5f5;border-left:5px solid var(--red);padding:13px;margin-top:15px}
+.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0}.actions button{border:0;border-radius:8px;padding:12px;font:inherit;font-weight:700;cursor:pointer}.primary{background:var(--navy);color:#fff}.secondary{background:#e8eef3;color:var(--navy)}.danger{background:#fbe9e7;color:#8f1d14}
+#packetSummary{display:none}.result-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.result{border:1px solid var(--line);border-radius:9px;padding:13px}.result strong{color:var(--navy)}.small{font-size:.88rem;color:var(--muted)}
+footer{text-align:center;color:var(--muted);padding:22px}
+@media(max-width:700px){.actions,.result-grid{grid-template-columns:1fr}.options{flex-direction:column}.options label{width:100%}header h1{font-size:1.4rem}}
+@media print{nav,.actions,.privacy{display:none!important}body{background:#fff}.screen{box-shadow:none}.screen:not([open]){display:none}#packetSummary{display:block!important;box-shadow:none}}
+</style>
+</head>
+<body>
+<header><h1>Preoperative Patient Screening Packet</h1><p>Functional capacity, mood, anxiety, alcohol use, and delirium-risk preparation for noncardiac surgery.</p></header>
+<nav><a href="index.html">Home</a><a href="resource-hub.html">Resource Hub</a><a href="patient-forms.html">Patient Forms</a></nav>
+<main id="packet">
+<section class="notice privacy"><strong>Your privacy:</strong> This public form works only in your browser. It does not send responses to a clinic or store them on this website. Do not enter your name, date of birth, medical-record number, or contact information. Print or copy the summary and use only the secure submission method provided by your clinic.</section>
+<section class="notice warning"><strong>Please answer based on how you feel and function now.</strong> These questionnaires are screening tools—not diagnoses. A clinician must review the results in the context of your planned surgery and health history.</section>
+
+<details class="screen" open id="dasi"><summary>1. DASI Functional Capacity</summary><div class="body"><p>Can you currently do each activity? Select Yes only when you can perform it now.</p><div id="dasiQuestions"></div><div class="score"><strong>DASI score: <span id="dasiScore">0.00</span> / 58.20</strong><br><span class="small">Higher scores generally represent greater functional capacity. Pain or orthopedic limitations may lower the score without reflecting a heart or lung limitation.</span></div></div></details>
+
+<details class="screen" id="mood"><summary>2. Depression & Anxiety (PHQ-4)</summary><div class="body"><p>Over the last 2 weeks, how often have you been bothered by the following?</p><div id="phqQuestions"></div><div class="score"><strong>PHQ-4 total: <span id="phqTotal">0</span> / 12</strong><br>Depression subscore: <span id="phq2">0</span> / 6 · Anxiety subscore: <span id="gad2">0</span> / 6<br><span class="small">A subscore of 3 or more signals the need for clinician follow-up; it does not establish a diagnosis.</span></div></div></details>
+
+<details class="screen" id="alcohol"><summary>3. Alcohol Use (AUDIT-C)</summary><div class="body"><div id="auditQuestions"></div><div class="score"><strong>AUDIT-C score: <span id="auditScore">0</span> / 12</strong><br><span class="small">Interpretation thresholds vary by population and clinical protocol. The healthcare team should review the score, usual intake, last alcohol use, and any history of withdrawal.</span></div><div class="clinician"><strong>Important:</strong> Tell the surgical team if you have ever had shaking, sweating, hallucinations, seizures, or needed medical treatment after reducing or stopping alcohol.</div></div></details>
+
+<details class="screen" id="awols"><summary>4. AWOL-S Delirium-Risk Preparation</summary><div class="body"><p>AWOL-S includes age, a brief attention task, orientation to place, and a clinician-assigned illness/anesthesia classification.</p><div class="question"><p>Age range</p><div class="options"><label><input type="radio" name="awolAge" value="under80">Under 80</label><label><input type="radio" name="awolAge" value="80plus">80 or older</label></div></div><div class="question"><p>Without looking at the word, can you spell WORLD backward?</p><div class="options"><label><input type="radio" name="awolWorld" value="correct">Correct</label><label><input type="radio" name="awolWorld" value="incorrect">Incorrect / unable</label></div></div><div class="question"><p>Can you correctly identify where you are today?</p><div class="options"><label><input type="radio" name="awolPlace" value="correct">Correct</label><label><input type="radio" name="awolPlace" value="incorrect">Incorrect / unsure</label></div></div><div class="question"><p>Have you had delirium or sudden confusion during a previous illness, hospitalization, or surgery?</p><div class="options"><label><input type="radio" name="priorDelirium" value="yes">Yes</label><label><input type="radio" name="priorDelirium" value="no">No</label><label><input type="radio" name="priorDelirium" value="unsure">Unsure</label></div></div><div class="clinician"><strong>Clinician completion required:</strong> The final AWOL-S probability cannot be calculated from patient responses alone. Staff must verify the cognitive responses and enter the clinician-assigned illness/anesthesia classification in the approved AWOL-S method.</div></div></details>
+
+<details class="screen" id="safety"><summary>5. Additional Perioperative Safety Questions</summary><div class="body"><div id="safetyQuestions"></div></div></details>
+
+<div class="actions"><button type="button" class="primary" id="makeSummary">Create summary</button><button type="button" class="secondary" id="copySummary">Copy summary</button><button type="button" class="secondary" id="printPacket">Print / Save PDF</button><button type="button" class="danger" id="clearPacket">Clear</button></div>
+<section class="summary" id="packetSummary" aria-live="polite"></section>
+</main>
+<footer>Preoperative Optimization Handbook · Patient Screening Packet</footer>
+<script>
+const dasi=[
+["Take care of yourself, including eating, dressing, bathing, and using the toilet.",2.75],["Walk indoors around your home.",1.75],["Walk one or two blocks on level ground.",2.75],["Climb one flight of stairs or walk up a hill.",5.5],["Run a short distance.",8],["Do light household work such as dusting, washing dishes, or making the bed.",2.7],["Do moderate household work such as vacuuming, sweeping, or carrying groceries.",3.5],["Do heavy work around the house such as scrubbing floors or moving heavy furniture.",8],["Do yard work such as raking leaves or pushing a power mower.",4.5],["Have sexual activity requiring moderate physical effort.",5.25],["Participate in moderate recreation such as golf, bowling, dancing, or doubles tennis.",6],["Participate in strenuous sports such as swimming, singles tennis, basketball, or skiing.",7.5]
+];
+const phq=["Little interest or pleasure in doing things","Feeling down, depressed, or hopeless","Feeling nervous, anxious, or on edge","Not being able to stop or control worrying"];
+const phqOpts=[[0,"Not at all"],[1,"Several days"],[2,"More than half the days"],[3,"Nearly every day"]];
+const audit=[
+{q:"How often do you have a drink containing alcohol?",o:[[0,"Never"],[1,"Monthly or less"],[2,"2–4 times a month"],[3,"2–3 times a week"],[4,"4 or more times a week"]]},
+{q:"How many standard drinks do you have on a typical day when drinking?",o:[[0,"1–2"],[1,"3–4"],[2,"5–6"],[3,"7–9"],[4,"10 or more"]]},
+{q:"How often do you have 6 or more drinks on one occasion?",o:[[0,"Never"],[1,"Less than monthly"],[2,"Monthly"],[3,"Weekly"],[4,"Daily or almost daily"]]}
+];
+const safety=["Do you currently smoke or vape?","Do you use marijuana, cannabis products, or other recreational substances?","Do you take opioid pain medicine regularly?","Have you fallen within the past year?","Do you need help with walking, bathing, dressing, medications, or other daily activities?","Have you had a major problem with anesthesia in the past?"];
+function options(name,items){return '<div class="options">'+items.map(([v,t])=>'<label><input type="radio" name="'+name+'" value="'+v+'">'+t+'</label>').join('')+'</div>'}
+document.getElementById('dasiQuestions').innerHTML=dasi.map((x,i)=>'<div class="question"><p>'+(i+1)+'. '+x[0]+'</p>'+options('dasi'+i,[[x[1],'Yes'],[0,'No']])+'</div>').join('');
+document.getElementById('phqQuestions').innerHTML=phq.map((q,i)=>'<div class="question"><p>'+(i+1)+'. '+q+'</p>'+options('phq'+i,phqOpts)+'</div>').join('');
+document.getElementById('auditQuestions').innerHTML=audit.map((x,i)=>'<div class="question"><p>'+(i+1)+'. '+x.q+'</p>'+options('audit'+i,x.o)+'</div>').join('');
+document.getElementById('safetyQuestions').innerHTML=safety.map((q,i)=>'<div class="question"><p>'+(i+1)+'. '+q+'</p>'+options('safe'+i,[['yes','Yes'],['no','No'],['unsure','Unsure']])+'</div>').join('');
+function n(name){const x=document.querySelector('input[name="'+name+'"]:checked');return x?Number(x.value):0}function v(name){const x=document.querySelector('input[name="'+name+'"]:checked');return x?x.value:'Not answered'}
+function score(){let ds=0;dasi.forEach((_,i)=>ds+=n('dasi'+i));const p=[0,1,2,3].map(i=>n('phq'+i));const au=[0,1,2].map(i=>n('audit'+i));document.getElementById('dasiScore').textContent=ds.toFixed(2);document.getElementById('phq2').textContent=p[0]+p[1];document.getElementById('gad2').textContent=p[2]+p[3];document.getElementById('phqTotal').textContent=p.reduce((a,b)=>a+b,0);document.getElementById('auditScore').textContent=au.reduce((a,b)=>a+b,0)}
+document.getElementById('packet').addEventListener('change',score);
+function summary(){score();const flags=safety.map((q,i)=>v('safe'+i)==='yes'?q:null).filter(Boolean);const html='<h2>Patient Screening Summary</h2><div class="result-grid"><div class="result"><strong>DASI</strong><br>'+document.getElementById('dasiScore').textContent+' / 58.20</div><div class="result"><strong>PHQ-4</strong><br>'+document.getElementById('phqTotal').textContent+' / 12 (PHQ-2: '+document.getElementById('phq2').textContent+'; GAD-2: '+document.getElementById('gad2').textContent+')</div><div class="result"><strong>AUDIT-C</strong><br>'+document.getElementById('auditScore').textContent+' / 12</div><div class="result"><strong>AWOL-S preparation</strong><br>Age: '+v('awolAge')+'; WORLD backward: '+v('awolWorld')+'; Place orientation: '+v('awolPlace')+'; Prior delirium: '+v('priorDelirium')+'. Clinician completion required.</div></div><h3>Additional answers marked Yes</h3><p>'+(flags.length?flags.join('<br>'):'None')+'</p><p class="small">Screening results require clinician review. This summary contains no patient identifiers and was generated locally in the browser.</p>';const box=document.getElementById('packetSummary');box.innerHTML=html;box.style.display='block';box.scrollIntoView({behavior:'smooth'});return box.innerText}
+document.getElementById('makeSummary').addEventListener('click',summary);
+document.getElementById('copySummary').addEventListener('click',async()=>{const text=summary();try{await navigator.clipboard.writeText(text);alert('Screening summary copied.')}catch(e){alert('Copy was unavailable. Use Print / Save PDF instead.')}});
+document.getElementById('printPacket').addEventListener('click',()=>{summary();document.querySelectorAll('details.screen').forEach(x=>x.open=true);window.print()});
+document.getElementById('clearPacket').addEventListener('click',()=>{if(!confirm('Clear all screening responses?'))return;document.querySelectorAll('input[type=radio]').forEach(x=>x.checked=false);document.getElementById('packetSummary').style.display='none';score()});
+</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Perioperative Resource Hub | Starkey Handbook</title>
+<style>
+:root{--navy:#17324d;--blue:#3178a8;--green:#2d7a46;--gold:#a66c00;--bg:#f4f7f9;--line:#d9e2ec;--text:#1f2933;--muted:#52606d}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+header{background:linear-gradient(135deg,#17324d,#274c6b);color:#fff;padding:34px 18px;text-align:center}
+header h1{margin:0 0 8px;font-size:2rem} header p{max-width:760px;margin:auto}
+nav{background:#fff;border-bottom:1px solid var(--line);padding:11px;text-align:center;position:sticky;top:0;z-index:5}
+nav a{display:inline-block;color:var(--navy);font-weight:700;text-decoration:none;padding:7px 9px}
+main{max-width:1150px;margin:22px auto;padding:0 16px 38px}
+.intro,.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.role-grid,.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.role{border:2px solid var(--line);border-radius:12px;padding:20px}.role h2{margin:0 0 7px;color:var(--navy)}
+.role.patient{border-color:#b9ddc5}.role.professional{border-color:#b8d5e8}
+.search-wrap{margin:18px 0}.search-wrap input{width:100%;padding:14px 15px;font:inherit;border:2px solid var(--line);border-radius:9px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}.tabs button{border:1px solid var(--line);background:#fff;color:var(--navy);padding:10px 13px;border-radius:999px;font-weight:700;cursor:pointer}.tabs button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.card{border:1px solid var(--line);border-radius:11px;padding:17px;background:#fbfcfd}.card h3{color:var(--navy);margin:0 0 7px}.card p{color:var(--muted);margin:0 0 13px}
+.button{display:inline-block;background:var(--navy);color:#fff!important;text-decoration:none;font-weight:700;padding:9px 13px;border-radius:7px;margin:3px 4px 3px 0}.button.external{background:var(--blue)}.button.patient{background:var(--green)}
+.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);font-weight:700}
+.notice{background:#fff9e8;border-left:5px solid #d7a600;padding:14px;margin-top:16px}.clinical{background:#eef6fb;border-left:5px solid var(--blue);padding:14px;margin-top:16px}
+h2{color:var(--navy)} footer{text-align:center;color:var(--muted);padding:24px}
+[hidden]{display:none!important}
+@media(max-width:760px){.role-grid,.grid{grid-template-columns:1fr}header h1{font-size:1.55rem}nav{position:static}}
+@media print{nav,.search-wrap,.tabs{display:none}.intro,.panel{box-shadow:none}}
+</style>
+</head>
+<body>
+<header>
+<h1>Perioperative Resource Hub</h1>
+<p>One starting point for noncardiac-surgery evaluation, clinical decision support, professional guidance, and patient preparation.</p>
+</header>
+<nav>
+<a href="index.html">Home</a>
+<a href="#professional">Professional</a>
+<a href="#patient">Patient & Family</a>
+<a href="#societies">Society Guidance</a>
+</nav>
+<main>
+<section class="intro">
+<div class="role-grid">
+<div class="role professional">
+<div class="eyebrow">Clinical staff</div>
+<h2>I am a healthcare professional</h2>
+<p>Start an evaluation, calculate risk, interpret findings, check medications, or open current evidence.</p>
+<a class="button" href="#professional">Open professional tools</a>
+</div>
+<div class="role patient">
+<div class="eyebrow">Patients and families</div>
+<h2>I am preparing for surgery</h2>
+<p>Find preparation instructions, education, questions to ask, and forms that can be printed or saved.</p>
+<a class="button patient" href="#patient">Open patient resources</a>
+</div>
+</div>
+<div class="search-wrap">
+<label for="hubSearch"><strong>Find a tool or topic</strong></label>
+<input id="hubSearch" type="search" placeholder="Try: DASI, anticoagulation, anemia, EKG, patient instructions...">
+<div id="hubMessage" aria-live="polite"></div>
+</div>
+<div class="tabs" aria-label="Resource filters">
+<button type="button" class="active" data-filter="all">All</button>
+<button type="button" data-filter="workflow">Workflows</button>
+<button type="button" data-filter="screening">Screening</button>
+<button type="button" data-filter="evidence">Evidence</button>
+<button type="button" data-filter="patient">Patient</button>
+</div>
+</section>
+
+<section class="panel" id="professional">
+<h2>Professional Quick Start</h2>
+<div class="grid">
+<article class="card" data-tags="workflow provider evaluation optimization status hloc"><div class="eyebrow">Workflow</div><h3>Provider Optimization Workflow</h3><p>Patient-specific review with quick clinical intake and final optimization status.</p><a class="button" href="provider-optimization-workflow.html">Start evaluation</a></article>
+<article class="card" data-tags="workflow dashboard red flags medication laboratory ekg"><div class="eyebrow">Workflow</div><h3>Clinical Dashboard</h3><p>Navigate evaluation, red flags, medications, testing, and patient-summary tools.</p><a class="button" href="preoperative-clinical-dashboard.html">Open dashboard</a></article>
+<article class="card" data-tags="screening dasi rcri stop-bang frailty awol pulmonary"><div class="eyebrow">Screening</div><h3>Screening Tools</h3><p>DASI, RCRI, STOP-BANG, frailty, delirium, and pulmonary-risk resources.</p><a class="button" href="screening-tools.html">Open screening center</a><a class="button" href="pulmonary-risk-calculators.html">Pulmonary tools</a></article>
+<article class="card" data-tags="screening anemia calculator pft ekg testing medication"><div class="eyebrow">Handbook tools</div><h3>Interactive Clinical Tools</h3><p>Use structured interpreters for anemia, PFTs, EKGs, medications, and testing recency.</p><a class="button" href="anemia-optimization.html">Anemia</a><a class="button" href="pft-interpretation.html">PFT</a><a class="button" href="ekg-interpretation-analyzer.html">EKG</a><a class="button" href="testing-recency-checker.html">Testing</a></article>
+<article class="card" data-tags="screening evidence mdcalc dasi rcri stop-bang anticoagulation"><div class="eyebrow">External calculator</div><h3>MDCalc</h3><p>Open validated calculators in their original source. Confirm population, inputs, and current methodology.</p><a class="button external" href="https://www.mdcalc.com/" target="_blank" rel="noopener noreferrer">MDCalc home ↗</a><a class="button external" href="https://www.mdcalc.com/calc/3910/duke-activity-status-index-dasi" target="_blank" rel="noopener noreferrer">DASI ↗</a><a class="button external" href="https://www.mdcalc.com/calc/1739/revised-cardiac-risk-index-pre-operative-risk" target="_blank" rel="noopener noreferrer">RCRI ↗</a></article>
+<article class="card" data-tags="evidence openevidence research clinical question"><div class="eyebrow">Evidence search</div><h3>OpenEvidence</h3><p>Research focused clinical questions and verify the cited primary guidance before applying an answer.</p><a class="button external" href="https://www.openevidence.com/" target="_blank" rel="noopener noreferrer">Open OpenEvidence ↗</a></article>
+</div>
+<div class="clinical"><strong>Clinical-use boundary:</strong> These tools support—not replace—patient-specific judgment, facility policy, anesthesia requirements, surgeon-specific protocols, or specialist recommendations.</div>
+</section>
+
+<section class="panel" id="patient">
+<h2>Patient & Family Center</h2>
+<div class="grid">
+<article class="card" data-tags="patient instructions surgery preparation medications cpap fasting"><div class="eyebrow">Before surgery</div><h3>Patient Preparation & Instructions</h3><p>Create and review practical preparation guidance based on the planned surgery and health conditions.</p><a class="button patient" href="patient-discharge-education.html">Open instructions</a></article>
+<article class="card" data-tags="patient forms questionnaire appointment history medications"><div class="eyebrow">Forms</div><h3>Preoperative Forms</h3><p>Open patient questionnaires and printable forms to prepare for the appointment.</p><a class="button patient" href="patient-forms.html">Open patient forms</a><a class="button patient" href="preop-questionnaires-forms.html">All questionnaires</a></article>
+<article class="card" data-tags="patient education medlineplus cdc ahrq reliable health"><div class="eyebrow">Trusted education</div><h3>Reliable Health Information</h3><p>Patient-friendly information from MedlinePlus, CDC, and AHRQ.</p><a class="button patient" href="patient-education-resources.html">Open education center</a></article>
+<article class="card" data-tags="patient questions safety appointment checklist"><div class="eyebrow">Shared decisions</div><h3>Questions to Bring</h3><p>Write down medication questions, changes in health, prior anesthesia concerns, and recovery needs before the visit.</p><a class="button patient" href="patient-specific-preop-summary.html">Prepare a summary</a></article>
+</div>
+<div class="notice"><strong>Privacy:</strong> The current public website does not securely submit information to a clinic. Do not enter names, dates of birth, contact information, medical-record numbers, or other identifiable health information unless your clinic provides an approved secure submission pathway.</div>
+</section>
+
+<section class="panel" id="societies">
+<h2>Professional Society & Government Guidance</h2>
+<div class="grid">
+<article class="card" data-tags="evidence acc aha cardiovascular perioperative noncardiac guideline"><h3>ACC/AHA Perioperative Cardiovascular Guidance</h3><p>Primary cardiovascular guideline hub for noncardiac surgery.</p><a class="button external" href="https://www.acc.org/guidelines/hubs/perioperative-cardiovascular-evaluation" target="_blank" rel="noopener noreferrer">ACC guideline hub ↗</a></article>
+<article class="card" data-tags="evidence asa anesthesia standards practice parameters"><h3>American Society of Anesthesiologists</h3><p>Standards, practice parameters, and perioperative guidance.</p><a class="button external" href="https://www.asahq.org/standards-and-practice-parameters" target="_blank" rel="noopener noreferrer">ASA guidance ↗</a></article>
+<article class="card" data-tags="evidence acs nsqip surgical risk calculator patient"><h3>American College of Surgeons</h3><p>ACS NSQIP patient-specific surgical risk estimates for shared clinical discussion.</p><a class="button external" href="https://riskcalculator.facs.org/RiskCalculator/" target="_blank" rel="noopener noreferrer">ACS risk calculator ↗</a></article>
+<article class="card" data-tags="evidence chest antithrombotic pulmonary guideline"><h3>CHEST Guidelines</h3><p>Guidance for pulmonary disease, thromboembolism, and antithrombotic management.</p><a class="button external" href="https://www.chestnet.org/Guidelines-and-Resources" target="_blank" rel="noopener noreferrer">CHEST resources ↗</a></article>
+<article class="card" data-tags="evidence aasm sleep apnea osa guideline"><h3>American Academy of Sleep Medicine</h3><p>Clinical practice guidelines and resources for sleep disorders and OSA.</p><a class="button external" href="https://aasm.org/clinical-resources/practice-standards/practice-guidelines/" target="_blank" rel="noopener noreferrer">AASM guidelines ↗</a></article>
+<article class="card" data-tags="evidence idsa infection asymptomatic bacteriuria guideline"><h3>Infectious Diseases Society of America</h3><p>Current clinical practice guidelines, including asymptomatic bacteriuria.</p><a class="button external" href="https://www.idsociety.org/practice-guideline/practice-guidelines/" target="_blank" rel="noopener noreferrer">IDSA guidelines ↗</a></article>
+</div>
+<div class="notice">External guidance changes over time. Confirm publication date, scope, and updates at the source before using it for patient care.</div>
+</section>
+</main>
+<footer>Preoperative Optimization Handbook · Professional and Patient Resource Hub</footer>
+<script>
+const search=document.getElementById("hubSearch");
+const cards=Array.from(document.querySelectorAll(".card"));
+const buttons=Array.from(document.querySelectorAll("[data-filter]"));
+let filter="all";
+function applyFilter(){
+  const term=search.value.toLowerCase().trim(); let shown=0;
+  cards.forEach(card=>{const text=(card.innerText+" "+(card.dataset.tags||"")).toLowerCase();const category=filter==="all"||text.includes(filter);const match=!term||text.includes(term);card.hidden=!(category&&match);if(!card.hidden)shown++;});
+  document.getElementById("hubMessage").textContent=term||filter!=="all"?shown+" resource"+(shown===1?"":"s")+" shown":"";
+}
+search.addEventListener("input",applyFilter);
+buttons.forEach(button=>button.addEventListener("click",()=>{filter=button.dataset.filter;buttons.forEach(x=>x.classList.toggle("active",x===button));applyFilter();}));
+</script>
+</body>
+</html>
